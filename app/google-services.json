@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "68106059245",
+    "project_id": "talktie-6fc59",
+    "storage_bucket": "talktie-6fc59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68106059245:android:1580f321a12af3ad44bbe4",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_talktie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjyBcMuQkWyqLMRPRuBQauFFxfYEJuSkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
