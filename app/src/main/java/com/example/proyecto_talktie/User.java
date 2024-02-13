@@ -12,4 +12,6 @@ public class User {
     int profile_image;
     String website;
 
+    String j;
+
 }
