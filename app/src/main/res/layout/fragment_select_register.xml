@@ -63,38 +63,51 @@
                     android:text="@string/msg_search_for_inte"
                     style="@style/txtPoppinssemibold16_1" tools:text="@string/msg_search_for_inte"/>
             </LinearLayout>
-            <LinearLayout android:gravity="start"
+
+            <LinearLayout
                 android:id="@+id/linearRowcv"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_29pxh"
                 android:layout_marginStart="@dimen/_29pxh"
                 android:layout_marginTop="@dimen/_52pxv"
-                android:layout_width="match_parent" android:orientation="horizontal">
-                <FrameLayout android:id="@+id/frameStackcv"
+                android:layout_marginEnd="@dimen/_29pxh"
+                android:gravity="start"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/frameStackcv"
+                    style="@style/groupStylewhite_2"
+                    android:layout_width="@dimen/_70pxh"
                     android:layout_height="@dimen/_69pxv"
-                    android:layout_marginTop="@dimen/_2pxv"
-                    android:layout_width="@dimen/_70pxh" style="@style/groupStylewhite_2">
-                    <ImageView android:id="@+id/imageCV"
-                        android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_2pxv">
+
+                    <ImageView
+                        android:id="@+id/imageCV"
+                        imageRes="@{@drawable/img_cv}"
+                        android:layout_width="@dimen/_50pxh"
                         android:layout_height="@dimen/_50pxh"
-                        android:layout_marginBottom="@dimen/_9pxv"
-                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_10pxh"
                         android:layout_marginTop="@dimen/_10pxv"
-                        android:layout_width="@dimen/_50pxh"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_marginBottom="@dimen/_9pxv"
                         android:scaleType="fitXY"
-                        imageRes="@{@drawable/img_cv}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_cv"/>
+                        tools:ignore="ContentDescription"
+                        tools:src="@drawable/img_cv" />
                 </FrameLayout>
-                <TextView android:id="@+id/txtBuildaprofesi"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_10pxv"
-                    android:layout_marginStart="@dimen/_15pxh"
-                    android:layout_weight="0.77"
+
+                <TextView
+                    android:id="@+id/txtBuildaprofesi"
+                    style="@style/txtRobotoromansemibold16_1"
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15pxh"
+                    android:layout_marginBottom="@dimen/_10pxv"
+                    android:layout_weight="0.77"
                     android:text="@string/msg_build_a_profesi"
-                    style="@style/txtRobotoromansemibold16_1" tools:text="@string/msg_build_a_profesi"/>
+                    tools:text="@string/msg_build_a_profesi" />
             </LinearLayout>
+
             <LinearLayout android:gravity="start"
                 android:id="@+id/linearRowgrouptask"
                 android:layout_height="wrap_content"
@@ -128,7 +141,7 @@
                     style="@style/txtRobotoromansemibold16_1" tools:text="@string/msg_stay_in_touch_w"/>
             </LinearLayout>
             <LinearLayout android:id="@+id/linearRowstartAsACondidate"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_marginBottom="@dimen/_33pxv"
                 android:layout_marginEnd="@dimen/_6pxh"
                 android:layout_marginStart="@dimen/_12pxh"
@@ -147,6 +160,7 @@
                     android:singleLine="true"
                     android:text="@string/msg_start_as_a_cond"
                     android:textAllCaps="false"
+                    android:textSize="12sp"
                     style="@style/btnSolidRounded_1" tools:text="@string/msg_start_as_a_cond"/>
                 <androidx.appcompat.widget.AppCompatButton
                     android:ellipsize="end" android:gravity="center"
