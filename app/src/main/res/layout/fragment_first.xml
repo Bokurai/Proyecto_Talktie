@@ -11,4 +11,16 @@
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
 
+
+    <ImageView android:id="@+id/imageRectangleSix"
+        android:layout_gravity="top|end"
+        android:layout_height="@dimen/_177pxh"
+        android:layout_marginBottom="@dimen/_20pxv"
+        android:layout_marginEnd="@dimen/_92pxh"
+        android:layout_marginStart="@dimen/_92pxh"
+        android:layout_marginTop="@dimen/_243pxv"
+        android:layout_width="@dimen/_213pxh"
+        android:scaleType="fitXY"
+        imageRes="@{@drawable/talktie}"
+        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle6"/>
 </FrameLayout>
