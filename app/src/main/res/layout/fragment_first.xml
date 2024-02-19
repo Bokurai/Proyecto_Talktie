@@ -21,6 +21,6 @@
         android:layout_marginTop="@dimen/_243pxv"
         android:layout_width="@dimen/_213pxh"
         android:scaleType="fitXY"
-        imageRes="@{@drawable/talktie}"
+        android:imageRes="@{@drawable/talktie}"
         tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle6"/>
 </FrameLayout>
