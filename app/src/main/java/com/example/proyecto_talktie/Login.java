@@ -11,11 +11,15 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends Fragment {
 
+
+
     private FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
 
     }
 
