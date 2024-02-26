@@ -53,7 +53,7 @@
                         android:layout_marginTop="@dimen/_10pxv"
                         android:layout_width="@dimen/_50pxh"
                         android:scaleType="fitXY"
-                        imageRes="@{@drawable/img_jobseeker}"
+                        android:src="@drawable/img_jobseeker"
                         tools:ignore="ContentDescription" tools:src="@drawable/img_jobseeker"/>
                 </FrameLayout>
                 <TextView android:id="@+id/txtSearchforinte"
@@ -84,7 +84,7 @@
 
                     <ImageView
                         android:id="@+id/imageCV"
-                        imageRes="@{@drawable/img_cv}"
+                        android:src="@drawable/img_cv"
                         android:layout_width="@dimen/_50pxh"
                         android:layout_height="@dimen/_50pxh"
                         android:layout_gravity="center"
@@ -94,7 +94,7 @@
                         android:layout_marginBottom="@dimen/_9pxv"
                         android:scaleType="fitXY"
                         tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_cv" />
+                        />
                 </FrameLayout>
 
                 <TextView
@@ -129,8 +129,9 @@
                         android:layout_marginTop="@dimen/_10pxv"
                         android:layout_width="@dimen/_50pxh"
                         android:scaleType="fitXY"
-                        imageRes="@{@drawable/img_grouptask}"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_grouptask"/>
+                        android:src="@drawable/img_grouptask"
+                        tools:ignore="ContentDescription"
+                        />
                 </FrameLayout>
                 <TextView android:id="@+id/txtStayintouchw"
                     android:layout_height="wrap_content"
