@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_12pxh"
                 android:layout_marginStart="@dimen/_12pxh"
-                android:layout_marginTop="@dimen/_75pxh"
+                android:layout_marginTop="@dimen/_76pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
                 <FrameLayout android:id="@+id/frameStackjobseeker"
                     android:layout_height="@dimen/_69pxv"
@@ -54,8 +54,7 @@
                         android:layout_width="@dimen/_50pxh"
                         android:scaleType="fitXY"
                         android:src="@drawable/img_jobseeker"
-                        tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_jobseeker"/>
+                        tools:ignore="ContentDescription" tools:src="@drawable/img_jobseeker"/>
                 </FrameLayout>
                 <TextView android:id="@+id/txtSearchforinte"
                     android:layout_height="wrap_content"
@@ -63,17 +62,18 @@
                     android:layout_weight="0.79"
                     android:layout_width="0dp"
                     android:text="@string/msg_search_for_inte"
-                    style="@style/txtPoppinssemibold16_1"
-                    tools:text="@string/msg_search_for_inte"/>
+                    style="@style/txtPoppinssemibold16_1" tools:text="@string/msg_search_for_inte"/>
             </LinearLayout>
 
-            <LinearLayout android:gravity="start"
+            <LinearLayout
                 android:id="@+id/linearRowcv"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_12pxh"
-                android:layout_marginStart="@dimen/_12pxh"
-                android:layout_marginTop="@dimen/_56pxv"
-                android:layout_width="match_parent" android:orientation="horizontal">
+                android:layout_marginStart="@dimen/_29pxh"
+                android:layout_marginTop="@dimen/_52pxv"
+                android:layout_marginEnd="@dimen/_29pxh"
+                android:gravity="start"
+                android:orientation="horizontal">
 
                 <FrameLayout
                     android:id="@+id/frameStackcv"
@@ -84,6 +84,7 @@
 
                     <ImageView
                         android:id="@+id/imageCV"
+                        android:src="@drawable/img_cv"
                         android:layout_width="@dimen/_50pxh"
                         android:layout_height="@dimen/_50pxh"
                         android:layout_gravity="center"
@@ -93,7 +94,7 @@
                         android:layout_marginBottom="@dimen/_9pxv"
                         android:scaleType="fitXY"
                         tools:ignore="ContentDescription"
-                        android:src="@drawable/img_cv" />
+                        />
                 </FrameLayout>
 
                 <TextView
@@ -129,7 +130,8 @@
                         android:layout_width="@dimen/_50pxh"
                         android:scaleType="fitXY"
                         android:src="@drawable/img_grouptask"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_grouptask"/>
+                        tools:ignore="ContentDescription"
+                        />
                 </FrameLayout>
                 <TextView android:id="@+id/txtStayintouchw"
                     android:layout_height="wrap_content"
@@ -139,79 +141,44 @@
                     android:layout_width="0dp"
                     android:text="@string/msg_stay_in_touch_w"
                     style="@style/txtRobotoromansemibold16_1" tools:text="@string/msg_stay_in_touch_w"/>
-
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="@dimen/_10pxh"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView android:id="@+id/txtHowAre"
+            <LinearLayout android:id="@+id/linearRowstartAsACondidate"
+                android:layout_height="200dp"
+                android:layout_marginBottom="@dimen/_33pxv"
+                android:layout_marginEnd="@dimen/_6pxh"
+                android:layout_marginStart="@dimen/_12pxh"
+                android:layout_marginTop="@dimen/_97pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:ellipsize="end" android:gravity="center"
+                    android:id="@+id/btnStartAsACondidate"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_10pxh"
-                    android:layout_marginStart="@dimen/_15pxh"
-                    android:layout_weight="0.79"
-                    android:layout_width="wrap_content"
-                    android:text="@string/msg_how_are"
-                    style="@style/txtRobotoromansemibold16_1" tools:text="@string/msg_how_are"/>
-
-                <LinearLayout android:id="@+id/linearRowstartAsACondidate"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:paddingBottom="@dimen/_11pxv"
+                    android:paddingEnd="@dimen/_14pxh"
+                    android:paddingStart="@dimen/_14pxh"
+                    android:paddingTop="@dimen/_11pxv"
+                    android:singleLine="true"
+                    android:text="@string/msg_start_as_a_cond"
+                    android:textAllCaps="false"
+                    android:textSize="12sp"
+                    style="@style/btnSolidRounded_1" tools:text="@string/msg_start_as_a_cond"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:ellipsize="end" android:gravity="center"
+                    android:id="@+id/btnStartAsACompanyOne"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_10sp"
-                    android:layout_width="match_parent" android:orientation="horizontal">
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:ellipsize="end" android:gravity="center"
-                        android:id="@+id/btnStartAsACondidate"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:layout_width="0dp"
-                        android:paddingBottom="@dimen/_11pxv"
-                        android:paddingEnd="@dimen/_14pxh"
-                        android:paddingStart="@dimen/_14pxh"
-                        android:paddingTop="@dimen/_11pxv"
-                        android:singleLine="true"
-                        android:text="@string/msg_start_as_a_cond"
-                        android:textAllCaps="false"
-                        style="@style/btnRoundedOutline" tools:text="@string/msg_start_as_a_cond"/>
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:ellipsize="end" android:gravity="center"
-                        android:id="@+id/btnStartAsACompanyOne"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_6pxh"
-                        android:layout_weight="0.5"
-                        android:layout_width="0dp"
-                        android:paddingBottom="@dimen/_11pxv"
-                        android:paddingEnd="@dimen/_16pxh"
-                        android:paddingStart="@dimen/_17pxh"
-                        android:paddingTop="@dimen/_11pxv"
-                        android:singleLine="true"
-                        android:text="@string/msg_start_as_a_comp"
-                        android:textAllCaps="false"
-                        style="@style/btnSolidRounded_1"
-                        tools:text="@string/msg_start_as_a_comp"/>
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:ellipsize="end" android:gravity="center"
-                        android:id="@+id/btnStartAsASchoolOne"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_6pxh"
-                        android:layout_weight="0.5"
-                        android:layout_width="0dp"
-                        android:paddingBottom="@dimen/_11pxv"
-                        android:paddingEnd="@dimen/_16pxh"
-                        android:paddingStart="@dimen/_17pxh"
-                        android:paddingTop="@dimen/_11pxv"
-                        android:singleLine="true"
-                        android:text="@string/msg_start_as_a_school"
-                        android:textAllCaps="false"
-                        style="@style/btnRoundedOutline" tools:text="@string/msg_start_as_a_school"/>
-
-                </LinearLayout>
+                    android:layout_marginStart="@dimen/_6pxh"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:paddingBottom="@dimen/_11pxv"
+                    android:paddingEnd="@dimen/_16pxh"
+                    android:paddingStart="@dimen/_17pxh"
+                    android:paddingTop="@dimen/_11pxv"
+                    android:singleLine="true"
+                    android:text="@string/msg_start_as_a_comp"
+                    android:textAllCaps="false"
+                    style="@style/btnRoundedOutline" tools:text="@string/msg_start_as_a_comp"/>
             </LinearLayout>
-
-
-            </LinearLayout>
-
+        </LinearLayout>
     </LinearLayout>
