@@ -47,4 +47,54 @@
         android:name="com.example.proyecto_talktie.CreateNewPassword"
         android:label="fragment_create_new_password"
         tools:layout="@layout/fragment_create_new_password" />
+    <fragment
+        android:id="@+id/signIn1"
+        android:name="com.example.proyecto_talktie.SignIn1"
+        android:label="fragment_sign_in1"
+        tools:layout="@layout/fragment_sign_in1" />
+    <fragment
+        android:id="@+id/signIn2"
+        android:name="com.example.proyecto_talktie.SignIn2"
+        android:label="fragment_sign_in2"
+        tools:layout="@layout/fragment_sign_in2" />
+    <fragment
+        android:id="@+id/signIn3"
+        android:name="com.example.proyecto_talktie.SignIn3"
+        android:label="fragment_sign_in3"
+        tools:layout="@layout/fragment_sign_in3" />
+    <fragment
+        android:id="@+id/signIn4"
+        android:name="com.example.proyecto_talktie.SignIn4"
+        android:label="fragment_sign_in4"
+        tools:layout="@layout/fragment_sign_in4" />
+    <fragment
+        android:id="@+id/signIn5"
+        android:name="com.example.proyecto_talktie.SignIn5"
+        android:label="fragment_sign_in5"
+        tools:layout="@layout/fragment_sign_in5" />
+    <fragment
+        android:id="@+id/signIn6"
+        android:name="com.example.proyecto_talktie.SignIn6"
+        android:label="fragment_sign_in6"
+        tools:layout="@layout/fragment_sign_in6" />
+    <fragment
+        android:id="@+id/signIn7"
+        android:name="com.example.proyecto_talktie.SignIn7"
+        android:label="fragment_sign_in7"
+        tools:layout="@layout/fragment_sign_in7" />
+    <fragment
+        android:id="@+id/signIn8"
+        android:name="com.example.proyecto_talktie.SignIn8"
+        android:label="fragment_sign_in8"
+        tools:layout="@layout/fragment_sign_in8" />
+    <fragment
+        android:id="@+id/signIn9"
+        android:name="com.example.proyecto_talktie.SignIn9"
+        android:label="fragment_sign_in9"
+        tools:layout="@layout/fragment_sign_in9" />
+    <fragment
+        android:id="@+id/signIn10"
+        android:name="com.example.proyecto_talktie.SignIn10"
+        android:label="fragment_sign_in10"
+        tools:layout="@layout/fragment_sign_in10" />
 </navigation>
