@@ -9,10 +9,13 @@ SUBIR CAMBIOS A LA RAMA MASTER:
 5- Push -> Hacer un push de la rama para que suban los cambios a la nube. (git-> push)
 
 
-DESCARGAR CAMBIOS DE LA RAMA MASTER:
-1-Fetch (desde tu propia rama)
-2-Pull (desde tu propia rama) - indicar de qué rama quieres hacer el pull (ej. login)
+DESCARGAR CAMBIOS DE LA RAMA MASTER-cambios q estan en la nube a local:
+1-Fetch (desde la rama master)
+2-Pull (desde la rama master)- indicar de qué rama quieres hacer el pull (ej. login)
+*para que entiendas, tienes que descargar lo de la nube en la local master y una vez lo tengas igual, osea actualizado, lo puedes pasar a tu rama, que es el siguiente punto
 
+DESCARGAR CAMBIOS DE LA RAMA MASTER-de local "master" a local:
+1- Merge (desde tu propia rama)- de la rama master a tu rama 
 
 CUIDADO CON LOS CONFLICTOS!!! 
 Hay que revisar bien las versiones que dan conflictos. Puedes escoger con cual quedarte o sino en el medio puedes hacer los cambios que quieres y apply
