@@ -64,7 +64,6 @@
                     android:layout_width="@dimen/_60pxh"
                     android:layout_height="@dimen/_60pxh"
                     android:layout_gravity="start"
-                    android:background="@drawable/round_background"
                     android:scaleType="centerCrop"
                     android:src="@drawable/img_pngtreeavatar"
                     tools:ignore="ContentDescription, src" />
