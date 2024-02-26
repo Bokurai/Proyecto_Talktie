@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="hello_blank_fragment">hello_blank_fragment</string>
-
     <string name="app_name">bokurai_s_application3</string>
     <string name="loading">Loading…</string>
     <string name="no_internet_connection">No internet connection!</string>
@@ -343,8 +341,6 @@ Rec</string>
     <string name="lbl_arabic">Arabic</string>
     <string name="msg_hello_nice_to">Hello, nice to meet you!</string>
     <string name="msg_start_as_a_comp">Company</string>
-    <string name="msg_start_as_a_school">School</string>
-    <string name="msg_how_are">How are you?</string>
     <string name="lbl_once_a_month">Once a Month</string>
     <string name="msg_type_of_institu">Type of institution</string>
     <string name="lbl_100_500">100-500</string>
@@ -490,4 +486,6 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="msg_confirm_your_pa">Confirm your password</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="msg_how_are">Who are you?</string>
+    <string name="msg_start_as_a_school">School</string>
 </resources>
