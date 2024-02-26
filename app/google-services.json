@@ -12,7 +12,44 @@
           "package_name": "com.example.proyecto_talktie"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "68106059245-25fqsufljf7tmruo6ejn56ga4b5dgsfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proyecto_talktie",
+            "certificate_hash": "14c59f7f1b670a4cd8850ce94396261dbc57d4e6"
+          }
+        },
+        {
+          "client_id": "68106059245-7b51hbuk12jbqv8vbodmskm18tbu8tfd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proyecto_talktie",
+            "certificate_hash": "2d8e0f20f9c3832f0023bc9f858096270333fa5e"
+          }
+        },
+        {
+          "client_id": "68106059245-a3a42t5e9jhmh1d5hvchpbeqagrlc2pu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proyecto_talktie",
+            "certificate_hash": "24d0dafc16a4ff569e1ccab6db361938fbe72397"
+          }
+        },
+        {
+          "client_id": "68106059245-gjefk8824b5u7seb8mih014171eiu1o1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proyecto_talktie",
+            "certificate_hash": "275d01ddf6a8c2031e819d92da2e75722eb2aa17"
+          }
+        },
+        {
+          "client_id": "68106059245-b2qqb8ucp2p9cpda8rpt3d24cu21qarf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCjyBcMuQkWyqLMRPRuBQauFFxfYEJuSkE"
@@ -20,7 +57,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68106059245-b2qqb8ucp2p9cpda8rpt3d24cu21qarf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
