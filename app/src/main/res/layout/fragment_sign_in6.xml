@@ -388,10 +388,10 @@
                 android:id="@+id/frameButtonContinue"
                 android:layout_width="@dimen/_311pxh"
                 android:layout_height="@dimen/_50pxv"
-                android:layout_gravity="end"
-                android:layout_marginStart="@dimen/_10pxh"
-                android:layout_marginTop="@dimen/_46pxv"
-                android:layout_marginBottom="@dimen/_20pxv">
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_13pxh"
+                android:layout_marginTop="@dimen/_75pxh"
+                android:layout_marginEnd="@dimen/_13pxh">
 
                 <TextView
                     android:id="@+id/txtContinue"
@@ -413,23 +413,8 @@
                     android:id="@+id/frameButtonSelect"
                     android:layout_width="@dimen/_311pxh"
                     android:layout_height="@dimen/_50pxv"
-                    android:layout_gravity="start">
+                    android:layout_gravity="center">
 
-                    <TextView
-                        android:id="@+id/txtSelect"
-                        style="@style/txtRobotosemibolditalic17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_40pxh"
-                        android:layout_marginTop="@dimen/_14pxv"
-                        android:layout_marginEnd="@dimen/_40pxh"
-                        android:layout_marginBottom="@dimen/_15pxv"
-                        android:ellipsize="end"
-                        android:lineSpacingExtra="@dimen/_3pxh"
-                        android:singleLine="true"
-                        android:text="@string/lbl_select"
-                        tools:text="@string/lbl_select" />
 
                     <FrameLayout
                         android:id="@+id/frameButtonVerify"
@@ -437,22 +422,6 @@
                         android:layout_height="@dimen/_50pxv"
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_1pxh">
-
-                        <TextView
-                            android:id="@+id/txtVerify"
-                            style="@style/txtRobotosemibolditalic17"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center"
-                            android:layout_marginStart="@dimen/_134pxh"
-                            android:layout_marginTop="@dimen/_13pxv"
-                            android:layout_marginEnd="@dimen/_134pxh"
-                            android:layout_marginBottom="@dimen/_13pxv"
-                            android:ellipsize="end"
-                            android:lineSpacingExtra="@dimen/_3pxh"
-                            android:singleLine="true"
-                            android:text="@string/lbl_verify"
-                            tools:text="@string/lbl_verify" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btnContinueOne"
@@ -463,7 +432,6 @@
                             android:ellipsize="end"
                             android:gravity="center"
                             android:paddingStart="@dimen/_30pxh"
-                            android:paddingTop="@dimen/_15pxv"
                             android:paddingEnd="@dimen/_30pxh"
                             android:paddingBottom="@dimen/_15pxv"
                             android:singleLine="true"
