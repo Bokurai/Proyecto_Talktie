@@ -58,7 +58,7 @@
                         android:src="@drawable/img_pngtreeavatar"
                         tools:ignore="ContentDescription" tools:src="@drawable/img_pngtreeavatar"/>
                     <ImageButton
-                        android:background="@drawable/rectangle_bg_light_green_a700_radius_16"
+                        android:background="@drawable/rectangle_bg_light_green_900_radius_16"
                         android:id="@+id/btnGrid"
                         android:layout_gravity="bottom|end"
                         android:layout_height="@dimen/_32pxh"
