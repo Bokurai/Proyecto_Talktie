@@ -257,7 +257,6 @@
                             tools:ignore="ContentDescription" />
                     </LinearLayout>
 
-
                 </LinearLayout>
 
 
@@ -425,7 +424,6 @@
                         android:layout_width="@dimen/_311pxh"
                         android:layout_height="@dimen/_50pxv"
                         android:layout_gravity="center">
-
 
                         <FrameLayout
                             android:id="@+id/frameButtonVerify"

@@ -72,8 +72,7 @@
                             android:theme="@style/searchViewSearch"
                             app:iconifiedByDefault="false"
                             app:queryBackground="@android:color/transparent"
-                            app:queryHint="@string/msg_type_location_y"
-                            app:searchIcon="@drawable/img_search_bluegray_400" />
+                            app:queryHint="@string/msg_type_location_y"/>
 
                         <FrameLayout
                             android:id="@+id/frameButtonSet"
@@ -90,9 +89,7 @@
                                 android:layout_height="@dimen/_35pxh"
                                 android:layout_gravity="start"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/img_background_light_green_a700"
-                                tools:ignore="ContentDescription"
-                                tools:src="@drawable/img_background_light_green_a700" />
+                                tools:ignore="ContentDescription" />
 
                             <LinearLayout
                                 android:id="@+id/linearRowsetlocation"
