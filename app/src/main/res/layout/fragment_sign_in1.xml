@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".SignIn1"
     android:gravity="center_horizontal"
     android:id="@+id/linearSinginOne"
@@ -54,9 +56,8 @@
                         android:layout_marginBottom="@dimen/_10pxv"
                         android:layout_width="match_parent"
                         android:scaleType="centerCrop"
-                        android:circular="@{true}"
                         android:src="@drawable/img_pngtreeavatar"
-                        tools:ignore="ContentDescription" tools:src="@drawable/img_pngtreeavatar"/>
+                        tools:ignore="ContentDescription" />
                     <ImageButton
                         android:background="@drawable/rectangle_bg_light_green_900_radius_16"
                         android:id="@+id/btnGrid"
