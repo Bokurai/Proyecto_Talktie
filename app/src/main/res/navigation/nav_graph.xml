@@ -97,4 +97,9 @@
         android:name="com.example.proyecto_talktie.SignIn10"
         android:label="fragment_sign_in10"
         tools:layout="@layout/fragment_sign_in10" />
+    <fragment
+        android:id="@+id/profileStudent"
+        android:name="com.example.proyecto_talktie.ProfileStudent"
+        android:label="fragment_profile_student"
+        tools:layout="@layout/fragment_profile_student" />
 </navigation>
