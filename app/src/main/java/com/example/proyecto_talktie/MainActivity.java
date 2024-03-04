@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    @Override
+   /* @Override
     protected void onStart(){
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -29,5 +29,5 @@ public class MainActivity extends AppCompatActivity {
         }else {
             startActivity(new Intent(MainActivity.this, SelectRegister.class));
         }
-    }
+    }*/
 }

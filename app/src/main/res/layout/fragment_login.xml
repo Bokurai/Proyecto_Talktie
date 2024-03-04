@@ -202,16 +202,15 @@
         tools:text="@string/lbl_create_account"
         style="@style/btnSolidRounded_3"/>
 
-
     <LinearLayout
         android:id="@+id/linearRowgoogle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_32pxh"
-        android:layout_marginTop="@dimen/_46pxv"
+        android:layout_marginTop="@dimen/_20pxv"
         android:layout_marginEnd="@dimen/_32pxh"
         android:layout_marginBottom="@dimen/_1pxv"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <FrameLayout
@@ -224,31 +223,8 @@
                 android:id="@+id/googleSignInButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
-
         </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/frameFacebook"
-            style="@style/groupStylecornerRadius"
-            android:layout_width="@dimen/_72pxh"
-            android:layout_height="@dimen/_50pxv"
-            android:layout_marginStart="@dimen/_14pxh">
-
-            <ImageView
-                android:id="@+id/imageFacebook"
-                android:layout_width="@dimen/_28pxh"
-                android:layout_height="@dimen/_25pxh"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_22pxh"
-                android:layout_marginTop="@dimen/_12pxv"
-                android:layout_marginEnd="@dimen/_22pxh"
-                android:layout_marginBottom="@dimen/_12pxv"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_facebook"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_facebook" />
-        </FrameLayout>
     </LinearLayout>
 </LinearLayout>
 

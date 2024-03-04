@@ -5,6 +5,43 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/login">
 
+    <action
+        android:id="@+id/action_goLogin"
+        app:destination="@+id/login" />
+
+    <action
+        android:id="@+id/action_goSignIn1"
+        app:destination="@+id/signIn1" />
+
+    <action
+        android:id="@+id/action_goSignIn2"
+        app:destination="@+id/signIn2" />
+
+    <action
+        android:id="@+id/action_goSignIn3"
+        app:destination="@+id/signIn3" />
+
+    <action
+        android:id="@+id/action_goSignIn4"
+        app:destination="@+id/signIn4" />
+
+    <action
+        android:id="@+id/action_goSelectRegister"
+        app:destination="@+id/selectRegister" />
+
+    <action
+        android:id="@+id/action_goForgetPassword"
+        app:destination="@id/forgetPassword" />
+
+    <action
+        android:id="@+id/action_goCodePassword"
+        app:destination="@id/codePassword" />
+
+    <action
+        android:id="@+id/action_goCreateNewPassword"
+        app:destination="@id/createNewPassword" />
+
+
     <fragment
         android:id="@+id/first"
         android:name="com.example.proyecto_talktie.First"
@@ -20,27 +57,21 @@
         android:name="com.example.proyecto_talktie.Login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_login_to_forgetPassword"
-            app:destination="@id/forgetPassword" />
     </fragment>
+
     <fragment
         android:id="@+id/forgetPassword"
         android:name="com.example.proyecto_talktie.ForgetPassword"
         android:label="fragment_forget_password"
         tools:layout="@layout/fragment_forget_password" >
-        <action
-            android:id="@+id/action_forgetPassword_to_codePassword"
-            app:destination="@id/codePassword" />
     </fragment>
+
+
     <fragment
         android:id="@+id/codePassword"
         android:name="com.example.proyecto_talktie.CodePassword"
         android:label="fragment_code_password"
         tools:layout="@layout/fragment_code_password" >
-        <action
-            android:id="@+id/action_codePassword_to_createNewPassword"
-            app:destination="@id/createNewPassword" />
     </fragment>
     <fragment
         android:id="@+id/createNewPassword"
