@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".login"
+    tools:context=".ProfileStudent"
     android:gravity="start"
     android:id="@+id/linearColumnbackground"
     android:layout_height="match_parent"
@@ -244,7 +244,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/txtDescription"
+                    android:id="@+id/txtRecomedation1"
                     style="@style/txtRobotoromanregular15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -404,9 +404,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_10pxv"
                             android:scaleType="fitXY"
-                            android:src="@drawable/img_vector_light_green_a700"
-                            tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_vector_light_green_a700" />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/txtProfile"
