@@ -490,4 +490,6 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="msg_start_as_a_school">School</string>
     <string name="lbl_recomend">Recommendations</string>
     <string name="lbl_recomendations"></string>
+    <string name="lbl_job_title2">Job Title</string>
+    <string name="lbl_experience">Interships</string>
 </resources>
