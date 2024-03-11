@@ -12,7 +12,6 @@ public class User {
     int profile_image;
     String website;
 
-
     //constructor vacío requerido por Firebase
     public User(){}
 }
