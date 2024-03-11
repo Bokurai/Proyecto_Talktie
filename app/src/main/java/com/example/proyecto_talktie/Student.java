@@ -19,4 +19,8 @@ public class Student extends User{
     Date end_date_job;
     boolean currently_working;
     List<String> job_categories;
+
+
+    //constructor vacío requerido por Firebase
+    public Student(){}
 }

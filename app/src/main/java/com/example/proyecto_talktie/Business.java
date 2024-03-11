@@ -9,4 +9,7 @@ public class Business extends User{
     String summary;
     Date foundation_date;
     String specialties;
+
+    //constructor vacío requerido por Firebase
+    public Business(){}
 }

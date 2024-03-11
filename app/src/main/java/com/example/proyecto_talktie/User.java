@@ -1,17 +1,18 @@
 package com.example.proyecto_talktie;
 
 public class User {
-    String nombre;
+    String name;
     String id;
     String email;
     String password;
     String city;
-    int zipcode;
-    String home_adress;
-    int phone_number;
+    String zipcode;
+    String home_address;
+    String phone_number;
     int profile_image;
     String website;
 
-    String j;
 
+    //constructor vacío requerido por Firebase
+    public User(){}
 }
