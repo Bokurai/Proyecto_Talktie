@@ -1,22 +1,24 @@
 package com.example.proyecto_talktie;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.EditText;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,32 +26,15 @@ import com.google.firebase.auth.FirebaseUser;
 public class Login extends Fragment {
 
     FragmentLoginBinding binding;
-    private ActivityResultLauncher<Intent> activityResultLauncher;
-
-
+    private Button registerButton;
+    NavController navController;
+    private FirebaseAuth mAuth;
+    private EditText emailEditText, passwordEditText;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-
-        String mail = binding.etEmailOne.getText().toString();
-        String password = binding.etPasss.getText().toString();
-
-        binding.btnLogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                  signInWithEmailAndPassword(mail, password);
-            }
-        });
-
-        binding.googleSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               accederConGoogle();
-            }
-        });
+        mAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -57,32 +42,71 @@ public class Login extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return (binding = FragmentLoginBinding.inflate(inflater, container, false)).getRoot();
     }
-    private void signInWithEmailAndPassword(String email, String password) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(requireActivity(), task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                    } else {
-                        Toast.makeText(getContext(), "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void accederConGoogle() {
-        GoogleSignInClient googleSignInClient =
-                GoogleSignIn.getClient(requireActivity(), new
-                        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(getString(R.string.default_web_client_id))
-                        .requestEmail()
-                        .build());
-        activityResultLauncher.launch(googleSignInClient.getSignInIntent());
-    }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle
-            savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
+        emailEditText = view.findViewById(R.id.etEmailOne);
+        passwordEditText = view.findViewById(R.id.etPasss);
+
+        registerButton = view.findViewById(R.id.btnLogIn);
+        navController = Navigation.findNavController(view);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                crearCuenta();
+            }
+        });
+
+    }
+    private void crearCuenta() {
+        if (!validarFormulario()) {
+            return;
+        }
+
+        registerButton.setEnabled(false);
+
+        mAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
+                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            actualizarUI(mAuth.getCurrentUser());
+                        } else {
+                            Snackbar.make(requireView(), "Error: " + task.getException(), Snackbar.LENGTH_LONG).show();
+
+                        }
+                        registerButton.setEnabled(true);
+                    }
+                });
+
+    }
+
+    private void actualizarUI(FirebaseUser currentUser) {
+        if(currentUser != null){
+
+            navController.navigate(R.id.selectRegister);
+        }
+    }
+
+    private boolean validarFormulario() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(emailEditText.getText().toString())) {
+            emailEditText.setError("Required.");
+            valid = false;
+        } else {
+            emailEditText.setError(null);
+        }
+
+        if (TextUtils.isEmpty(passwordEditText.getText().toString())) {
+            passwordEditText.setError("Required.");
+            valid = false;
+        } else {
+            passwordEditText.setError(null);
+        }
+
+        return valid;
     }
 }
