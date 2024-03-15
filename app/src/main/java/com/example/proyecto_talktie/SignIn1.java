@@ -1,5 +1,9 @@
 package com.example.proyecto_talktie;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,9 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.example.proyecto_talktie.databinding.FragmentSignIn1Binding;
@@ -41,13 +48,6 @@ public class SignIn1 extends Fragment {
             savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        navController = Navigation.findNavController(view);
-
-        if(firebaseUser != null){
-            binding.etEmail.setEnabled(false);
-            binding.etEmail.setText(firebaseUser.getEmail());
-        }
 
     }
 }
