@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10pxh"
+            android:orientation="horizontal">
+
+            <ImageView android:id="@+id/imageTeacherRecommend"
+                android:layout_height="@dimen/_40pxh"
+                android:layout_width="@dimen/_40pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_image3_1"
+                tools:ignore="ContentDescription" />
+
+            <TextView android:ellipsize="end"
+                android:id="@+id/nameTeacherRecommend"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@string/lbl_ux_researcher"
+                style="@style/txtRobotoromanbold17"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textTeacherRecommend"
+            style="@style/txtRobotoromanregular15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_17pxh"
+            android:layout_marginTop="@dimen/_12pxv"
+            android:layout_marginEnd="@dimen/_17pxh"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="@dimen/_5pxh"
+            android:text="@string/msg_i_know_i_can_he"
+            tools:text="@string/msg_i_know_i_can_he" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+
