@@ -47,7 +47,5 @@ public class SignIn1 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle
             savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 }
