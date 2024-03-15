@@ -7,5 +7,7 @@ public class School extends User{
     List<String> school_type;
 
     //constructor vacío requerido por Firebase
-    public School(){}
+    public School(){
+        super();
+    }
 }

@@ -21,7 +21,9 @@ public class User {
 
     String website;
 
-    public User(){}
+    public User(){
+        super();
+    }
 
     public User(String name, String email, String password, String city, String zipcode, String home_address, String phone_number, int profile_image, String website) {
         this.name = name;
