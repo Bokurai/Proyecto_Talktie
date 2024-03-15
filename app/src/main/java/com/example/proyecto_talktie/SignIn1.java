@@ -19,6 +19,7 @@ public class SignIn1 extends Fragment {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FragmentSignIn1Binding binding;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
