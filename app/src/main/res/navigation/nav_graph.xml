@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_login_to_forgetPassword"
             app:destination="@id/forgetPassword" />
+        <action
+            android:id="@+id/action_to_Register"
+            app:destination="@id/signIn1" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassword"

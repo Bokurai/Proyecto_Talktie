@@ -109,4 +109,19 @@ public class Login extends Fragment {
 
         return valid;
     }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.fragment_login, container, false);
+
+        Button register = rootView.findViewById(R.id.btnCreateAccountOne);
+        // Configura el OnClickListener para el botón
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navega hacia el fragmento singIn1 al hacer clic en el botón
+                Navigation.findNavController(v).navigate(R.id.action_to_Register);
+            }
+        });
 }
