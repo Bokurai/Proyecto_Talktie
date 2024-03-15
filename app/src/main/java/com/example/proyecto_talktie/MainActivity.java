@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
     }
-
-   /* @Override
+/*
+    @Override
     protected void onStart(){
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
