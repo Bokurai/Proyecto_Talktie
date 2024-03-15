@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +15,14 @@ import android.view.ViewGroup;
 import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.example.proyecto_talktie.databinding.FragmentSignIn1Binding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class SignIn1 extends Fragment {
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FragmentSignIn1Binding binding;
-
+    NavController navController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,13 @@ public class SignIn1 extends Fragment {
             savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.etEmail.setEnabled(false);
-        binding.etEmail.setText(mAuth.getCurrentUser().getEmail());
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        navController = Navigation.findNavController(view);
+
+        if(firebaseUser != null){
+            binding.etEmail.setEnabled(false);
+            binding.etEmail.setText(firebaseUser.getEmail());
+        }
+
     }
 }
