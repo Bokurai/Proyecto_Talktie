@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
+import com.example.proyecto_talktie.databinding.FragmentSignIn1Binding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -26,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignIn1 extends Fragment {
 
-    FragmentLoginBinding binding;
+    FragmentSignIn1Binding binding;
     private Button registerButton;
     NavController navController;
     private FirebaseAuth mAuth;
@@ -36,14 +37,13 @@ public class SignIn1 extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mAuth = FirebaseAuth.getInstance();
 
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return (binding = FragmentLoginBinding.inflate(inflater, container, false)).getRoot();
+        return (binding = FragmentSignIn1Binding.inflate(inflater, container, false)).getRoot();
     }
 
     @Override

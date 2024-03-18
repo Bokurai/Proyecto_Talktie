@@ -47,4 +47,15 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.google.firebase:firebase-auth")
+
+    //implementation ("com.google.firebase:firebase-auth")
+    implementation ("com.google.android.gms:play-services-auth:19.2.0")
+
+    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.fragment:fragment-ktx:1.3.6")
+
+    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
+    implementation ("com.firebaseui:firebase-ui-database:8.0.2")
+    implementation ("com.firebaseui:firebase-ui-auth:8.0.2")
+    implementation ("com.firebaseui:firebase-ui-storage:8.0.2")
 }
