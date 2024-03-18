@@ -4,6 +4,7 @@ import java.util.List;
 
 public class School extends User{
 
+    String schoolId;
     String about;
     String school_code;
     List<String> school_type;
@@ -19,6 +20,14 @@ public class School extends User{
     //constructor vacío requerido por Firebase
     public School(){
         super();
+    }
+
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
     }
 
     public String getAbout() {
