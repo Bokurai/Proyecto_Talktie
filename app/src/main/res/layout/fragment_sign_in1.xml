@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SignIn1"
     android:gravity="center_horizontal"
     android:id="@+id/linearSinginOne"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical" style="@style/groupStylewhite_A700">
+    android:orientation="vertical"
+    style="@style/groupStylewhite_A700">
     <LinearLayout android:id="@+id/linear08SignUp"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -207,6 +208,7 @@
                 android:singleLine="true"
                 android:text="@string/msg_have_an_account"
                 tools:text="@string/msg_have_an_account" />
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
