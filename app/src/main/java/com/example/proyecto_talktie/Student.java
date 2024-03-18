@@ -5,20 +5,28 @@ import java.util.List;
 
 public class Student extends User{
     List<String> gender;
+
     Date birth_date;
 
     //Parte del formulario de formación
     String center;
+
     Date start_date_formation;
+
     Date end_date_formation;
+
 
     //Parte de experiencia laboral
     String company;
+
     String location;
+
     Date start_date_job;
 
     Date end_date_job;
+
     boolean currently_working;
+
     List<String> job_categories;
 
     public Student(String name, String email, String password, String city, String zipcode, String home_address, String phone_number, int profile_image, String website, List<String> gender, Date birth_date, String center, Date start_date_formation, Date end_date_formation, String company, String location, Date start_date_job, Date end_date_job, boolean currently_working, List<String> job_categories) {

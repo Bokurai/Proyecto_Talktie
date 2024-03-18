@@ -1,9 +1,10 @@
 package com.example.proyecto_talktie;
 
 public class User {
-    String name;
 
     String id;
+
+    String name;
 
     String email;
 
@@ -37,20 +38,20 @@ public class User {
         this.website = website;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -116,7 +117,4 @@ public class User {
     public void setWebsite(String website) {
         this.website = website;
     }
-
-
-
 }
