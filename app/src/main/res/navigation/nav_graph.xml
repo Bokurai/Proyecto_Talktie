@@ -52,26 +52,7 @@
         android:name="com.example.proyecto_talktie.SignIn1"
         android:label="fragment_sign_in1"
         tools:layout="@layout/fragment_sign_in1" />
-    <fragment
-        android:id="@+id/signIn2"
-        android:name="com.example.proyecto_talktie.SignIn2"
-        android:label="fragment_sign_in2"
-        tools:layout="@layout/fragment_sign_in2" />
-    <fragment
-        android:id="@+id/signIn3"
-        android:name="com.example.proyecto_talktie.SignIn3"
-        android:label="fragment_sign_in3"
-        tools:layout="@layout/fragment_sign_in3" />
-    <fragment
-        android:id="@+id/signIn4"
-        android:name="com.example.proyecto_talktie.SignIn4"
-        android:label="fragment_sign_in4"
-        tools:layout="@layout/fragment_sign_in4" />
-    <fragment
-        android:id="@+id/signIn5"
-        android:name="com.example.proyecto_talktie.SignIn5"
-        android:label="fragment_sign_in5"
-        tools:layout="@layout/fragment_sign_in5" />
+
     <fragment
         android:id="@+id/signIn6"
         android:name="com.example.proyecto_talktie.SignIn6"
@@ -140,4 +121,9 @@
     <action
         android:id="@+id/action_to_Register"
         app:destination="@id/signIn1" />
+    <fragment
+        android:id="@+id/jobs"
+        android:name="com.example.proyecto_talktie.Jobs"
+        android:label="fragment_jobs"
+        tools:layout="@layout/fragment_jobs" />
 </navigation>
