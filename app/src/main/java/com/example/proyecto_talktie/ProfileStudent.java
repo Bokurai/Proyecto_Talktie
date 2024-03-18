@@ -2,58 +2,29 @@ package com.example.proyecto_talktie;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileStudent#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+import java.util.Map;
+
 public class ProfileStudent extends Fragment {
+    //Initialization of the student's view-model
+    private StudentViewModel studentViewModel;
+    private RecyclerView recyclerView;
+    private RecommendAdapter adapter;
+    TextView textAbout;
+    String studentId;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ProfileStudent() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileStudent.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileStudent newInstance(String param1, String param2) {
-        ProfileStudent fragment = new ProfileStudent();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,4 +32,80 @@ public class ProfileStudent extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile_student, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        textAbout = view.findViewById(R.id.txtDescription);
+        recyclerView = view.findViewById(R.id.recommendRecyclerView);
+
+        //I must change by an id that I extract from the current user
+        studentId = "stu1dam2a";
+
+        studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
+
+        /**
+         * I get the livedata about from the view-model to show it to the user
+         */
+        studentViewModel.getAbout(studentId).observe(getViewLifecycleOwner(), aboutMe -> {
+            textAbout.setText(aboutMe);
+        });
+
+        studentViewModel.getRecommendationLiveData(studentId).observe(getViewLifecycleOwner(), recommendations -> {
+            //Create and set the adapter with the new recommendations
+            adapter = new RecommendAdapter(recommendations);
+            recyclerView.setAdapter(adapter);
+        });
+
+
+    }
+
+    class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.RecommendationViewHolder> {
+        private List<Recommendation> recommendationList;
+
+        public RecommendAdapter(List<Recommendation> recommendationList) {
+            this.recommendationList = recommendationList;
+        }
+
+        @NonNull
+        @Override
+        public RecommendationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new RecommendationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_recommends, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull RecommendationViewHolder holder, int position) {
+            Recommendation recommendation = recommendationList.get(position);
+
+            //change image and teacher name by a search through their id.
+            holder.nameTeacher.setText(recommendation.getIdTeacher());
+            holder.imageTeacher.setImageResource(R.drawable.img_pngtreeavatar);
+
+            holder.textRecommendation.setText(recommendation.getRecommendationText());
+
+        }
+
+        @Override
+        public int getItemCount() {
+            //Number of recommendations to display
+            return recommendationList.size();
+        }
+
+        /**
+         * Class extracting from the view holder for later use in the adapter
+         */
+        class RecommendationViewHolder extends RecyclerView.ViewHolder {
+            ImageView imageTeacher;
+            TextView nameTeacher, textRecommendation;
+            RecommendationViewHolder(@NonNull View itemView) {
+                super(itemView);
+
+                imageTeacher = itemView.findViewById(R.id.imageTeacherRecommend);
+                nameTeacher = itemView.findViewById(R.id.nameTeacherRecommend);
+                textRecommendation = itemView.findViewById(R.id.textTeacherRecommend);
+            }
+        }
+    }
+
 }
