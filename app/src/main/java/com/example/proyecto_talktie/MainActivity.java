@@ -1,25 +1,43 @@
 package com.example.proyecto_talktie;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.proyecto_talktie.databinding.ActivityMainBinding;
+import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
+    ActivityMainBinding binding; //para navigation button
+    NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView((binding = ActivityMainBinding.inflate(getLayoutInflater())).getRoot());
 
         mAuth = FirebaseAuth.getInstance();
+
+        NavController navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).getNavController();
+        NavigationUI.setupWithNavController(binding.bottomNavView, navController);
+
+
     }
-/*
+
+
+
+
+
+
+    /*
     @Override
     protected void onStart(){
         super.onStart();
