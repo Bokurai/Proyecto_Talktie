@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="start"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    style="@style/groupStylewhite_A700">
+
+        <LinearLayout
+            android:id="@+id/linearScreen"
+            style="@style/groupStylewhite_A700"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_marginTop="@dimen/_20pxh"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageEllipseTwo"
+                android:layout_width="@dimen/_44pxh"
+                android:layout_height="@dimen/_44pxh"
+                android:layout_marginStart="@dimen/_18pxh"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_ellipse2"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/imageIconsocialnot"
+                android:layout_width="@dimen/_18pxh"
+                android:layout_height="@dimen/_22pxh"
+                android:layout_marginStart="@dimen/_295pxh"
+                android:layout_marginTop="@dimen/_13pxv"
+                android:layout_marginEnd="@dimen/_36pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_iconsocialnot"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/offerRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+</LinearLayout>
