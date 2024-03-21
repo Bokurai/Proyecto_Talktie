@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home2"
+        android:icon="@drawable/img_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/jobs"
+        android:icon="@drawable/img_briefcase"
+        android:title="Offers" />
+
+    <item
+        android:id="@+id/messagesHome"
+        android:icon="@drawable/img_user_black_900_23x24"
+        android:title="Messages" />
+    <item
+        android:id="@+id/profileStudent"
+        android:icon="@drawable/img_vector_light_green_a700"
+        android:title="Profile" />
+</menu>
