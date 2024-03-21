@@ -54,6 +54,7 @@ public class Login extends Fragment {
     //LOGIN-emial passw
     private EditText emailEditText, passwordEditText;
     private Button emailSignInButton;
+    MainActivity mainActivity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,7 +136,11 @@ public class Login extends Fragment {
                 accederConGoogle();
             }
         });
-   }
+   //esconder el menu
+        mainActivity = (MainActivity) requireActivity();
+        mainActivity.hideNavBot();
+
+    }
     private void accederConEmail() {
         signInForm.setVisibility(View.GONE);
         signInProgressBar.setVisibility(View.VISIBLE);

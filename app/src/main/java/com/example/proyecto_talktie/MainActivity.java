@@ -7,9 +7,11 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.proyecto_talktie.databinding.ActivityMainBinding;
 import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ActivityMainBinding binding; //para navigation button
     NavController navController;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,16 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).getNavController();
         NavigationUI.setupWithNavController(binding.bottomNavView, navController);
 
+        bottomNavigationView = findViewById(R.id.bottom_nav_view);
 
     }
+    public void hideNavBot() {
+        bottomNavigationView.setVisibility(View.GONE);
+    }
 
+    public void showNavBot() {
+        bottomNavigationView.setVisibility(View.VISIBLE);
+    }
 
 
 
