@@ -37,8 +37,7 @@ public class StudentRegisterViewModel extends AndroidViewModel {
     private MutableLiveData<String> location = new MutableLiveData<>();
     private MutableLiveData<String> job_categories = new MutableLiveData<>();
     private MutableLiveData<String> degree = new MutableLiveData<>();
-
-
+    private MutableLiveData<String> country = new MutableLiveData<>();
 
     public void setId(String id) {
         this.id.setValue(id);
@@ -222,5 +221,13 @@ public class StudentRegisterViewModel extends AndroidViewModel {
 
     public void setDegree(String degree) {
         this.degree.setValue(degree);
+    }
+
+    public LiveData<String> getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country.setValue(country);
     }
 }
