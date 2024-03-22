@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/profileStudent">
+    app:startDestination="@id/offer">
 
 
 
@@ -123,11 +123,6 @@
     <action
         android:id="@+id/action_to_Register"
         app:destination="@id/signIn1" />
-    <fragment
-        android:id="@+id/jobs"
-        android:name="com.example.proyecto_talktie.Jobs"
-        android:label="fragment_jobs"
-        tools:layout="@layout/fragment_jobs" />
     <fragment
         android:id="@+id/messagesHome"
         android:name="com.example.proyecto_talktie.messagesHome"
