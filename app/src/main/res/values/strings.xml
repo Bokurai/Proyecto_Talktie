@@ -65,7 +65,8 @@ I'm contacting you because I'm looking for an internship for the DAM higher degr
     <string name="lbl_ios">iOS</string>
     <string name="msg_what_are_you_lo">What are you looking for?</string>
     <string name="msg_product_designe">Product Designer</string>
-    <string name="msg_100k_120k_y">$100k - $120k/yearly</string>
+    <string name="msg_numApplicants">0</string>
+    <string name="msg_textApplicants">Applicants</string>
     <string name="msg_high_school_dip">High school diploma</string>
     <string name="lbl_message">Message</string>
     <string name="lbl_7_more_reviews">7 More Reviews</string>
@@ -491,4 +492,6 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_recomend">Recommendations</string>
     <string name="lbl_job_title2">Job Title</string>
     <string name="lbl_experience">Interships</string>
+    <string name="date_format">DD/MM/YYYY</string>
+    <string name="enter_country_of_origin">Enter country of origin</string>
 </resources>

@@ -1,0 +1,53 @@
+package com.example.proyecto_talktie;
+
+import android.app.Application;
+import android.util.Log;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class OfferViewModel extends AndroidViewModel {
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
+
+    public OfferViewModel(@NonNull Application application) {
+        super(application);
+    }
+
+
+    /**
+     * Method that goes through each offer in the list, sorts them by date in descending order and limits to 50 results.
+     * @return MutableLiveData with offers
+     */
+    public MutableLiveData<List<OfferObject>> getOffersLiveData() {
+        db.collection("Offer")
+                .orderBy("date", Query.Direction.DESCENDING)
+                .limit(50)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<OfferObject> offerts = new ArrayList<>();
+
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        OfferObject offer = document.toObject(OfferObject.class);
+                        offerts.add(offer);
+                    }
+                    Log.d("TAG", "Cantidad de ofertas recuperadas: " + offerts.size());
+                    offersLiveData.setValue(offerts);
+
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getApplication(), "Error loading the offer", Toast.LENGTH_SHORT).show();
+                });
+
+        return offersLiveData;
+    }
+
+}

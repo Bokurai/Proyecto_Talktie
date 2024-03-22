@@ -258,7 +258,7 @@
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
                 android:hint="@string/msg_stanford_univer"
-                android:id="@+id/etGroup119"
+                android:id="@+id/etSchool"
                 android:inputType="text"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_7pxv"
@@ -285,7 +285,7 @@
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
                 android:hint="@string/lbl_enter_location"
-                android:id="@+id/etGroup118"
+                android:id="@+id/etLocationSchool"
                 android:inputType="text"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_9pxv"
@@ -312,7 +312,7 @@
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
                 android:hint="@string/msg_ex_bachelor_of"
-                android:id="@+id/etGroup117"
+                android:id="@+id/etDegree"
                 android:inputType="text"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_7pxv"
@@ -334,7 +334,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_weight="0.5"
-                    android:layout_width="0dp" android:orientation="vertical">
+                    android:layout_width="0dp"
+                    android:orientation="vertical">
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtStartDate"
                         android:layout_height="wrap_content"
@@ -343,11 +344,12 @@
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
                         android:text="@string/lbl_start_date"
-                        style="@style/txtRobotosemibolditalic17_1" tools:text="@string/lbl_start_date"/>
-                    <androidx.appcompat.widget.AppCompatButton
+                        style="@style/txtRobotosemibolditalic17_1"
+                        tools:text="@string/lbl_start_date"/>
+                    <EditText
                         android:ellipsize="end"
                         android:gravity="center"
-                        android:id="@+id/btnDdmmyyyy"
+                        android:id="@+id/etStartDateFormation"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_9pxv"
                         android:layout_width="match_parent"
@@ -359,7 +361,9 @@
                         android:singleLine="true"
                         android:text="@string/lbl_dd_mm_yyyy"
                         android:textAllCaps="false"
-                        style="@style/btnSolidRounded_5" tools:text="@string/lbl_dd_mm_yyyy"/>
+                        style="@style/btnSolidRounded_5"
+                        tools:text="@string/lbl_dd_mm_yyyy"
+                        android:inputType="date" />
                 </LinearLayout>
                 <LinearLayout android:gravity="start"
                     android:id="@+id/linearList05"
@@ -375,11 +379,12 @@
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
                         android:text="@string/lbl_end_date"
-                        style="@style/txtRobotosemibolditalic17_1" tools:text="@string/lbl_end_date"/>
-                    <androidx.appcompat.widget.AppCompatButton
+                        style="@style/txtRobotosemibolditalic17_1"
+                        tools:text="@string/lbl_end_date"/>
+                    <EditText
                         android:ellipsize="end"
                         android:gravity="center"
-                        android:id="@+id/btnDdmmyyyyOne"
+                        android:id="@+id/etEndDateFormation"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_9pxv"
                         android:layout_width="match_parent"
@@ -391,7 +396,9 @@
                         android:singleLine="true"
                         android:text="@string/lbl_dd_mm_yyyy"
                         android:textAllCaps="false"
-                        style="@style/btnSolidRounded_5" tools:text="@string/lbl_dd_mm_yyyy"/>
+                        style="@style/btnSolidRounded_5"
+                        tools:text="@string/lbl_dd_mm_yyyy"
+                        android:inputType="date"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -494,7 +501,7 @@
                     <androidx.appcompat.widget.AppCompatButton
                         android:ellipsize="end"
                         android:gravity="center"
-                        android:id="@+id/btnContinueOne"
+                        android:id="@+id/btnContinuetoNine"
                         android:layout_gravity="start"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"

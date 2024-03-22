@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -31,14 +32,14 @@ public class SignIn1 extends Fragment {
     private Button registerButton;
     NavController navController;
     private FirebaseAuth mAuth;
-    private EditText emailEditText, passwordEditText;
-
+    private EditText emailEditText, passwordEditText, nameEditText, mobileEditText;
+    StudentRegisterViewModel registerViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-
+        registerViewModel = new ViewModelProvider(requireActivity()).get(StudentRegisterViewModel.class);
     }
 
     @Override
@@ -52,6 +53,8 @@ public class SignIn1 extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         emailEditText = view.findViewById(R.id.etEmail);
         passwordEditText = view.findViewById(R.id.etPassword);
+        nameEditText = view.findViewById(R.id.etName);
+        mobileEditText = view.findViewById(R.id.etMobile);
 
         registerButton = view.findViewById(R.id.btnSingIn);
         navController = Navigation.findNavController(view);
@@ -75,6 +78,10 @@ public class SignIn1 extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            registerViewModel.setEmail(emailEditText.getText().toString());
+                            registerViewModel.setName(nameEditText.getText().toString());
+                            registerViewModel.setPassword(passwordEditText.getText().toString());
+                            registerViewModel.setPhoneNumber(mobileEditText.getText().toString());
                             actualizarUI(mAuth.getCurrentUser());
                         } else {
                             Snackbar.make(requireView(), "Error: " + task.getException(), Snackbar.LENGTH_LONG).show();
@@ -88,8 +95,7 @@ public class SignIn1 extends Fragment {
 
     private void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
-
-            navController.navigate(R.id.selectRegister);
+            navController.navigate(R.id.signIn6);
         }
     }
 

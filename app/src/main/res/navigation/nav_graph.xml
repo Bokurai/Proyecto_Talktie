@@ -138,4 +138,10 @@
         android:name="com.example.proyecto_talktie.home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/offer"
+        android:name="com.example.proyecto_talktie.Offer"
+        android:label="fragment_offer"
+        tools:layout="@layout/fragment_offer" />
 </navigation>
