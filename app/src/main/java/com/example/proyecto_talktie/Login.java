@@ -149,6 +149,16 @@ public class Login extends Fragment {
 
     }
     private void accederConEmail() {
+
+
+        String email = emailEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Snackbar.make(requireView(), "Por favor, completa todos los campos", Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
         signInForm.setVisibility(View.GONE);
         signInProgressBar.setVisibility(View.VISIBLE);
 
