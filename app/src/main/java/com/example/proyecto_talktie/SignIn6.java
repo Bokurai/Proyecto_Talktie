@@ -58,9 +58,9 @@ public class SignIn6 extends Fragment {
         nameET.setEnabled(false);
         emailET.setEnabled(false);
         phoneET.setEnabled(false);
-        nameET.setText(registerViewModel.getName().toString());
-        emailET.setText(registerViewModel.getEmail().toString());
-        phoneET.setText(registerViewModel.getPhoneNumber().toString());
+        nameET.setText(registerViewModel.getName().getValue());
+        emailET.setText(registerViewModel.getEmail().getValue());
+        phoneET.setText(registerViewModel.getPhoneNumber().getValue());
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override

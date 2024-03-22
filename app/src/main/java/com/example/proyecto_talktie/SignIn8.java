@@ -47,7 +47,11 @@ public class SignIn8 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        etSchool = view.findViewById(R.id.etSchool);
+        etLocation = view.findViewById(R.id.etLocationSchool);
+        etDegree = view.findViewById(R.id.etDegree);
+        etStartDateForm = view.findViewById(R.id.etStartDateFormation);
+        etEndDateForm = view.findViewById(R.id.etEndDateFormation);
         nextButton = view.findViewById(R.id.btnContinuetoNine);
         navController = Navigation.findNavController(view);
 

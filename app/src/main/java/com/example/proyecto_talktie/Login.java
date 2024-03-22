@@ -53,12 +53,11 @@ public class Login extends Fragment {
     private ActivityResultLauncher<Intent> activityResultLauncher;
     //LOGIN-emial passw
     private EditText emailEditText, passwordEditText;
-    private Button emailSignInButton;
+    private Button emailSignInButton, registerButton;
     MainActivity mainActivity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mAuth = FirebaseAuth.getInstance();
 
     }
@@ -77,11 +76,19 @@ public class Login extends Fragment {
         emailSignInButton = view.findViewById(R.id.btnLogIn);
         signInForm = view.findViewById(R.id.linearLogin);
         signInProgressBar = view.findViewById(R.id.signInProgressBar);
-
+        registerButton = view.findViewById(R.id.btnCreateAccountOne);
+        navController = Navigation.findNavController(view);
         googleSignInButton = view.findViewById(R.id.googleSignInButton);
         signInProgressBar = view.findViewById(R.id.signInProgressBar);
         signInForm = view.findViewById(R.id.linearLogin);
         signInProgressBar.setVisibility(View.GONE);
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.selectRegister);
+            }
+        });
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {

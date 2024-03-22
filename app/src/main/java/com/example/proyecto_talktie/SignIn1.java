@@ -85,7 +85,6 @@ public class SignIn1 extends Fragment {
                             actualizarUI(mAuth.getCurrentUser());
                         } else {
                             Snackbar.make(requireView(), "Error: " + task.getException(), Snackbar.LENGTH_LONG).show();
-
                         }
                         registerButton.setEnabled(true);
                     }
