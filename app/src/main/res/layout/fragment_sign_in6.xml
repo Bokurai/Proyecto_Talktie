@@ -206,7 +206,7 @@
                 tools:text="@string/lbl_name" />
 
             <EditText
-                android:id="@+id/etLanguage"
+                android:id="@+id/etNameSignOne"
                 style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -222,7 +222,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:textColorHint="@color/black_900"
+                android:textColorHint="@color/bluegray_900"
                 tools:ignore="Autofill" />
 
             <TextView
@@ -241,7 +241,7 @@
                 tools:text="@string/lbl_phone" />
 
             <EditText
-                android:id="@+id/etGroupSeventy"
+                android:id="@+id/etPhoneNumber"
                 style="@style/etSolidRounded_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -292,7 +292,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:textColorHint="@color/black_900"
+                android:textColorHint="@color/bluegray_900"
                 tools:ignore="Autofill" />
 
             <TextView
@@ -311,7 +311,7 @@
                 tools:text="@string/lbl_gender" />
 
             <EditText
-                android:id="@+id/text"
+                android:id="@+id/etGender"
                 style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -345,59 +345,26 @@
                 android:text="@string/lbl_date_of_birth"
                 tools:text="@string/lbl_date_of_birth" />
 
-            <LinearLayout
-                android:id="@+id/linearRowddmmyyyy"
-                style="@style/groupStylebluegray_50cornerRadius"
+            <EditText
+                android:id="@+id/birth_date"
+                style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_9pxv"
-                android:gravity="end"
-                android:orientation="horizontal">
+                android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
+                android:ellipsize="end"
+                android:inputType="date"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_13pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingBottom="@dimen/_10pxv"
+                android:singleLine="true"
+                android:hint="@string/date_format"
+                android:textColorHint="@color/bluegray_900"
+                tools:ignore="Autofill" />
 
-                <TextView
-                    android:id="@+id/txtDDMMYYYY"
-                    style="@style/txtRobotoromanregular17_2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_16pxh"
-                    android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_marginBottom="@dimen/_11pxv"
-                    android:layout_weight="0.89"
-                    android:ellipsize="end"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:singleLine="true"
-                    android:text="@string/lbl_dd_mm_yyyy"
-                    tools:text="@string/lbl_dd_mm_yyyy" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <ImageView
-                    android:id="@+id/imageCalendar"
-                    android:layout_width="@dimen/_14pxh"
-                    android:layout_height="@dimen/_16pxh"
-                    android:layout_marginStart="@dimen/_157pxh"
-                    android:layout_marginTop="@dimen/_14pxv"
-                    android:layout_marginEnd="@dimen/_16pxh"
-                    android:layout_marginBottom="@dimen/_14pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_calendar"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_calendar" />
-            </LinearLayout>
 
             <FrameLayout
                 android:id="@+id/frameButtonContinue"

@@ -41,6 +41,7 @@ public class SelectRegister extends Fragment {
         binding.btnStartAsACondidate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                navController.navigate(R.id.signIn1);
             }
         });
     }

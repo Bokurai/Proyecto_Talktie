@@ -1,5 +1,7 @@
 package com.example.proyecto_talktie;
 
+import com.google.firebase.Timestamp;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -29,12 +31,12 @@ public class Student extends User{
 
     //Parte de experiencia laboral
     boolean currently_working;
-    Date start_date_job;
-    Date end_date_job;
+    Timestamp start_date_job;
+    Timestamp end_date_job;
 
     //Parte del formulario de formación
-    Date start_date_formation;
-    Date end_date_formation;
+    Timestamp start_date_formation;
+    Timestamp end_date_formation;
 
     //Preferencias
     String location;
@@ -47,7 +49,7 @@ public class Student extends User{
     public Student() {
     }
 
-    public Student(Date birth_date, String gender, String school, String degree, Date start_date_formation) {
+    public Student(Date birth_date, String gender, String school, String degree, Timestamp start_date_formation) {
         this.birth_date = birth_date;
         this.gender = gender;
         this.degree = degree;

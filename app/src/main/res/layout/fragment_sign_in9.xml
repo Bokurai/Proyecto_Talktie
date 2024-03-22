@@ -207,7 +207,7 @@
                     android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                     android:ellipsize="end"
                     android:hint="@string/msg_creative_develo"
-                    android:id="@+id/etGroup114"
+                    android:id="@+id/etJobTitle"
                     android:inputType="text"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_9pxv"
@@ -234,7 +234,7 @@
                     android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                     android:ellipsize="end"
                     android:hint="@string/msg_enter_company_n"
-                    android:id="@+id/etGroup113"
+                    android:id="@+id/etCompanyName"
                     android:inputType="text"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_7pxv"
@@ -261,7 +261,7 @@
                     android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                     android:ellipsize="end"
                     android:hint="@string/msg_enter_company_l"
-                    android:id="@+id/etGroup112"
+                    android:id="@+id/etJobLocation"
                     android:inputType="text"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_9pxv"
@@ -312,10 +312,10 @@
                             android:singleLine="true"
                             android:text="@string/lbl_start_date"
                             style="@style/txtRobotosemibolditalic17_1" tools:text="@string/lbl_start_date"/>
-                        <androidx.appcompat.widget.AppCompatButton
+                        <EditText
                             android:ellipsize="end"
                             android:gravity="center"
-                            android:id="@+id/btnDdmmyyyy"
+                            android:id="@+id/etStartDateJob"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_9pxv"
                             android:layout_width="match_parent"
@@ -327,7 +327,9 @@
                             android:singleLine="true"
                             android:text="@string/lbl_dd_mm_yyyy"
                             android:textAllCaps="false"
-                            style="@style/btnSolidRounded_5" tools:text="@string/lbl_dd_mm_yyyy"/>
+                            style="@style/btnSolidRounded_5"
+                            tools:text="@string/lbl_dd_mm_yyyy"
+                            android:inputType="date"/>
                     </LinearLayout>
                     <LinearLayout android:gravity="start"
                         android:id="@+id/linearList05"
@@ -344,10 +346,10 @@
                             android:singleLine="true"
                             android:text="@string/lbl_end_date"
                             style="@style/txtRobotosemibolditalic17_1" tools:text="@string/lbl_end_date"/>
-                        <androidx.appcompat.widget.AppCompatButton
+                        <EditText
                             android:ellipsize="end"
                             android:gravity="center"
-                            android:id="@+id/btnDdmmyyyyOne"
+                            android:id="@+id/etEndDateJob"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_9pxv"
                             android:layout_width="match_parent"
@@ -359,7 +361,9 @@
                             android:singleLine="true"
                             android:text="@string/lbl_dd_mm_yyyy"
                             android:textAllCaps="false"
-                            style="@style/btnSolidRounded_5" tools:text="@string/lbl_dd_mm_yyyy"/>
+                            style="@style/btnSolidRounded_5"
+                            tools:text="@string/lbl_dd_mm_yyyy"
+                            android:inputType="date"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -447,7 +451,7 @@
                         android:layout_marginStart="@dimen/_1pxh">
 
                         <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnContinueOne"
+                            android:id="@+id/btnContinuetoTen"
                             style="@style/btnSolidRounded_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

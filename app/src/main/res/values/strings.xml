@@ -492,4 +492,6 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_recomend">Recommendations</string>
     <string name="lbl_job_title2">Job Title</string>
     <string name="lbl_experience">Interships</string>
+    <string name="date_format">DD/MM/YYYY</string>
+    <string name="enter_country_of_origin">Enter country of origin</string>
 </resources>
