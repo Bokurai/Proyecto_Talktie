@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/offer"
     android:gravity="start"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    style="@style/groupStylewhite_A700">
+    style="@style/groupStylewhite_A700"
+    tools:context=".Offer">
 
         <LinearLayout
             android:id="@+id/linearScreen"

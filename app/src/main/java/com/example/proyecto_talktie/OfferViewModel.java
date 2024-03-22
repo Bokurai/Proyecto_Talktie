@@ -33,14 +33,14 @@ public class OfferViewModel extends AndroidViewModel {
                 .limit(50)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    List<OfferObject> offerts = new ArrayList<>();
+                    List<OfferObject> offers = new ArrayList<>();
 
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         OfferObject offer = document.toObject(OfferObject.class);
-                        offerts.add(offer);
+                        offers.add(offer);
                     }
-                    Log.d("TAG", "Cantidad de ofertas recuperadas: " + offerts.size());
-                    offersLiveData.setValue(offerts);
+                    Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
+                    offersLiveData.setValue(offers);
 
                 })
                 .addOnFailureListener(e -> {

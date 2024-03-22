@@ -14,7 +14,7 @@ public class OfferObject {
     List<String> applicantsId;
 
     //Si el id del usuario esta en la lista de aplicante se vuelve true;
-    boolean isAppliend;
+    boolean isApplied;
 
     public OfferObject() {
     }
@@ -72,11 +72,11 @@ public class OfferObject {
         this.applicantsId = applicantsId;
     }
 
-    public boolean isAppliend() {
-        return isAppliend;
+    public boolean isApplied() {
+        return isApplied;
     }
 
-    public void setAppliend(boolean appliend) {
-        isAppliend = appliend;
+    public void setApplied(boolean applied) {
+        isApplied = applied;
     }
 }

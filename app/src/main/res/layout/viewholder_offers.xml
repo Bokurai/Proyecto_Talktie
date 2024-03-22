@@ -66,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_18pxv"
+            android:layout_marginLeft="@dimen/_25pxh"
             android:background="@drawable/rectangle_bg_amber_700"
             android:drawableStart="@drawable/img_inbox"
             android:drawablePadding="@dimen/_5pxh"
@@ -101,7 +102,7 @@
 
             <TextView
                 android:id="@+id/btnTagOne"
-                style="@style/btnSolidRounded_7"
+                style="@style/etiquetaSolidRounded_7"
                 android:layout_width="@dimen/_63pxh"
                 android:layout_height="@dimen/_21pxv"
                 android:ellipsize="end"
@@ -116,7 +117,7 @@
 
             <TextView
                 android:id="@+id/btnTagTwo"
-                style="@style/btnSolidRounded_7"
+                style="@style/etiquetaSolidRounded_7"
                 android:layout_width="@dimen/_63pxh"
                 android:layout_height="@dimen/_21pxv"
                 android:layout_marginStart="@dimen/_5pxh"
@@ -132,7 +133,7 @@
 
             <TextView
                 android:id="@+id/btnTagThree"
-                style="@style/btnSolidRounded_7"
+                style="@style/etiquetaSolidRounded_7"
                 android:layout_width="@dimen/_63pxh"
                 android:layout_height="@dimen/_21pxv"
                 android:layout_marginStart="@dimen/_5pxh"
