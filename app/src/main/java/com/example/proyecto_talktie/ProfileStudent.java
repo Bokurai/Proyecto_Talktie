@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -14,14 +15,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ProfileStudent extends Fragment {
     //Initialization of the student's view-model
     private StudentViewModel studentViewModel;
     private RecyclerView recyclerView;
     private RecommendAdapter adapter;
+    private FirebaseAuth mAuth;
     TextView textAbout;
     String studentId;
 
@@ -30,18 +35,29 @@ public class ProfileStudent extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_student, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile_student, container, false);
+
+
+        //Create and set the recyclerview
+        adapter = new RecommendAdapter(new ArrayList<>());
+
+        recyclerView = view.findViewById(R.id.recommendRecyclerView);
+        recyclerView.setAdapter(adapter);
+
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        textAbout = view.findViewById(R.id.txtDescription);
-        recyclerView = view.findViewById(R.id.recommendRecyclerView);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        //I must change by an id that I extract from the current user
-        studentId = "stu1dam2a";
+        studentId = currentUser.getUid();
+        textAbout = view.findViewById(R.id.txtDescription);
+
+
 
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
 
@@ -53,9 +69,8 @@ public class ProfileStudent extends Fragment {
         });
 
         studentViewModel.getRecommendationLiveData(studentId).observe(getViewLifecycleOwner(), recommendations -> {
-            //Create and set the adapter with the new recommendations
-            adapter = new RecommendAdapter(recommendations);
-            recyclerView.setAdapter(adapter);
+           //Update data on exist adapter
+            adapter.setRecommendationList(recommendations);
         });
 
 
@@ -71,7 +86,7 @@ public class ProfileStudent extends Fragment {
         @NonNull
         @Override
         public RecommendationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new RecommendationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_recommends, parent, false));
+            return new RecommendationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_recommendations, parent, false));
         }
 
         @Override
@@ -79,7 +94,7 @@ public class ProfileStudent extends Fragment {
             Recommendation recommendation = recommendationList.get(position);
 
             //change image and teacher name by a search through their id.
-            holder.nameTeacher.setText(recommendation.getIdTeacher());
+            holder.nameTeacher.setText(recommendation.getTeacherName());
             holder.imageTeacher.setImageResource(R.drawable.img_pngtreeavatar);
 
             holder.textRecommendation.setText(recommendation.getRecommendationText());
@@ -90,6 +105,15 @@ public class ProfileStudent extends Fragment {
         public int getItemCount() {
             //Number of recommendations to display
             return recommendationList.size();
+        }
+
+        /**
+         * Method updating the list of recommendations
+         * @param recommendations list of recommendations
+         */
+        public void setRecommendationList(List<Recommendation> recommendations) {
+            this.recommendationList = recommendations;
+            notifyDataSetChanged();
         }
 
         /**
