@@ -50,6 +50,9 @@ public class SignIn7 extends Fragment {
             @Override
             public void onClick(View v) {
                 registerViewModel.setCountry(etCountry.getText().toString());
+                registerViewModel.setCity(etCity.getText().toString());
+                registerViewModel.setZipcode(etPostalCode.getText().toString());
+                registerViewModel.setHomeAddress(etStreetAddress.getText().toString());
                 navController.navigate(R.id.signIn8);
             }
         });

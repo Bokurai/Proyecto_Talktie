@@ -1,13 +1,11 @@
 package com.example.proyecto_talktie;
 
 import android.app.Application;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
-import java.util.Date;
+import com.google.firebase.Timestamp;
 
 public class StudentRegisterViewModel extends AndroidViewModel {
     public StudentRegisterViewModel(@NonNull Application application) {
@@ -24,20 +22,22 @@ public class StudentRegisterViewModel extends AndroidViewModel {
     private MutableLiveData<String> phoneNumber = new MutableLiveData<>();
     private MutableLiveData<Integer> profileImage = new MutableLiveData<>();
     private MutableLiveData<String> website = new MutableLiveData<>();
-    private MutableLiveData<Date> birth_date = new MutableLiveData<>();
+    private MutableLiveData<Timestamp> birth_date = new MutableLiveData<>();
     private MutableLiveData<String> gender = new MutableLiveData<>();
     private MutableLiveData<Boolean> currently_working = new MutableLiveData<>();
     private MutableLiveData<String> studentId = new MutableLiveData<>();
     private MutableLiveData<String> center = new MutableLiveData<>();
     private MutableLiveData<String> company = new MutableLiveData<>();
-    private MutableLiveData<Date> start_date_job = new MutableLiveData<>();
-    private MutableLiveData<Date> end_date_job = new MutableLiveData<>();
-    private MutableLiveData<Date> start_date_formation = new MutableLiveData<>();
-    private MutableLiveData<Date> end_date_formation = new MutableLiveData<>();
-    private MutableLiveData<String> location = new MutableLiveData<>();
+    private MutableLiveData<Timestamp> start_date_job = new MutableLiveData<>();
+    private MutableLiveData<Timestamp> end_date_job = new MutableLiveData<>();
+    private MutableLiveData<Timestamp> start_date_formation = new MutableLiveData<>();
+    private MutableLiveData<Timestamp> end_date_formation = new MutableLiveData<>();
+    private MutableLiveData<String> locationSchoolFormation = new MutableLiveData<>();
+    private MutableLiveData<String> locationJobStudent = new MutableLiveData<>();
     private MutableLiveData<String> job_categories = new MutableLiveData<>();
     private MutableLiveData<String> degree = new MutableLiveData<>();
     private MutableLiveData<String> country = new MutableLiveData<>();
+    private MutableLiveData<String> jobTitle = new MutableLiveData<>();
 
     public void setId(String id) {
         this.id.setValue(id);
@@ -119,11 +119,11 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         return website;
     }
 
-    public LiveData<Date> getBirth_date() {
+    public LiveData<Timestamp> getBirth_date() {
         return birth_date;
     }
 
-    public void setBirth_date(Date birth_date) {
+    public void setBirth_date(Timestamp birth_date) {
         this.birth_date.setValue(birth_date);
     }
 
@@ -167,44 +167,53 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         this.company.setValue(company);
     }
 
-    public LiveData<Date> getStart_date_job() {
+    public LiveData<Timestamp> getStart_date_job() {
         return start_date_job;
     }
 
-    public void setStart_date_job(Date start_date_job) {
+    public void setStart_date_job(Timestamp start_date_job) {
         this.start_date_job.setValue(start_date_job);
     }
 
-    public LiveData<Date> getEnd_date_job() {
+    public LiveData<Timestamp> getEnd_date_job() {
         return end_date_job;
     }
 
-    public void setEnd_date_job(Date end_date_job) {
+    public void setEnd_date_job(Timestamp end_date_job) {
         this.end_date_job.setValue(end_date_job);
     }
 
-    public LiveData<Date> getStart_date_formation() {
+    public LiveData<Timestamp> getStart_date_formation() {
         return start_date_formation;
     }
 
-    public void setStart_date_formation(Date start_date_formation) {
+    public void setStart_date_formation(Timestamp start_date_formation) {
         this.start_date_formation.setValue(start_date_formation);
     }
 
-    public LiveData<Date> getEnd_date_formation() {
+    public LiveData<Timestamp> getEnd_date_formation() {
         return end_date_formation;
     }
 
-    public void setEnd_date_formation(Date end_date_formation) {
+    public void setEnd_date_formation(Timestamp end_date_formation) {
         this.end_date_formation.setValue(end_date_formation);
     }
 
-    public LiveData<String> getLocation() {
-        return location;
+    public LiveData<String> getLocationSchoolFormation() {
+        return locationSchoolFormation;
     }
 
-    public void setLocation(String location) {
-        this.location.setValue(location);
+    public void setLocationSchoolFormation(String location) {
+        this.locationSchoolFormation.setValue(location);
+
+    }
+
+    public LiveData<String> getLocationJobStudent() {
+        return locationJobStudent;
+    }
+
+    public void setLocationJobStudent(String location) {
+        this.locationJobStudent.setValue(location);
     }
 
     public LiveData<String> getJob_categories() {
@@ -229,5 +238,13 @@ public class StudentRegisterViewModel extends AndroidViewModel {
 
     public void setCountry(String country) {
         this.country.setValue(country);
+    }
+
+    public LiveData<String> getjobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle.setValue(jobTitle);
     }
 }

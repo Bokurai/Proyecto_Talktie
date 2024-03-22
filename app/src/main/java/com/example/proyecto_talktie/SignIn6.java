@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,25 +65,30 @@ public class SignIn6 extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date date = EditTextToDate(dateET);
-                Timestamp timestamp = new Timestamp(date);
-                registerViewModel.setBirth_date(timestamp.toDate());
+            Timestamp fecha_cambiada = editTextToTimestamp(dateET);
+                registerViewModel.setBirth_date(fecha_cambiada);
                 navController.navigate(R.id.signIn7);
             }
         });
     }
 
-    private Date EditTextToDate(EditText dateEditText) {
+    private Timestamp editTextToTimestamp(EditText dateEditText) {
         String dateString = dateEditText.getText().toString();
+
+        if (TextUtils.isEmpty(dateString)) {
+            return null;
+        }
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date date = sdf.parse(dateString);
-            return date;
+            if (date != null) {
+                return new Timestamp(date);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
 }
