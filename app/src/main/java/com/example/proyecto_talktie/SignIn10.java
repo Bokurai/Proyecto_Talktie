@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.firebase.Timestamp;
 
@@ -22,6 +23,8 @@ public class SignIn10 extends Fragment {
     StudentRegisterViewModel registerViewModel;
     AppCompatButton nextButton;
     NavController navController;
+
+    EditText jobPreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class SignIn10 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        jobPreferences = view.findViewById(R.id.etJobPreferences);
         nextButton = view.findViewById(R.id.btnDone);
         navController = Navigation.findNavController(view);
 
@@ -46,7 +50,10 @@ public class SignIn10 extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                registerViewModel.setJob_categories(jobPreferences.getText().toString());
+                registerViewModel.saveUserFirestore();
+                registerViewModel.saveStudentFirestore();
+                navController.navigate(R.id.home2);
             }
         });
     }

@@ -1,11 +1,24 @@
 package com.example.proyecto_talktie;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Application;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class StudentRegisterViewModel extends AndroidViewModel {
     public StudentRegisterViewModel(@NonNull Application application) {
@@ -246,5 +259,89 @@ public class StudentRegisterViewModel extends AndroidViewModel {
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle.setValue(jobTitle);
+    }
+
+    //save user in Firestore
+    public void saveUserFirestore() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        DocumentReference newUser = db.collection("User").document();
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("id", firebaseAuth.getUid());
+        user.put("name", name.getValue());
+        user.put("email", email.getValue());
+        user.put("city", city.getValue());
+        user.put("zipcode", zipcode.getValue());
+        user.put("homeAddress", homeAddress.getValue());
+        user.put("phone", phoneNumber.getValue());
+        user.put("profileImage", profileImage.getValue());
+        user.put("website", website.getValue());
+
+        newUser.set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Éxito al guardar el usuario en Firebase Firestore
+                        Log.d(TAG, "Usuario guardado exitosamente en Firestore");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Error al guardar el usuario en Firebase Firestore
+                        Log.w(TAG, "Error al guardar usuario en Firestore", e);
+                    }
+                });
+    }
+
+
+    //save student in Firestore
+    public void saveStudentFirestore() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        DocumentReference newStudent = db.collection("Student").document();
+
+        Map<String, Object> student = new HashMap<>();
+        student.put("studentId", firebaseAuth.getUid());
+        student.put("name", name.getValue());
+        student.put("email", email.getValue());
+        student.put("city", city.getValue());
+        student.put("zipcode", zipcode.getValue());
+        student.put("homeAddress", homeAddress.getValue());
+        student.put("phone", phoneNumber.getValue());
+        student.put("profileImage", profileImage.getValue());
+        student.put("website", website.getValue());
+        student.put("birth", birth_date.getValue());
+        student.put("gender", gender.getValue());
+        student.put("currently_working", currently_working.getValue());
+        student.put("center", center.getValue());
+        student.put("company", company.getValue());
+        student.put("startJob", start_date_job.getValue());
+        student.put("endJob", end_date_job.getValue());
+        student.put("starFormation", start_date_formation.getValue());
+        student.put("endFormation", end_date_formation.getValue());
+        student.put("location", locationSchoolFormation.getValue());
+        student.put("jobLocation", locationJobStudent.getValue());
+        student.put("jobCategories", job_categories.getValue());
+        student.put("degree", degree.getValue());
+        student.put("country", country.getValue());
+        student.put("jobTitle", jobTitle.getValue());
+
+        newStudent.set(student)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Éxito al guardar el usuario en Firebase Firestore
+                        Log.d(TAG, "Usuario guardado exitosamente en Firestore");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Error al guardar el usuario en Firebase Firestore
+                        Log.w(TAG, "Error al guardar usuario en Firestore", e);
+                    }
+                });
     }
 }

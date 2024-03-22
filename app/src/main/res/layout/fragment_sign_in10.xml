@@ -18,7 +18,7 @@
             android:id="@+id/linearColumnone"
             style="@style/groupStylewhite_A700"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="start"
             android:layout_marginEnd="@dimen/_10pxh"
             android:orientation="vertical">
@@ -220,7 +220,7 @@
                     tools:text="@string/lbl_job_categories" />
 
                 <EditText
-                    android:id="@+id/etGroup124"
+                    android:id="@+id/etJobPreferences"
                     style="@style/etSolidRounded_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -238,126 +238,16 @@
                     android:textColorHint="@color/black_900"
                     tools:ignore="Autofill" />
 
-                <TextView
-                    android:id="@+id/txtPayDay"
-                    style="@style/txtRobotosemibolditalic17_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_18pxv"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:ellipsize="end"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:singleLine="true"
-                    android:text="@string/lbl_pay_day"
-                    tools:text="@string/lbl_pay_day" />
-
-                <Spinner
-                    android:id="@+id/spinnerGroup123"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_7pxv"
-                    android:background="@drawable/layer_list_bg_bluegray_50_radius_8" />
-
-                <LinearLayout
-                    android:id="@+id/linearRowmin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16pxv"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/linearList04"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:gravity="start"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtMin"
-                            style="@style/txtRobotosemibolditalic17_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_10pxh"
-                            android:ellipsize="end"
-                            android:lineSpacingExtra="@dimen/_3pxh"
-                            android:singleLine="true"
-                            android:text="@string/lbl_min"
-                            tools:text="@string/lbl_min" />
-
-                        <EditText
-                            android:id="@+id/etPrice"
-                            style="@style/etSolidRounded_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_9pxv"
-                            android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
-                            android:ellipsize="end"
-                            android:hint="@string/lbl_1000"
-                            android:inputType="text"
-                            android:lineSpacingExtra="@dimen/_3pxh"
-                            android:paddingStart="@dimen/_16pxh"
-                            android:paddingTop="@dimen/_11pxv"
-                            android:paddingEnd="@dimen/_30pxh"
-                            android:paddingBottom="@dimen/_12pxv"
-                            android:singleLine="true"
-                            android:textColorHint="@color/black_900"
-                            tools:ignore="Autofill" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearList05"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_17pxh"
-                        android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_weight="0.5"
-                        android:gravity="start"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtMax"
-                            style="@style/txtRobotosemibolditalic17_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_10pxh"
-                            android:ellipsize="end"
-                            android:lineSpacingExtra="@dimen/_3pxh"
-                            android:singleLine="true"
-                            android:text="@string/lbl_max"
-                            tools:text="@string/lbl_max" />
-
-                        <EditText
-                            android:id="@+id/etPriceOne"
-                            style="@style/etSolidRounded_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_8pxv"
-                            android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
-                            android:ellipsize="end"
-                            android:hint="@string/lbl_8000"
-                            android:inputType="text"
-                            android:lineSpacingExtra="@dimen/_3pxh"
-                            android:paddingStart="@dimen/_16pxh"
-                            android:paddingTop="@dimen/_11pxv"
-                            android:paddingEnd="@dimen/_30pxh"
-                            android:paddingBottom="@dimen/_12pxv"
-                            android:singleLine="true"
-                            android:textColorHint="@color/black_900"
-                            tools:ignore="Autofill" />
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
 
             <FrameLayout
                 android:id="@+id/frameButtonContinue"
                 android:layout_width="@dimen/_311pxh"
-                android:layout_height="@dimen/_50pxv"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_13pxh"
                 android:layout_marginTop="@dimen/_219pxv"
-                android:layout_marginEnd="@dimen/_13pxh"
-                android:layout_marginBottom="@dimen/_20pxv">
+                android:layout_marginEnd="@dimen/_13pxh">
 
 
                 <androidx.appcompat.widget.AppCompatButton
