@@ -43,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
 public class Login extends Fragment {
 
     FragmentLoginBinding binding;
-
+//
     private FirebaseAuth mAuth;
     //LOGIN-rabab
     NavController navController;
