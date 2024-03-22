@@ -124,11 +124,6 @@
         android:id="@+id/action_to_Register"
         app:destination="@id/signIn1" />
     <fragment
-        android:id="@+id/jobs"
-        android:name="com.example.proyecto_talktie.Jobs"
-        android:label="fragment_jobs"
-        tools:layout="@layout/fragment_jobs" />
-    <fragment
         android:id="@+id/messagesHome"
         android:name="com.example.proyecto_talktie.messagesHome"
         android:label="fragment_messages_home"

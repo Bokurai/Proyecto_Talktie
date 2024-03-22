@@ -170,7 +170,7 @@ public class Login extends Fragment {
     private void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
             navController = NavHostFragment.findNavController(this);
-            navController.navigate(R.id.selectRegister);
+            navController.navigate(R.id.home2);
 
         }
     }
