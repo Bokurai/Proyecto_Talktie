@@ -494,4 +494,9 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_experience">Interships</string>
     <string name="date_format">DD/MM/YYYY</string>
     <string name="enter_country_of_origin">Enter country of origin</string>
+    <string name="name_and_surname">Name and surname</string>
+    <string name="name">Enter name and surname</string>
+    <string name="phone">Enter phone number</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_gender">Enter your gender</string>
 </resources>

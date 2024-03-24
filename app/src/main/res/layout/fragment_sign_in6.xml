@@ -214,7 +214,7 @@
                 android:layout_marginTop="@dimen/_8pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/lbl_rabab_beihaqi"
+                android:hint="@string/name"
                 android:inputType="text"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -222,7 +222,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:textColorHint="@color/bluegray_900"
+                android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
             <TextView
@@ -249,7 +249,7 @@
                 android:layout_marginTop="@dimen/_9pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/lbl_phone_number"
+                android:hint="@string/phone"
                 android:inputType="phone"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -284,7 +284,7 @@
                 android:layout_marginTop="@dimen/_9pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/msg_rababbeihaqi_gm"
+                android:hint="@string/enter_your_email"
                 android:inputType="textEmailAddress"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -292,7 +292,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:textColorHint="@color/bluegray_900"
+                android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
             <TextView
@@ -326,8 +326,8 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:text="female"
-                android:textColorHint="@color/black_900"
+                android:hint="@string/enter_your_gender"
+                android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
             <TextView
@@ -362,7 +362,7 @@
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
                 android:hint="@string/date_format"
-                android:textColorHint="@color/bluegray_900"
+                android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
 
