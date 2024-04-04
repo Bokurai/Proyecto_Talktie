@@ -123,6 +123,14 @@
     <action
         android:id="@+id/action_to_Register"
         app:destination="@id/signIn1" />
+
+    <action
+        android:id="@+id/action_goOfferDetailsFragment"
+        app:destination="@id/offerDetailsFragment"/>
+
+    <action
+        android:id="@+id/action_goOffer"
+        app:destination="@id/offer"/>
     <fragment
         android:id="@+id/messagesHome"
         android:name="com.example.proyecto_talktie.messagesHome"
@@ -139,4 +147,9 @@
         android:name="com.example.proyecto_talktie.Offer"
         android:label="fragment_offer"
         tools:layout="@layout/fragment_offer" />
+    <fragment
+        android:id="@+id/offerDetailsFragment"
+        android:name="com.example.proyecto_talktie.OfferDetailsFragment"
+        android:label="fragment_offer_details"
+        tools:layout="@layout/fragment_offer_details" />
 </navigation>
