@@ -139,4 +139,24 @@
         android:name="com.example.proyecto_talktie.Offer"
         android:label="fragment_offer"
         tools:layout="@layout/fragment_offer" />
+    <fragment
+        android:id="@+id/signIn1_company"
+        android:name="com.example.proyecto_talktie.SignIn1_company"
+        android:label="fragment_sign_in_company"
+        tools:layout="@layout/fragment_sign_in1_company" />
+    <fragment
+        android:id="@+id/signIn2_company"
+        android:name="com.example.proyecto_talktie.signIn2_company"
+        android:label="fragment_sign_in2_company"
+        tools:layout="@layout/fragment_sign_in2_company" />
+    <fragment
+        android:id="@+id/signIn3_company"
+        android:name="com.example.proyecto_talktie.signIn3_company"
+        android:label="fragment_sign_in3_company"
+        tools:layout="@layout/fragment_sign_in3_company" />
+    <fragment
+        android:id="@+id/signIn4_company"
+        android:name="com.example.proyecto_talktie.signIn4_company"
+        android:label="fragment_sign_in4_company"
+        tools:layout="@layout/fragment_sign_in4_company" />
 </navigation>
