@@ -129,8 +129,8 @@
         android:label="fragment_messages_home"
         tools:layout="@layout/fragment_messages_home" />
     <fragment
-        android:id="@+id/home2"
-        android:name="com.example.proyecto_talktie.home"
+        android:id="@+id/home"
+        android:name="com.example.proyecto_talktie.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
@@ -139,4 +139,14 @@
         android:name="com.example.proyecto_talktie.Offer"
         android:label="fragment_offer"
         tools:layout="@layout/fragment_offer" />
+    <fragment
+        android:id="@+id/studentSearchView"
+        android:name="com.example.proyecto_talktie.StudentSearchView"
+        android:label="fragment_student_search_view"
+        tools:layout="@layout/fragment_student_search_view" />
+    <fragment
+        android:id="@+id/companyProfile"
+        android:name="com.example.proyecto_talktie.CompanyProfile"
+        android:label="fragment_company_profile"
+        tools:layout="@layout/fragment_company_profile" />
 </navigation>

@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import org.jetbrains.annotations.Nullable;
 
 
-public class home extends Fragment {
+public class Home extends Fragment {
 
     MainActivity mainActivity;
 
