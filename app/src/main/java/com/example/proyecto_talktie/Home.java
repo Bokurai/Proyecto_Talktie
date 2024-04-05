@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -17,8 +18,8 @@ import org.jetbrains.annotations.Nullable;
 public class Home extends Fragment {
 
     MainActivity mainActivity;
-
     NavController navController;
+    LinearLayout search_bar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,5 +41,9 @@ public class Home extends Fragment {
 
         mainActivity = (MainActivity) requireActivity();
         mainActivity.showNavBot();
+
+        search_bar = view.findViewById(R.id.search_bar);
+
+
     }
 }

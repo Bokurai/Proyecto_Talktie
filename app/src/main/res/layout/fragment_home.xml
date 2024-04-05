@@ -64,19 +64,26 @@
             android:layout_gravity="start"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchViewSearchOne"
+            <LinearLayout
+                android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:background="@color/white_A700"
-                android:gravity="center_horizontal"
-                android:theme="@style/searchViewSearchOne"
-                app:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"
-                app:queryHint="@string/msg_what_are_you_lo"
-                app:searchIcon="@drawable/img_search_black_900" />
+                android:layout_margin="@dimen/_5pxh"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5pxh"
+                    android:src="@drawable/img_search_black_900" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="@dimen/_5pxh"
+                    android:text="@string/msg_what_are_you_lo" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearColumncategories"
