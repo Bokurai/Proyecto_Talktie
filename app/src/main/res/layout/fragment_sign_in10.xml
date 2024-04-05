@@ -216,8 +216,8 @@
                     android:ellipsize="end"
                     android:lineSpacingExtra="@dimen/_3pxh"
                     android:singleLine="true"
-                    android:text="@string/lbl_job_categories"
-                    tools:text="@string/lbl_job_categories" />
+                    android:text="@string/lbl_job_preferences"
+                     />
 
                 <EditText
                     android:id="@+id/etJobPreferences"
@@ -235,7 +235,7 @@
                     android:paddingEnd="@dimen/_30pxh"
                     android:paddingBottom="@dimen/_12pxv"
                     android:singleLine="true"
-                    android:textColorHint="@color/black_900"
+                    android:textColorHint="@color/bluegray_400"
                     tools:ignore="Autofill" />
 
             </LinearLayout>

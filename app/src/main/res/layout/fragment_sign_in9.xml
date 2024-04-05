@@ -218,7 +218,7 @@
                     android:paddingStart="@dimen/_16pxh"
                     android:paddingTop="@dimen/_13pxv"
                     android:singleLine="true"
-                    android:textColorHint="@color/black_900"
+                    android:textColorHint="@color/bluegray_400"
                     style="@style/etSolidRounded_3" tools:ignore="Autofill"/>
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtCompany"
@@ -325,10 +325,10 @@
                             android:paddingStart="@dimen/_16pxh"
                             android:paddingTop="@dimen/_12pxv"
                             android:singleLine="true"
-                            android:text="@string/lbl_dd_mm_yyyy"
+                            android:hint="@string/lbl_dd_mm_yyyy"
+                            android:textColorHint="@color/white"
                             android:textAllCaps="false"
                             style="@style/btnSolidRounded_5"
-                            tools:text="@string/lbl_dd_mm_yyyy"
                             android:inputType="date"/>
                     </LinearLayout>
                     <LinearLayout android:gravity="start"
@@ -359,7 +359,8 @@
                             android:paddingStart="@dimen/_16pxh"
                             android:paddingTop="@dimen/_12pxv"
                             android:singleLine="true"
-                            android:text="@string/lbl_dd_mm_yyyy"
+                            android:hint="@string/lbl_dd_mm_yyyy"
+                            android:textColorHint="@color/white"
                             android:textAllCaps="false"
                             style="@style/btnSolidRounded_5"
                             tools:text="@string/lbl_dd_mm_yyyy"

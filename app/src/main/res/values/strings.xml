@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="app_name">bokurai_s_application3</string>
+    <string name="app_name">Talktie</string>
     <string name="loading">Loading…</string>
     <string name="no_internet_connection">No internet connection!</string>
     <string name="lbl_continue">Continue</string>
@@ -494,4 +494,9 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_experience">Interships</string>
     <string name="date_format">DD/MM/YYYY</string>
     <string name="enter_country_of_origin">Enter country of origin</string>
+    <string name="name_and_surname">Name and surname</string>
+    <string name="name">Enter name and surname</string>
+    <string name="phone">Enter phone number</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_gender">Enter your gender</string>
 </resources>
