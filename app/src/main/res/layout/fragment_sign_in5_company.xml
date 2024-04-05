@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".signIn4_company"
+    tools:context=".signIn5_company"
     android:gravity="center_horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/signIn4_company"
+    android:id="@+id/signIn5_company"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical" style="@style/groupStylewhite_A700">
@@ -134,7 +134,7 @@
 
                 <LinearLayout
                     android:id="@+id/linearColumnfour"
-                    style="@style/groupStylewhite_4"
+                    style="@style/groupStylelight_green_2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.12"
@@ -143,7 +143,7 @@
 
                     <TextView
                         android:id="@+id/txtFour"
-                        style="@style/txtSolidRounded_2"
+                        style="@style/txtRobotoromanmedium15_2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_12pxh"
@@ -201,11 +201,11 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_country" />
+                tools:text="@string/lbl_summary_company" />
 
             <EditText
                 android:id="@+id/etNameSignOne"
-                style="@style/etSolidRounded_3"
+                style="@style/etSolidRounded_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10pxh"
@@ -213,7 +213,7 @@
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
                 android:inputType="text"
-                android:hint="United States"
+                android:hint="Description of the company"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
                 android:paddingTop="@dimen/_13pxv"
@@ -235,7 +235,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_street_address" />
+                tools:text="@string/lbl_foundation" />
 
             <EditText
                 android:id="@+id/etcodecompany"
@@ -246,7 +246,7 @@
                 android:layout_marginTop="@dimen/_9pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="Enter street address"
+                android:hint="DD/MM/YYYY"
                 android:inputType="phone"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -269,7 +269,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_city_company" />
+                tools:text="@string/lbl_specialities_company" />
 
             <EditText
                 android:id="@+id/etsectorcompany"
@@ -280,7 +280,7 @@
                 android:layout_marginTop="@dimen/_9pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="Enter City, State"
+                android:hint="Specialities"
                 android:inputType="textEmailAddress"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"

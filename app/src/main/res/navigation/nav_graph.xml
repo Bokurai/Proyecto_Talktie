@@ -159,4 +159,14 @@
         android:name="com.example.proyecto_talktie.signIn4_company"
         android:label="fragment_sign_in4_company"
         tools:layout="@layout/fragment_sign_in4_company" />
+    <fragment
+        android:id="@+id/signIn5_company"
+        android:name="com.example.proyecto_talktie.signIn5_company"
+        android:label="fragment_sign_in5_company"
+        tools:layout="@layout/fragment_sign_in5_company" />
+    <fragment
+        android:id="@+id/signIn6_company"
+        android:name="com.example.proyecto_talktie.signIn6_company"
+        android:label="fragment_sign_in6_company"
+        tools:layout="@layout/fragment_sign_in6_company" />
 </navigation>

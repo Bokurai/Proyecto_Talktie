@@ -295,6 +295,15 @@ Rec</string>
     <string name="msg_king_digital_en">King Digital Entertainment Plc.</string>
     <string name="lbl_website2">Website</string>
     <string name="lbl_website_king">www.king.com</string>
+    <string name="lbl_location_company">Location</string>
+    <string name="lbl_street_company">Street Address</string>
+    <string name="lbl_city_company">City, State</string>
+    <string name="lbl_postalcode_company">Postal Code</string>
+    <string name="lbl_summary_company">Summary</string>
+    <string name="lbl_about_company">About</string>
+    <string name="lbl_hifinish_company">Hi, King Company</string>
+    <string name="lbl_finishmessage_company">Welcome to Talktie! Please press continue to go at home page</string>
+    <string name="lbl_specialities_company">Specialities</string>
     <string name="lbl_public">Public</string>
     <string name="lbl_gender">Gender</string>
     <string name="lbl_android">Android</string>
