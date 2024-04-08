@@ -44,6 +44,13 @@ public class Home extends Fragment {
 
         search_bar = view.findViewById(R.id.search_bar);
 
+        search_bar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_goStudentSearchView);
+            }
+        });
+
 
     }
 }

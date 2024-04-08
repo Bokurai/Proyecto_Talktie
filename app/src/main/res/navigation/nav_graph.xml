@@ -149,4 +149,10 @@
         android:name="com.example.proyecto_talktie.CompanyProfile"
         android:label="fragment_company_profile"
         tools:layout="@layout/fragment_company_profile" />
+
+    <action
+        android:id="@+id/action_goStudentSearchView"
+        app:destination="@id/studentSearchView" />
+
+
 </navigation>
