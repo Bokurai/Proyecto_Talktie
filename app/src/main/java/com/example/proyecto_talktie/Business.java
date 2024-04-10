@@ -12,6 +12,8 @@ public class Business extends User{
     String specialties;
 
     //constructor vacío requerido por Firebase
+
+
     public Business(){
         super();
     }
