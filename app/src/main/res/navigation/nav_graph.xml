@@ -123,6 +123,10 @@
     <action
         android:id="@+id/action_to_Register"
         app:destination="@id/signIn1" />
+    <action
+        android:id="@+id/action_goHome"
+        app:destination="@+id/home" />
+
     <fragment
         android:id="@+id/messagesHome"
         android:name="com.example.proyecto_talktie.messagesHome"

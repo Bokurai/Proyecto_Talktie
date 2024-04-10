@@ -36,11 +36,12 @@
             style="@style/txtRobotoromanregular17_1"/>
     </LinearLayout>
 
- <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/searchRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-    >
+     <androidx.recyclerview.widget.RecyclerView
+         android:layout_margin="@dimen/_10pxh"
+         android:id="@+id/searchRecyclerView"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+     />
 
 </LinearLayout>

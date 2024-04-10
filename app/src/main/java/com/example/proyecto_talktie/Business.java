@@ -14,9 +14,11 @@ public class Business extends User{
     //constructor vacío requerido por Firebase
 
 
+
     public Business(){
         super();
     }
+
 
     public String getSector() {
         return sector;

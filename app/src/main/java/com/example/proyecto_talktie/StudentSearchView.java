@@ -5,12 +5,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -18,18 +19,19 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.checkerframework.checker.units.qual.A;
 
 public class StudentSearchView extends Fragment {
+    NavController navController;
+    private TextView txtCancel;
     private RecyclerView recyclerView;
     private androidx.appcompat.widget.SearchView searchViewBar;
-    private FirebaseFirestore db;
+
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        db = FirebaseFirestore.getInstance();
     }
 
     @Override
@@ -42,21 +44,35 @@ public class StudentSearchView extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        navController = Navigation.findNavController(view);
+
         searchViewBar = view.findViewById(R.id.searchViewSearch);
         recyclerView = view.findViewById(R.id.searchRecyclerView);
+        txtCancel = view.findViewById(R.id.txtCancel);
 
-        Query query = db.collection("Company");
+        txtCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_goHome);
+            }
+        });
 
-        FirestoreRecyclerOptions<Business> options = new FirestoreRecyclerOptions.Builder<Business>()
-                .setQuery(query, Business.class)
+        Query baseQuery = FirebaseFirestore.getInstance().collection("Company");
+
+        //Adapatador inicial
+      FirestoreRecyclerOptions<Business> options = new FirestoreRecyclerOptions.Builder<Business>()
+                .setQuery(baseQuery, Business.class)
                         .setLifecycleOwner(this)
                                 .build();
 
         //recyclerView.setAdapter(new CompanyViewAdapter(options));
 
+        //Adapatador opciones iniciales
         final CompanyViewAdapter adapter = new CompanyViewAdapter(options);
         recyclerView.setAdapter(adapter);
 
+        //Listener de la barra de búsqueda
         searchViewBar.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -64,25 +80,24 @@ public class StudentSearchView extends Fragment {
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                Query searchQuery;
-                if (newText.isEmpty()) {
-                    // Si el texto de búsqueda está vacío, mostrar todas las empresas
-                    searchQuery = db.collection("Company");
-                } else {
-                    // Filtrar empresas por nombre que coincida con el texto de búsqueda
-                    searchQuery = db.collection("Company").whereEqualTo("name", newText);
+            public boolean onQueryTextChange(String s) {
+                Query searchQuery = baseQuery;
+
+                if (!s.isEmpty()) {
+                   searchQuery = baseQuery.whereEqualTo("name", s);
                 }
 
                 FirestoreRecyclerOptions<Business> newOptions = new FirestoreRecyclerOptions.Builder<Business>()
                         .setQuery(searchQuery, Business.class)
                         .setLifecycleOwner(StudentSearchView.this)
                         .build();
+
                 adapter.updateOptions(newOptions);
+                adapter.notifyDataSetChanged();
+
                 return true;
             }
         });
-
 
     }
 
@@ -90,19 +105,22 @@ public class StudentSearchView extends Fragment {
 
         public CompanyViewAdapter(@NonNull FirestoreRecyclerOptions<Business> options) {
             super(options);
+
         }
 
         @Override
         protected void onBindViewHolder(@NonNull CompanyViewHolder holder, int position, @NonNull Business model) {
+
             holder.company_name.setText(model.getName());
             holder.sector_company.setText(model.getSector());
 
         }
 
+
         @NonNull
         @Override
         public CompanyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new CompanyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_company_view, parent, false));
+            return new CompanyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_company_view,parent,false));
         }
 
         class CompanyViewHolder extends RecyclerView.ViewHolder {
