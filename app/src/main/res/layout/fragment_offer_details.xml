@@ -122,7 +122,8 @@
                     android:textAllCaps="true" />
                 <TextView android:id="@+id/txtDescription"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginStart="@dimen/_24pxh"
+                    android:layout_marginEnd="@dimen/_24pxh"
                     android:layout_marginTop="@dimen/_13pxv"
                     android:layout_width="match_parent"
                     android:text="@string/msg_can_you_bring_c"

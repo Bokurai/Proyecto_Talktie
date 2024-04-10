@@ -24,7 +24,7 @@ I'm contacting you because I'm looking for an internship for the DAM higher degr
     <string name="msg_are_you_looking">Are you looking to develop your career in customer service and take on larger responsibilities in an exciting and growing environment? We are looking for part-time Back Office Support team members with Dutch to work on our onsite project during weekend shifts.</string>
     <string name="lbl_location">Location</string>
     <string name="lbl_insblabla_cat">insblabla.cat</string>
-    <string name="msg_ies_blabla_is_a">IES Blabla is a high-school located in Barcelona which... read more</string>
+    <string name="msg_ies_blabla_is_a">IES Blabla is a high-school located in Barcelona which… read more</string>
     <string name="lbl_candidates2">Candidates </string>
     <string name="lbl_industry">Industry</string>
     <string name="msg_add_cover_lette">Add Cover Letter</string>
@@ -88,7 +88,7 @@ Raffles Place, Boat Band M83</string>
     <string name="lbl_specialties">Specialties</string>
     <string name="lbl_recruiter">Recruiter</string>
     <string name="lbl_ies_blabla">IES Blabla</string>
-    <string name="lbl_1_2_years">1-2 years</string>
+    <string name="lbl_1_2_years">1–2 years</string>
     <string name="lbl_send">Send</string>
     <string name="lbl_17">17</string>
     <string name="lbl_vacant_land">Vacant Land</string>
@@ -191,7 +191,7 @@ with Dutch (m/f/d)</string>
     <string name="lbl_forget_password">Forget Password</string>
     <string name="msg_san_francisco">San Francisco, CA</string>
     <string name="lbl_photos">Photos</string>
-    <string name="msg_ies_blabla_is_a2">IES Blabla is a high-school located in Barcelona which...</string>
+    <string name="msg_ies_blabla_is_a2">IES Blabla is a high-school located in Barcelona which…</string>
     <string name="msg_hlopez_iesbla_c2">hlopez@iesbla.cat</string>
     <string name="lbl_student_rec">Student
 Rec</string>
@@ -199,7 +199,7 @@ Rec</string>
     <string name="lbl_see_more">See more</string>
     <string name="msg_348_open_positi">348 open positions</string>
     <string name="lbl_benefits2">Benefits</string>
-    <string name="lbl_sing_in">Sing in</string>
+    <string name="lbl_sing_in">Sign in</string>
     <string name="lbl_sector">Sector</string>
     <string name="msg_thank_you_for_y">Thank you for your request</string>
     <string name="lbl_total">Total</string>
@@ -299,7 +299,7 @@ Rec</string>
     <string name="msg_description_of">Description of the company</string>
     <string name="lbl_jobs_list">Jobs List </string>
     <string name="lbl_www_king_com">www.king.com</string>
-    <string name="lbl_3_4_years">3-4 years</string>
+    <string name="lbl_3_4_years">3–4 years</string>
     <string name="lbl_incoming_call">Incoming call</string>
     <string name="msg_practiquescf_bl">practiquescf@blabla.cat</string>
     <string name="lbl_design">Design</string>
@@ -344,7 +344,7 @@ Rec</string>
     <string name="msg_start_as_a_comp">Company</string>
     <string name="lbl_once_a_month">Once a Month</string>
     <string name="msg_type_of_institu">Type of institution</string>
-    <string name="lbl_100_500">100-500</string>
+    <string name="lbl_100_500">100–500</string>
     <string name="msg_create_a_secure">Create a secure password</string>
     <string name="msg_93_open_positio">93 open positions</string>
     <string name="lbl_dribbble">Dribbble</string>
@@ -361,7 +361,7 @@ Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</str
     <string name="lbl_122_x_122">122 x 122</string>
     <string name="lbl_pay_day">Pay Day</string>
     <string name="lbl_messages">Messages </string>
-    <string name="lbl_4_5_years">4-5 years</string>
+    <string name="lbl_4_5_years">4–5 years</string>
     <string name="msg_4_9_349_rating">4.9 (349 ratings)</string>
     <string name="lbl_90k_year">90K/year</string>
     <string name="lbl_type_of_company">Type of company</string>
@@ -424,7 +424,7 @@ Creative human-centered ideas to life and make great things happen beyond what m
     <string name="lbl_mobile_phone">Mobile Phone</string>
     <string name="lbl_bulgarian">Bulgarian</string>
     <string name="lbl_marketing">Marketing</string>
-    <string name="msg_say_something_n">Say something nice about the student...</string>
+    <string name="msg_say_something_n">Say something nice about the student…</string>
     <string name="lbl_my_resume">My Resume</string>
     <string name="lbl_upload_resume">Upload Resume</string>
     <string name="msg_96_open_positio">96 open positions</string>
@@ -485,7 +485,6 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_bachelor_s">Bachelor\u2019s</string>
     <string name="lbl_remember_me">Remember me</string>
     <string name="msg_confirm_your_pa">Confirm your password</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="msg_how_are">Who are you?</string>
     <string name="msg_start_as_a_school">School</string>
