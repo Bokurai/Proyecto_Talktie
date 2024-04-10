@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="start"
-    android:id="@+id/home2"
+    android:id="@+id/home"
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/_7pxv"
     android:layout_width="match_parent"

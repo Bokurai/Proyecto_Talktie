@@ -53,7 +53,7 @@ public class SignIn10 extends Fragment {
                 registerViewModel.setJob_categories(jobPreferences.getText().toString());
                 registerViewModel.saveUserFirestore();
                 registerViewModel.saveStudentFirestore();
-                navController.navigate(R.id.home2);
+                navController.navigate(R.id.home);
             }
         });
     }
