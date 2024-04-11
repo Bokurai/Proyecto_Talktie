@@ -137,7 +137,7 @@
         android:label="fragment_messages_home"
         tools:layout="@layout/fragment_messages_home" />
     <fragment
-        android:id="@+id/home2"
+        android:id="@+id/home"
         android:name="com.example.proyecto_talktie.home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />

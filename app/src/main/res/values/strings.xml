@@ -502,4 +502,6 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="contract_type">contract type</string>
     <string name="contract_time">Contract time</string>
     <string name="contractTimeTxt">6 months</string>
+    <string name="job_category">Job category</string>
+    <string name="design">Design</string>
 </resources>

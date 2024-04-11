@@ -18,6 +18,8 @@ public class OfferViewModel extends AndroidViewModel {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
 
+    private MutableLiveData<OfferObject> selectedOffer = new MutableLiveData<>();
+
     public OfferViewModel(@NonNull Application application) {
         super(application);
     }
@@ -50,4 +52,11 @@ public class OfferViewModel extends AndroidViewModel {
         return offersLiveData;
     }
 
+    void setSelectedOffer(OfferObject offerObject){
+        selectedOffer.setValue(offerObject);
+    }
+
+    MutableLiveData<OfferObject> getSelectedOffer(){
+        return selectedOffer;
+    }
 }

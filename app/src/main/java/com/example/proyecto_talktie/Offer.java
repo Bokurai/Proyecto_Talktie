@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -20,6 +22,7 @@ import java.util.List;
 public class Offer extends Fragment {
     private OfferViewModel offerViewModel;
     private RecyclerView recyclerView;
+    NavController navController;
     private OffersAdapter adapter;
 
     @Override
@@ -49,6 +52,8 @@ public class Offer extends Fragment {
         offerViewModel.getOffersLiveData().observe(getViewLifecycleOwner(), offerObjects -> {
             adapter.setOfferObjectList(offerObjects);
         });
+
+        navController = Navigation.findNavController(view);
 
 
     }
@@ -92,6 +97,14 @@ public class Offer extends Fragment {
                 holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
             }
 
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    offerViewModel.setSelectedOffer(offerObject);
+                    navController.navigate(R.id.action_goOfferDetailsFragment);
+                }
+            });
+
         }
 
         @Override
@@ -106,7 +119,7 @@ public class Offer extends Fragment {
         public void setOfferObjectList(List<OfferObject> offerObjectList) {
             this.offerObjectList = offerObjectList;
             notifyDataSetChanged();
-            Log.d("OffertsAdapter", "Cantidad de ofertas recibidas: " + offerObjectList.size());
+            Log.d("OffersAdapter", "Cantidad de ofertas recibidas: " + offerObjectList.size());
         }
 
         class OffersViewHolder extends RecyclerView.ViewHolder {

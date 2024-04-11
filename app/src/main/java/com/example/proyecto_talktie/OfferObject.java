@@ -16,6 +16,11 @@ public class OfferObject {
     //Si el id del usuario esta en la lista de aplicante se vuelve true;
     boolean isApplied;
 
+    // Información propia de los detalles de la oferta
+    String contract_time;
+    String job_category;
+    String job_description;
+
     public OfferObject() {
     }
 
