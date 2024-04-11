@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="33dp"
                 android:layout_marginStart="@dimen/_40pxh"
-                android:layout_marginTop="@dimen/_60pxh"
+                android:layout_marginTop="@dimen/_63pxh"
                 android:layout_marginEnd="@dimen/_40pxh"
                 android:gravity="end"
                 android:orientation="horizontal">
@@ -122,7 +122,6 @@
                         android:text="@string/lbl_3"
                         tools:text="@string/lbl_3" />
                 </LinearLayout>
-
                 <View
                     android:id="@+id/viewLineTwo"
                     android:layout_width="@dimen/_24pxh"
@@ -156,7 +155,6 @@
                         android:text="@string/lbl_4"
                         tools:text="@string/lbl_4" />
                 </LinearLayout>
-
                 <View
                     android:id="@+id/viewLineThree"
                     android:layout_width="@dimen/_24pxh"
@@ -484,6 +482,7 @@
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_width="@dimen/_13pxh"
+                    android:layout_marginLeft="@dimen/_5pxh"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_arrowleft_black_900"
                     tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft_black_900"/>
@@ -501,16 +500,6 @@
                         android:singleLine="true"
                         android:text="@string/lbl_experience"
                         style="@style/txtRobotosemibolditalic17_2" tools:text="@string/lbl_experience"/>
-                    <TextView android:ellipsize="end"
-                        android:id="@+id/txtSave"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_2pxv"
-                        android:layout_marginStart="@dimen/_115pxh"
-                        android:layout_weight="0.33"
-                        android:layout_width="0dp"
-                        android:singleLine="true"
-                        android:text="@string/lbl_save"
-                        style="@style/txtRobotoromanregular17_4" tools:text="@string/lbl_save"/>
                 </LinearLayout>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>

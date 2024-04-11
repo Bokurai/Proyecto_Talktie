@@ -54,19 +54,6 @@
                         android:singleLine="true"
                         android:text="@string/lbl_education"
                         tools:text="@string/lbl_education" />
-
-                    <TextView
-                        android:id="@+id/txtSave"
-                        style="@style/txtRobotoromanregular17_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_119pxh"
-                        android:layout_marginBottom="@dimen/_1pxv"
-                        android:layout_weight="0.36"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@string/lbl_save"
-                        tools:text="@string/lbl_save" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -173,7 +160,6 @@
                     android:text="@string/lbl_3"
                     tools:text="@string/lbl_3" />
             </LinearLayout>
-
             <View
                 android:id="@+id/viewLineTwo"
                 android:layout_width="@dimen/_24pxh"
