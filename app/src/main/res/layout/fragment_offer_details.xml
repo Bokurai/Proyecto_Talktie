@@ -58,8 +58,6 @@
 
             <ImageView
                 android:id="@+id/companyLogoJD"
-                android:cornerRadius="@{@dimen/_4pxh}"
-                android:imageRes="@{@drawable/img_image3_40x40}"
                 android:layout_width="@dimen/_56pxh"
                 android:layout_height="@dimen/_56pxh"
                 android:layout_marginStart="@dimen/_24pxh"
