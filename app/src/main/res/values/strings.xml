@@ -499,4 +499,7 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_gender">Enter your gender</string>
     <string name="_20_07_2023">20/07/2023</string>
+    <string name="contract_type">contract type</string>
+    <string name="contract_time">Contract time</string>
+    <string name="contractTimeTxt">6 months</string>
 </resources>
