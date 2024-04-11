@@ -75,11 +75,9 @@ public class Login extends Fragment {
         passwordEditText = view.findViewById(R.id.passwordEditText);
         emailSignInButton = view.findViewById(R.id.btnLogIn);
         signInForm = view.findViewById(R.id.linearLogin);
-        signInProgressBar = view.findViewById(R.id.signInProgressBar);
         registerButton = view.findViewById(R.id.btnCreateAccountOne);
         navController = Navigation.findNavController(view);
         googleSignInButton = view.findViewById(R.id.googleSignInButton);
-        signInProgressBar = view.findViewById(R.id.signInProgressBar);
         signInForm = view.findViewById(R.id.linearLogin);
         signInProgressBar.setVisibility(View.GONE);
 
