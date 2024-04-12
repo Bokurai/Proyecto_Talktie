@@ -127,6 +127,12 @@
         android:id="@+id/action_goHome"
         app:destination="@+id/home" />
 
+    <action
+        android:id="@+id/action_goCompanyProfile"
+        app:destination="@+id/companyProfile" />
+
+
+
     <fragment
         android:id="@+id/messagesHome"
         android:name="com.example.proyecto_talktie.messagesHome"

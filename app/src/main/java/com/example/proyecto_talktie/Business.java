@@ -1,12 +1,11 @@
 package com.example.proyecto_talktie;
 
 import java.util.Date;
-import java.util.List;
 
 public class Business extends User{
 
     String sector;
-   List <String> company_type;
+   String typeCompany;
     String summary;
     Date foundation_date;
     String specialties;
@@ -28,12 +27,12 @@ public class Business extends User{
         this.sector = sector;
     }
 
-    public List<String> getCompany_type() {
-        return company_type;
+    public String getTypeCompany() {
+        return typeCompany;
     }
 
-    public void setCompany_type(List<String> company_type) {
-        this.company_type = company_type;
+    public void setTypeCompany(String typeCompany) {
+        this.typeCompany = typeCompany;
     }
 
     public String getSummary() {

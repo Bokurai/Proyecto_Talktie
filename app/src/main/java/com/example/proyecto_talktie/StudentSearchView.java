@@ -5,8 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -26,6 +28,7 @@ public class StudentSearchView extends Fragment {
     private TextView txtCancel;
     private RecyclerView recyclerView;
     private androidx.appcompat.widget.SearchView searchViewBar;
+    private StudentSearchViewModel searchViewModel;
 
 
 
@@ -44,6 +47,8 @@ public class StudentSearchView extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        searchViewModel = new ViewModelProvider(requireActivity()).get(StudentSearchViewModel.class);
 
         navController = Navigation.findNavController(view);
 
@@ -66,7 +71,6 @@ public class StudentSearchView extends Fragment {
                         .setLifecycleOwner(this)
                                 .build();
 
-        //recyclerView.setAdapter(new CompanyViewAdapter(options));
 
         //Adapatador opciones iniciales
         final CompanyViewAdapter adapter = new CompanyViewAdapter(options);
@@ -99,6 +103,7 @@ public class StudentSearchView extends Fragment {
             }
         });
 
+
     }
 
     class CompanyViewAdapter extends FirestoreRecyclerAdapter<Business, CompanyViewAdapter.CompanyViewHolder> {
@@ -113,6 +118,15 @@ public class StudentSearchView extends Fragment {
 
             holder.company_name.setText(model.getName());
             holder.sector_company.setText(model.getSector());
+            holder.location_company.setText(model.getAddress());
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    searchViewModel.select(model);
+                    navController.navigate(R.id.action_goCompanyProfile);
+                }
+            });
 
         }
 
