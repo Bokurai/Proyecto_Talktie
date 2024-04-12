@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.google.firebase.Timestamp;
@@ -75,6 +76,15 @@ public class SignIn9 extends Fragment {
                 Timestamp fecha_cambiada_end = editTextToTimestamp(etEndDateJob);
                 registerViewModel.setEnd_date_job(fecha_cambiada_end);
                 navController.navigate(R.id.signIn10);
+            }
+        });
+
+        //felcha atras
+        ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
+        imageArrowleft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.signIn8);
             }
         });
     }

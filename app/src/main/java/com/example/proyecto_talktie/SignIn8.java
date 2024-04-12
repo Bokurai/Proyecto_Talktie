@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.firebase.Timestamp;
 
@@ -58,14 +59,25 @@ public class SignIn8 extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerViewModel.setCenter(etSchool.getText().toString());
-                registerViewModel.setLocationSchoolFormation(etLocation.getText().toString());
-                registerViewModel.setDegree(etDegree.getText().toString());
-                Timestamp fecha_cambiada_start = editTextToTimestamp(etStartDateForm);
-                registerViewModel.setStart_date_formation(fecha_cambiada_start);
-                Timestamp fecha_cambiada_end = editTextToTimestamp(etEndDateForm);
-                registerViewModel.setEnd_date_formation(fecha_cambiada_end);
-                navController.navigate(R.id.signIn9);
+                if (validarFormulario()) {
+                    registerViewModel.setCenter(etSchool.getText().toString());
+                    registerViewModel.setLocationSchoolFormation(etLocation.getText().toString());
+                    registerViewModel.setDegree(etDegree.getText().toString());
+                    Timestamp fecha_cambiada_start = editTextToTimestamp(etStartDateForm);
+                    registerViewModel.setStart_date_formation(fecha_cambiada_start);
+                    Timestamp fecha_cambiada_end = editTextToTimestamp(etEndDateForm);
+                    registerViewModel.setEnd_date_formation(fecha_cambiada_end);
+                    navController.navigate(R.id.signIn9);
+                }
+            }
+        });
+
+        //felcha atras
+        ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
+        imageArrowleft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.signIn7);
             }
         });
     }
@@ -87,5 +99,22 @@ public class SignIn8 extends Fragment {
             e.printStackTrace();
         }
         return null;
+    }
+    private boolean validarFormulario() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(etSchool.getText().toString())) {
+            etSchool.setError("Required.");
+            valid = false;
+        } else {
+            etSchool.setError(null);
+        }
+        if (TextUtils.isEmpty(etDegree.getText().toString())) {
+            etDegree.setError("Required.");
+            valid = false;
+        } else {
+            etDegree.setError(null);
+        }
+        return valid;
     }
 }

@@ -93,7 +93,7 @@
                     android:layout_width="298dp"
                     android:layout_height="44dp"
                     android:layout_marginStart="@dimen/_40pxh"
-                    android:layout_marginTop="@dimen/_20pxh"
+                    android:layout_marginTop="@dimen/_21pxh"
                     android:layout_marginEnd="@dimen/_40pxh"
                     android:gravity="end"
                     android:orientation="horizontal">
@@ -293,6 +293,7 @@
                     android:paddingEnd="@dimen/_30pxh"
                     android:paddingBottom="@dimen/_12pxv"
                     android:singleLine="true"
+                    android:textColor="@android:color/black"
                     android:textColorHint="@color/bluegray_400"
                     tools:ignore="Autofill" />
 
@@ -329,6 +330,7 @@
                     android:paddingEnd="@dimen/_30pxh"
                     android:paddingBottom="@dimen/_12pxv"
                     android:singleLine="true"
+                    android:textColor="@android:color/black"
                     android:textColorHint="@color/bluegray_400"
                     tools:ignore="Autofill" />
 
@@ -365,6 +367,7 @@
                     android:paddingEnd="@dimen/_30pxh"
                     android:paddingBottom="@dimen/_10pxv"
                     android:singleLine="true"
+                    android:textColor="@android:color/black"
                     android:textColorHint="@color/bluegray_400"
                     tools:ignore="Autofill" />
 
@@ -401,6 +404,7 @@
                     android:paddingEnd="@dimen/_30pxh"
                     android:paddingBottom="@dimen/_10pxv"
                     android:singleLine="true"
+                    android:textColor="@android:color/black"
                     android:textColorHint="@color/bluegray_400"
                     tools:ignore="Autofill" />
 

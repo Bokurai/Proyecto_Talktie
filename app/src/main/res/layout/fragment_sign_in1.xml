@@ -114,6 +114,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_11pxv"
                 android:singleLine="true"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
@@ -135,6 +136,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_12pxv"
                 android:singleLine="true"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
@@ -156,6 +158,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_12pxv"
                 android:singleLine="true"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
@@ -177,6 +180,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_12pxv"
                 android:singleLine="true"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 

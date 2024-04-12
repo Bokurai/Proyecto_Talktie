@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.firebase.Timestamp;
 
@@ -54,6 +55,15 @@ public class SignIn10 extends Fragment {
                 registerViewModel.saveUserFirestore();
                 registerViewModel.saveStudentFirestore();
                 navController.navigate(R.id.home2);
+            }
+        });
+
+        //felcha atras
+        ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
+        imageArrowleft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.signIn9);
             }
         });
     }

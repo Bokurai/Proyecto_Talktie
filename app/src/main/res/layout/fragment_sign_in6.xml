@@ -220,6 +220,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/bluegray_900"
                 tools:ignore="Autofill" />
 
@@ -255,7 +256,8 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_12pxv"
                 android:singleLine="true"
-                android:textColorHint="@color/bluegray_400"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/bluegray_900"
                 tools:ignore="Autofill" />
 
             <TextView
@@ -290,6 +292,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/bluegray_900"
                 tools:ignore="Autofill" />
 
@@ -306,7 +309,7 @@
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
                 android:text="@string/lbl_gender"
-                tools:text="@string/lbl_gender" />
+                />
 
             <EditText
                 android:id="@+id/etGender"
@@ -324,8 +327,9 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:text="female"
-                android:textColorHint="@color/black_900"
+                android:hint="female"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
             <TextView
@@ -360,7 +364,8 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:textColorHint="@color/bluegray_900"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
 

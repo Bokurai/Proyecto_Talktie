@@ -214,8 +214,8 @@
                     android:ellipsize="end"
                     android:lineSpacingExtra="@dimen/_3pxh"
                     android:singleLine="true"
-                    android:text="@string/lbl_job_categories"
-                    tools:text="@string/lbl_job_categories" />
+                    android:text="Availability"
+                    />
 
                 <EditText
                     android:id="@+id/etJobPreferences"
@@ -225,7 +225,7 @@
                     android:layout_marginTop="@dimen/_7pxv"
                     android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                     android:ellipsize="end"
-                    android:hint="@string/lbl_art_director"
+                    android:hint="@string/lbl_art_availability"
                     android:inputType="text"
                     android:lineSpacingExtra="@dimen/_3pxh"
                     android:paddingStart="@dimen/_16pxh"
@@ -233,7 +233,8 @@
                     android:paddingEnd="@dimen/_30pxh"
                     android:paddingBottom="@dimen/_12pxv"
                     android:singleLine="true"
-                    android:textColorHint="@color/black_900"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@color/bluegray_400"
                     tools:ignore="Autofill" />
 
             </LinearLayout>

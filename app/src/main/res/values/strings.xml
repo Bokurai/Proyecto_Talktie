@@ -123,7 +123,7 @@ Raffles Place, Boat Band M83</string>
     <string name="lbl_you_re_welcome">You\u2019re welcome.</string>
     <string name="msg_hi_rabab_beiha">Hi, Rabab Beihaqi</string>
     <string name="lbl_349_irvine_ca">349 Irvine, CA</string>
-    <string name="lbl_art_director">Art Director</string>
+    <string name="lbl_art_availability">Full availability</string>
     <string name="lbl_on">ON</string>
     <string name="msg_use_current_loc">Use current location</string>
     <string name="lbl_none">None</string>
@@ -510,7 +510,7 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="msg_start_as_a_school">School</string>
     <string name="lbl_recomend">Recommendations</string>
     <string name="lbl_job_title2">Job Title</string>
-    <string name="lbl_experience">Interships</string>
+    <string name="lbl_experience">Experience</string>
     <string name="date_format">DD/MM/YYYY</string>
     <string name="enter_country_of_origin">Enter country of origin</string>
 </resources>
