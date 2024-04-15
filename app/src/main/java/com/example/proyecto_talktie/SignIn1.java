@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.example.proyecto_talktie.databinding.FragmentSignIn1Binding;
@@ -62,6 +63,13 @@ public class SignIn1 extends Fragment {
             @Override
             public void onClick(View view) {
                 crearCuenta();
+            }
+        });
+        TextView textView= view.findViewById(R.id.havecount);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.login);
             }
         });
 

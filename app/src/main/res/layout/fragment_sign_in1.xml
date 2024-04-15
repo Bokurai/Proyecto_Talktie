@@ -204,7 +204,7 @@
                 tools:text="@string/lbl_sing_in" />
 
             <TextView
-                android:id="@+id/txtConfirmation"
+                android:id="@+id/havecount"
                 style="@style/txtRobotoromanregular17_1"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"

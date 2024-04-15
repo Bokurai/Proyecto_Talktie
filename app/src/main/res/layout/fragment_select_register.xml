@@ -192,7 +192,7 @@
                         android:singleLine="true"
                         android:text="@string/msg_start_as_a_comp"
                         android:textAllCaps="false"
-                        style="@style/btnSolidRounded_1"
+                        style="@style/btnRoundedOutline"
                         tools:text="@string/msg_start_as_a_comp"/>
                     <androidx.appcompat.widget.AppCompatButton
                         android:ellipsize="end" android:gravity="center"
