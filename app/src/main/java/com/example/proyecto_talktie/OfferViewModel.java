@@ -17,6 +17,7 @@ public class OfferViewModel extends AndroidViewModel {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<OfferObject>> offersCompany = new MutableLiveData<>();
 
     public OfferViewModel(@NonNull Application application) {
         super(application);
@@ -48,6 +49,27 @@ public class OfferViewModel extends AndroidViewModel {
                 });
 
         return offersLiveData;
+    }
+
+    //Método que obtiene las ofertas para cada compañía
+    public MutableLiveData<List<OfferObject>> getOffersCompany(String companyId) {
+        db.collection("Offer")
+                .whereEqualTo("companyId", companyId)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<OfferObject> offers = new ArrayList<>();
+
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        OfferObject offer = document.toObject(OfferObject.class);
+                        offers.add(offer);
+                    }
+                    Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
+                    offersCompany.setValue(offers);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getApplication(), "Error loading offers", Toast.LENGTH_SHORT).show();
+                });
+        return offersCompany;
     }
 
 }

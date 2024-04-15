@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,18 +59,19 @@ public class ProfileStudent extends Fragment {
         textAbout = view.findViewById(R.id.txtDescription);
 
 
-
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
 
         /**
          * I get the livedata about from the view-model to show it to the user
          */
         studentViewModel.getAbout(studentId).observe(getViewLifecycleOwner(), aboutMe -> {
+            Log.d("Recomendaciones", "Obtiene about " + studentId);
             textAbout.setText(aboutMe);
         });
 
         studentViewModel.getRecommendationLiveData(studentId).observe(getViewLifecycleOwner(), recommendations -> {
-           //Update data on exist adapter
+            Log.d("Recomendaciones", "Acceder livedata recomendaciones " + studentId);
+            //Update data on exist adapter
             adapter.setRecommendationList(recommendations);
         });
 

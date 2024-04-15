@@ -1,6 +1,7 @@
 package com.example.proyecto_talktie;
 
 import android.app.Application;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -56,6 +57,7 @@ public class StudentViewModel extends AndroidViewModel {
 
                             /**Recommendation recommendation = new Recommendation(idTeacher, recommendationText);
                             recommendationList.add(recommendation);**/
+                            Log.d("Recomendaciones", "Recomendación obtenida - ID del profesor: " + idTeacher + ", Texto de la recomendación: " + recommendationText);
                         }
                     }
                 }
@@ -63,6 +65,7 @@ public class StudentViewModel extends AndroidViewModel {
             } else {
                 Toast.makeText(getApplication(), "Error loading recommendations", Toast.LENGTH_SHORT).show();
             }
+
         });
         return recommendationsLiveData;
     }

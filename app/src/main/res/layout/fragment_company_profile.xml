@@ -16,18 +16,18 @@
 
         <ImageView
             android:id="@+id/img_return"
-            android:layout_width="@dimen/_20pxh"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/_50pxh"
+            android:padding="@dimen/_10pxh"
             android:src="@drawable/img_arrowleft_black_900"
-            tools:ignore="ContentDescription"
-            android:layout_gravity="start"/>
+            tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnFollowCompany"
             style="@style/btnSolidRounded_3"
             android:layout_width="@dimen/_150pxh"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_225pxh"
+            android:layout_marginStart="@dimen/_210pxh"
             android:padding="@dimen/_5pxh"
             android:gravity="center"
             android:textAlignment="center"
@@ -36,9 +36,6 @@
             android:textAllCaps="false"
             android:layout_gravity="end"/>
     </LinearLayout>
-
-
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -86,7 +83,7 @@
 
                 <TextView
                     android:id="@+id/txtLocationCompany"
-                    style="@style/txtPoppinssemibold22_1"
+                    style="@style/txtPoppinssemibold17_2"
                     android:layout_marginStart="@dimen/_5pxh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -115,14 +112,13 @@
                 style="@style/txtRobotoromanregular15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_17pxh"
+                android:layout_marginStart="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_12pxv"
-                android:layout_marginEnd="@dimen/_17pxh"
-                android:gravity="center_horizontal"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:gravity="start"
                 android:letterSpacing="0.01"
                 android:lineSpacingExtra="@dimen/_5pxh"
-                android:text="@string/msg_i_know_i_can_he"
-                tools:text="@string/msg_i_know_i_can_he" />
+                android:text="@string/msg_i_know_i_can_he" />
 
 
             <TextView
@@ -138,6 +134,7 @@
                 android:text="@string/lbl_overview" />
 
             <TableLayout
+                android:layout_marginTop="@dimen/_12pxv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <!-- Fila 1 -->
@@ -146,25 +143,24 @@
                     android:layout_height="wrap_content">
                     <!-- Columna 1 -->
                     <TextView
-                        style="@style/txtRobotoromanbold16_1"
+                        style="@style/txtRobotoromanbold15_3"
                         android:text="@string/lbl_industry"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.5"
-                        android:layout_marginStart="@dimen/_30pxh"
-                        android:padding="@dimen/_10pxh"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:padding="@dimen/_5pxh"
                         android:gravity="start"
                         android:textStyle="bold"/>
 
                     <!-- Columna 2 -->
                     <TextView
-                        style="@style/txtRobotoromanbold16"
+                        style="@style/txtRobotoromanbold15_4"
                         android:id="@+id/typeCompanyTextView"
+                        android:layout_marginStart="@dimen/_10pxh"
                         android:layout_width="wrap_content"
                         android:text="@string/lbl_industry"
-                        android:layout_weight="1"
                         android:gravity="start"/>
-
                 </TableRow>
+
 
                 <!-- Fila 2 -->
                 <TableRow
@@ -173,12 +169,11 @@
 
                     <!-- Columna 1 -->
                     <TextView
-                        style="@style/txtRobotoromanbold16_1"
+                        style="@style/txtRobotoromanbold15_3"
                         android:text="@string/lbl_phone"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.5"
-                        android:layout_marginStart="@dimen/_30pxh"
-                        android:padding="@dimen/_10pxh"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:padding="@dimen/_5pxh"
                         android:gravity="start"
                         android:textStyle="bold"/>
 
@@ -187,11 +182,11 @@
                         style="@style/txtRobotoromanbold16"
                         android:id="@+id/phoneTextView"
                         android:text="@string/lbl_phone"
+                        android:layout_marginStart="@dimen/_10pxh"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="start"/>
-
                 </TableRow>
+
 
                 <!-- Fila  3-->
                 <TableRow
@@ -202,10 +197,9 @@
                     <TextView
                         style="@style/txtRobotoromanbold16_1"
                         android:text="@string/lbl_email"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.5"
-                        android:layout_marginStart="@dimen/_30pxh"
-                        android:padding="@dimen/_10pxh"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:padding="@dimen/_5pxh"
                         android:gravity="start"
                         android:textStyle="bold"/>
 
@@ -214,8 +208,8 @@
                         style="@style/txtRobotoromanbold16"
                         android:id="@+id/emailTextView"
                         android:text="@string/lbl_email"
+                        android:layout_marginStart="@dimen/_10pxh"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="start"/>
 
                 </TableRow>
@@ -229,10 +223,9 @@
                     <TextView
                         style="@style/txtRobotoromanbold16_1"
                         android:text="@string/lbl_web_site"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.5"
-                        android:layout_marginStart="@dimen/_30pxh"
-                        android:padding="@dimen/_10pxh"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:padding="@dimen/_5pxh"
                         android:gravity="start"
                         android:textStyle="bold"/>
 
@@ -241,12 +234,51 @@
                         style="@style/txtRobotoromanbold16"
                         android:id="@+id/websiteTextView"
                         android:text="@string/lbl_web_site"
+                        android:layout_marginStart="@dimen/_10pxh"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
                         android:gravity="start"/>
 
                 </TableRow>
             </TableLayout>
+
+            <TextView
+                android:id="@+id/txtHeadquarters"
+                style="@style/txtRobotoromanbold17"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:ellipsize="end"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="@string/lbl_headquarters" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12pxv"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtHeadquartersCompany"
+                    style="@style/txtRobotoromanbold16"
+                    android:layout_marginStart="@dimen/_5pxh"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/_10pxh"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:lineSpacingExtra="@dimen/_5pxh"
+                    android:text="@string/lbl_headquarters" />
+
+                <ImageView
+                    android:id="@+id/prueba"
+                    android:layout_width="@dimen/_40pxh"
+                    android:layout_height="@dimen/_40pxh"
+                    android:layout_margin="@dimen/_10pxh"
+                    android:src="@drawable/build" />
+
+            </LinearLayout>
 
 
             <TextView
@@ -262,11 +294,11 @@
                 android:text="@string/lbl_vacancies_avaible" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingBottom="@dimen/_40pxh"
                 android:layout_margin="@dimen/_10pxh"
-                android:id="@+id/recommendRecyclerView"
+                android:id="@+id/vacanciesRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12pxv"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         </LinearLayout>
