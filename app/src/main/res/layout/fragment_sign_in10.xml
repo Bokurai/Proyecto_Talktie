@@ -227,7 +227,7 @@
                     android:layout_marginTop="@dimen/_7pxv"
                     android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                     android:ellipsize="end"
-                    android:hint="@string/lbl_art_director"
+                    android:hint="@string/lbl_art_availability"
                     android:inputType="text"
                     android:lineSpacingExtra="@dimen/_3pxh"
                     android:paddingStart="@dimen/_16pxh"
