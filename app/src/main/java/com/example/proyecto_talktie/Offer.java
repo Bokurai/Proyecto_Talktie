@@ -100,7 +100,8 @@ public class Offer extends Fragment {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    offerViewModel.setSelectedOffer(offerObject);
+                    offerViewModel.selectOffer(offerObject);
+                    System.out.println("Mostrando oferta 1");
                     navController.navigate(R.id.action_goOfferDetailsFragment);
                 }
             });

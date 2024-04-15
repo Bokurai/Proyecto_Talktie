@@ -84,4 +84,28 @@ public class OfferObject {
     public void setApplied(boolean applied) {
         isApplied = applied;
     }
+
+    public String getContract_time() {
+        return contract_time;
+    }
+
+    public void setContract_time(String contract_time) {
+        this.contract_time = contract_time;
+    }
+
+    public String getJob_category() {
+        return job_category;
+    }
+
+    public void setJob_category(String job_category) {
+        this.job_category = job_category;
+    }
+
+    public String getJob_description() {
+        return job_description;
+    }
+
+    public void setJob_description(String job_description) {
+        this.job_description = job_description;
+    }
 }

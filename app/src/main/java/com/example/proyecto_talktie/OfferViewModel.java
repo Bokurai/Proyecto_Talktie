@@ -33,32 +33,26 @@ public class OfferViewModel extends AndroidViewModel {
         db.collection("Offer")
                 .orderBy("date", Query.Direction.DESCENDING)
                 .limit(50)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    List<OfferObject> offers = new ArrayList<>();
+                .addSnapshotListener((queryDocumentSnapshots, e) -> {
+                    if (e != null) {
+                        Log.w("TAG", "Listen failed.", e);
+                        return;
+                    }
 
+                    List<OfferObject> offers = new ArrayList<>();
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         OfferObject offer = document.toObject(OfferObject.class);
                         offers.add(offer);
                     }
                     Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
                     offersLiveData.setValue(offers);
-
-                    if (!offers.isEmpty()) {
-                        selectedOffer.setValue(offers.get(0));
-                    }
-
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getApplication(), "Error loading the offer", Toast.LENGTH_SHORT).show();
                 });
 
         return offersLiveData;
     }
 
 
-
-    void setSelectedOffer(OfferObject offerObject){
+    void selectOffer(OfferObject offerObject){
         selectedOffer.setValue(offerObject);
     }
 
