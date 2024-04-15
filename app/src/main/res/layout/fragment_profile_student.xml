@@ -49,22 +49,30 @@
                     app:contentInsetStart="0dp">
 
                     <LinearLayout
-                        android:id="@+id/linearNavBars"
+                        android:id="@+id/LogoutLinear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/imageIconMore"
-                            android:layout_width="@dimen/_22pxh"
-                            android:layout_height="@dimen/_5pxh"
+                            android:id="@+id/logout"
+                            android:layout_width="@dimen/_35pxh"
+                            android:layout_height="@dimen/_35pxh"
                             android:layout_marginStart="@dimen/_334pxh"
                             android:layout_marginTop="@dimen/_8pxv"
                             android:layout_marginBottom="@dimen/_7pxv"
                             android:scaleType="fitXY"
-                            android:src="@drawable/img_iconmore_black_900"
-                            tools:ignore="ContentDescription"/>
+                            android:src="@drawable/logout"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="365dp"
+                            android:layout_height="wrap_content"
+                            android:text="Log out"
+                            android:textAlignment="textEnd" >
+                        </TextView>
                     </LinearLayout>
+
                 </androidx.appcompat.widget.Toolbar>
             </FrameLayout>
 

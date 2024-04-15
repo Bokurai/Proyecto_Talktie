@@ -1,11 +1,16 @@
 package com.example.proyecto_talktie;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,6 +49,20 @@ public class ProfileStudent extends Fragment {
 
         recyclerView = view.findViewById(R.id.recommendRecyclerView);
         recyclerView.setAdapter(adapter);
+
+
+
+        //LOG OUT
+        LinearLayout logoutLinear = view.findViewById(R.id.LogoutLinear);
+
+// Configura un listener de clic para el LinearLayout
+        logoutLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Muestra el diálogo de confirmación para cerrar sesión
+                showLogoutDialog();
+            }
+        });
 
         return view;
     }
@@ -130,6 +150,35 @@ public class ProfileStudent extends Fragment {
                 textRecommendation = itemView.findViewById(R.id.textTeacherRecommend);
             }
         }
+    }
+    //LOG OUT
+    private void showLogoutDialog() {
+        // Crea un AlertDialog con el diseño personalizado
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setView(R.layout.dialog_logout)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Aquí puedes poner la lógica para cerrar sesión
+                        // Por ejemplo, limpiar datos de sesión, cerrar sesión en el servidor, etc.
+                        // Luego, cierra la aplicación o realiza otras acciones necesarias
+                        FirebaseAuth.getInstance().signOut();
+                        NavController navController = NavHostFragment.findNavController(ProfileStudent.this);
+                        navController.navigate(R.id.login);
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // No hacer nada, simplemente cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+        // Muestra el diálogo
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

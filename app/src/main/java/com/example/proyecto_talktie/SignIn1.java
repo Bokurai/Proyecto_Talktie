@@ -114,6 +114,19 @@ public class SignIn1 extends Fragment {
         } else {
             passwordEditText.setError(null);
         }
+        if (TextUtils.isEmpty(nameEditText.getText().toString())) {
+            nameEditText.setError("Required.");
+            valid = false;
+        } else {
+            nameEditText.setError(null);
+        }
+
+        if (TextUtils.isEmpty(mobileEditText.getText().toString())) {
+            mobileEditText.setError("Required.");
+            valid = false;
+        } else {
+            mobileEditText.setError(null);
+        }
         return valid;
     }
 }
