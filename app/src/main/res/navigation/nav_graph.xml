@@ -132,7 +132,6 @@
         app:destination="@+id/companyProfile" />
 
 
-
     <fragment
         android:id="@+id/messagesHome"
         android:name="com.example.proyecto_talktie.messagesHome"
@@ -143,7 +142,6 @@
         android:name="com.example.proyecto_talktie.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
-
     <fragment
         android:id="@+id/offer"
         android:name="com.example.proyecto_talktie.Offer"
@@ -159,10 +157,7 @@
         android:name="com.example.proyecto_talktie.CompanyProfile"
         android:label="fragment_company_profile"
         tools:layout="@layout/fragment_company_profile" />
-
     <action
         android:id="@+id/action_goStudentSearchView"
         app:destination="@id/studentSearchView" />
-
-
 </navigation>
