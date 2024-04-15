@@ -40,11 +40,19 @@ public class OfferDetailsFragment extends Fragment {
         navController = Navigation.findNavController(view);
 
         OfferViewModel offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
+        offer_name = view.findViewById(R.id.txtOfferPosition);
+        business_name = view.findViewById(R.id.txtBusinessName);
+        offer_date = view.findViewById(R.id.txtOfferDate);
+        job_category = view.findViewById(R.id.txtWorkField);
+        contract_time = view.findViewById(R.id.txtContractTime);
+        job_description = view.findViewById(R.id.txtJobDescription);
+
 
         offerViewModel.getSelectedOffer().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
-
+               offerViewModel.getOffersLiveData();
+               offer_name.setText(offerObject.getName());
             }
         });
 

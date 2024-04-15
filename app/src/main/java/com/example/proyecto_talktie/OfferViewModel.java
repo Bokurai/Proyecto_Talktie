@@ -44,6 +44,10 @@ public class OfferViewModel extends AndroidViewModel {
                     Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
                     offersLiveData.setValue(offers);
 
+                    if (!offers.isEmpty()) {
+                        selectedOffer.setValue(offers.get(0));
+                    }
+
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getApplication(), "Error loading the offer", Toast.LENGTH_SHORT).show();
@@ -51,6 +55,8 @@ public class OfferViewModel extends AndroidViewModel {
 
         return offersLiveData;
     }
+
+
 
     void setSelectedOffer(OfferObject offerObject){
         selectedOffer.setValue(offerObject);
