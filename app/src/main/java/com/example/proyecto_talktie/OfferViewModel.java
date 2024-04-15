@@ -72,4 +72,5 @@ public class OfferViewModel extends AndroidViewModel {
         return offersCompany;
     }
 
+
 }
