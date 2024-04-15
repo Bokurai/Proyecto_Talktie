@@ -55,6 +55,8 @@ public class OfferViewModel extends AndroidViewModel {
     public MutableLiveData<List<OfferObject>> getOffersCompany(String companyId) {
         db.collection("Offer")
                 .whereEqualTo("companyId", companyId)
+                .orderBy("date", Query.Direction.DESCENDING)
+                .limit(50)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<OfferObject> offers = new ArrayList<>();
