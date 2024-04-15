@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Home"
     android:gravity="start"
     android:id="@+id/home"
     android:layout_height="match_parent"
@@ -14,6 +15,7 @@
         android:id="@+id/toolbarToolbar"
         android:layout_height="wrap_content"
         android:layout_width="match_parent" app:contentInsetStart="0dp">
+
         <LinearLayout android:id="@+id/linearNavBars"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
@@ -30,30 +32,22 @@
                     android:layout_width="@dimen/_16pxh"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_linkedin"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_linkedin"/>
+                    tools:ignore="ContentDescription" />
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtSanFrancisco"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_marginStart="@dimen/_7pxh"
                     android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_weight="0.85"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:singleLine="true"
-                    android:text="@string/lbl_san_francisco"
-                    style="@style/txtRobotoromanregular15" tools:text="@string/lbl_san_francisco"/>
+                    android:text="@string/lbl_locate"
+                    style="@style/txtRobotoromanregular15" />
             </LinearLayout>
-            <ImageView android:id="@+id/imageSearch"
-                android:layout_height="@dimen/_18pxh"
-                android:layout_marginBottom="@dimen/_14pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:layout_marginStart="@dimen/_238pxh"
-                android:layout_marginTop="@dimen/_18pxv"
-                android:layout_width="@dimen/_18pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_search_black_900"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_search_black_900"/>
+
         </LinearLayout>
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
@@ -70,19 +64,26 @@
             android:layout_gravity="start"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchViewSearchOne"
+            <LinearLayout
+                android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:background="@color/white_A700"
-                android:gravity="center_horizontal"
-                android:theme="@style/searchViewSearchOne"
-                app:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"
-                app:queryHint="@string/msg_what_are_you_lo"
-                app:searchIcon="@drawable/img_menu" />
+                android:layout_margin="@dimen/_5pxh"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5pxh"
+                    android:src="@drawable/img_search_black_900" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="@dimen/_5pxh"
+                    android:text="@string/msg_what_are_you_lo" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearColumncategories"

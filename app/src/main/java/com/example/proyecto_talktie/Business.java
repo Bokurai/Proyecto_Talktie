@@ -1,19 +1,58 @@
 package com.example.proyecto_talktie;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Business extends User{
 
+    String companyId;
     String sector;
-   List <String> company_type;
+   String typeCompany;
     String summary;
     Date foundation_date;
     String specialties;
+    String headquarters;
+
+    List<String> followers;
+    List<String> offers;
 
     //constructor vacío requerido por Firebase
     public Business(){
         super();
+    }
+
+    public List<String> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<String> offers) {
+        this.offers = offers;
+    }
+
+    public List<String> getFollowers() {
+        return followers;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    public void setFollowers(List<String> followers) {
+        this.followers = followers;
+    }
+
+    public String getHeadquarters() {
+        return headquarters;
+    }
+
+    public void setHeadquarters(String headquarters) {
+        this.headquarters = headquarters;
     }
 
     public String getSector() {
@@ -24,12 +63,12 @@ public class Business extends User{
         this.sector = sector;
     }
 
-    public List<String> getCompany_type() {
-        return company_type;
+    public String getTypeCompany() {
+        return typeCompany;
     }
 
-    public void setCompany_type(List<String> company_type) {
-        this.company_type = company_type;
+    public void setTypeCompany(String typeCompany) {
+        this.typeCompany = typeCompany;
     }
 
     public String getSummary() {

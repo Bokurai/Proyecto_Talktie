@@ -17,8 +17,7 @@ public class OfferViewModel extends AndroidViewModel {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
-
-    private MutableLiveData<OfferObject> selectedOffer = new MutableLiveData<>();
+    private MutableLiveData<List<OfferObject>> offersCompany = new MutableLiveData<>();
 
     public OfferViewModel(@NonNull Application application) {
         super(application);
@@ -33,30 +32,47 @@ public class OfferViewModel extends AndroidViewModel {
         db.collection("Offer")
                 .orderBy("date", Query.Direction.DESCENDING)
                 .limit(50)
-                .addSnapshotListener((queryDocumentSnapshots, e) -> {
-                    if (e != null) {
-                        Log.w("TAG", "Listen failed.", e);
-                        return;
-                    }
-
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<OfferObject> offers = new ArrayList<>();
+
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         OfferObject offer = document.toObject(OfferObject.class);
                         offers.add(offer);
                     }
                     Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
                     offersLiveData.setValue(offers);
+
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getApplication(), "Error loading the offer", Toast.LENGTH_SHORT).show();
                 });
 
         return offersLiveData;
     }
 
+    //Método que obtiene las ofertas para cada compañía
+    public MutableLiveData<List<OfferObject>> getOffersCompany(String companyId) {
+        db.collection("Offer")
+                .whereEqualTo("companyId", companyId)
+                .orderBy("date", Query.Direction.DESCENDING)
+                .limit(50)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<OfferObject> offers = new ArrayList<>();
 
-    void selectOffer(OfferObject offerObject){
-        selectedOffer.setValue(offerObject);
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        OfferObject offer = document.toObject(OfferObject.class);
+                        offers.add(offer);
+                    }
+                    Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
+                    offersCompany.setValue(offers);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getApplication(), "Error loading offers", Toast.LENGTH_SHORT).show();
+                });
+        return offersCompany;
     }
 
-    MutableLiveData<OfferObject> getSelectedOffer(){
-        return selectedOffer;
-    }
+
 }
