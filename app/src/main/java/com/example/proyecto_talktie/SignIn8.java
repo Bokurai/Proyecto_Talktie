@@ -10,11 +10,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.firebase.Timestamp;
 
@@ -58,14 +61,128 @@ public class SignIn8 extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerViewModel.setCenter(etSchool.getText().toString());
-                registerViewModel.setLocationSchoolFormation(etLocation.getText().toString());
-                registerViewModel.setDegree(etDegree.getText().toString());
-                Timestamp fecha_cambiada_start = editTextToTimestamp(etStartDateForm);
-                registerViewModel.setStart_date_formation(fecha_cambiada_start);
-                Timestamp fecha_cambiada_end = editTextToTimestamp(etEndDateForm);
-                registerViewModel.setEnd_date_formation(fecha_cambiada_end);
-                navController.navigate(R.id.signIn9);
+                if (validarFormulario()) {
+                    registerViewModel.setCenter(etSchool.getText().toString());
+                    registerViewModel.setLocationSchoolFormation(etLocation.getText().toString());
+                    registerViewModel.setDegree(etDegree.getText().toString());
+                    Timestamp fecha_cambiada_start = editTextToTimestamp(etStartDateForm);
+                    registerViewModel.setStart_date_formation(fecha_cambiada_start);
+                    Timestamp fecha_cambiada_end = editTextToTimestamp(etEndDateForm);
+                    registerViewModel.setEnd_date_formation(fecha_cambiada_end);
+                    navController.navigate(R.id.signIn9);
+                }
+            }
+        });
+
+        // Agregar un TextWatcher al EditText de fecha (para que se vea en formato fecha)
+        etStartDateForm.addTextChangedListener(new TextWatcher() {
+            private String current = "";
+            private String ddmmyyyy = "DDMMYYYY";
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d]", "");
+                    String cleanC = current.replaceAll("[^\\d]", "");
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+                    // Fix for pressing delete next to a forward slash
+                    if (clean.equals(cleanC)) sel--;
+
+                    if (clean.length() < 8){
+                        clean = clean + ddmmyyyy.substring(clean.length());
+                    } else {
+                        //This part makes sure that when we finish entering numbers
+                        //the date is correct, fixing it otherwise
+                        int day  = Integer.parseInt(clean.substring(0,2));
+                        int mon  = Integer.parseInt(clean.substring(2,4));
+                        int year = Integer.parseInt(clean.substring(4,8));
+
+                        if(mon > 12) mon = 12;
+                        if(day > 31) day = 31;
+
+                        clean = String.format("%02d%02d%02d", day, mon, year);
+                    }
+
+                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                            clean.substring(2, 4),
+                            clean.substring(4, 8));
+
+                    sel = sel < 0 ? 0 : sel;
+                    current = clean;
+                    etStartDateForm.setText(current);
+                    etStartDateForm.setSelection(sel < current.length() ? sel : current.length());
+                }
+            }
+        });
+
+        etEndDateForm.addTextChangedListener(new TextWatcher() {
+            private String current = "";
+            private String ddmmyyyy = "DDMMYYYY";
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d]", "");
+                    String cleanC = current.replaceAll("[^\\d]", "");
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+                    // Fix for pressing delete next to a forward slash
+                    if (clean.equals(cleanC)) sel--;
+
+                    if (clean.length() < 8){
+                        clean = clean + ddmmyyyy.substring(clean.length());
+                    } else {
+                        //This part makes sure that when we finish entering numbers
+                        //the date is correct, fixing it otherwise
+                        int day  = Integer.parseInt(clean.substring(0,2));
+                        int mon  = Integer.parseInt(clean.substring(2,4));
+                        int year = Integer.parseInt(clean.substring(4,8));
+
+                        if(mon > 12) mon = 12;
+                        if(day > 31) day = 31;
+
+                        clean = String.format("%02d%02d%02d", day, mon, year);
+                    }
+
+                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                            clean.substring(2, 4),
+                            clean.substring(4, 8));
+
+                    sel = sel < 0 ? 0 : sel;
+                    current = clean;
+                    etEndDateForm.setText(current);
+                    etEndDateForm.setSelection(sel < current.length() ? sel : current.length());
+                }
+            }
+        });
+
+        //felcha atras
+        ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
+        imageArrowleft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.signIn7);
             }
         });
     }
@@ -87,5 +204,22 @@ public class SignIn8 extends Fragment {
             e.printStackTrace();
         }
         return null;
+    }
+    private boolean validarFormulario() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(etSchool.getText().toString())) {
+            etSchool.setError("Required.");
+            valid = false;
+        } else {
+            etSchool.setError(null);
+        }
+        if (TextUtils.isEmpty(etDegree.getText().toString())) {
+            etDegree.setError("Required.");
+            valid = false;
+        } else {
+            etDegree.setError(null);
+        }
+        return valid;
     }
 }

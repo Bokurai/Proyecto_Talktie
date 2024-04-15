@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_40pxh"
-                android:layout_marginTop="@dimen/_71pxv"
+                android:layout_marginTop="@dimen/_72pxv"
                 android:layout_marginEnd="@dimen/_40pxh"
                 android:gravity="end"
                 android:orientation="horizontal">
@@ -129,7 +129,6 @@
                         android:text="@string/lbl_3"
                         tools:text="@string/lbl_3" />
                 </LinearLayout>
-
                 <View
                     android:id="@+id/viewLineTwo"
                     android:layout_width="@dimen/_24pxh"
@@ -163,7 +162,6 @@
                         android:text="@string/lbl_4"
                         tools:text="@string/lbl_4" />
                 </LinearLayout>
-
                 <View
                     android:id="@+id/viewLineThree"
                     android:layout_width="@dimen/_24pxh"
@@ -216,8 +214,8 @@
                     android:ellipsize="end"
                     android:lineSpacingExtra="@dimen/_3pxh"
                     android:singleLine="true"
-                    android:text="@string/lbl_job_preferences"
-                     />
+                    android:text="Availability"
+                    />
 
                 <EditText
                     android:id="@+id/etJobPreferences"
@@ -227,7 +225,7 @@
                     android:layout_marginTop="@dimen/_7pxv"
                     android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                     android:ellipsize="end"
-                    android:hint="@string/lbl_art_director"
+                    android:hint="@string/lbl_art_availability"
                     android:inputType="text"
                     android:lineSpacingExtra="@dimen/_3pxh"
                     android:paddingStart="@dimen/_16pxh"
@@ -235,6 +233,7 @@
                     android:paddingEnd="@dimen/_30pxh"
                     android:paddingBottom="@dimen/_12pxv"
                     android:singleLine="true"
+                    android:textColor="@android:color/black"
                     android:textColorHint="@color/bluegray_400"
                     tools:ignore="Autofill" />
 
@@ -304,27 +303,15 @@
                     <TextView
                         android:id="@+id/txtJobPreferences"
                         style="@style/txtRobotosemibolditalic17_2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="174dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_1pxv"
+                        android:layout_marginStart="50dp"
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="@string/lbl_job_preferences" />
-
-                    <TextView
-                        android:id="@+id/txtSave"
-                        style="@style/txtRobotoromanregular17_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_130pxh"
-                        android:layout_marginBottom="@dimen/_1pxv"
-                        android:ellipsize="end"
-                        android:singleLine="true"
-                        android:text="@string/lbl_save"
-                        tools:text="@string/lbl_save" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </FrameLayout>
 </LinearLayout>
-

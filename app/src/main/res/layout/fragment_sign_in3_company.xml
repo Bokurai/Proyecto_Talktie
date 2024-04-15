@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".SignIn9"
+    tools:context=".signIn3_company"
     android:gravity="center_horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearSinginNine"
+    android:id="@+id/signIn3_company"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical" style="@style/groupStylewhite_A700">
     <FrameLayout android:gravity="start"
-        android:id="@+id/frame16Experience"
+        android:id="@+id/frame13PersonalInf"
         android:layout_height="match_parent"
         android:layout_width="match_parent" style="@style/groupStylewhite_A700">
 
-        <LinearLayout android:id="@+id/linearColumnone"
-            android:layout_gravity="start"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_10pxh"
+        <LinearLayout
+            android:id="@+id/linearColumnone"
+            style="@style/groupStylewhite_A700"
             android:layout_width="match_parent"
-            android:orientation="vertical" style="@style/groupStylewhite_A700">
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/linearNumber"
                 android:layout_width="match_parent"
                 android:layout_height="33dp"
                 android:layout_marginStart="@dimen/_40pxh"
-                android:layout_marginTop="@dimen/_63pxh"
+                android:layout_marginTop="@dimen/_60pxh"
                 android:layout_marginEnd="@dimen/_40pxh"
                 android:gravity="end"
                 android:orientation="horizontal">
@@ -99,7 +101,7 @@
 
                 <LinearLayout
                     android:id="@+id/linearColumnthree"
-                    style="@style/groupStylelight_green_2"
+                    style="@style/groupStylewhite_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.12"
@@ -108,7 +110,7 @@
 
                     <TextView
                         android:id="@+id/txtThree"
-                        style="@style/txtRobotoromanmedium15_2"
+                        style="@style/txtSolidRounded_2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_12pxh"
@@ -122,6 +124,7 @@
                         android:text="@string/lbl_3"
                         tools:text="@string/lbl_3" />
                 </LinearLayout>
+
                 <View
                     android:id="@+id/viewLineTwo"
                     android:layout_width="@dimen/_24pxh"
@@ -132,7 +135,7 @@
 
                 <LinearLayout
                     android:id="@+id/linearColumnfour"
-                    style="@style/groupStylelight_green_2"
+                    style="@style/groupStylewhite_4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.12"
@@ -141,7 +144,7 @@
 
                     <TextView
                         android:id="@+id/txtFour"
-                        style="@style/txtRobotoromanmedium15_2"
+                        style="@style/txtSolidRounded_2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/_12pxh"
@@ -155,6 +158,7 @@
                         android:text="@string/lbl_4"
                         tools:text="@string/lbl_4" />
                 </LinearLayout>
+
                 <View
                     android:id="@+id/viewLineThree"
                     android:layout_width="@dimen/_24pxh"
@@ -183,193 +187,114 @@
                         android:src="@drawable/img_maximize"
                         tools:ignore="ContentDescription" />
                 </LinearLayout>
+
             </LinearLayout>
-            <LinearLayout android:gravity="start"
-                android:id="@+id/linearColumnjobtitle"
+
+            <TextView
+                android:id="@+id/txtPhone"
+                style="@style/txtRobotosemibolditalic17_1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_13pxh"
-                android:layout_marginStart="@dimen/_13pxh"
-                android:layout_marginTop="@dimen/_18pxv"
-                android:layout_width="match_parent" android:orientation="vertical">
-                <TextView android:ellipsize="end"
-                    android:id="@+id/txtJobTitle"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_width="wrap_content"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:singleLine="true"
-                    android:text="@string/lbl_job_title2"
-                    style="@style/txtRobotosemibolditalic17_1" />
-                <EditText
-                    android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
-                    android:ellipsize="end"
-                    android:hint="@string/msg_creative_develo"
-                    android:id="@+id/etJobTitle"
-                    android:inputType="text"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_9pxv"
-                    android:layout_width="match_parent"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingBottom="@dimen/_10pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingStart="@dimen/_16pxh"
-                    android:paddingTop="@dimen/_13pxv"
-                    android:singleLine="true"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@color/bluegray_400"
-                    style="@style/etSolidRounded_3" tools:ignore="Autofill"/>
-                <TextView android:ellipsize="end"
-                    android:id="@+id/txtCompany"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_marginTop="@dimen/_18pxv"
-                    android:layout_width="wrap_content"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:singleLine="true"
-                    android:text="@string/lbl_company"
-                    style="@style/txtRobotosemibolditalic17_1" tools:text="@string/lbl_company"/>
-                <EditText
-                    android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
-                    android:ellipsize="end"
-                    android:hint="@string/msg_enter_company_n"
-                    android:id="@+id/etCompanyName"
-                    android:inputType="text"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_7pxv"
-                    android:layout_width="match_parent"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingBottom="@dimen/_10pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingStart="@dimen/_16pxh"
-                    android:paddingTop="@dimen/_13pxv"
-                    android:singleLine="true"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@color/bluegray_400"
-                    style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
-                <TextView android:ellipsize="end"
-                    android:id="@+id/txtLocation"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_marginTop="@dimen/_16pxv"
-                    android:layout_width="wrap_content"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:singleLine="true"
-                    android:text="@string/lbl_location"
-                    style="@style/txtRobotosemibolditalic17_1" tools:text="@string/lbl_location"/>
-                <EditText
-                    android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
-                    android:ellipsize="end"
-                    android:hint="@string/msg_enter_company_l"
-                    android:id="@+id/etJobLocation"
-                    android:inputType="text"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_9pxv"
-                    android:layout_width="match_parent"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingBottom="@dimen/_10pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingStart="@dimen/_16pxh"
-                    android:paddingTop="@dimen/_13pxv"
-                    android:singleLine="true"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@color/bluegray_400"
-                    style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
-                <RadioButton
-                    android:buttonTint="@color/bluegray_100"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/roboto"
-                    android:id="@+id/rbIamcurrently"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_marginTop="@dimen/_16pxv"
-                    android:layout_width="wrap_content"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingBottom="@dimen/_1pxv"
-                    android:paddingStart="@dimen/_8pxh"
-                    android:paddingTop="@dimen/_1pxv"
-                    android:singleLine="true"
-                    android:text="@string/msg_i_am_currently"
-                    android:textColor="@color/gray_701"
-                    android:textFontWeight="400"
-                    android:textSize="@dimen/_15pxh"
-                    android:textStyle="normal" tools:text="@string/msg_i_am_currently"/>
-                <LinearLayout android:id="@+id/linearRowstartdate"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16pxv"
-                    android:layout_width="match_parent" android:orientation="horizontal">
-                    <LinearLayout android:gravity="start"
-                        android:id="@+id/linearList04"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_weight="0.5"
-                        android:layout_width="0dp" android:orientation="vertical">
-                        <TextView android:ellipsize="end"
-                            android:id="@+id/txtStartDate"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_10pxh"
-                            android:layout_width="wrap_content"
-                            android:lineSpacingExtra="@dimen/_3pxh"
-                            android:singleLine="true"
-                            android:text="@string/lbl_start_date"
-                            style="@style/txtRobotosemibolditalic17_1" tools:text="@string/lbl_start_date"/>
-                        <EditText
-                            android:ellipsize="end"
-                            android:gravity="center"
-                            android:id="@+id/etStartDateJob"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_9pxv"
-                            android:layout_width="match_parent"
-                            android:lineSpacingExtra="@dimen/_3pxh"
-                            android:paddingBottom="@dimen/_12pxv"
-                            android:paddingEnd="@dimen/_23pxh"
-                            android:paddingStart="@dimen/_16pxh"
-                            android:paddingTop="@dimen/_12pxv"
-                            android:singleLine="true"
-                            android:textAllCaps="false"
-                            android:textColor="@android:color/black"
-                            android:textColorHint="@color/bluegray_400"
-                            style="@style/etSolidRounded_2"
-                            android:hint="@string/lbl_dd_mm_yyyy"
-                            android:inputType="date"/>
-                    </LinearLayout>
-                    <LinearLayout android:gravity="start"
-                        android:id="@+id/linearList05"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_17pxh"
-                        android:layout_weight="0.5"
-                        android:layout_width="0dp" android:orientation="vertical">
-                        <TextView android:ellipsize="end"
-                            android:id="@+id/txtEndDate"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_10pxh"
-                            android:layout_width="wrap_content"
-                            android:lineSpacingExtra="@dimen/_3pxh"
-                            android:singleLine="true"
-                            android:text="@string/lbl_end_date"
-                            style="@style/txtRobotosemibolditalic17_1" tools:text="@string/lbl_end_date"/>
-                        <EditText
-                            android:ellipsize="end"
-                            android:gravity="center"
-                            android:id="@+id/etEndDateJob"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_9pxv"
-                            android:layout_width="match_parent"
-                            android:lineSpacingExtra="@dimen/_3pxh"
-                            android:paddingBottom="@dimen/_12pxv"
-                            android:paddingEnd="@dimen/_23pxh"
-                            android:paddingStart="@dimen/_16pxh"
-                            android:paddingTop="@dimen/_12pxv"
-                            android:singleLine="true"
-                            android:hint="@string/lbl_dd_mm_yyyy"
-                            android:textColor="@android:color/black"
-                            android:textColorHint="@color/bluegray_400"
-                            android:textAllCaps="false"
-                            style="@style/etSolidRounded_2"
-                            android:inputType="date"/>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_64pxh"
+                android:layout_marginTop="@dimen/_21pxv"
+                android:layout_marginEnd="@dimen/_64pxh"
+                android:ellipsize="end"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="@string/lbl_phone"
+                tools:text="@string/lbl_phone" />
+
+            <EditText
+                android:id="@+id/etNameSignOne"
+                style="@style/etSolidRounded_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_8pxv"
+                android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
+                android:ellipsize="end"
+                android:inputType="text"
+                android:hint="@string/lbl_phone_number"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_13pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingBottom="@dimen/_10pxv"
+                android:singleLine="true"
+                android:textColorHint="@color/bluegray_900"
+                tools:ignore="Autofill" />
+
+            <TextView
+                android:id="@+id/email"
+                style="@style/txtRobotosemibolditalic17_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_64pxh"
+                android:layout_marginTop="@dimen/_16pxv"
+                android:layout_marginEnd="@dimen/_64pxh"
+                android:ellipsize="end"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="@string/lbl_email"
+                tools:text="@string/lbl_email" />
+
+            <EditText
+                android:id="@+id/etcodecompany"
+                style="@style/etSolidRounded_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_9pxv"
+                android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
+                android:ellipsize="end"
+                android:hint="@string/lbl_email_example"
+                android:inputType="phone"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_11pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingBottom="@dimen/_12pxv"
+                android:singleLine="true"
+                android:textColorHint="@color/bluegray_400"
+                tools:ignore="Autofill" />
+
+            <TextView
+                android:id="@+id/sectorcompany"
+                style="@style/txtRobotosemibolditalic17_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_64pxh"
+                android:layout_marginTop="@dimen/_16pxv"
+                android:layout_marginEnd="@dimen/_64pxh"
+                android:ellipsize="end"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="@string/lbl_web_site"
+                tools:text="@string/lbl_web_site" />
+
+            <EditText
+                android:id="@+id/etsectorcompany"
+                style="@style/etSolidRounded_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_9pxv"
+                android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
+                android:ellipsize="end"
+                android:hint="@string/lbl_website_king"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_13pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingBottom="@dimen/_10pxv"
+                android:singleLine="true"
+                android:textColorHint="@color/bluegray_900"
+                tools:ignore="Autofill" />
+
 
             <FrameLayout
                 android:id="@+id/frameButtonContinue"
@@ -377,7 +302,7 @@
                 android:layout_height="@dimen/_50pxv"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_13pxh"
-                android:layout_marginTop="@dimen/_55pxh"
+                android:layout_marginTop="@dimen/_75pxh"
                 android:layout_marginEnd="@dimen/_13pxh">
 
                 <TextView
@@ -411,7 +336,7 @@
                         android:layout_marginStart="@dimen/_1pxh">
 
                         <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnContinuetoTen"
+                            android:id="@+id/btnContinueOne"
                             style="@style/btnSolidRounded_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -441,27 +366,37 @@
                 android:layout_width="match_parent" android:orientation="horizontal">
                 <ImageView android:id="@+id/imageArrowleft"
                     android:layout_height="@dimen/_21pxh"
-                    android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_width="@dimen/_13pxh"
-                    android:layout_marginLeft="@dimen/_5pxh"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_arrowleft_black_900"
                     tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft_black_900"/>
-                <LinearLayout android:id="@+id/linearRowexperience"
+                <LinearLayout
+                    android:id="@+id/linearRowpersonalinform"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_146pxh"
-                    android:layout_weight="0.94"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_marginStart="@dimen/_114pxh"
+                    android:layout_weight="0.95"
                     android:layout_width="0dp" android:orientation="horizontal">
                     <TextView android:ellipsize="end"
-                        android:id="@+id/txtExperience"
+                        android:id="@+id/txtPersonalInform"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_2pxv"
-                        android:layout_weight="0.67"
+                        android:layout_marginTop="@dimen/_1pxv"
+                        android:layout_weight="0.79"
                         android:layout_width="0dp"
                         android:singleLine="true"
-                        android:text="@string/lbl_experience"
-                        style="@style/txtRobotosemibolditalic17_2" tools:text="@string/lbl_experience"/>
+                        style="@style/txtRobotosemibolditalic17_2"
+                        tools:text="@string/lbl_information_company"/>
+                    <TextView android:ellipsize="end"
+                        android:id="@+id/txtSave"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_1pxv"
+                        android:layout_marginStart="@dimen/_81pxh"
+                        android:layout_weight="0.21"
+                        android:layout_width="0dp"
+                        android:singleLine="true"
+                        android:text="@string/lbl_save"
+                        style="@style/txtRobotoromanregular17_4" tools:text="@string/lbl_save"/>
                 </LinearLayout>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>

@@ -10,10 +10,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 
 public class SignIn7 extends Fragment {
@@ -49,12 +51,36 @@ public class SignIn7 extends Fragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerViewModel.setCountry(etCountry.getText().toString());
-                registerViewModel.setCity(etCity.getText().toString());
-                registerViewModel.setZipcode(etPostalCode.getText().toString());
-                registerViewModel.setHomeAddress(etStreetAddress.getText().toString());
-                navController.navigate(R.id.signIn8);
+                if (validarFormulario()) {
+                    registerViewModel.setCountry(etCountry.getText().toString());
+                    registerViewModel.setCity(etCity.getText().toString());
+                    registerViewModel.setZipcode(etPostalCode.getText().toString());
+                    registerViewModel.setHomeAddress(etStreetAddress.getText().toString());
+                    navController.navigate(R.id.signIn8);
+                }
             }
         });
+
+        //felcha atras
+        ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
+        imageArrowleft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.signIn6);
+            }
+        });
+
+
+    }
+    private boolean validarFormulario() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(etCountry.getText().toString())) {
+            etCountry.setError("Required.");
+            valid = false;
+        } else {
+            etCountry.setError(null);
+        }
+        return valid;
     }
 }
