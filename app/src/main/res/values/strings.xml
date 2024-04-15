@@ -112,7 +112,7 @@ Raffles Place, Boat Band M83</string>
     <string name="msg_edit_presentati">Edit presentation</string>
     <string name="lbl_all_categories">All Categories</string>
     <string name="lbl_job_categories">Job Categories</string>
-    <string name="lbl_job_preferences">Job Preferences</string>
+    <string name="lbl_job_preferences">Availability</string>
     <string name="msg_profile_complet2">Profile completeness 90%</string>
     <string name="lbl_security">Security</string>
     <string name="lbl_spain">Spain</string>
@@ -260,7 +260,7 @@ Rec</string>
     <string name="lbl_1000">1000\u20ac</string>
     <string name="msg_confirm_the_spe">Confirm the special credentials</string>
     <string name="msg_institution_nam">Institution name</string>
-    <string name="lbl_job_preferences2">Job preferences</string>
+    <string name="lbl_job_preferences2">availability</string>
     <string name="lbl_logo_type">Logo type</string>
     <string name="lbl_add_recruiter">Add Recruiter</string>
     <string name="lbl_school_code">School Code</string>

@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="33dp"
                 android:layout_marginStart="@dimen/_40pxh"
-                android:layout_marginTop="@dimen/_60pxh"
+                android:layout_marginTop="@dimen/_63pxh"
                 android:layout_marginEnd="@dimen/_40pxh"
                 android:gravity="end"
                 android:orientation="horizontal">
@@ -122,7 +122,6 @@
                         android:text="@string/lbl_3"
                         tools:text="@string/lbl_3" />
                 </LinearLayout>
-
                 <View
                     android:id="@+id/viewLineTwo"
                     android:layout_width="@dimen/_24pxh"
@@ -156,7 +155,6 @@
                         android:text="@string/lbl_4"
                         tools:text="@string/lbl_4" />
                 </LinearLayout>
-
                 <View
                     android:id="@+id/viewLineThree"
                     android:layout_width="@dimen/_24pxh"
@@ -218,6 +216,7 @@
                     android:paddingStart="@dimen/_16pxh"
                     android:paddingTop="@dimen/_13pxv"
                     android:singleLine="true"
+                    android:textColor="@android:color/black"
                     android:textColorHint="@color/bluegray_400"
                     style="@style/etSolidRounded_3" tools:ignore="Autofill"/>
                 <TextView android:ellipsize="end"
@@ -245,6 +244,7 @@
                     android:paddingStart="@dimen/_16pxh"
                     android:paddingTop="@dimen/_13pxv"
                     android:singleLine="true"
+                    android:textColor="@android:color/black"
                     android:textColorHint="@color/bluegray_400"
                     style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
                 <TextView android:ellipsize="end"
@@ -272,6 +272,7 @@
                     android:paddingStart="@dimen/_16pxh"
                     android:paddingTop="@dimen/_13pxv"
                     android:singleLine="true"
+                    android:textColor="@android:color/black"
                     android:textColorHint="@color/bluegray_400"
                     style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
                 <RadioButton
@@ -325,10 +326,11 @@
                             android:paddingStart="@dimen/_16pxh"
                             android:paddingTop="@dimen/_12pxv"
                             android:singleLine="true"
-                            android:hint="@string/lbl_dd_mm_yyyy"
-                            android:textColorHint="@color/white"
                             android:textAllCaps="false"
-                            style="@style/btnSolidRounded_5"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@color/bluegray_400"
+                            style="@style/etSolidRounded_2"
+                            android:hint="@string/lbl_dd_mm_yyyy"
                             android:inputType="date"/>
                     </LinearLayout>
                     <LinearLayout android:gravity="start"
@@ -360,58 +362,15 @@
                             android:paddingTop="@dimen/_12pxv"
                             android:singleLine="true"
                             android:hint="@string/lbl_dd_mm_yyyy"
-                            android:textColorHint="@color/white"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@color/bluegray_400"
                             android:textAllCaps="false"
-                            style="@style/btnSolidRounded_5"
-                            tools:text="@string/lbl_dd_mm_yyyy"
+                            style="@style/etSolidRounded_2"
                             android:inputType="date"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-            <FrameLayout android:id="@+id/frameButtonAdd"
-                android:layout_gravity="end"
-                android:layout_height="@dimen/_29pxv"
-                android:layout_marginEnd="@dimen/_13pxh"
-                android:layout_marginStart="@dimen/_13pxh"
-                android:layout_marginTop="@dimen/_20pxv" android:layout_width="@dimen/_311pxh">
-                <ImageView android:id="@+id/imageBackground"
-                    android:layout_gravity="start"
-                    android:layout_height="@dimen/_29pxh"
-                    android:layout_width="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_background_white_a700"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_background_white_a700"/>
-                <LinearLayout android:id="@+id/linearRowclose"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_4pxv"
-                    android:layout_marginEnd="@dimen/_40pxh"
-                    android:layout_marginStart="@dimen/_40pxh"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    android:layout_width="wrap_content" android:orientation="horizontal">
-                    <ImageButton
-                        android:background="@drawable/rectangle_bg_black_900_radius_10"
-                        android:id="@+id/btnClose"
-                        android:layout_height="@dimen/_20pxh"
-                        android:layout_width="@dimen/_20pxh"
-                        android:paddingHorizontal="@dimen/_5pxh"
-                        android:paddingVertical="@dimen/_5pxv"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/img_close" tools:ignore="ContentDescription"/>
-                    <TextView android:ellipsize="end"
-                        android:id="@+id/txtAddMore"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_3pxv"
-                        android:layout_marginStart="@dimen/_8pxh"
-                        android:layout_marginTop="@dimen/_1pxv"
-                        android:layout_weight="0.74"
-                        android:layout_width="0dp"
-                        android:lineSpacingExtra="@dimen/_3pxh"
-                        android:singleLine="true"
-                        android:text="@string/lbl_add_more"
-                        style="@style/txtRobotoromanregular13_1" tools:text="@string/lbl_add_more"/>
-                </LinearLayout>
-            </FrameLayout>
+
             <FrameLayout
                 android:id="@+id/frameButtonContinue"
                 android:layout_width="@dimen/_311pxh"
@@ -485,6 +444,7 @@
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_width="@dimen/_13pxh"
+                    android:layout_marginLeft="@dimen/_5pxh"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_arrowleft_black_900"
                     tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft_black_900"/>
@@ -502,16 +462,6 @@
                         android:singleLine="true"
                         android:text="@string/lbl_experience"
                         style="@style/txtRobotosemibolditalic17_2" tools:text="@string/lbl_experience"/>
-                    <TextView android:ellipsize="end"
-                        android:id="@+id/txtSave"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_2pxv"
-                        android:layout_marginStart="@dimen/_115pxh"
-                        android:layout_weight="0.33"
-                        android:layout_width="0dp"
-                        android:singleLine="true"
-                        android:text="@string/lbl_save"
-                        style="@style/txtRobotoromanregular17_4" tools:text="@string/lbl_save"/>
                 </LinearLayout>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
