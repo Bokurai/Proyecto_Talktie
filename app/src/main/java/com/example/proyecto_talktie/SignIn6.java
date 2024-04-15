@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +37,7 @@ public class SignIn6 extends Fragment {
     EditText nameET, phoneET, emailET, dateET;
 
     AppCompatButton nextButton;
-    Bundle savedState; //guardar info campos
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,13 +69,58 @@ public class SignIn6 extends Fragment {
         emailET.setText(registerViewModel.getEmail().getValue());
         phoneET.setText(registerViewModel.getPhoneNumber().getValue());
 
-        if (savedState != null) {
-            // Restaurar el estado de los campos del fragmento
-            nameET.setText(savedState.getString("name"));
-            phoneET.setText(savedState.getString("phone"));
-            emailET.setText(savedState.getString("email"));
-            dateET.setText(savedState.getString("date"));
-        }
+        // Agregar un TextWatcher al EditText de fecha (para que se vea en formato fecha)
+        dateET.addTextChangedListener(new TextWatcher() {
+            private String current = "";
+            private String ddmmyyyy = "DDMMYYYY";
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d]", "");
+                    String cleanC = current.replaceAll("[^\\d]", "");
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+                    // Fix for pressing delete next to a forward slash
+                    if (clean.equals(cleanC)) sel--;
+
+                    if (clean.length() < 8){
+                        clean = clean + ddmmyyyy.substring(clean.length());
+                    } else {
+                        //This part makes sure that when we finish entering numbers
+                        //the date is correct, fixing it otherwise
+                        int day  = Integer.parseInt(clean.substring(0,2));
+                        int mon  = Integer.parseInt(clean.substring(2,4));
+                        int year = Integer.parseInt(clean.substring(4,8));
+
+                        if(mon > 12) mon = 12;
+                        if(day > 31) day = 31;
+
+                        clean = String.format("%02d%02d%02d", day, mon, year);
+                    }
+
+                    clean = String.format("%s/%s/%s", clean.substring(0, 2),
+                            clean.substring(2, 4),
+                            clean.substring(4, 8));
+
+                    sel = sel < 0 ? 0 : sel;
+                    current = clean;
+                    dateET.setText(current);
+                    dateET.setSelection(sel < current.length() ? sel : current.length());
+                }
+            }
+        });
+
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,17 +140,6 @@ public class SignIn6 extends Fragment {
                 navController.navigate(R.id.signIn1);
             }
         });
-    }
-    //metodo par guardar la info de los campos
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        // Guardar el estado de los campos del fragmento
-        outState.putString("name", nameET.getText().toString());
-        outState.putString("phone", phoneET.getText().toString());
-        outState.putString("email", emailET.getText().toString());
-        outState.putString("date", dateET.getText().toString());
-        savedState = outState;
     }
 
     private Timestamp editTextToTimestamp(EditText dateEditText) {

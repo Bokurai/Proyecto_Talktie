@@ -79,7 +79,7 @@ public class Login extends Fragment {
         navController = Navigation.findNavController(view);
         googleSignInButton = view.findViewById(R.id.googleSignInButton);
         signInForm = view.findViewById(R.id.linearLogin);
-        signInProgressBar.setVisibility(View.GONE);
+        //signInProgressBar.setVisibility(View.GONE);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,7 +194,7 @@ public class Login extends Fragment {
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         if(acct == null) return;
 
-        signInProgressBar.setVisibility(View.VISIBLE);
+        //signInProgressBar.setVisibility(View.VISIBLE);
         signInForm.setVisibility(View.GONE);
         mAuth.signInWithCredential(GoogleAuthProvider.getCredential(acct.getIdToken(), null))
                 .addOnCompleteListener(requireActivity(), new
