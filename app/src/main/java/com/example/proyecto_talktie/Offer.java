@@ -44,7 +44,7 @@ public class Offer extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        offerViewModel = new ViewModelProvider(this).get(OfferViewModel.class);
+        offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
         /**
          *  I get the livedata with the offers from the view-model to show it to the user
