@@ -516,9 +516,20 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_separator">·</string>
     <string name="lbl_follow">Follow</string>
     <string name="lbl_vacancies_avaible">Vacancies available</string>
-
-
-
-
-
+    <string name="_20_07_2023">20/07/2023</string>
+    <string name="job_category">Job category</string>
+    <string name="design">Design</string>
+    <string name="contract_type">contract type</string>
+    <string name="contract_time">Contract time</string>
+    <string name="contractTimeTxt">6 months</string>
+    <string name="lbl_art_availability">Full availability</string>
+    <string name="lbl_welcome_company">Welcome to Talktie</string>
+    <string name="lbl_sign_up_to_join_company">Sign up as a company</string>
+    <string name="lbl_name_company">Company Name</string>
+    <string name="lbl_code_company">Company Code</string>
+    <string name="lbl_sector_company">Sector</string>
+    <string name="lbl_type_company">Type of Company</string>
+    <string name="lbl_logo_company">Company Code</string>
+    <string name="lbl_information_company">Company Code</string>
+    <string name="lbl_email_example">press@king.com</string>
 </resources>
