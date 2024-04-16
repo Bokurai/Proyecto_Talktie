@@ -58,7 +58,7 @@ public class OfferDetailsFragment extends Fragment {
         apply_job = view.findViewById(R.id.btnapplyJob);
         backArrow = view.findViewById(R.id.backArrow);
 
-        offerViewModel.getSelectedOffer().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
+        offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
                 Log.d("OfferDetailsFragment", "Offer Name: " + offerObject.getName());
@@ -69,9 +69,7 @@ public class OfferDetailsFragment extends Fragment {
                offer_date.setText((CharSequence) offerObject.getDate().toString());
                job_category.setText(offerObject.getJob_category());
                contract_time.setText(offerObject.getContract_time());
-               job_description.setText(offerObject.getJob_description());
-               getView().requestLayout();
-            }
+               job_description.setText(offerObject.getJob_description());}
         });
 
         apply_job.setOnClickListener(new View.OnClickListener() {
