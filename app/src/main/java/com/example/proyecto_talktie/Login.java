@@ -36,6 +36,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -124,7 +125,7 @@ public class Login extends Fragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-// There are no request codes
+                            // There are no request codes
                             Intent data = result.getData();
                             try {
                                 firebaseAuthWithGoogle(GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException.class));
@@ -158,7 +159,7 @@ public class Login extends Fragment {
         }
 
         signInForm.setVisibility(View.GONE);
-        signInProgressBar.setVisibility(View.VISIBLE);
+       //signInProgressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
@@ -202,11 +203,23 @@ public class Login extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Log.e("ABCD", "signInWithCredential:success");
-                                    actualizarUI(mAuth.getCurrentUser());
+                                    // Obtener el UID único del usuario actualmente autenticado
+                                    FirebaseUser currentUser = mAuth.getCurrentUser();
+                                    String uid = currentUser.getUid();
+
+                                    // Crear un objeto User con los detalles del usuario
+                                    User user = new User(/* Aquí debes proporcionar los detalles del usuario */);
+
+                                    // Asignar el ID único al usuario
+                                    user.setId(uid);
+
+                                    // Guardar el usuario en tu base de datos
+                                    FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(user);
+
+                                    // Actualizar la interfaz de usuario
+                                    actualizarUI(currentUser);
                                 } else {
-                                    Log.e("ABCD", "signInWithCredential:failure",
-                                            task.getException());
+                                    Log.e("ABCD", "signInWithCredential:failure", task.getException());
                                     signInProgressBar.setVisibility(View.GONE);
                                     signInForm.setVisibility(View.VISIBLE);
                                 }

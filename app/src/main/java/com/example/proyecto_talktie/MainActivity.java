@@ -32,10 +32,21 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).getNavController();
-        NavigationUI.setupWithNavController(binding.bottomNavView, navController);
+        // Obtener el usuario actualmente autenticado
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
+        // Inicializar el NavController
+        navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).getNavController();
+
+        // Configurar el BottomNavigationView con el NavController
+        NavigationUI.setupWithNavController(binding.bottomNavView, navController);
         bottomNavigationView = findViewById(R.id.bottom_nav_view);
+
+        // Verificar si hay un usuario autenticado
+        if (currentUser == null) {
+            // Si no hay un usuario autenticado, navegar al fragmento de inicio de sesión
+            navController.navigate(R.id.login);
+        }
 
     }
     public void hideNavBot() {
