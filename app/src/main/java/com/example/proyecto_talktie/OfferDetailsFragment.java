@@ -73,6 +73,7 @@ public class OfferDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 offerViewModel.addAplicantToOffer();
+                apply_job.setEnabled(false);
             }
         });
 
