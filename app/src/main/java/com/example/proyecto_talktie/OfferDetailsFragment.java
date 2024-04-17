@@ -61,9 +61,6 @@ public class OfferDetailsFragment extends Fragment {
         offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
-                Log.d("OfferDetailsFragment", "Offer Name: " + offerObject.getName());
-                Log.d("OfferDetailsFragment", "Business Name: " + offerObject.getCompanyId());
-                System.out.println("Mostrando oferta");
                offer_name.setText(offerObject.getName());
                business_name.setText(offerObject.getCompanyId());
                offer_date.setText((CharSequence) offerObject.getDate().toString());
@@ -75,7 +72,7 @@ public class OfferDetailsFragment extends Fragment {
         apply_job.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                offerViewModel.addAplicantToOffer();
             }
         });
 
@@ -86,4 +83,6 @@ public class OfferDetailsFragment extends Fragment {
             }
         });
     }
+
+
 }

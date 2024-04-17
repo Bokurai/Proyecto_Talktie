@@ -6,16 +6,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class OfferViewModel extends AndroidViewModel {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
     private MutableLiveData<List<OfferObject>> offersCompany = new MutableLiveData<>();
     private MutableLiveData<OfferObject> offerSingle = new MutableLiveData<>();
@@ -74,6 +79,16 @@ public class OfferViewModel extends AndroidViewModel {
                 });
         return offersCompany;
     }
+
+    public void addAplicantToOffer(String offerId, String applicantId) {
+        DocumentReference offerApp = db.collection("Offer").document(offerId);
+        Map<String, Object> addUid = new HashMap<>();
+        addUid.put("ApplicantId", applicantId);
+        offerApp.update(addUid);
+    }
+
+    public void obtainUserID
+
     public void seleccionar(OfferObject offerObject){
         offerSingle.postValue(offerObject);
     }
