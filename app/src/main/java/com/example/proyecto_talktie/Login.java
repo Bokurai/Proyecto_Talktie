@@ -36,7 +36,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -60,7 +64,6 @@ public class Login extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-
     }
 
     @Override
@@ -205,19 +208,7 @@ public class Login extends Fragment {
                                 if (task.isSuccessful()) {
                                     // Obtener el UID único del usuario actualmente autenticado
                                     FirebaseUser currentUser = mAuth.getCurrentUser();
-                                    String uid = currentUser.getUid();
-
-                                    // Crear un objeto User con los detalles del usuario
-                                    User user = new User(/* Aquí debes proporcionar los detalles del usuario */);
-
-                                    // Asignar el ID único al usuario
-                                    user.setId(uid);
-
-                                    // Guardar el usuario en tu base de datos
-                                    FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(user);
-
-                                    // Actualizar la interfaz de usuario
-                                    actualizarUI(currentUser);
+                                    handleGoogleSignIn(currentUser);
                                 } else {
                                     Log.e("ABCD", "signInWithCredential:failure", task.getException());
                                     signInProgressBar.setVisibility(View.GONE);
@@ -226,4 +217,28 @@ public class Login extends Fragment {
                             }
                         });
     }
+    private void handleGoogleSignIn(FirebaseUser currentUser) {
+        String uid = currentUser.getUid();
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
+
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // User already registered, navigate to home2
+                    navController.navigate(R.id.home2);
+                } else {
+                    // User not registered, navigate to signIn1
+                    navController.navigate(R.id.signIn1);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle any errors that may occur while reading data
+                Log.e("GoogleSignIn", "Error al leer datos de usuario", error.toException());
+            }
+        });
+    }
+
 }
