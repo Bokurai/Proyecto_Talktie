@@ -83,17 +83,6 @@ public class OfferViewModel extends AndroidViewModel {
         return offersCompany;
     }
 
-    public void addAplicantToOffer() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        String applicantId = currentUser.getUid();
-        DocumentReference offerApp = db.collection("Offer").document();
-        Map<String, Object> addUid = new HashMap<>();
-        addUid.put("applicantsId", applicantId);
-        offerApp.update(addUid);
-    }
-
-
-
     public void seleccionar(OfferObject offerObject){
         offerSingle.postValue(offerObject);
     }
