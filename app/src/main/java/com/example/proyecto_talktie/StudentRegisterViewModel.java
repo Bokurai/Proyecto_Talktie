@@ -282,14 +282,12 @@ public class StudentRegisterViewModel extends AndroidViewModel {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        // Éxito al guardar el usuario en Firebase Firestore
                         Log.d(TAG, "Usuario guardado exitosamente en Firestore");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Error al guardar el usuario en Firebase Firestore
                         Log.w(TAG, "Error al guardar usuario en Firestore", e);
                     }
                 });

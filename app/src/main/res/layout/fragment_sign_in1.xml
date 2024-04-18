@@ -70,7 +70,7 @@
                     android:layout_marginBottom="@dimen/_24pxv">
 
                     <ImageView
-                        android:id="@+id/imagePngtreeavatar"
+                        android:id="@+id/imageProfile"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_98pxv"
                         android:layout_gravity="top|start"

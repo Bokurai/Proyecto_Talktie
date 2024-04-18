@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.example.proyecto_talktie.databinding.FragmentSignIn1Binding;
@@ -33,6 +34,7 @@ public class SignIn1 extends Fragment {
     NavController navController;
     private FirebaseAuth mAuth;
     private EditText emailEditText, passwordEditText, nameEditText, mobileEditText;
+    private ImageView profileImageView;
     StudentRegisterViewModel registerViewModel;
 
     @Override
@@ -55,7 +57,7 @@ public class SignIn1 extends Fragment {
         passwordEditText = view.findViewById(R.id.etPassword);
         nameEditText = view.findViewById(R.id.etName);
         mobileEditText = view.findViewById(R.id.etMobile);
-
+        profileImageView = view.findViewById(R.id.imageProfile);
         registerButton = view.findViewById(R.id.btnSingIn);
         navController = Navigation.findNavController(view);
         registerButton.setOnClickListener(new View.OnClickListener() {
