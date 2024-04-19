@@ -1,5 +1,9 @@
 package com.example.proyecto_talktie;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,16 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-
-import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.example.proyecto_talktie.databinding.FragmentSignIn1Binding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,16 +25,26 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class SignIn1 extends Fragment {
 
     FragmentSignIn1Binding binding;
-    private Button registerButton;
+    private Button registerButton, buttonImageProfile;
     NavController navController;
     private FirebaseAuth mAuth;
     private EditText emailEditText, passwordEditText, nameEditText, mobileEditText;
-    private ImageView profileImageView;
+    private CircleImageView profileImageView;
+    int SELECT_PICTURE = 200;
+    FirebaseStorage firebaseStorage;
+    StorageReference storageReference,imageReference;
+    UploadTask uploadTask;
+    Uri uri;
     StudentRegisterViewModel registerViewModel;
 
     @Override
@@ -59,15 +69,54 @@ public class SignIn1 extends Fragment {
         mobileEditText = view.findViewById(R.id.etMobile);
         profileImageView = view.findViewById(R.id.imageProfile);
         registerButton = view.findViewById(R.id.btnSingIn);
+        buttonImageProfile = view.findViewById(R.id.btnSelectProfileRegister);
         navController = Navigation.findNavController(view);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 crearCuenta();
+                uploadImage();
+            }
+        });
+
+        buttonImageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectGalleryImageRegister();
             }
         });
 
     }
+
+    private void uploadImage() {
+        imageReference = storageReference.child("myphotos/");
+
+        uploadTask = imageReference.putFile(selected);
+    }
+
+    private void selectGalleryImageRegister() {
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            if (requestCode == SELECT_PICTURE) {
+
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    profileImageView.setImageURI(selectedImageUri);
+                }
+            }
+        }
+    }
+
     private void crearCuenta() {
         if (!validarFormulario()) {
             return;
@@ -84,6 +133,7 @@ public class SignIn1 extends Fragment {
                             registerViewModel.setName(nameEditText.getText().toString());
                             registerViewModel.setPassword(passwordEditText.getText().toString());
                             registerViewModel.setPhoneNumber(mobileEditText.getText().toString());
+                            registerViewModel.setProfileImage(profileImageView.getImageAlpha());
                             actualizarUI(mAuth.getCurrentUser());
                         } else {
                             Snackbar.make(requireView(), "Error: " + task.getException(), Snackbar.LENGTH_LONG).show();

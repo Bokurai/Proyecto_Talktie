@@ -58,11 +58,11 @@ dependencies {
     implementation ("com.firebaseui:firebase-ui-database:8.0.2")
     implementation ("com.firebaseui:firebase-ui-auth:8.0.2")
     implementation ("com.firebaseui:firebase-ui-storage:8.0.2")
+    implementation ("com.google.firebase:firebase-storage:19.1.1")
     implementation ("com.google.android.gms:play-services-auth:21.0.0")
     implementation ("androidx.lifecycle:lifecycle-viewmodel:2.2.0")
     implementation ("androidx.lifecycle:lifecycle-livedata:2.2.0")
     implementation("com.google.firebase:firebase-storage:20.3.0")
-
 
     //librerias
     implementation ("de.hdodenhof:circleimageview:3.1.0")
