@@ -22,10 +22,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +69,7 @@ public class CompanyProfile extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         searchViewModel = new ViewModelProvider(requireActivity()).get(StudentSearchViewModel.class);
-        offerViewModel = new ViewModelProvider(this).get(OfferViewModel.class);
+        offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
         navController = Navigation.findNavController(view);
 
@@ -92,6 +97,18 @@ public class CompanyProfile extends Fragment {
         searchViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Business>() {
             @Override
             public void onChanged(Business business) {
+
+                //Obtener id del usuario
+                String userId = currentUser.getUid();
+
+                //Verificar si el usuario sigue a la empresa
+                if (business.followers != null && business.followers.containsKey(userId)) {
+                    updateFollowButton(true);
+                } else {
+                    updateFollowButton(false);
+                }
+
+                //Actualizar la interfaz con la info de cada empresa
                 nameCompany.setText(business.getName());
                 location.setText(business.getAddress());
                 description.setText(business.getSummary());
@@ -111,30 +128,53 @@ public class CompanyProfile extends Fragment {
                 });
 
 
+
                 follow.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                      boolean isFollowing = business.followers != null && business.followers.containsKey(userId);
 
-                        if(searchViewModel.isFollowing()) {
-                            searchViewModel.setFollowing(false);
-                            follow.setText("Follow");
+                      if (isFollowing) {
+                          business.followers.remove(userId);
+                      } else {
+                          business.followers.put(userId, true);
+                      }
 
-                            business.followers.remove(currentUser.getUid());
-                        } else {
-                            searchViewModel.setFollowing(true);
-                            follow.setText("Following");
+                      //Actualización del botón
+                        updateFollowButton(!isFollowing);
 
-                            business.followers.add(currentUser.getUid());
-                        }
+                      //guardar cambios
+                        FirebaseFirestore.getInstance().collection("Company")
+                                .document(business.getCompanyId())
+                                .update("followers", business.followers)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Log.d("TAG","Actualización con éxito");
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("TAG","Error de actualización");
+                                    }
+                                });
                     }
                 });
-
-
             }
         });
 
 
+    }
 
+    public void updateFollowButton(boolean isFollowing) {
+        if (isFollowing) {
+            follow.setText("Following");
+            follow.setBackgroundTintList(getResources().getColorStateList(R.color.light_green_F));
+        } else {
+            follow.setText("Follow");
+            follow.setBackgroundTintList(getResources().getColorStateList(R.color.light_green_900));
+        }
     }
 
     class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersViewHolder> {
@@ -176,6 +216,15 @@ public class CompanyProfile extends Fragment {
                 holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
             }
 
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    offerViewModel.seleccionar(offerObject);
+                    Log.d("TAG", "Oferta seleccionada " + offerObject.getName());
+                    navController.navigate(R.id.action_goOfferDetailsFragment);
+                }
+            });
+
         }
 
         @Override
@@ -210,11 +259,4 @@ public class CompanyProfile extends Fragment {
         }
     }
 
-    public void updateFollowers(Business business) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-
-
-
-    }
 }

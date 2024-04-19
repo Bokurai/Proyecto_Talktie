@@ -44,7 +44,7 @@ public class Offer extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        offerViewModel = new ViewModelProvider(this).get(OfferViewModel.class);
+        offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
         /**
          *  I get the livedata with the offers from the view-model to show it to the user
@@ -101,7 +101,7 @@ public class Offer extends Fragment {
                 @Override
                 public void onClick(View v) {
                     offerViewModel.seleccionar(offerObject);
-                    System.out.println("Mostrando oferta 1");
+                    Log.d("TAG", "Oferta seleccionada " + offerObject.getName());
                     navController.navigate(R.id.action_goOfferDetailsFragment);
                 }
             });

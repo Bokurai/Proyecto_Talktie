@@ -24,10 +24,10 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnFollowCompany"
-            style="@style/btnSolidRounded_3"
-            android:layout_width="@dimen/_150pxh"
+            style="@style/btnSolidRounded_F"
+            android:layout_width="@dimen/_100pxh"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_210pxh"
+            android:layout_marginStart="@dimen/_245pxh"
             android:padding="@dimen/_5pxh"
             android:gravity="center"
             android:textAlignment="center"

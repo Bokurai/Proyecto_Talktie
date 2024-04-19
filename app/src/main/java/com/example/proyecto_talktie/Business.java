@@ -3,7 +3,9 @@ package com.example.proyecto_talktie;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Business extends User{
 
@@ -14,26 +16,33 @@ public class Business extends User{
     Date foundation_date;
     String specialties;
     String headquarters;
-
-    List<String> followers;
     List<String> offers;
+
+    Map<String, Boolean> followers = new HashMap<>();
+
 
     //constructor vacío requerido por Firebase
     public Business(){
         super();
     }
 
+    public Map<String, Boolean> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Map<String, Boolean> followers) {
+        this.followers = followers;
+    }
+
     public List<String> getOffers() {
         return offers;
     }
+
 
     public void setOffers(List<String> offers) {
         this.offers = offers;
     }
 
-    public List<String> getFollowers() {
-        return followers;
-    }
 
     public String getCompanyId() {
         return companyId;
@@ -43,9 +52,6 @@ public class Business extends User{
         this.companyId = companyId;
     }
 
-    public void setFollowers(List<String> followers) {
-        this.followers = followers;
-    }
 
     public String getHeadquarters() {
         return headquarters;

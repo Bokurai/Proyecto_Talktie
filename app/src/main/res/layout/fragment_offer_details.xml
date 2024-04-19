@@ -41,6 +41,11 @@
             tools:ignore="ContentDescription"
             tools:src="@drawable/img_favorite" />
     </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/pppp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
 
     <ScrollView
         android:layout_width="wrap_content"

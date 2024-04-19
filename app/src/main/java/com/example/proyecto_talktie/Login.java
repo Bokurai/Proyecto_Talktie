@@ -158,7 +158,7 @@ public class Login extends Fragment {
         }
 
         signInForm.setVisibility(View.GONE);
-        signInProgressBar.setVisibility(View.VISIBLE);
+       // signInProgressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {

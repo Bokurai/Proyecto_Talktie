@@ -24,16 +24,12 @@ public class OfferDetailsFragment extends Fragment {
 
     NavController navController;
 
-    TextView offer_name, business_name,offer_date,job_category,contract_time,job_description;
+    TextView offer_name, business_name,offer_date,job_category,contract_time,job_description, ppp;
 
     AppCompatButton apply_job;
 
     ImageView backArrow;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,19 +53,35 @@ public class OfferDetailsFragment extends Fragment {
         job_description = view.findViewById(R.id.txtJobDescription);
         apply_job = view.findViewById(R.id.btnapplyJob);
         backArrow = view.findViewById(R.id.backArrow);
+        ppp = view.findViewById(R.id.pppp);
+
+        Log.d("OfferDetailsFragment", "ha llegado aquí" );
 
         offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
+                Log.d("OfferDetailsFragment", "ha llegado aquí" );
+
                 Log.d("OfferDetailsFragment", "Offer Name: " + offerObject.getName());
                 Log.d("OfferDetailsFragment", "Business Name: " + offerObject.getCompanyId());
-                System.out.println("Mostrando oferta");
                offer_name.setText(offerObject.getName());
                business_name.setText(offerObject.getCompanyId());
                offer_date.setText((CharSequence) offerObject.getDate().toString());
                job_category.setText(offerObject.getJob_category());
                contract_time.setText(offerObject.getContract_time());
-               job_description.setText(offerObject.getJob_description());}
+               job_description.setText(offerObject.getJob_description());
+
+               ppp.setText(offerObject.getName());
+            }
+
+        });
+
+        offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
+            @Override
+            public void onChanged(OfferObject offerObject) {
+                ppp.setText(offerObject.getName());
+            }
+
         });
 
         apply_job.setOnClickListener(new View.OnClickListener() {
