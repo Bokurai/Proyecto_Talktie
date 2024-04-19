@@ -96,8 +96,6 @@ public class OfferDetailsFragment extends Fragment {
             }
         });
 
-
-
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,9 +107,10 @@ public class OfferDetailsFragment extends Fragment {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String applicantId = currentUser.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Query queryOffer = db.collection("Offer").whereEqualTo("offerId", offerId);
 
         db.collection("Offer")
-                .whereEqualTo("offerId", offerId)
+                .whereEqualTo("applicantsId", applicantId)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {

@@ -75,7 +75,6 @@ public class SignIn1 extends Fragment {
             @Override
             public void onClick(View view) {
                 crearCuenta();
-                uploadImage();
             }
         });
 
@@ -88,11 +87,6 @@ public class SignIn1 extends Fragment {
 
     }
 
-    private void uploadImage() {
-        imageReference = storageReference.child("myphotos/");
-
-        uploadTask = imageReference.putFile(selected);
-    }
 
     private void selectGalleryImageRegister() {
         Intent i = new Intent();
