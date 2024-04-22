@@ -63,7 +63,6 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-livedata:2.2.0")
     implementation("com.google.firebase:firebase-storage:20.3.0")
 
-
     //librerias
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 }

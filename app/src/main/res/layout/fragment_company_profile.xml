@@ -28,13 +28,15 @@
             android:layout_width="@dimen/_100pxh"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_245pxh"
-            android:padding="@dimen/_5pxh"
-            android:gravity="center"
-            android:textAlignment="center"
+            android:padding="@dimen/_10pxh"
+            android:textAlignment="textStart"
             android:singleLine="true"
             android:text="@string/lbl_follow"
+            android:drawablePadding="@dimen/_5pxh"
+            android:drawableStart="@drawable/img_grid"
             android:textAllCaps="false"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end"
+            tools:ignore="RtlCompat" />
     </LinearLayout>
 
     <ScrollView

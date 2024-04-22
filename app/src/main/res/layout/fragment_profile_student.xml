@@ -91,7 +91,7 @@
                     android:layout_marginEnd="@dimen/_73pxh"
                     android:layout_marginStart="@dimen/_73pxh">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageRectangleSix"
                         android:layout_width="102dp"
                         android:layout_height="122dp"
@@ -99,10 +99,8 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginEnd="50dp"
                         android:layout_marginBottom="@dimen/_10pxv"
-                        android:scaleType="fitXY"
                         android:src="@drawable/img_pngtreeavatar"
-                        tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_pngtreeavatar" />
+                        tools:ignore="ContentDescription" />
 
                     <FrameLayout
                         android:id="@+id/frameStackellipseeleven"
@@ -128,8 +126,7 @@
                             android:layout_marginVertical="@dimen/_9pxv"
                             android:scaleType="fitXY"
                             android:src="@drawable/img_edit"
-                            tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_edit" />
+                            tools:ignore="ContentDescription" />
                     </FrameLayout>
                 </FrameLayout>
 
@@ -184,13 +181,23 @@
                         style="@style/txtRobotoromanbold17"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_2pxv"
+                        android:layout_marginTop="@dimen/_10pxv"
                         android:layout_weight="0.54"
                         android:ellipsize="end"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
                         android:text="@string/lbl_about_me"
                         tools:text="@string/lbl_about_me" />
+
+                    <ImageView
+                        android:id="@+id/aboutEdit"
+                        android:layout_width="@dimen/_11pxh"
+                        android:layout_height="@dimen/_13pxh"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_9pxh"
+                        android:layout_marginVertical="@dimen/_9pxv"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/img_edit"/>
 
                 </LinearLayout>
 
@@ -200,22 +207,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_17pxh"
-                    android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_marginTop="@dimen/_5pxv"
                     android:layout_marginEnd="@dimen/_17pxh"
-                    android:gravity="center_horizontal"
+                    android:gravity="start"
                     android:letterSpacing="0.01"
                     android:lineSpacingExtra="@dimen/_5pxh"
-                    android:text="@string/msg_i_know_i_can_he"
-                    tools:text="@string/msg_i_know_i_can_he" />
+                    android:text="@string/lbl_about"/>
 
                 <LinearLayout
                     android:id="@+id/linearTitle4"
                     style="@style/groupStylecornerRadius_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_17pxh"
                     android:layout_marginTop="@dimen/_9pxv"
-                    android:layout_marginEnd="@dimen/_17pxh"
                     android:orientation="horizontal">
 
                     <TextView
@@ -223,20 +227,20 @@
                         style="@style/txtRobotoromanbold17"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_2pxv"
+                        android:layout_marginTop="@dimen/_10pxv"
                         android:layout_weight="0.54"
                         android:ellipsize="end"
+                        android:textAlignment="center"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
-                        android:text="@string/lbl_recomend"
-                        tools:text="@string/lbl_recomend" />
+                        android:text="@string/lbl_recomend" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recommendRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_marginTop="@dimen/_5pxv"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
             </LinearLayout>
         </FrameLayout>

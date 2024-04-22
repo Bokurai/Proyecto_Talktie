@@ -532,4 +532,8 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_logo_company">Company Code</string>
     <string name="lbl_information_company">Company Code</string>
     <string name="lbl_email_example">press@king.com</string>
+
+    <string name="lbl_details">Details</string>
+
+
 </resources>

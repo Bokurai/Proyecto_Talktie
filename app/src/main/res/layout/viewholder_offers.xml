@@ -19,12 +19,11 @@
         android:gravity="start"
         android:orientation="horizontal">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageCompany"
             android:layout_width="@dimen/_40pxh"
             android:layout_height="@dimen/_40pxh"
-            android:scaleType="fitXY"
-            android:src="@drawable/img_image3_4" />
+            android:src="@drawable/company_logo" />
 
         <LinearLayout
             android:id="@+id/description"

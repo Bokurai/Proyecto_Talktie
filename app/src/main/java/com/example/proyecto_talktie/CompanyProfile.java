@@ -167,12 +167,49 @@ public class CompanyProfile extends Fragment {
 
     }
 
+    public void removeFollowed(String userId, String companyId) {
+
+        FirebaseFirestore.getInstance().collection("Student")
+                .document(userId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            //Lista follower
+                            List<String> followed = (List<String>) documentSnapshot.get("followed");
+
+                            followed.remove(companyId);
+
+                            //Actualizar
+                            FirebaseFirestore.getInstance().collection("Student")
+                                    .document(userId)
+                                    .update("followed", followed)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Log.d("TAG", "Se eliminó la empresa de la lista");
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.d("TAG", "Error al eliminar la empresa");
+                                        }
+                                    });
+                        }
+                    }
+                });
+
+    }
+
     public void updateFollowButton(boolean isFollowing) {
         if (isFollowing) {
             follow.setText("Following");
+            follow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.check, 0, 0, 0);
             follow.setBackgroundTintList(getResources().getColorStateList(R.color.light_green_F));
         } else {
             follow.setText("Follow");
+            follow.setCompoundDrawablesWithIntrinsicBounds(R.drawable.img_grid, 0, 0, 0);
             follow.setBackgroundTintList(getResources().getColorStateList(R.color.light_green_900));
         }
     }
