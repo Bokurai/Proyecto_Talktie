@@ -118,6 +118,8 @@ public class SignIn1 extends Fragment {
 
         registerButton.setEnabled(false);
 
+        Uri uriImage = getUriImage();
+
         mAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -127,7 +129,7 @@ public class SignIn1 extends Fragment {
                             registerViewModel.setName(nameEditText.getText().toString());
                             registerViewModel.setPassword(passwordEditText.getText().toString());
                             registerViewModel.setPhoneNumber(mobileEditText.getText().toString());
-                            registerViewModel.setProfileImage(profileImageView.getImageAlpha());
+                            registerViewModel.setProfileImageUri(uriImage);
                             actualizarUI(mAuth.getCurrentUser());
                         } else {
                             Snackbar.make(requireView(), "Error: " + task.getException(), Snackbar.LENGTH_LONG).show();
@@ -138,6 +140,9 @@ public class SignIn1 extends Fragment {
 
     }
 
+    private Uri getUriImage(){
+        return uri;
+    }
     private void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
             navController.navigate(R.id.signIn6);

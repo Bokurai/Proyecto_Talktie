@@ -3,6 +3,7 @@ package com.example.proyecto_talktie;
 import static android.content.ContentValues.TAG;
 
 import android.app.Application;
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         super(application);
     }
 
+    private MutableLiveData<Uri> profileImageUri = new MutableLiveData<>();
     private MutableLiveData<String> id = new MutableLiveData<>();
     private MutableLiveData<String> name = new MutableLiveData<>();
     private MutableLiveData<String> email = new MutableLiveData<>();
@@ -33,7 +35,6 @@ public class StudentRegisterViewModel extends AndroidViewModel {
     private MutableLiveData<String> zipcode = new MutableLiveData<>();
     private MutableLiveData<String> homeAddress = new MutableLiveData<>();
     private MutableLiveData<String> phoneNumber = new MutableLiveData<>();
-    private MutableLiveData<Integer> profileImage = new MutableLiveData<>();
     private MutableLiveData<String> website = new MutableLiveData<>();
     private MutableLiveData<Timestamp> birth_date = new MutableLiveData<>();
     private MutableLiveData<String> gender = new MutableLiveData<>();
@@ -116,12 +117,12 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         return phoneNumber;
     }
 
-    public void setProfileImage(int profileImage) {
-        this.profileImage.setValue(profileImage);
+    public void setProfileImageUri(Uri uri) {
+        profileImageUri.setValue(uri);
     }
 
-    public LiveData<Integer> getProfileImage() {
-        return profileImage;
+    public LiveData<Uri> getProfileImageUri() {
+        return profileImageUri;
     }
 
     public void setWebsite(String website) {
@@ -276,7 +277,7 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         user.put("zipcode", zipcode.getValue());
         user.put("homeAddress", homeAddress.getValue());
         user.put("phone", phoneNumber.getValue());
-        user.put("profileImage", profileImage.getValue());
+        user.put("profileImage", profileImageUri.getValue());
         user.put("website", website.getValue());
 
         newUser.set(user)
@@ -310,7 +311,7 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         student.put("zipcode", zipcode.getValue());
         student.put("homeAddress", homeAddress.getValue());
         student.put("phone", phoneNumber.getValue());
-        student.put("profileImage", profileImage.getValue());
+        student.put("profileImage", profileImageUri.getValue());
         student.put("website", website.getValue());
         student.put("birth", birth_date.getValue());
         student.put("gender", gender.getValue());
