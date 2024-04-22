@@ -265,7 +265,8 @@ public class StudentRegisterViewModel extends AndroidViewModel {
     public void saveUserFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        DocumentReference newUser = db.collection("User").document();
+        String uid = firebaseAuth.getUid();
+        DocumentReference newUser = db.collection("User").document(uid);
 
         Map<String, Object> user = new HashMap<>();
         user.put("id", firebaseAuth.getUid());
@@ -300,7 +301,8 @@ public class StudentRegisterViewModel extends AndroidViewModel {
     public void saveStudentFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        DocumentReference newStudent = db.collection("Student").document();
+        String uid = firebaseAuth.getUid();
+        DocumentReference newStudent = db.collection("Student").document(uid);
 
         Map<String, Object> student = new HashMap<>();
         student.put("studentId", firebaseAuth.getUid());

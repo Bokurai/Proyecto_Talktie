@@ -75,7 +75,7 @@ public class OfferViewModel extends AndroidViewModel {
         return offersCompany;
     }
     public void seleccionar(OfferObject offerObject){
-        offerSingle.setValue(offerObject);
+        offerSingle.postValue(offerObject);
     }
 
     MutableLiveData<OfferObject> seleccionado(){
