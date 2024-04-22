@@ -36,11 +36,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -48,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
 public class Login extends Fragment {
 
     FragmentLoginBinding binding;
-//
+    //
     private FirebaseAuth mAuth;
     //LOGIN-rabab
     NavController navController;
@@ -64,6 +59,7 @@ public class Login extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
+
     }
 
     @Override
@@ -128,7 +124,7 @@ public class Login extends Fragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            // There are no request codes
+// There are no request codes
                             Intent data = result.getData();
                             try {
                                 firebaseAuthWithGoogle(GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException.class));
@@ -145,7 +141,7 @@ public class Login extends Fragment {
                 accederConGoogle();
             }
         });
-   //esconder el menu
+        //esconder el menu
         mainActivity = (MainActivity) requireActivity();
         mainActivity.hideNavBot();
 
@@ -162,7 +158,7 @@ public class Login extends Fragment {
         }
 
         signInForm.setVisibility(View.GONE);
-       //signInProgressBar.setVisibility(View.VISIBLE);
+        signInProgressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
@@ -206,39 +202,15 @@ public class Login extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Obtener el UID único del usuario actualmente autenticado
-                                    FirebaseUser currentUser = mAuth.getCurrentUser();
-                                    handleGoogleSignIn(currentUser);
+                                    Log.e("ABCD", "signInWithCredential:success");
+                                    actualizarUI(mAuth.getCurrentUser());
                                 } else {
-                                    Log.e("ABCD", "signInWithCredential:failure", task.getException());
+                                    Log.e("ABCD", "signInWithCredential:failure",
+                                            task.getException());
                                     signInProgressBar.setVisibility(View.GONE);
                                     signInForm.setVisibility(View.VISIBLE);
                                 }
                             }
                         });
     }
-    private void handleGoogleSignIn(FirebaseUser currentUser) {
-        String uid = currentUser.getUid();
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users").child(uid);
-
-        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    // User already registered, navigate to home2
-                    navController.navigate(R.id.home2);
-                } else {
-                    // User not registered, navigate to signIn1
-                    navController.navigate(R.id.signIn1);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle any errors that may occur while reading data
-                Log.e("GoogleSignIn", "Error al leer datos de usuario", error.toException());
-            }
-        });
-    }
-
 }
