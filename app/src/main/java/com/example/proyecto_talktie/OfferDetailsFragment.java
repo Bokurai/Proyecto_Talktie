@@ -19,6 +19,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class OfferDetailsFragment extends Fragment {
 
@@ -29,6 +44,9 @@ public class OfferDetailsFragment extends Fragment {
     AppCompatButton apply_job;
 
     ImageView backArrow;
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,21 +79,21 @@ public class OfferDetailsFragment extends Fragment {
         offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
-                Log.d("OfferDetailsFragment", "Offer Name: " + offerObject.getName());
-                Log.d("OfferDetailsFragment", "Business Name: " + offerObject.getCompanyId());
-                System.out.println("Mostrando oferta");
                offer_name.setText(offerObject.getName());
                business_name.setText(offerObject.getCompanyId());
                offer_date.setText((CharSequence) offerObject.getDate().toString());
                job_category.setText(offerObject.getJob_category());
                contract_time.setText(offerObject.getContract_time());
-               job_description.setText(offerObject.getJob_description());}
-        });
+               job_description.setText(offerObject.getJob_description());
+                apply_job.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("TAG", offerObject.getOfferId());
+                        addAplicantToOffer(offerObject.getOfferId());
+                        apply_job.setEnabled(false);
 
-        apply_job.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                    }
+                });
             }
         });
 
@@ -86,4 +104,27 @@ public class OfferDetailsFragment extends Fragment {
             }
         });
     }
+    public void addAplicantToOffer(String offerId) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String applicantId = currentUser.getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("Offer")
+                .whereEqualTo("offerId", offerId)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        DocumentReference offerRef = documentSnapshot.getReference();
+
+                        List<String> applicantsIds = documentSnapshot.contains("applicantsId") ?
+                                (List<String>) documentSnapshot.get("applicantsId") : new ArrayList<>();
+
+                        if (!applicantsIds.contains(applicantId)) {
+                            applicantsIds.add(applicantId);
+                        }
+                        offerRef.update("applicantsId", applicantsIds);
+                    }
+                });
+    }
+
 }

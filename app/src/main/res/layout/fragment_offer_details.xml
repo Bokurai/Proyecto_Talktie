@@ -27,9 +27,9 @@
             android:layout_marginTop="@dimen/_1pxv"
             android:layout_marginBottom="@dimen/_1pxv"
             android:scaleType="fitXY"
-            android:src="@drawable/img_arrowleft_gray_900"
+            android:src="@drawable/img_arrowleft_black_900"
             tools:ignore="ContentDescription"
-            tools:src="@drawable/img_arrowleft_gray_900" />
+            />
 
         <ImageView
             android:id="@+id/imageFavorite"

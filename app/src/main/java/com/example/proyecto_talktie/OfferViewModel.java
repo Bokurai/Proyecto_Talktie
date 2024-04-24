@@ -6,19 +6,27 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class OfferViewModel extends AndroidViewModel {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
     private MutableLiveData<List<OfferObject>> offersCompany = new MutableLiveData<>();
     private MutableLiveData<OfferObject> offerSingle = new MutableLiveData<>();
+
+
 
     public OfferViewModel(@NonNull Application application) {
         super(application);
@@ -74,6 +82,7 @@ public class OfferViewModel extends AndroidViewModel {
                 });
         return offersCompany;
     }
+
     public void seleccionar(OfferObject offerObject){
         offerSingle.postValue(offerObject);
     }

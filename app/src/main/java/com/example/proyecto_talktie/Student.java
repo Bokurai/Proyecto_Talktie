@@ -56,6 +56,4 @@ public class Student extends User{
         this.start_date_formation = start_date_formation;
     }
 
-
-
 }
