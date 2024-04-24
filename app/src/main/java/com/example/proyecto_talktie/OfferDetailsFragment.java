@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -107,10 +108,9 @@ public class OfferDetailsFragment extends Fragment {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String applicantId = currentUser.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Query queryOffer = db.collection("Offer").whereEqualTo("offerId", offerId);
 
         db.collection("Offer")
-                .whereEqualTo("applicantsId", applicantId)
+                .whereEqualTo("offerId", offerId)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
