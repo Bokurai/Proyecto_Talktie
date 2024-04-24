@@ -26,7 +26,7 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         super(application);
     }
 
-    private MutableLiveData<Uri> profileImageUri = new MutableLiveData<>();
+    private MutableLiveData<Integer> profileImageUri = new MutableLiveData<>();
     private MutableLiveData<String> id = new MutableLiveData<>();
     private MutableLiveData<String> name = new MutableLiveData<>();
     private MutableLiveData<String> email = new MutableLiveData<>();
@@ -117,11 +117,11 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         return phoneNumber;
     }
 
-    public void setProfileImageUri(Uri uri) {
+    public void setProfileImageUri(Integer uri) {
         profileImageUri.setValue(uri);
     }
 
-    public LiveData<Uri> getProfileImageUri() {
+    public LiveData<Integer> getProfileImageUri() {
         return profileImageUri;
     }
 

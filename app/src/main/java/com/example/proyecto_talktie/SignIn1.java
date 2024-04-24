@@ -35,15 +35,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SignIn1 extends Fragment {
 
     FragmentSignIn1Binding binding;
-    private Button registerButton, buttonImageProfile;
+    private Button registerButton;
     NavController navController;
     private FirebaseAuth mAuth;
     private EditText emailEditText, passwordEditText, nameEditText, mobileEditText;
-    private CircleImageView profileImageView;
-    int SELECT_PICTURE = 200;
-    FirebaseStorage firebaseStorage;
-    StorageReference storageReference,imageReference;
-    UploadTask uploadTask;
+
     Uri uri;
     StudentRegisterViewModel registerViewModel;
 
@@ -67,9 +63,8 @@ public class SignIn1 extends Fragment {
         passwordEditText = view.findViewById(R.id.etPassword);
         nameEditText = view.findViewById(R.id.etName);
         mobileEditText = view.findViewById(R.id.etMobile);
-        profileImageView = view.findViewById(R.id.imageProfile);
         registerButton = view.findViewById(R.id.btnSingIn);
-        buttonImageProfile = view.findViewById(R.id.btnSelectProfileRegister);
+
         navController = Navigation.findNavController(view);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,38 +73,10 @@ public class SignIn1 extends Fragment {
             }
         });
 
-        buttonImageProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectGalleryImageRegister();
-            }
-        });
+
 
     }
 
-
-    private void selectGalleryImageRegister() {
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-
-            if (requestCode == SELECT_PICTURE) {
-
-                Uri selectedImageUri = data.getData();
-                if (null != selectedImageUri) {
-                    profileImageView.setImageURI(selectedImageUri);
-                }
-            }
-        }
-    }
 
     private void crearCuenta() {
         if (!validarFormulario()) {
@@ -118,7 +85,6 @@ public class SignIn1 extends Fragment {
 
         registerButton.setEnabled(false);
 
-        Uri uriImage = getUriImage();
 
         mAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
@@ -129,7 +95,6 @@ public class SignIn1 extends Fragment {
                             registerViewModel.setName(nameEditText.getText().toString());
                             registerViewModel.setPassword(passwordEditText.getText().toString());
                             registerViewModel.setPhoneNumber(mobileEditText.getText().toString());
-                            registerViewModel.setProfileImageUri(uriImage);
                             actualizarUI(mAuth.getCurrentUser());
                         } else {
                             Snackbar.make(requireView(), "Error: " + task.getException(), Snackbar.LENGTH_LONG).show();
@@ -140,9 +105,6 @@ public class SignIn1 extends Fragment {
 
     }
 
-    private Uri getUriImage(){
-        return uri;
-    }
     private void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
             navController.navigate(R.id.signIn6);

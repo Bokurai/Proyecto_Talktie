@@ -1,8 +1,11 @@
 package com.example.proyecto_talktie;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,6 +39,7 @@ public class ProfileStudent extends Fragment {
     private FirebaseAuth mAuth;
     TextView textAbout;
     String studentId;
+    int SELECT_PICTURE = 200;
 
 
     @Override
@@ -97,6 +101,29 @@ public class ProfileStudent extends Fragment {
 
 
     }
+
+    private void selectGalleryImageRegister() {
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            if (requestCode == SELECT_PICTURE) {
+
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                }
+            }
+        }
+    }
+
 
     class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.RecommendationViewHolder> {
         private List<Recommendation> recommendationList;
