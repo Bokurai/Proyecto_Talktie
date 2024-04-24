@@ -52,7 +52,7 @@ public class SignIn1 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        emailEditText = view.findViewById(R.id.etEmail);//a
+        emailEditText = view.findViewById(R.id.etEmail);
         passwordEditText = view.findViewById(R.id.etPassword);
         nameEditText = view.findViewById(R.id.etName);
         mobileEditText = view.findViewById(R.id.etMobile);
@@ -72,7 +72,6 @@ public class SignIn1 extends Fragment {
                 navController.navigate(R.id.login);
             }
         });
-
     }
     private void crearCuenta() {
         if (!validarFormulario()) {

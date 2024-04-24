@@ -14,9 +14,9 @@ public class User {
 
     String zipcode;
 
-    String home_address;
+    String address;
 
-    String phone_number;
+    String phone;
 
     int profile_image;
 
@@ -32,8 +32,8 @@ public class User {
         this.password = password;
         this.city = city;
         this.zipcode = zipcode;
-        this.home_address = home_address;
-        this.phone_number = phone_number;
+        this.address = home_address;
+        this.phone = phone_number;
         this.profile_image = profile_image;
         this.website = website;
     }
@@ -86,20 +86,20 @@ public class User {
         this.zipcode = zipcode;
     }
 
-    public String getHome_address() {
-        return home_address;
+    public String getAddress() {
+        return address;
     }
 
-    public void setHome_address(String home_address) {
-        this.home_address = home_address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public int getProfile_image() {

@@ -69,8 +69,8 @@
                     android:layout_height="@dimen/_110pxv"
                     android:layout_marginBottom="@dimen/_24pxv">
 
-                    <ImageView
-                        android:id="@+id/imagePngtreeavatar"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imageProfile"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_98pxv"
                         android:layout_gravity="top|start"
@@ -79,8 +79,8 @@
                         android:src="@drawable/img_pngtreeavatar"
                         tools:ignore="ContentDescription" />
 
-                    <ImageButton
-                        android:id="@+id/btnGrid"
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSelectProfileRegister"
                         android:layout_width="@dimen/_32pxh"
                         android:layout_height="@dimen/_32pxh"
                         android:layout_gravity="bottom|end"
@@ -91,6 +91,7 @@
                         android:paddingHorizontal="@dimen/_10pxh"
                         android:paddingVertical="@dimen/_10pxv"
                         android:scaleType="fitCenter"
+                        android:drawableStart="@drawable/img_close"
                         android:src="@drawable/img_grid"
                         tools:ignore="ContentDescription" />
                 </FrameLayout>

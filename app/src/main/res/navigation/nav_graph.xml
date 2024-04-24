@@ -123,14 +123,28 @@
     <action
         android:id="@+id/action_to_Register"
         app:destination="@id/signIn1" />
+    <action
+        android:id="@+id/action_goHome"
+        app:destination="@+id/home" />
+
+    <action
+        android:id="@+id/action_goOffer"
+        app:destination="@id/offer"/>
+
+    <action
+        android:id="@+id/action_goOfferDetailsFragment"
+        app:destination="@id/offerDetailsFragment"/>
+    <action
+        android:id="@+id/action_goCompanyProfile"
+        app:destination="@+id/companyProfile" />
     <fragment
         android:id="@+id/messagesHome"
         android:name="com.example.proyecto_talktie.messagesHome"
         android:label="fragment_messages_home"
         tools:layout="@layout/fragment_messages_home" />
     <fragment
-        android:id="@+id/home2"
-        android:name="com.example.proyecto_talktie.home"
+        android:id="@+id/home"
+        android:name="com.example.proyecto_talktie.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
@@ -140,33 +154,21 @@
         android:label="fragment_offer"
         tools:layout="@layout/fragment_offer" />
     <fragment
-        android:id="@+id/signIn1_company"
-        android:name="com.example.proyecto_talktie.SignIn1_company"
-        android:label="fragment_sign_in_company"
-        tools:layout="@layout/fragment_sign_in1_company" />
+        android:id="@+id/studentSearchView"
+        android:name="com.example.proyecto_talktie.StudentSearchView"
+        android:label="fragment_student_search_view"
+        tools:layout="@layout/fragment_student_search_view" />
     <fragment
-        android:id="@+id/signIn2_company"
-        android:name="com.example.proyecto_talktie.signIn2_company"
-        android:label="fragment_sign_in2_company"
-        tools:layout="@layout/fragment_sign_in2_company" />
+        android:id="@+id/companyProfile"
+        android:name="com.example.proyecto_talktie.CompanyProfile"
+        android:label="fragment_company_profile"
+        tools:layout="@layout/fragment_company_profile" />
+    <action
+        android:id="@+id/action_goStudentSearchView"
+        app:destination="@id/studentSearchView" />
     <fragment
-        android:id="@+id/signIn3_company"
-        android:name="com.example.proyecto_talktie.signIn3_company"
-        android:label="fragment_sign_in3_company"
-        tools:layout="@layout/fragment_sign_in3_company" />
-    <fragment
-        android:id="@+id/signIn4_company"
-        android:name="com.example.proyecto_talktie.signIn4_company"
-        android:label="fragment_sign_in4_company"
-        tools:layout="@layout/fragment_sign_in4_company" />
-    <fragment
-        android:id="@+id/signIn5_company"
-        android:name="com.example.proyecto_talktie.signIn5_company"
-        android:label="fragment_sign_in5_company"
-        tools:layout="@layout/fragment_sign_in5_company" />
-    <fragment
-        android:id="@+id/signIn6_company"
-        android:name="com.example.proyecto_talktie.signIn6_company"
-        android:label="fragment_sign_in6_company"
-        tools:layout="@layout/fragment_sign_in6_company" />
+        android:id="@+id/offerDetailsFragment"
+        android:name="com.example.proyecto_talktie.OfferDetailsFragment"
+        android:label="fragment_offer_details"
+        tools:layout="@layout/fragment_offer_details" />
 </navigation>

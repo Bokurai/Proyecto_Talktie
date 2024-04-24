@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="app_name">bokurai_s_application3</string>
+    <string name="app_name">Talktie</string>
     <string name="loading">Loading…</string>
     <string name="no_internet_connection">No internet connection!</string>
     <string name="lbl_continue">Continue</string>
@@ -63,7 +63,7 @@ I'm contacting you because I'm looking for an internship for the DAM higher degr
     <string name="lbl_job_type">Job type</string>
     <string name="lbl_benefits">Benefits </string>
     <string name="lbl_ios">iOS</string>
-    <string name="msg_what_are_you_lo">What are you looking for?</string>
+    <string name="msg_what_are_you_lo">What company are you looking for?</string>
     <string name="msg_product_designe">Product Designer</string>
     <string name="msg_numApplicants">0</string>
     <string name="msg_textApplicants">Applicants</string>
@@ -112,7 +112,7 @@ Raffles Place, Boat Band M83</string>
     <string name="msg_edit_presentati">Edit presentation</string>
     <string name="lbl_all_categories">All Categories</string>
     <string name="lbl_job_categories">Job Categories</string>
-    <string name="lbl_job_preferences">Job Preferences</string>
+    <string name="lbl_job_preferences">Availability</string>
     <string name="msg_profile_complet2">Profile completeness 90%</string>
     <string name="lbl_security">Security</string>
     <string name="lbl_spain">Spain</string>
@@ -123,7 +123,7 @@ Raffles Place, Boat Band M83</string>
     <string name="lbl_you_re_welcome">You\u2019re welcome.</string>
     <string name="msg_hi_rabab_beiha">Hi, Rabab Beihaqi</string>
     <string name="lbl_349_irvine_ca">349 Irvine, CA</string>
-    <string name="lbl_art_availability">Full availability</string>
+    <string name="lbl_art_director">Full Availability</string>
     <string name="lbl_on">ON</string>
     <string name="msg_use_current_loc">Use current location</string>
     <string name="lbl_none">None</string>
@@ -137,7 +137,7 @@ I'm contacting you because I wanted to send you the internship agreement to sign
     <string name="lbl_skills">Skills</string>
     <string name="lbl_reviews">Reviews</string>
     <string name="msg_enter_company_l">Enter company location</string>
-    <string name="lbl_san_francisco">San Francisco</string>
+    <string name="lbl_locate">Barcelona</string>
     <string name="lbl_hello_mail_com">hello@mail.com</string>
     <string name="msg_we_ve_sent_your">We\u2019ve sent your verification code to +32 8304 5321</string>
     <string name="lbl_remind_me">Remind me</string>
@@ -160,7 +160,6 @@ with Dutch (m/f/d)</string>
     <string name="msg_posted_on_20_ju">Posted on 20 July</string>
     <string name="lbl_903_578_712">903 578 712</string>
     <string name="lbl_sign_up_to_join">Sign up to join</string>
-    <string name="lbl_sign_up_to_join_company">Sign up as a company</string>
     <string name="msg_you_can_talk_ab">You can talk about your years of experience, the sector where you would like to do an internship, your skills, etc.  </string>
     <string name="lbl_toptal">Toptal</string>
     <string name="lbl_cancel">Cancel</string>
@@ -200,7 +199,7 @@ Rec</string>
     <string name="lbl_see_more">See more</string>
     <string name="msg_348_open_positi">348 open positions</string>
     <string name="lbl_benefits2">Benefits</string>
-    <string name="lbl_sing_in">Sing in</string>
+    <string name="lbl_sing_in">Sign in</string>
     <string name="lbl_sector">Sector</string>
     <string name="msg_thank_you_for_y">Thank you for your request</string>
     <string name="lbl_total">Total</string>
@@ -210,7 +209,7 @@ Rec</string>
     <string name="msg_i_know_i_can_he3">"I know I can help your company create stunning visuals. As someone who has worked in marketing and graphic design for over a decade, I know what brands need to capture their audiences' attention. With my pow\u2026."</string>
     <string name="msg_i_know_i_can_he2">"I know I can help your company create stunning visuals. As someone who has worked in marketing and graphic design for over a decade, I know what brands need to capture their audiences' attention. With my pow\u2026. "</string>
     <string name="msg_senior_product2">Senior Product Designer  </string>
-    <string name="lbl_see_all">See all </string>
+    <string name="lbl_see_all">See all</string>
     <string name="msg_with_a_mission2">With a mission of Making the World Playful, King is a leading interactive entertainment company with a 20-year history of delivering some of the world\u2019s most iconic games in the mobile gaming\u2026</string>
     <string name="msg_set_your_locati">Set your location to start find a dream job around you</string>
     <string name="lbl_add_more">Add More</string>
@@ -260,12 +259,11 @@ Rec</string>
     <string name="lbl_1000">1000\u20ac</string>
     <string name="msg_confirm_the_spe">Confirm the special credentials</string>
     <string name="msg_institution_nam">Institution name</string>
-    <string name="lbl_job_preferences2">Job preferences</string>
+    <string name="lbl_job_preferences2">Availability</string>
     <string name="lbl_logo_type">Logo type</string>
     <string name="lbl_add_recruiter">Add Recruiter</string>
     <string name="lbl_school_code">School Code</string>
     <string name="lbl_email_address">Email Address</string>
-    <string name="lbl_email_example">press@king.com</string>
     <string name="lbl_about">About </string>
     <string name="lbl_date_of_birth">Date of Birth</string>
     <string name="msg_64k_80k_yearl">64k - 80k/yearly</string>
@@ -394,7 +392,6 @@ Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</str
     <string name="msg_example_mail_co">example@mail.com</string>
     <string name="lbl_contractual">Contractual</string>
     <string name="lbl_welcome_user">Welcome user</string>
-    <string name="lbl_welcome_company">Welcome to Talktie</string>
     <string name="lbl_8000">8000\u20ac</string>
     <string name="lbl_sign_in">Sign In</string>
     <string name="lbl_of_course">Of course.</string>
@@ -454,12 +451,6 @@ Rec</string>
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</string>
     <string name="msg_the_code_from_y">the code from your institution....</string>
     <string name="lbl_name">Name</string>
-    <string name="lbl_name_company">Company Name</string>
-    <string name="lbl_code_company">Company Code</string>
-    <string name="lbl_sector_company">Sector</string>
-    <string name="lbl_type_company">Type of Company</string>
-    <string name="lbl_logo_company">Company Code</string>
-    <string name="lbl_information_company">Company Code</string>
     <string name="lbl_15_minutes_ago">15 minutes ago</string>
     <string name="lbl_profile">Profile</string>
     <string name="lbl_limited_sounds">Limited Sounds</string>
@@ -513,4 +504,32 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_experience">Experience</string>
     <string name="date_format">DD/MM/YYYY</string>
     <string name="enter_country_of_origin">Enter country of origin</string>
+    <string name="name_and_surname">Name and surname</string>
+    <string name="name">Enter name and surname</string>
+    <string name="phone">Enter phone number</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_gender">Enter your gender</string>
+    <string name="lbl_search2">Search</string>
+    <string name="lbl_nameCompany">Vueling Airlines</string>
+    <string name="lbl_sectorCompany">Transportation and storage</string>
+    <string name="lbl_locationCompany">349 Irvine, CA</string>
+    <string name="lbl_separator">·</string>
+    <string name="lbl_follow">Follow</string>
+    <string name="lbl_vacancies_avaible">Vacancies available</string>
+    <string name="_20_07_2023">20/07/2023</string>
+    <string name="job_category">Job category</string>
+    <string name="design">Design</string>
+    <string name="contract_type">contract type</string>
+    <string name="contract_time">Contract time</string>
+    <string name="contractTimeTxt">6 months</string>
+    <string name="lbl_art_availability">Full availability</string>
+    <string name="lbl_welcome_company">Welcome to Talktie</string>
+    <string name="lbl_sign_up_to_join_company">Sign up as a company</string>
+    <string name="lbl_name_company">Company Name</string>
+    <string name="lbl_code_company">Company Code</string>
+    <string name="lbl_sector_company">Sector</string>
+    <string name="lbl_type_company">Type of Company</string>
+    <string name="lbl_logo_company">Company Code</string>
+    <string name="lbl_information_company">Company Code</string>
+    <string name="lbl_email_example">press@king.com</string>
 </resources>

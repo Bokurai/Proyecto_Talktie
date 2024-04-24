@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="33dp"
                 android:layout_marginStart="@dimen/_40pxh"
-                android:layout_marginTop="@dimen/_63pxh"
+                android:layout_marginTop="@dimen/_60pxh"
                 android:layout_marginEnd="@dimen/_40pxh"
                 android:gravity="end"
                 android:orientation="horizontal">
@@ -124,6 +124,7 @@
                         android:text="@string/lbl_3"
                         tools:text="@string/lbl_3" />
                 </LinearLayout>
+
                 <View
                     android:id="@+id/viewLineTwo"
                     android:layout_width="@dimen/_24pxh"
@@ -157,6 +158,7 @@
                         android:text="@string/lbl_4"
                         tools:text="@string/lbl_4" />
                 </LinearLayout>
+
                 <View
                     android:id="@+id/viewLineThree"
                     android:layout_width="@dimen/_24pxh"
@@ -212,7 +214,7 @@
                 android:layout_marginTop="@dimen/_8pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/lbl_rabab_beihaqi"
+                android:hint="@string/name"
                 android:inputType="text"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -220,8 +222,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/bluegray_900"
+                android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
             <TextView
@@ -248,7 +249,7 @@
                 android:layout_marginTop="@dimen/_9pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/lbl_phone_number"
+                android:hint="@string/phone"
                 android:inputType="phone"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -256,8 +257,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_12pxv"
                 android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/bluegray_900"
+                android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
             <TextView
@@ -284,7 +284,7 @@
                 android:layout_marginTop="@dimen/_9pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/msg_rababbeihaqi_gm"
+                android:hint="@string/enter_your_email"
                 android:inputType="textEmailAddress"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -292,8 +292,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textColorHint="@color/bluegray_900"
+                android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
             <TextView
@@ -309,7 +308,7 @@
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
                 android:text="@string/lbl_gender"
-                />
+                tools:text="@string/lbl_gender" />
 
             <EditText
                 android:id="@+id/etGender"
@@ -327,8 +326,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:hint="female"
-                android:textColor="@android:color/black"
+                android:hint="@string/enter_your_gender"
                 android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
@@ -356,7 +354,6 @@
                 android:layout_marginTop="@dimen/_9pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/date_format"
                 android:inputType="date"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -364,7 +361,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:textColor="@android:color/black"
+                android:hint="@string/date_format"
                 android:textColorHint="@color/bluegray_400"
                 tools:ignore="Autofill" />
 
@@ -441,7 +438,6 @@
                     android:layout_height="@dimen/_21pxh"
                     android:layout_marginTop="@dimen/_1pxv"
                     android:layout_width="@dimen/_13pxh"
-                    android:layout_marginLeft="@dimen/_5pxh"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_arrowleft_black_900"
                     tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft_black_900"/>
@@ -461,6 +457,16 @@
                         android:singleLine="true"
                         android:text="@string/msg_personal_inform"
                         style="@style/txtRobotosemibolditalic17_2" tools:text="@string/msg_personal_inform"/>
+                    <TextView android:ellipsize="end"
+                        android:id="@+id/txtSave"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_1pxv"
+                        android:layout_marginStart="@dimen/_81pxh"
+                        android:layout_weight="0.21"
+                        android:layout_width="0dp"
+                        android:singleLine="true"
+                        android:text="@string/lbl_save"
+                        style="@style/txtRobotoromanregular17_4" tools:text="@string/lbl_save"/>
                 </LinearLayout>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>

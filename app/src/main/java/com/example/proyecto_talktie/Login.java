@@ -43,7 +43,6 @@ import org.jetbrains.annotations.Nullable;
 public class Login extends Fragment {
 
     FragmentLoginBinding binding;
-    //
     private FirebaseAuth mAuth;
     //LOGIN-rabab
     NavController navController;
@@ -51,7 +50,7 @@ public class Login extends Fragment {
     private ProgressBar signInProgressBar;
     private SignInButton googleSignInButton;
     private ActivityResultLauncher<Intent> activityResultLauncher;
-    //LOGIN-emial passw
+    //LOGIN-email passw
     private EditText emailEditText, passwordEditText;
     private Button emailSignInButton, registerButton;
     MainActivity mainActivity;
@@ -59,7 +58,8 @@ public class Login extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-
+        FirebaseUser user = mAuth.getCurrentUser();
+        actualizarUI(user);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class Login extends Fragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-// There are no request codes
+                        // There are no request codes
                             Intent data = result.getData();
                             try {
                                 firebaseAuthWithGoogle(GoogleSignIn.getSignedInAccountFromIntent(data
@@ -124,7 +124,7 @@ public class Login extends Fragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-// There are no request codes
+                            // There are no request codes
                             Intent data = result.getData();
                             try {
                                 firebaseAuthWithGoogle(GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException.class));
@@ -141,7 +141,7 @@ public class Login extends Fragment {
                 accederConGoogle();
             }
         });
-        //esconder el menu
+   //esconder el menu
         mainActivity = (MainActivity) requireActivity();
         mainActivity.hideNavBot();
 
@@ -178,7 +178,7 @@ public class Login extends Fragment {
     private void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
             navController = NavHostFragment.findNavController(this);
-            navController.navigate(R.id.home2);
+            navController.navigate(R.id.home);
 
         }
     }
