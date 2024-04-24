@@ -46,7 +46,7 @@
                         android:layout_gravity="top|start"
                         android:layout_marginBottom="@dimen/_10pxv"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/img_pngtreeavatar"
+                        android:src="@drawable/profile_image_defaut"
                         tools:ignore="ContentDescription" />
 
                 </FrameLayout>

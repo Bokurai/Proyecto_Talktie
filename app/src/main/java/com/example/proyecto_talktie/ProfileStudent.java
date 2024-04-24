@@ -37,7 +37,8 @@ public class ProfileStudent extends Fragment {
     private RecyclerView recyclerView;
     private RecommendAdapter adapter;
     private FirebaseAuth mAuth;
-    TextView textAbout;
+    TextView textAbout, profileEditTxt;
+    ImageView profileImg;
     String studentId;
     int SELECT_PICTURE = 200;
 
@@ -81,6 +82,8 @@ public class ProfileStudent extends Fragment {
 
         studentId = currentUser.getUid();
         textAbout = view.findViewById(R.id.txtDescription);
+        profileEditTxt = view.findViewById(R.id.edit_profiletxt);
+        profileImg = view.findViewById(R.id.profileImgStudent);
 
 
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
@@ -99,6 +102,12 @@ public class ProfileStudent extends Fragment {
             adapter.setRecommendationList(recommendations);
         });
 
+        profileEditTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectGalleryImageRegister();
+            }
+        });
 
     }
 
@@ -119,6 +128,7 @@ public class ProfileStudent extends Fragment {
 
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
+                    profileImg.setImageURI(selectedImageUri);
                 }
             }
         }
