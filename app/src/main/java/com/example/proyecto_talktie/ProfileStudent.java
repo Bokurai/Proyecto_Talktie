@@ -61,7 +61,7 @@ public class ProfileStudent extends Fragment {
         //LOG OUT
         LinearLayout logoutLinear = view.findViewById(R.id.LogoutLinear);
 
-// Configura un listener de clic para el LinearLayout
+        // Configura un listener de clic para el LinearLayout
         logoutLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
