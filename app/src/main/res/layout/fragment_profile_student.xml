@@ -100,9 +100,9 @@
                         android:layout_marginEnd="50dp"
                         android:layout_marginBottom="@dimen/_10pxv"
                         android:scaleType="fitXY"
-                        android:src="@drawable/img_pngtreeavatar"
+                        android:src="@drawable/profile_image_defaut"
                         tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_pngtreeavatar" />
+                         />
 
                     <FrameLayout
                         android:id="@+id/frameStackellipseeleven"
