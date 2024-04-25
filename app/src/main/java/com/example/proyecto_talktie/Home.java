@@ -12,6 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import org.jetbrains.annotations.Nullable;
 
 
@@ -20,11 +24,14 @@ public class Home extends Fragment {
     MainActivity mainActivity;
     NavController navController;
     LinearLayout search_bar;
+    FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        ifUserFromGoogle(user);
     }
 
     @Override
@@ -52,5 +59,20 @@ public class Home extends Fragment {
         });
 
 
+    }
+
+    private void ifUserFromGoogle(FirebaseUser user){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+       String uidUserGoogle = user.getUid();
+        db.collection("User")
+                .document(uidUserGoogle)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if(!task.getResult().exists()){
+                            navController.navigate(R.id.action_goSelectRegister);
+                        }
+                    }
+                });
     }
 }

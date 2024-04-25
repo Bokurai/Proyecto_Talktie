@@ -24,12 +24,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileStudent extends Fragment {
     //Initialization of the student's view-model
@@ -38,7 +51,10 @@ public class ProfileStudent extends Fragment {
     private RecommendAdapter adapter;
     private FirebaseAuth mAuth;
     TextView textAbout, profileEditTxt;
-    ImageView profileImg;
+    CircleImageView profileImg;
+    StorageReference storageReference;
+    Storage storage;
+    Uri uri;
     String studentId;
     int SELECT_PICTURE = 200;
 
@@ -55,6 +71,8 @@ public class ProfileStudent extends Fragment {
 
         recyclerView = view.findViewById(R.id.recommendRecyclerView);
         recyclerView.setAdapter(adapter);
+        storageReference = FirebaseStorage.getInstance().getReference();
+
 
 
 
@@ -128,11 +146,31 @@ public class ProfileStudent extends Fragment {
 
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
-                    profileImg.setImageURI(selectedImageUri);
+                    Glide.with(this).load(selectedImageUri)
+                            .into(profileImg);
+                    uploadImage(selectedImageUri);
                 }
             }
         }
     }
+
+    private void uploadImage(Uri uri) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String uid = user.getUid();
+            if (uri != null) {
+                StorageReference ref = storageReference.child("images/" + uid + "/" + UUID.randomUUID().toString());
+                ref.putFile(uri)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                            } else {
+                                Snackbar.make(requireView(), "Error al subir la imagen", Snackbar.LENGTH_LONG).show();
+                            }
+                        });
+            }
+        }
+    }
+
 
 
     class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.RecommendationViewHolder> {

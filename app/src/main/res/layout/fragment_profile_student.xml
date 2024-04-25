@@ -91,15 +91,12 @@
                     android:layout_marginEnd="@dimen/_73pxh"
                     android:layout_marginStart="@dimen/_73pxh">
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profileImgStudent"
                         android:layout_width="102dp"
-                        android:layout_height="122dp"
+                        android:layout_height="102dp"
                         android:layout_gravity="top|start"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="50dp"
                         android:layout_marginBottom="@dimen/_10pxv"
-                        android:scaleType="fitXY"
                         android:src="@drawable/profile_image_defaut"
                         tools:ignore="ContentDescription"
                          />
