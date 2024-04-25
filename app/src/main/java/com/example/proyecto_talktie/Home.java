@@ -70,6 +70,7 @@ public class Home extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         if(!task.getResult().exists()){
+                            mainActivity.hideNavBot();
                             navController.navigate(R.id.action_goSelectRegister);
                         }
                     }
