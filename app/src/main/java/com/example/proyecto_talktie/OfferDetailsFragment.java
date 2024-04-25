@@ -104,6 +104,11 @@ public class OfferDetailsFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * Method that adds the userId to the applicant list of the offer.
+     * @param offerId
+     */
     public void addAplicantToOffer(String offerId) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String applicantId = currentUser.getUid();

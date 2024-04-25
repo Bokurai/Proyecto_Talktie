@@ -61,6 +61,11 @@ public class Home extends Fragment {
 
     }
 
+
+    /**
+     * Method that questions if an user has used the Google Login and it redirects them to the register session
+     * @param user
+     */
     private void ifUserFromGoogle(FirebaseUser user){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
        String uidUserGoogle = user.getUid();

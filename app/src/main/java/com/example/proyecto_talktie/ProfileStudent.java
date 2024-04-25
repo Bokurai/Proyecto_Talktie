@@ -159,16 +159,19 @@ public class ProfileStudent extends Fragment {
         if (user != null) {
             String uid = user.getUid();
             if (uri != null) {
-                StorageReference ref = storageReference.child("images/" + uid + "/" + UUID.randomUUID().toString());
+                StorageReference ref = storageReference.child("userprofileimages/" + uid + "/" + UUID.randomUUID().toString());
+
                 ref.putFile(uri)
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                            } else {
-                                Snackbar.make(requireView(), "Error al subir la imagen", Snackbar.LENGTH_LONG).show();
-                            }
-                        });
+                        .continueWithTask(task ->
+                                task.getResult().getStorage().getDownloadUrl())
+                        .addOnSuccessListener(uri1 -> linkImagetoUser(uri.toString()));
             }
         }
+    }
+
+    private void linkImagetoUser(String imageUri){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     }
 
 
