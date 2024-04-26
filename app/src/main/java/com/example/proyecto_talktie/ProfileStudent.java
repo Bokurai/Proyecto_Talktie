@@ -137,16 +137,24 @@ public class ProfileStudent extends Fragment {
 
     public void loadUserInfo(){
         if(user != null) {
-            DocumentReference documentReference = FirebaseFirestore.getInstance().document(studentId);
-            documentReference.addSnapshotListener((Executor) this, new EventListener<DocumentSnapshot>() {
+            DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Student").document(studentId);
+            documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                            studentName.setText(documentSnapshot.getString("phone"));
+                            studentName.setText(documentSnapshot.getString("name"));
                             String imageprofileURL = documentSnapshot.getString("profileImage");
-                            Context context = getView().getContext();
-                            Glide.with(context)
-                                    .load(imageprofileURL)
-                                    .into(profileImg);
+                    Context context = getView().getContext();
+                            if(imageprofileURL!= null) {
+                                Uri uriImagep = Uri.parse(imageprofileURL);
+
+                                Glide.with(context)
+                                        .load(uriImagep)
+                                        .into(profileImg);
+                            }else {
+                               Glide.with(context)
+                                       .load(R.drawable.profile_image_defaut)
+                                       .into(profileImg);
+                            }
                 }
             });
         }
