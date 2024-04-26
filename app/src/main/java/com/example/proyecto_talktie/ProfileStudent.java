@@ -3,6 +3,7 @@ package com.example.proyecto_talktie;
 import static android.app.Activity.RESULT_OK;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -34,7 +35,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -42,6 +48,7 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Executor;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -51,7 +58,8 @@ public class ProfileStudent extends Fragment {
     private RecyclerView recyclerView;
     private RecommendAdapter adapter;
     private FirebaseAuth mAuth;
-    TextView textAbout, profileEditTxt;
+    FirebaseUser user;
+    TextView textAbout, profileEditTxt, studentName;
     CircleImageView profileImg;
     StorageReference storageReference;
     Storage storage;
@@ -66,6 +74,7 @@ public class ProfileStudent extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile_student, container, false);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         //Create and set the recyclerview
         adapter = new RecommendAdapter(new ArrayList<>());
@@ -73,9 +82,6 @@ public class ProfileStudent extends Fragment {
         recyclerView = view.findViewById(R.id.recommendRecyclerView);
         recyclerView.setAdapter(adapter);
         storageReference = FirebaseStorage.getInstance().getReference();
-
-
-
 
         //LOG OUT
         LinearLayout logoutLinear = view.findViewById(R.id.LogoutLinear);
@@ -96,14 +102,13 @@ public class ProfileStudent extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        studentId = currentUser.getUid();
+        studentId = user.getUid();
         textAbout = view.findViewById(R.id.txtDescription);
         profileEditTxt = view.findViewById(R.id.edit_profiletxt);
         profileImg = view.findViewById(R.id.profileImgStudent);
+        studentName = view.findViewById(R.id.txtStudentName);
 
+        loadUserInfo();
 
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
 
@@ -128,6 +133,23 @@ public class ProfileStudent extends Fragment {
             }
         });
 
+    }
+
+    public void loadUserInfo(){
+        if(user != null) {
+            DocumentReference documentReference = FirebaseFirestore.getInstance().document(studentId);
+            documentReference.addSnapshotListener((Executor) this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                            studentName.setText(documentSnapshot.getString("phone"));
+                            String imageprofileURL = documentSnapshot.getString("profileImage");
+                            Context context = getView().getContext();
+                            Glide.with(context)
+                                    .load(imageprofileURL)
+                                    .into(profileImg);
+                }
+            });
+        }
     }
 
     private void selectGalleryImageRegister() {
@@ -156,11 +178,9 @@ public class ProfileStudent extends Fragment {
     }
 
     private void uploadImage(Uri uri) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            String uid = user.getUid();
             if (uri != null) {
-                StorageReference ref = storageReference.child("userprofileimages/" + uid + "/" + UUID.randomUUID().toString());
+                StorageReference ref = storageReference.child("userprofileimages/" + studentId + "/" + UUID.randomUUID().toString());
 
                 ref.putFile(uri)
                         .continueWithTask(task ->
@@ -171,21 +191,24 @@ public class ProfileStudent extends Fragment {
     }
 
     private void linkImagetoUser(String imageUrl){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user!= null){
-            String uid = user.getUid();
-
-        FirebaseFirestore.getInstance().collection("User").document(uid)
+        FirebaseFirestore.getInstance().collection("User").document(studentId)
                 .update("profileImage",imageUrl)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                     }
                 });
+            FirebaseFirestore.getInstance().collection("Student").document(studentId)
+                    .update("profileImage",imageUrl)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                        }
+                    });
         }
+
     }
-
-
 
     class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.RecommendationViewHolder> {
         private List<Recommendation> recommendationList;
