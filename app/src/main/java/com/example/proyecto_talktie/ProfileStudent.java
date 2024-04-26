@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -164,14 +165,24 @@ public class ProfileStudent extends Fragment {
                 ref.putFile(uri)
                         .continueWithTask(task ->
                                 task.getResult().getStorage().getDownloadUrl())
-                        .addOnSuccessListener(uri1 -> linkImagetoUser(uri.toString()));
+                        .addOnSuccessListener(url -> linkImagetoUser(url.toString()));
             }
         }
     }
 
-    private void linkImagetoUser(String imageUri){
+    private void linkImagetoUser(String imageUrl){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user!= null){
+            String uid = user.getUid();
 
+        FirebaseFirestore.getInstance().collection("User").document(uid)
+                .update("profileImage",imageUrl)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                    }
+                });
+        }
     }
 
 

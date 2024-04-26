@@ -31,7 +31,7 @@ public class Home extends Fragment {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        ifUserFromGoogle(user);
+        //ifUserFromGoogle(user);
     }
 
     @Override
@@ -66,9 +66,9 @@ public class Home extends Fragment {
      * Method that questions if an user has used the Google Login and it redirects them to the register session
      * @param user
      */
-    private void ifUserFromGoogle(FirebaseUser user){
+   /* private void ifUserFromGoogle(FirebaseUser user){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-       String uidUserGoogle = user.getUid();
+        String uidUserGoogle = user.getUid();
         db.collection("User")
                 .document(uidUserGoogle)
                 .get()
@@ -80,5 +80,5 @@ public class Home extends Fragment {
                         }
                     }
                 });
-    }
+    }*/
 }
