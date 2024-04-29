@@ -535,4 +535,5 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="buttoneditprofile">ButtoneditProfile</string>
     <string name="edit_profile">Edit profile</string>
     <string name="edit_profile_image">Edit profile image</string>
+    <string name="sign_up">Sign up</string>
 </resources>

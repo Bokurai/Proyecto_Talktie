@@ -175,18 +175,25 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_15pxv"
                 android:singleLine="true"
-                android:text="@string/lbl_sing_in"
+                android:text="@string/sign_up"
                 android:textAllCaps="false"
-                tools:text="@string/lbl_sing_in" />
+                />
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/googleSignUpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_12pxv" />
 
             <TextView
                 android:id="@+id/txtConfirmation"
                 style="@style/txtRobotoromanregular17_1"
+                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
-                android:layout_marginStart="@dimen/_97pxh"
-                android:layout_marginTop="@dimen/_65pxv"
-                android:layout_marginEnd="@dimen/_97pxh"
+                android:layout_marginStart="@dimen/_100pxh"
+                android:layout_marginTop="@dimen/_25pxv"
                 android:layout_marginBottom="@dimen/_41pxv"
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
