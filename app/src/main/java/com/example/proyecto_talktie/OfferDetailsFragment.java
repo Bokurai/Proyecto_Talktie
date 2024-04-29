@@ -74,6 +74,7 @@ public class OfferDetailsFragment extends Fragment {
         contract_time = view.findViewById(R.id.txtContractTime);
         job_description = view.findViewById(R.id.txtJobDescription);
         apply_job = view.findViewById(R.id.btnapplyJob);
+
         backArrow = view.findViewById(R.id.backArrow);
 
         offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
@@ -89,9 +90,11 @@ public class OfferDetailsFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.d("TAG", offerObject.getOfferId());
-                        addAplicantToOffer(offerObject.getOfferId());
-                        apply_job.setEnabled(false);
-
+                        Bundle bundle = new Bundle();
+                        bundle.putString("offerId", offerObject.getOfferId());
+                        sendRequest2 fragment = new sendRequest2();
+                        fragment.setArguments(bundle);
+                        navController.navigate(R.id.action_sendRequest, bundle);
                     }
                 });
             }
@@ -104,7 +107,7 @@ public class OfferDetailsFragment extends Fragment {
             }
         });
     }
-    public void addAplicantToOffer(String offerId) {
+    /*public void addAplicantToOffer(String offerId) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String applicantId = currentUser.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -125,6 +128,5 @@ public class OfferDetailsFragment extends Fragment {
                         offerRef.update("applicantsId", applicantsIds);
                     }
                 });
-    }
-
+    }*/
 }
