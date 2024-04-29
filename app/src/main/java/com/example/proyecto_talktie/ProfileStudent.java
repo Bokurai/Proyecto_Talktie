@@ -34,7 +34,7 @@ public class ProfileStudent extends Fragment {
     private RecyclerView recyclerView;
     private RecommendAdapter adapter;
     private FirebaseAuth mAuth;
-    TextView textAbout;
+    TextView textAbout, txtRecommendation;
     String studentId;
 
 
@@ -77,7 +77,7 @@ public class ProfileStudent extends Fragment {
 
         studentId = currentUser.getUid();
         textAbout = view.findViewById(R.id.txtDescription);
-
+        txtRecommendation = view.findViewById(R.id.textRecommend);
 
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
 
@@ -91,6 +91,9 @@ public class ProfileStudent extends Fragment {
 
         studentViewModel.getRecommendationLiveData(studentId).observe(getViewLifecycleOwner(), recommendations -> {
             Log.d("Recomendaciones", "Acceder livedata recomendaciones " + studentId);
+            if (recommendations != null) {
+                txtRecommendation.setVisibility(View.VISIBLE);
+            }
             //Update data on exist adapter
             adapter.setRecommendationList(recommendations);
         });

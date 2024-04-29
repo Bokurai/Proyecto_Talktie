@@ -231,6 +231,7 @@
                         android:layout_weight="0.54"
                         android:ellipsize="end"
                         android:textAlignment="center"
+                        android:visibility="gone"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
                         android:text="@string/lbl_recomend" />
