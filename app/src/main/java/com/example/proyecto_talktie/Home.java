@@ -3,6 +3,7 @@ package com.example.proyecto_talktie;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,24 +23,25 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-
 public class Home extends Fragment {
-
     MainActivity mainActivity;
     NavController navController;
     LinearLayout search_bar;
     private HomeViewModel homeViewModel;
+    private OfferViewModel offerViewModel;
     private RecyclerView recyclerView;
     private companyOfferAdapter adapter;
     private FirebaseAuth mAuth;
-    private  String stuentId;
+    private  String studentId;
     private Handler handler;
     private Runnable runnable;
     private final int ACTUALIZACION_INTER = 5000;
-    private boolean primeraEjecucion = true;
+
 
     @Override
     public void onCreate(@androidx.annotation.Nullable Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class Home extends Fragment {
         runnable = new Runnable() {
             @Override
             public void run() {
-                homeViewModel.getOffersComapanies(stuentId).observe(getViewLifecycleOwner(), offer -> {
+                homeViewModel.getOffersComapanies(studentId).observe(getViewLifecycleOwner(), offer -> {
                     adapter.setOfferObjectList(offer);
                 });
                 handler.postDelayed(this, ACTUALIZACION_INTER);
@@ -62,13 +63,6 @@ public class Home extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        /**if (primeraEjecucion) {
-            homeViewModel.getOffersComapanies(stuentId).observe(getViewLifecycleOwner(), offer -> {
-                adapter.setOfferObjectList(offer);
-            });
-
-            primeraEjecucion = false;
-        }**/
         handler.postDelayed(runnable, ACTUALIZACION_INTER);
     }
 
@@ -97,8 +91,7 @@ public class Home extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        stuentId = currentUser.getUid();
+        studentId = currentUser.getUid();
 
         navController = Navigation.findNavController(view);
 
@@ -108,12 +101,8 @@ public class Home extends Fragment {
         search_bar = view.findViewById(R.id.search_bar);
 
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
+        offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
-        Log.d("Offers", "Llego aquí " + stuentId);
-
-       /** homeViewModel.getOffersComapanies(stuentId).observe(getViewLifecycleOwner(), offer -> {
-            adapter.setOfferObjectList(offer);
-        });**/
 
         search_bar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,8 +110,6 @@ public class Home extends Fragment {
                 navController.navigate(R.id.action_goStudentSearchView);
             }
         });
-
-
     }
 
     class companyOfferAdapter extends RecyclerView.Adapter<companyOfferAdapter.companyOfferViewHolder> {
@@ -144,7 +131,21 @@ public class Home extends Fragment {
 
             //poner el nombre de la empresa y la oferta
             holder.nameOffer.setText(offer.getName());
-            holder.nameCompany.setText(offer.getCompanyId());
+            holder.nameCompany.setText(offer.getCompanyName());
+
+            Date date = offer.getDate();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String formattedDate = formatter.format(date);
+            holder.dateOffer.setText(formattedDate);
+
+            holder.bntDatails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    offerViewModel.seleccionar(offer);
+                    navController.navigate(R.id.action_goOfferDetailsFragment);
+                }
+            });
+
 
         }
 
@@ -160,13 +161,16 @@ public class Home extends Fragment {
 
         class companyOfferViewHolder extends RecyclerView.ViewHolder {
             //Falta image view
-            TextView nameCompany, nameOffer;
+            TextView nameCompany, nameOffer, dateOffer;
+            AppCompatButton bntDatails;
 
             public companyOfferViewHolder(@NonNull View itemView) {
                 super(itemView);
 
                 nameCompany = itemView.findViewById(R.id.companyNameOffer);
                 nameOffer = itemView.findViewById(R.id.offerNameCompany);
+                dateOffer = itemView.findViewById(R.id.dateOffer);
+                bntDatails = itemView.findViewById(R.id.btnDatailsOffer);
             }
         }
     }

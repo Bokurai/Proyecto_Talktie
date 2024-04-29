@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class HomeViewModel extends AndroidViewModel {
 
@@ -33,77 +34,77 @@ public class HomeViewModel extends AndroidViewModel {
         super(application);
     }
 
-    //Metódo para obtener la lista de empresas seguidas por el usuario y sus publicaciones
+    /**
+     * Method that obtains the list of all the offers of the companies that the user follows.
+     * @param idUser Current user ID
+     * @return MutableLiveData with the list of offerts from the companies the user follows
+     */
     public MutableLiveData<List<OfferObject>> getOffersComapanies(String idUser) {
         db.collection("Student").document(idUser).get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                .addOnSuccessListener(documentSnapshot -> {
+                    //List of ids of companies followed by the user
+                    List<String> companiesFollowed = documentSnapshot.exists() ? (List<String>) documentSnapshot.get("followed") : null;
 
+                  if (companiesFollowed != null) {
+                        //auxiliary counter
+                        contMax = companiesFollowed.size();
                         List<OfferObject> allOffers = new ArrayList<>();
+                        companiesFollowed.forEach(companyId -> {
 
-                        if (documentSnapshot.exists()) {
-                            //Lista de seguidos = id empresas seguidas
-                            List<String> companiesFollowed = (List<String>) documentSnapshot.get("followed");
+                            getCompanyName(companyId, companyName -> {
 
-                            if (companiesFollowed != null) {
+                                FirebaseFirestore.getInstance().collection("Offer")
+                                        .whereEqualTo("companyId", companyId)
+                                        .orderBy("date", Query.Direction.DESCENDING)
+                                        .limit(5)
+                                        .get()
+                                        .addOnSuccessListener(queryDocumentSnapshots -> {
+                                            queryDocumentSnapshots.forEach(offerSnapshot -> {
 
-                                contMax = companiesFollowed.size();
-                                Log.d("OFFER", "tamaño Max:" + contMax);
+                                                String name = offerSnapshot.getString("name");
+                                                String idCompany = offerSnapshot.getString("companyId");
+                                                Date date = offerSnapshot.getDate("date");
 
-                                //Consultar las publicaciones
-                                for (String companyId : companiesFollowed) {
-                                    FirebaseFirestore.getInstance().collection("Offer")
-                                            .whereEqualTo("companyId", companyId)
-                                            .orderBy("date", Query.Direction.DESCENDING)
-                                            .limit(5)
-                                            .get()
-                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                                @Override
-                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                                    for (DocumentSnapshot offerSnapshot : queryDocumentSnapshots) {
-                                                        //nombre de la oferta
-                                                        String name = offerSnapshot.getString("name");
-                                                        String companyId = offerSnapshot.getString("companyId");
-                                                        Date date = offerSnapshot.getDate("date");
+                                                OfferObject offer = new OfferObject(name, idCompany);
+                                                offer.setDate(date);
+                                                offer.setCompanyName(companyName);
 
-                                                        OfferObject offer = new OfferObject(name, companyId);
-                                                        offer.setDate(date);
-
-                                                        allOffers.add(offer);
-                                                    }
-
-                                                    cont++;
-                                                    Log.d("OFFER", "tamaño cont:" + cont);
-
-                                                    if (cont == contMax ) {
-                                                        //ordenar lista de todas las ofertas por fechas
-                                                        Collections.sort(allOffers, new Comparator<OfferObject>() {
-                                                            @Override
-                                                            public int compare(OfferObject o1, OfferObject o2) {
-                                                                return o2.getDate().compareTo(o1.getDate());
-                                                            }
-                                                        });
-
-                                                        offersCompany.setValue(allOffers);
-                                                        cont = 0;
-                                                    }
-
-                                                }
+                                                allOffers.add(offer);
                                             });
-                                }
-                            }
-                        }
+
+                                            cont++;
+                                            Log.d("OFFER", "tamaño cont:" + cont);
+
+                                            if (cont == contMax) {
+                                                //sort list of all offers by date
+                                                Collections.sort(allOffers, (o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+
+                                                offersCompany.setValue(allOffers);
+                                                cont = 0;
+
+                                            }
+                                        });
+
+                            });
 
 
+                        });
                     }
-
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("OFFER", "Hay un problema", e);
-                    }
-                });
+                }).addOnFailureListener(e -> Log.d("OFFER", "Error al cargar la lista de empresas seguidas", e));
         return offersCompany;
+    }
+
+    public void getCompanyName(String companyId, Consumer<String> callback) {
+        db.collection("Company").document(companyId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String companyName = documentSnapshot.getString("name");
+                        callback.accept(companyName);
+                    } else {
+                        callback.accept("Unknown");
+                    }
+                }).addOnFailureListener(e -> {
+                    callback.accept("Unknown");
+                });
     }
 }

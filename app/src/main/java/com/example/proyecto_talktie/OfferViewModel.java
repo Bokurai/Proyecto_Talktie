@@ -11,6 +11,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 
 public class OfferViewModel extends AndroidViewModel {
@@ -39,17 +40,37 @@ public class OfferViewModel extends AndroidViewModel {
 
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         OfferObject offer = document.toObject(OfferObject.class);
-                        offers.add(offer);
-                    }
-                    Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
-                    offersLiveData.setValue(offers);
 
+                        getCompanyName(offer.getCompanyId(), companyName -> {
+                            offer.setCompanyName(companyName);
+                            offers.add(offer);
+
+                            if (offers.size() == queryDocumentSnapshots.size()) {
+                                Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
+                                offersLiveData.setValue(offers);
+                            }
+                        });
+                    }
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getApplication(), "Error loading the offer", Toast.LENGTH_SHORT).show();
                 });
 
         return offersLiveData;
+    }
+
+    public void getCompanyName(String companyId, Consumer<String> callback) {
+        db.collection("Company").document(companyId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String companyName = documentSnapshot.getString("name");
+                        callback.accept(companyName);
+                    } else {
+                        callback.accept("Unknown");
+                    }
+                }).addOnFailureListener(e -> {
+                    callback.accept("Unknown");
+                });
     }
 
     //Método que obtiene las ofertas para cada compañía
@@ -64,10 +85,17 @@ public class OfferViewModel extends AndroidViewModel {
 
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         OfferObject offer = document.toObject(OfferObject.class);
-                        offers.add(offer);
+
+                        getCompanyName(offer.getCompanyId(), companyName -> {
+                            offer.setCompanyName(companyName);
+                            offers.add(offer);
+
+                            if (offers.size() == queryDocumentSnapshots.size()) {
+                                Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
+                                offersCompany.setValue(offers);
+                            }
+                        });
                     }
-                    Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
-                    offersCompany.setValue(offers);
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getApplication(), "Error loading offers", Toast.LENGTH_SHORT).show();

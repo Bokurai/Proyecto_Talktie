@@ -265,7 +265,7 @@ public class CompanyProfile extends Fragment {
         @NonNull
         @Override
         public OffersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new OffersViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_offers,parent,false));
+            return new OffersViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_offer_company_profile,parent,false));
         }
 
         @Override
@@ -274,7 +274,6 @@ public class CompanyProfile extends Fragment {
             OfferObject offerObject = offerObjectList.get(position);
 
             holder.name.setText(offerObject.getName());
-            holder.companyName.setText(offerObject.getCompanyId());
 
             if (offerObject.getTags().size() > 0) {
                 holder.tag1.setText(offerObject.getTags().get(0));
@@ -323,16 +322,15 @@ public class CompanyProfile extends Fragment {
         class OffersViewHolder extends RecyclerView.ViewHolder {
 
             //Faltan campos
-            TextView name, companyName, tag1, tag2, tag3;
+            TextView name, tag1, tag2, tag3;
 
             public OffersViewHolder(@NonNull View itemView) {
                 super(itemView);
 
-                name = itemView.findViewById(R.id.offerName);
-                companyName = itemView.findViewById(R.id.companyName);
-                tag1 = itemView.findViewById(R.id.btnTagOne);
-                tag2 = itemView.findViewById(R.id.btnTagTwo);
-                tag3 = itemView.findViewById(R.id.btnTagThree);
+                name = itemView.findViewById(R.id.offerNamePC);
+                tag1 = itemView.findViewById(R.id.btnTagOnePC);
+                tag2 = itemView.findViewById(R.id.btnTagTwoPC);
+                tag3 = itemView.findViewById(R.id.btnTagThreePC);
             }
         }
     }

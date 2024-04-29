@@ -77,7 +77,7 @@ public class Offer extends Fragment {
             OfferObject offerObject = offerObjectList.get(position);
 
             holder.name.setText(offerObject.getName());
-            holder.companyName.setText(offerObject.getCompanyId());
+            holder.companyName.setText(offerObject.getCompanyName());
 
             if(offerObject.getTags() != null) {
                 if (offerObject.getTags().size() > 0) {
@@ -97,6 +97,10 @@ public class Offer extends Fragment {
                 } else {
                     holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
                 }
+            } else {
+                holder.tag1.setVisibility(View.GONE);
+                holder.tag2.setVisibility(View.GONE);
+                holder.tag3.setVisibility(View.GONE);
             }
 
 

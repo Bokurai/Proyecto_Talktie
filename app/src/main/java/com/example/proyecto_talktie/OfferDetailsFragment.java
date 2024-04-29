@@ -64,7 +64,7 @@ public class OfferDetailsFragment extends Fragment {
                 Log.d("OfferDetailsFragment", "Offer Name: " + offerObject.getName());
                 Log.d("OfferDetailsFragment", "Business Name: " + offerObject.getCompanyId());
                offer_name.setText(offerObject.getName());
-               business_name.setText(offerObject.getCompanyId());
+               business_name.setText(offerObject.getCompanyName());
                offer_date.setText((CharSequence) offerObject.getDate().toString());
                job_category.setText(offerObject.getJob_category());
                contract_time.setText(offerObject.getContract_time());
