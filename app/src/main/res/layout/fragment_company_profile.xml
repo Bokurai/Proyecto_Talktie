@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".CompanyProfile">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,9 +38,16 @@
             tools:ignore="RtlCompat" />
     </LinearLayout>
 
-    <ScrollView
+    <!--<ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"> -->
+
+    <androidx.core.widget.NestedScrollView
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:id="@+id/scrollViewScrollview"
+        android:layout_height="0dp" android:layout_weight="1"
+        android:layout_width="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -304,8 +310,8 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         </LinearLayout>
-
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+   <!-- </ScrollView> -->
 
 
 

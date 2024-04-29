@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     style="@style/groupStylewhite_A700"
+    android:layout_marginBottom="@dimen/_25pxh"
     tools:context=".Offer">
 
     <LinearLayout

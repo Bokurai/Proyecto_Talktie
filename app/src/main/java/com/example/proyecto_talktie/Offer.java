@@ -79,23 +79,27 @@ public class Offer extends Fragment {
             holder.name.setText(offerObject.getName());
             holder.companyName.setText(offerObject.getCompanyId());
 
-            if (offerObject.getTags().size() > 0) {
-                holder.tag1.setText(offerObject.getTags().get(0));
-            } else {
-                holder.tag1.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+            if(offerObject.getTags() != null) {
+                if (offerObject.getTags().size() > 0) {
+                    holder.tag1.setText(offerObject.getTags().get(0));
+                } else {
+                    holder.tag1.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                }
+
+                if (offerObject.getTags().size() > 1) {
+                    holder.tag2.setText(offerObject.getTags().get(1));
+                } else {
+                    holder.tag2.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                }
+
+                if (offerObject.getTags().size() > 2) {
+                    holder.tag3.setText(offerObject.getTags().get(2));
+                } else {
+                    holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                }
             }
 
-            if (offerObject.getTags().size() > 1) {
-                holder.tag2.setText(offerObject.getTags().get(1));
-            } else {
-                holder.tag2.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
-            }
 
-            if (offerObject.getTags().size() > 2) {
-                holder.tag3.setText(offerObject.getTags().get(2));
-            } else {
-                holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
-            }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

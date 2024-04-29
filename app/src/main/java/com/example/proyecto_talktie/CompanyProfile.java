@@ -136,14 +136,16 @@ public class CompanyProfile extends Fragment {
 
                       if (isFollowing) {
                           business.followers.remove(userId);
+                          removeFollowed(userId, business.getCompanyId());
                       } else {
                           business.followers.put(userId, true);
+                          addFollowed(userId, business.getCompanyId());
                       }
 
-                      //Actualización del botón
+                        //Actualización del botón
                         updateFollowButton(!isFollowing);
 
-                      //guardar cambios
+                        //guardar cambios
                         FirebaseFirestore.getInstance().collection("Company")
                                 .document(business.getCompanyId())
                                 .update("followers", business.followers)
@@ -163,8 +165,6 @@ public class CompanyProfile extends Fragment {
                 });
             }
         });
-
-
     }
 
     public void removeFollowed(String userId, String companyId) {
@@ -196,6 +196,47 @@ public class CompanyProfile extends Fragment {
                                             Log.d("TAG", "Error al eliminar la empresa");
                                         }
                                     });
+                        }
+                    }
+                });
+    }
+
+    public void addFollowed(String userId, String companyId) {
+
+        FirebaseFirestore.getInstance().collection("Student")
+                .document(userId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+
+                            List<String> followed = (List<String>) documentSnapshot.get("followed");
+
+                            if (followed == null) {
+                                followed = new ArrayList<>(); // Crear una nueva lista
+                            }
+
+                            if (!followed.contains(companyId)) {
+                                followed.add(companyId);
+
+                                //Actualizar
+                                FirebaseFirestore.getInstance().collection("Student")
+                                        .document(userId)
+                                        .update("followed", followed)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                Log.d("TAG", "Se agrego la empresa a la lista");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.d("TAG", "Error al agregar la empresa a la lista");
+                                            }
+                                        });
+                            }
                         }
                     }
                 });

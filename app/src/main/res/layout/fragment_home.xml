@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/_7pxv"
     android:layout_width="match_parent"
+    app:layout_goneMarginBottom="@dimen/_30pxh"
     android:orientation="vertical"
     style="@style/groupStylewhite_A700">
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5pxh"
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
@@ -13,7 +14,7 @@
         <ImageView
             android:id="@+id/imagePortadaCompany"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_100pxh"
+            android:layout_height="@dimen/_75pxh"
             android:layout_gravity="start"
             android:scaleType="fitXY"
             android:src="@drawable/img_rectangle49"
@@ -22,6 +23,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="@string/date_format"
+                app:layout_constraintBottom_toTopOf="@+id/frameCompamyImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <FrameLayout
                 android:id="@+id/frameCompamyImage"
@@ -70,18 +80,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/frameCompamyImage">
 
                 <TextView
+                    android:id="@+id/companyNameOffer"
                     style="@style/txtPoppinssemibold19"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_10pxh"
+                    android:singleLine="true"
                     android:gravity="center"
                     android:text="@string/lbl_nameCompany" />
 
                 <TextView
+                    android:id="@+id/offerNameCompany"
                     style="@style/txtPoppinssemibold17_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
+                    android:singleLine="true"
                     android:text="@string/lbl_offers_posted" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -93,7 +107,6 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="@dimen/_15pxh"
                     android:textAlignment="center"
-                    android:singleLine="true"
                     android:text="@string/lbl_details"
                     android:textAllCaps="false" />
 
