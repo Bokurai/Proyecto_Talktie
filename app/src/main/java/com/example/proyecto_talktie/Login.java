@@ -199,30 +199,22 @@ public class Login extends Fragment {
             Log.e("firebaseAuthWithGoogle", "GoogleSignInAccount is null");
             return;
         }
-
-        // Obtener el ID del usuario actualmente autenticado
-        String currentUserUid = mAuth.getCurrentUser().getUid();
-
-        // Verificar si el usuario ya está registrado en Firestore
-        DocumentReference userRef = FirebaseFirestore.getInstance().collection("User").document(currentUserUid);
+            Log.d("ID de acct", acct.getId());
+        DocumentReference userRef = FirebaseFirestore.getInstance().collection("User").document(acct.getId());
         userRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
-                    // Si el usuario ya está registrado, autenticarlo utilizando mAuth
                     mAuth.signInWithCredential(GoogleAuthProvider.getCredential(acct.getIdToken(), null))
                             .addOnCompleteListener(requireActivity(), authTask -> {
                                 if (authTask.isSuccessful()) {
-                                    // Si la autenticación es exitosa, actualizar la interfaz de usuario
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     actualizarUI(user);
                                 } else {
-                                    // Si hay un error en la autenticación con Google, mostrar un mensaje
                                     Snackbar.make(requireView(), "Error: " + authTask.getException().getMessage(), Snackbar.LENGTH_LONG).show();
                                 }
                             });
                 } else {
-                    // Si el usuario no está registrado, mostrar un mensaje y redirigirlo al registro
                     Snackbar.make(requireView(), "You have to sign up first", Snackbar.LENGTH_LONG).show();
                     navController.navigate(R.id.selectRegister);
                 }
