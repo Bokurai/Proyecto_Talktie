@@ -199,31 +199,34 @@ public class Login extends Fragment {
             Log.e("firebaseAuthWithGoogle", "GoogleSignInAccount is null");
             return;
         }
-            Log.d("ID de acct", acct.getId());
-        DocumentReference userRef = FirebaseFirestore.getInstance().collection("User").document(acct.getId());
-        userRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                    mAuth.signInWithCredential(GoogleAuthProvider.getCredential(acct.getIdToken(), null))
-                            .addOnCompleteListener(requireActivity(), authTask -> {
-                                if (authTask.isSuccessful()) {
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    actualizarUI(user);
-                                } else {
-                                    Snackbar.make(requireView(), "Error: " + authTask.getException().getMessage(), Snackbar.LENGTH_LONG).show();
-                                }
-                            });
-                } else {
-                    Snackbar.make(requireView(), "You have to sign up first", Snackbar.LENGTH_LONG).show();
-                    navController.navigate(R.id.selectRegister);
-                }
-            } else {
-                // Si hay un error en la consulta a Firestore, mostrar un mensaje
-                Snackbar.make(requireView(), "Error: " + task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
-            }
-        });
+
+        String userEmail = acct.getEmail();
+
+        FirebaseFirestore.getInstance().collection("User")
+                .whereEqualTo("email", userEmail)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (!task.getResult().isEmpty()) {
+                            mAuth.signInWithCredential(GoogleAuthProvider.getCredential(acct.getIdToken(), null))
+                                    .addOnCompleteListener(requireActivity(), authTask -> {
+                                        if (authTask.isSuccessful()) {
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            actualizarUI(user);
+                                        } else {
+                                            Snackbar.make(requireView(), "Error: " + authTask.getException().getMessage(), Snackbar.LENGTH_LONG).show();
+                                        }
+                                    });
+                        } else {
+                            Snackbar.make(requireView(), "You have to sign up first", Snackbar.LENGTH_LONG).show();
+                            navController.navigate(R.id.selectRegister);
+                        }
+                    } else {
+                        Snackbar.make(requireView(), "Error: " + task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
+                    }
+                });
     }
+
 
 
 }

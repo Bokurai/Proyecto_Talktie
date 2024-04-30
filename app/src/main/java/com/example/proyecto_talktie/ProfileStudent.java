@@ -135,30 +135,35 @@ public class ProfileStudent extends Fragment {
 
     }
 
-    public void loadUserInfo(){
-        if(user != null) {
+    public void loadUserInfo() {
+        if (user != null && getView() != null) {
             DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Student").document(studentId);
-            documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
-                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
-                            studentName.setText(documentSnapshot.getString("name"));
-                            String imageprofileURL = documentSnapshot.getString("profileImage");
-                    Context context = getView().getContext();
-                            if(imageprofileURL!= null) {
-                                Uri uriImagep = Uri.parse(imageprofileURL);
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (getView() != null) {
+                        studentName.setText(documentSnapshot.getString("name"));
+                        String imageprofileURL = documentSnapshot.getString("profileImage");
+                        Context context = getView().getContext();
+                        if (imageprofileURL != null && !imageprofileURL.isEmpty()) {
+                            Uri uriImagep = Uri.parse(imageprofileURL);
 
-                                Glide.with(context)
-                                        .load(uriImagep)
-                                        .into(profileImg);
-                            }else {
-                               Glide.with(context)
-                                       .load(R.drawable.profile_image_defaut)
-                                       .into(profileImg);
-                            }
+                            Glide.with(context)
+                                    .load(uriImagep)
+                                    .into(profileImg);
+                        } else {
+                            // Si imageprofileURL es null o vacío, carga una imagen predeterminada
+                            Glide.with(context)
+                                    .load(R.drawable.profile_image_defaut)
+                                    .into(profileImg);
+                        }
+                    }
                 }
             });
         }
     }
+
+
 
     private void selectGalleryImageRegister() {
         Intent i = new Intent();
