@@ -21,8 +21,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -93,22 +97,54 @@ public class sendRequest2 extends Fragment {
     }
 
     private void addApplicantToOffer(String offerId, String letter, String experience) {
-        // Obtener la referencia al documento de la oferta
-        DocumentReference offerRef = db.collection("Offer").document(offerId);
+        // Obtener la referencia a la colección "Student"
+        CollectionReference studentCollectionRef = db.collection("Student");
 
-        // Crear un objeto Map para representar los datos del solicitante
-        Map<String, Object> applicantData = new HashMap<>();
-        applicantData.put("letter", letter);
-        applicantData.put("experience", experience);
+// Obtener el ID del usuario actualmente autenticado desde Firebase Auth
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        // Añadir los datos del solicitante a la subcolección "applicants" dentro del documento de la oferta
-        offerRef.collection("Applicants")
-                .add(applicantData)
+// Realizar una consulta para obtener el documento de Student correspondiente al usuario actual
+        studentCollectionRef.whereEqualTo("studentId", userId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            // Obtener el primer documento (asumiendo que solo hay uno)
+                            DocumentSnapshot documentSnapshot = queryDocumentSnapshots.getDocuments().get(0);
+
+                            // Obtener el ID del documento de Student
+                            String studentId = documentSnapshot.getId();
+
+                            // Ahora puedes usar studentId para añadir los datos del solicitante a la subcolección "applicants" dentro del documento de la oferta
+                            // Obtener la referencia al documento de la oferta
+                            DocumentReference offerRef = db.collection("Offer").document(offerId);
+
+                            // Crear un objeto Map para representar los datos del solicitante
+                            Map<String, Object> applicantData = new HashMap<>();
+                            applicantData.put("letter", letter);
+                            applicantData.put("experience", experience);
+
+                            // Añadir los datos del solicitante a la subcolección "applicants" dentro del documento de la oferta
+                            offerRef.collection("Applicants").document(studentId)
+                                    .set(applicantData)
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(getContext(), "Error al añadir datos del solicitante: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        } else {
+                            Toast.makeText(getContext(), "No se encontró ningún documento de Student para este usuario", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(), "Error al añadir datos del solicitante: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Error al obtener datos de Student: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+
     }
 }
