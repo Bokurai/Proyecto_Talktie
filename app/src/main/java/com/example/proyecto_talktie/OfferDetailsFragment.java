@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 
 
+
 public class OfferDetailsFragment extends Fragment {
 
     NavController navController;
@@ -79,12 +80,12 @@ public class OfferDetailsFragment extends Fragment {
         offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
-               offer_name.setText(offerObject.getName());
-               business_name.setText(offerObject.getCompanyId());
-               offer_date.setText(offerObject.getDate().toString());
-               job_category.setText(offerObject.getJob_category());
-               contract_time.setText(offerObject.getContract_time());
-               job_description.setText(offerObject.getJob_description());
+                offer_name.setText(offerObject.getName());
+                business_name.setText(offerObject.getCompanyId());
+                offer_date.setText(offerObject.getDate().toString());
+                job_category.setText(offerObject.getJob_category());
+                contract_time.setText(offerObject.getContract_time());
+                job_description.setText(offerObject.getJob_description());
                 apply_job.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

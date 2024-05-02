@@ -21,12 +21,23 @@ public class OfferObject {
     String job_category;
     String job_description;
 
+    String companyName;
+
     public OfferObject() {
     }
 
     public OfferObject(String name, String companyId) {
         this.name = name;
         this.companyId = companyId;
+    }
+
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getOfferId() {

@@ -68,4 +68,7 @@
     <color name="indigo_900">#33196b</color>
     <color name="light_green_50_87">#87f1eee2</color>
     <color name="gray_900_90">#9018191e</color>
+
+    <color name="light_green_F">#89BA54</color>
+
 </resources>

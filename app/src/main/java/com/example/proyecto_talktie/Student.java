@@ -45,6 +45,7 @@ public class Student extends User{
 
     //Recommendations
     Map<String, String> recommendations;
+    List<String> followed;
 
     public Student() {
     }

@@ -25,30 +25,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.internal.Storage;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.Executor;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -59,7 +50,7 @@ public class ProfileStudent extends Fragment {
     private RecommendAdapter adapter;
     private FirebaseAuth mAuth;
     FirebaseUser user;
-    TextView textAbout, profileEditTxt, studentName;
+    TextView textAbout, profileEditTxt, studentName, txtRecommendation;
     CircleImageView profileImg;
     StorageReference storageReference;
     Storage storage;
@@ -73,7 +64,6 @@ public class ProfileStudent extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile_student, container, false);
-
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         //Create and set the recyclerview
@@ -83,10 +73,12 @@ public class ProfileStudent extends Fragment {
         recyclerView.setAdapter(adapter);
         storageReference = FirebaseStorage.getInstance().getReference();
 
+
+
         //LOG OUT
         LinearLayout logoutLinear = view.findViewById(R.id.LogoutLinear);
 
-        // Configura un listener de clic para el LinearLayout
+// Configura un listener de clic para el LinearLayout
         logoutLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,14 +94,17 @@ public class ProfileStudent extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
         studentId = user.getUid();
         textAbout = view.findViewById(R.id.txtDescription);
+        txtRecommendation = view.findViewById(R.id.textRecommend);
         profileEditTxt = view.findViewById(R.id.edit_profiletxt);
         profileImg = view.findViewById(R.id.profileImgStudent);
         studentName = view.findViewById(R.id.txtStudentName);
 
         loadUserInfo();
-
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
 
         /**
@@ -122,6 +117,9 @@ public class ProfileStudent extends Fragment {
 
         studentViewModel.getRecommendationLiveData(studentId).observe(getViewLifecycleOwner(), recommendations -> {
             Log.d("Recomendaciones", "Acceder livedata recomendaciones " + studentId);
+            if (recommendations != null) {
+                txtRecommendation.setVisibility(View.VISIBLE);
+            }
             //Update data on exist adapter
             adapter.setRecommendationList(recommendations);
         });
@@ -204,13 +202,13 @@ public class ProfileStudent extends Fragment {
 
     private void linkImagetoUser(String imageUrl){
         if (user!= null){
-        FirebaseFirestore.getInstance().collection("User").document(studentId)
-                .update("profileImage",imageUrl)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                    }
-                });
+            FirebaseFirestore.getInstance().collection("User").document(studentId)
+                    .update("profileImage",imageUrl)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                        }
+                    });
             FirebaseFirestore.getInstance().collection("Student").document(studentId)
                     .update("profileImage",imageUrl)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -220,6 +218,7 @@ public class ProfileStudent extends Fragment {
                         }
                     });
         }
+
 
     }
 

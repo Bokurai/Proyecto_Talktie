@@ -22,24 +22,22 @@
         app:contentInsetStart="0dp">
         <ImageView
             android:id="@+id/backArrow"
-            android:layout_width="@dimen/_16pxh"
-            android:layout_height="@dimen/_16pxh"
+            android:layout_width="@dimen/_20pxh"
+            android:layout_height="@dimen/_30pxh"
             android:layout_marginTop="@dimen/_1pxv"
             android:layout_marginBottom="@dimen/_1pxv"
             android:scaleType="fitXY"
             android:src="@drawable/img_arrowleft_black_900"
-            tools:ignore="ContentDescription"
-            />
+            tools:ignore="ContentDescription"/>
 
         <ImageView
             android:id="@+id/imageFavorite"
-            android:layout_width="@dimen/_20pxh"
-            android:layout_height="@dimen/_18pxh"
-            android:layout_marginStart="@dimen/_321pxh"
+            android:layout_width="@dimen/_30pxh"
+            android:layout_height="@dimen/_30pxh"
+            android:layout_marginStart="@dimen/_315pxh"
             android:scaleType="fitXY"
             android:src="@drawable/img_favorite"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/img_favorite" />
+            tools:ignore="ContentDescription" />
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
@@ -56,16 +54,15 @@
             android:gravity="start"
             android:orientation="vertical">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/companyLogoJD"
                 android:layout_width="@dimen/_56pxh"
                 android:layout_height="@dimen/_56pxh"
                 android:layout_marginStart="@dimen/_24pxh"
-                android:layout_marginTop="@dimen/_26pxv"
+                android:layout_marginTop="@dimen/_10pxv"
                 android:layout_marginEnd="@dimen/_24pxh"
-                android:scaleType="fitXY"
                 tools:ignore="ContentDescription"
-                tools:src="@drawable/img_image3_40x40" />
+                android:src="@drawable/company_logo" />
 
             <TextView
                 android:id="@+id/txtOfferPosition"

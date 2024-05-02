@@ -77,31 +77,37 @@ public class Offer extends Fragment {
             OfferObject offerObject = offerObjectList.get(position);
 
             holder.name.setText(offerObject.getName());
-            holder.companyName.setText(offerObject.getCompanyId());
+            holder.companyName.setText(offerObject.getCompanyName());
 
-            if (offerObject.getTags().size() > 0) {
-                holder.tag1.setText(offerObject.getTags().get(0));
-            } else {
-                holder.tag1.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
-            }
+            if(offerObject.getTags() != null) {
+                if (offerObject.getTags().size() > 0) {
+                    holder.tag1.setText(offerObject.getTags().get(0));
+                } else {
+                    holder.tag1.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                }
 
-            if (offerObject.getTags().size() > 1) {
-                holder.tag2.setText(offerObject.getTags().get(1));
-            } else {
-                holder.tag2.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
-            }
+                if (offerObject.getTags().size() > 1) {
+                    holder.tag2.setText(offerObject.getTags().get(1));
+                } else {
+                    holder.tag2.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                }
 
-            if (offerObject.getTags().size() > 2) {
-                holder.tag3.setText(offerObject.getTags().get(2));
+                if (offerObject.getTags().size() > 2) {
+                    holder.tag3.setText(offerObject.getTags().get(2));
+                } else {
+                    holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                }
             } else {
-                holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                holder.tag1.setVisibility(View.GONE);
+                holder.tag2.setVisibility(View.GONE);
+                holder.tag3.setVisibility(View.GONE);
             }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     offerViewModel.seleccionar(offerObject);
-                    System.out.println("Mostrando oferta 1");
+                    Log.d("TAG", "Oferta seleccionada " + offerObject.getName());
                     navController.navigate(R.id.action_goOfferDetailsFragment);
                 }
             });

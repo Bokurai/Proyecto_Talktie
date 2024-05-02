@@ -46,6 +46,7 @@ import org.jetbrains.annotations.Nullable;
 public class Login extends Fragment {
 
     FragmentLoginBinding binding;
+//
     private FirebaseAuth mAuth;
     //LOGIN-rabab
     NavController navController;
@@ -53,7 +54,7 @@ public class Login extends Fragment {
     private ProgressBar signInProgressBar;
     private SignInButton googleSignInButton;
     private ActivityResultLauncher<Intent> activityResultLauncher;
-    //LOGIN-email passw
+    //LOGIN-emial passw
     private EditText emailEditText, passwordEditText;
     private Button emailSignInButton, registerButton;
     MainActivity mainActivity;
@@ -63,6 +64,7 @@ public class Login extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         actualizarUI(user);
+
     }
 
     @Override
@@ -96,7 +98,7 @@ public class Login extends Fragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                        // There are no request codes
+// There are no request codes
                             Intent data = result.getData();
                             try {
                                 firebaseAuthWithGoogle(GoogleSignIn.getSignedInAccountFromIntent(data
@@ -127,7 +129,7 @@ public class Login extends Fragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            // There are no request codes
+// There are no request codes
                             Intent data = result.getData();
                             try {
                                 firebaseAuthWithGoogle(GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException.class));
@@ -161,7 +163,7 @@ public class Login extends Fragment {
         }
 
         signInForm.setVisibility(View.GONE);
-        //signInProgressBar.setVisibility(View.VISIBLE);
+        signInProgressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
@@ -224,7 +226,4 @@ public class Login extends Fragment {
                     }
                 });
     }
-
-
-
 }

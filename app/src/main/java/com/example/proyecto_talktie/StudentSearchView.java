@@ -88,7 +88,8 @@ public class StudentSearchView extends Fragment {
                 Query searchQuery = baseQuery;
 
                 if (!s.isEmpty()) {
-                   searchQuery = baseQuery.whereEqualTo("name", s);
+                  // searchQuery = baseQuery.whereEqualTo("name", s);
+                    searchQuery = baseQuery.orderBy("name").startAt(s).endAt(s+"\uf8ff");
                 }
 
                 FirestoreRecyclerOptions<Business> newOptions = new FirestoreRecyclerOptions.Builder<Business>()
