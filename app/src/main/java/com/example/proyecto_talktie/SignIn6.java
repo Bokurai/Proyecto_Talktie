@@ -61,13 +61,9 @@ public class SignIn6 extends Fragment {
         nextButton = view.findViewById(R.id.btnContinueOne);
         navController = Navigation.findNavController(view);
 
-
-        nameET.setEnabled(false);
         emailET.setEnabled(false);
-        phoneET.setEnabled(false);
         nameET.setText(registerViewModel.getName().getValue());
         emailET.setText(registerViewModel.getEmail().getValue());
-        phoneET.setText(registerViewModel.getPhoneNumber().getValue());
 
         // Agregar un TextWatcher al EditText de fecha (para que se vea en formato fecha)
         dateET.addTextChangedListener(new TextWatcher() {
@@ -127,6 +123,8 @@ public class SignIn6 extends Fragment {
                 if (validarFormulario()) {
                 Timestamp fecha_cambiada = editTextToTimestamp(dateET);
                     registerViewModel.setBirth_date(fecha_cambiada);
+                    registerViewModel.setName(nameET.getText().toString());
+                    registerViewModel.setPhoneNumber(phoneET.getText().toString());
                     navController.navigate(R.id.signIn7);
                 }
             }

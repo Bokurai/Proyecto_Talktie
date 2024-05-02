@@ -1,8 +1,12 @@
 package com.example.proyecto_talktie;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,12 +25,32 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.Executor;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileStudent extends Fragment {
     //Initialization of the student's view-model
@@ -34,8 +58,14 @@ public class ProfileStudent extends Fragment {
     private RecyclerView recyclerView;
     private RecommendAdapter adapter;
     private FirebaseAuth mAuth;
-    TextView textAbout;
+    FirebaseUser user;
+    TextView textAbout, profileEditTxt, studentName;
+    CircleImageView profileImg;
+    StorageReference storageReference;
+    Storage storage;
+    Uri uri;
     String studentId;
+    int SELECT_PICTURE = 200;
 
 
     @Override
@@ -44,19 +74,19 @@ public class ProfileStudent extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile_student, container, false);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         //Create and set the recyclerview
         adapter = new RecommendAdapter(new ArrayList<>());
 
         recyclerView = view.findViewById(R.id.recommendRecyclerView);
         recyclerView.setAdapter(adapter);
-
-
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         //LOG OUT
         LinearLayout logoutLinear = view.findViewById(R.id.LogoutLinear);
 
-// Configura un listener de clic para el LinearLayout
+        // Configura un listener de clic para el LinearLayout
         logoutLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,12 +102,13 @@ public class ProfileStudent extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-        studentId = currentUser.getUid();
+        studentId = user.getUid();
         textAbout = view.findViewById(R.id.txtDescription);
+        profileEditTxt = view.findViewById(R.id.edit_profiletxt);
+        profileImg = view.findViewById(R.id.profileImgStudent);
+        studentName = view.findViewById(R.id.txtStudentName);
 
+        loadUserInfo();
 
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
 
@@ -95,6 +126,100 @@ public class ProfileStudent extends Fragment {
             adapter.setRecommendationList(recommendations);
         });
 
+        profileEditTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectGalleryImageRegister();
+            }
+        });
+
+    }
+
+    public void loadUserInfo() {
+        if (user != null && getView() != null) {
+            DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Student").document(studentId);
+            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (getView() != null) {
+                        studentName.setText(documentSnapshot.getString("name"));
+                        String imageprofileURL = documentSnapshot.getString("profileImage");
+                        Context context = getView().getContext();
+                        if (imageprofileURL != null && !imageprofileURL.isEmpty()) {
+                            Uri uriImagep = Uri.parse(imageprofileURL);
+
+                            Glide.with(context)
+                                    .load(uriImagep)
+                                    .into(profileImg);
+                        } else {
+                            Glide.with(context)
+                                    .load(R.drawable.profile_image_defaut)
+                                    .into(profileImg);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+
+
+    private void selectGalleryImageRegister() {
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            if (requestCode == SELECT_PICTURE) {
+
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    Glide.with(this).load(selectedImageUri)
+                            .into(profileImg);
+                    uploadImage(selectedImageUri);
+                }
+            }
+        }
+    }
+
+    private void uploadImage(Uri uri) {
+        if (user != null) {
+            if (uri != null) {
+                StorageReference ref = storageReference.child("userprofileimages/" + studentId + "/" + UUID.randomUUID().toString());
+
+                ref.putFile(uri)
+                        .continueWithTask(task ->
+                                task.getResult().getStorage().getDownloadUrl())
+                        .addOnSuccessListener(url -> linkImagetoUser(url.toString()));
+            }
+        }
+    }
+
+    private void linkImagetoUser(String imageUrl){
+        if (user!= null){
+        FirebaseFirestore.getInstance().collection("User").document(studentId)
+                .update("profileImage",imageUrl)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                    }
+                });
+            FirebaseFirestore.getInstance().collection("Student").document(studentId)
+                    .update("profileImage",imageUrl)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+
+                        public void onSuccess(Void unused) {
+                        }
+                    });
+        }
 
     }
 

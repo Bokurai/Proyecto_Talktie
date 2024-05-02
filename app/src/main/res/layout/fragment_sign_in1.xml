@@ -69,31 +69,6 @@
                     android:layout_height="@dimen/_110pxv"
                     android:layout_marginBottom="@dimen/_24pxv">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageProfile"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_98pxv"
-                        android:layout_gravity="top|start"
-                        android:layout_marginBottom="@dimen/_10pxv"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_pngtreeavatar"
-                        tools:ignore="ContentDescription" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnSelectProfileRegister"
-                        android:layout_width="@dimen/_32pxh"
-                        android:layout_height="@dimen/_32pxh"
-                        android:layout_gravity="bottom|end"
-                        android:layout_marginStart="@dimen/_20pxh"
-                        android:layout_marginTop="@dimen/_10pxv"
-                        android:layout_marginEnd="@dimen/_20pxh"
-                        android:background="@drawable/rectangle_bg_light_green_900_radius_16"
-                        android:paddingHorizontal="@dimen/_10pxh"
-                        android:paddingVertical="@dimen/_10pxv"
-                        android:scaleType="fitCenter"
-                        android:drawableStart="@drawable/img_close"
-                        android:src="@drawable/img_grid"
-                        tools:ignore="ContentDescription" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -200,18 +175,25 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_15pxv"
                 android:singleLine="true"
-                android:text="@string/lbl_sing_in"
+                android:text="@string/sign_up"
                 android:textAllCaps="false"
-                tools:text="@string/lbl_sing_in" />
+                />
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/googleSignUpButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_12pxv" />
 
             <TextView
                 android:id="@+id/txtConfirmation"
                 style="@style/txtRobotoromanregular17_1"
+                android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
-                android:layout_marginStart="@dimen/_97pxh"
-                android:layout_marginTop="@dimen/_65pxv"
-                android:layout_marginEnd="@dimen/_97pxh"
+                android:layout_marginStart="@dimen/_100pxh"
+                android:layout_marginTop="@dimen/_25pxv"
                 android:layout_marginBottom="@dimen/_41pxv"
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"

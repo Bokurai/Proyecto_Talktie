@@ -81,7 +81,7 @@ public class OfferDetailsFragment extends Fragment {
             public void onChanged(OfferObject offerObject) {
                offer_name.setText(offerObject.getName());
                business_name.setText(offerObject.getCompanyId());
-               offer_date.setText((CharSequence) offerObject.getDate().toString());
+               offer_date.setText(offerObject.getDate().toString());
                job_category.setText(offerObject.getJob_category());
                contract_time.setText(offerObject.getContract_time());
                job_description.setText(offerObject.getJob_description());
@@ -104,6 +104,11 @@ public class OfferDetailsFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * Method that adds the userId to the applicant list of the offer.
+     * @param offerId
+     */
     public void addAplicantToOffer(String offerId) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String applicantId = currentUser.getUid();

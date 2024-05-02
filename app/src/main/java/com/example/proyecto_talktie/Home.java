@@ -12,6 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import org.jetbrains.annotations.Nullable;
 
 
@@ -20,11 +26,14 @@ public class Home extends Fragment {
     MainActivity mainActivity;
     NavController navController;
     LinearLayout search_bar;
+    FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        ifUserFromGoogle(user);
     }
 
     @Override
@@ -52,5 +61,22 @@ public class Home extends Fragment {
         });
 
 
+    }
+
+
+    /**
+     * Method that questions if an user has used the Google Login and it redirects them to the register session
+     * @param user
+     */
+    private void ifUserFromGoogle(FirebaseUser user) {
+        if (user != null) {
+            for (UserInfo userInfo : user.getProviderData()) {
+                if (userInfo.getProviderId().equals(GoogleAuthProvider.PROVIDER_ID)) {
+
+                    return;
+                }
+            }
+
+        }
     }
 }

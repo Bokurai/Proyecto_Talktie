@@ -50,10 +50,12 @@ public class Student extends User{
     }
 
     public Student(Date birth_date, String gender, String school, String degree, Timestamp start_date_formation) {
+        super();
         this.birth_date = birth_date;
         this.gender = gender;
         this.degree = degree;
         this.start_date_formation = start_date_formation;
     }
+
 
 }

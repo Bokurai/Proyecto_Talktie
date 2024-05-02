@@ -36,6 +36,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -158,7 +161,7 @@ public class Login extends Fragment {
         }
 
         signInForm.setVisibility(View.GONE);
-        signInProgressBar.setVisibility(View.VISIBLE);
+        //signInProgressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
@@ -192,25 +195,36 @@ public class Login extends Fragment {
         activityResultLauncher.launch(googleSignInClient.getSignInIntent());
     }
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        if(acct == null) return;
+        if (acct == null) {
+            Log.e("firebaseAuthWithGoogle", "GoogleSignInAccount is null");
+            return;
+        }
 
-        //signInProgressBar.setVisibility(View.VISIBLE);
-        signInForm.setVisibility(View.GONE);
-        mAuth.signInWithCredential(GoogleAuthProvider.getCredential(acct.getIdToken(), null))
-                .addOnCompleteListener(requireActivity(), new
-                        OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Log.e("ABCD", "signInWithCredential:success");
-                                    actualizarUI(mAuth.getCurrentUser());
-                                } else {
-                                    Log.e("ABCD", "signInWithCredential:failure",
-                                            task.getException());
-                                    signInProgressBar.setVisibility(View.GONE);
-                                    signInForm.setVisibility(View.VISIBLE);
-                                }
-                            }
-                        });
+        String userEmail = acct.getEmail();
+
+        FirebaseFirestore.getInstance().collection("User")
+                .whereEqualTo("email", userEmail)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (!task.getResult().isEmpty()) {
+                            mAuth.signInWithCredential(GoogleAuthProvider.getCredential(acct.getIdToken(), null))
+                                    .addOnCompleteListener(requireActivity(), authTask -> {
+                                        if (authTask.isSuccessful()) {
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            actualizarUI(user);
+                                        } else {
+                                            Snackbar.make(requireView(), "Error: " + authTask.getException().getMessage(), Snackbar.LENGTH_LONG).show();
+                                        }
+                                    });
+                        } else {
+                            Snackbar.make(requireView(), "You have to sign up first", Snackbar.LENGTH_LONG).show();
+                            navController.navigate(R.id.selectRegister);
+                        }
+                    }
+                });
     }
+
+
+
 }
