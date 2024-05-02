@@ -7,12 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.example.proyecto_talktie.databinding.FragmentSelectRegisterBinding;
 
 

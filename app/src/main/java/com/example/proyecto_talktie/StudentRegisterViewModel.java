@@ -3,7 +3,6 @@ package com.example.proyecto_talktie;
 import static android.content.ContentValues.TAG;
 
 import android.app.Application;
-import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;

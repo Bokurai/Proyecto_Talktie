@@ -5,11 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import java.util.HashMap;
 import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -23,7 +19,6 @@ public class OfferViewModel extends AndroidViewModel {
 
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
     private MutableLiveData<List<OfferObject>> offersCompany = new MutableLiveData<>();
     private MutableLiveData<OfferObject> offerSingle = new MutableLiveData<>();
