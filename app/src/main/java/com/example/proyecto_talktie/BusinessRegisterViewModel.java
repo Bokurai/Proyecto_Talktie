@@ -59,13 +59,7 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
         return email;
     }
 
-    public void setPassword(String password) {
-        this.password.setValue(password);
-    }
 
-    public LiveData<String> getPassword() {
-        return password;
-    }
 
     public void setCity(String city) {
         this.city.setValue(city);

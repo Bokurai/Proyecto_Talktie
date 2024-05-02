@@ -14,13 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.proyecto_talktie.databinding.FragmentSignIn1Binding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -29,13 +29,17 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class SignIn1_company extends Fragment {
 
-    FragmentSignIn1Binding binding;
+    public static final String EXTRA_FORCE_ACCOUNT_CHOOSER = "force_account_chooser";
+
+    BusinessRegisterViewModel registerViewModel;
     private Button registerButton;
     NavController navController;
     private FirebaseAuth mAuth;
@@ -51,11 +55,11 @@ public class SignIn1_company extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        emailEditText = view.findViewById(R.id.etEmail);
-        passwordEditText = view.findViewById(R.id.etPassword);
-        nameEditText = view.findViewById(R.id.etName);
-        registerButton = view.findViewById(R.id.btnSingIn);
-        registerButton = view.findViewById(R.id.googleSignUpButton);
+        emailEditText = view.findViewById(R.id.etEmailCompany);
+        passwordEditText = view.findViewById(R.id.etPasswordCompany);
+        nameEditText = view.findViewById(R.id.etNameCompany);
+        registerButton = view.findViewById(R.id.btnSingInCompany);
+        registerButton = view.findViewById(R.id.googleSignUpButtonCompany);
         haveaccount = view.findViewById(R.id.havecount);
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -130,5 +134,62 @@ public class SignIn1_company extends Fragment {
                                 }
                             }
                         });
+    }
+
+    private void crearCuentaMailPassword() {
+        if (!validarFormulario()) {
+            return;
+        }
+
+        registerButton.setEnabled(false);
+
+
+        mAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
+                .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            registerViewModel.setEmail(emailEditText.getText().toString());
+                            registerViewModel.setName(nameEditText.getText().toString());
+                            actualizarUI(mAuth.getCurrentUser());
+                        } else {
+                            Snackbar.make(requireView(), "Error: " + task.getException(), Snackbar.LENGTH_LONG).show();
+                        }
+                        registerButton.setEnabled(true);
+                    }
+                });
+
+    }
+
+    private void actualizarUI(FirebaseUser currentUser) {
+        if(currentUser != null){
+            navController.navigate(R.id.SignIn2_company);
+        }
+    }
+
+    private boolean validarFormulario() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(emailEditText.getText().toString())) {
+            emailEditText.setError("Required.");
+            valid = false;
+        } else {
+            emailEditText.setError(null);
+        }
+
+        if (TextUtils.isEmpty(passwordEditText.getText().toString())) {
+            passwordEditText.setError("Required.");
+            valid = false;
+        } else {
+            passwordEditText.setError(null);
+        }
+        if (TextUtils.isEmpty(nameEditText.getText().toString())) {
+            nameEditText.setError("Required.");
+            valid = false;
+        } else {
+            nameEditText.setError(null);
+        }
+
+        return valid;
     }
 }
