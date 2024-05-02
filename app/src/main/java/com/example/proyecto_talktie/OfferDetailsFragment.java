@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.Map;
 
 
-
 public class OfferDetailsFragment extends Fragment {
 
     NavController navController;
@@ -80,19 +79,21 @@ public class OfferDetailsFragment extends Fragment {
         offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
-                offer_name.setText(offerObject.getName());
-                business_name.setText(offerObject.getCompanyId());
-                offer_date.setText(offerObject.getDate().toString());
-                job_category.setText(offerObject.getJob_category());
-                contract_time.setText(offerObject.getContract_time());
-                job_description.setText(offerObject.getJob_description());
+               offer_name.setText(offerObject.getName());
+               business_name.setText(offerObject.getCompanyId());
+               offer_date.setText((CharSequence) offerObject.getDate().toString());
+               job_category.setText(offerObject.getJob_category());
+               contract_time.setText(offerObject.getContract_time());
+               job_description.setText(offerObject.getJob_description());
                 apply_job.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Log.d("TAG", offerObject.getOfferId());
-                        addAplicantToOffer(offerObject.getOfferId());
-                        apply_job.setEnabled(false);
-
+                        Bundle bundle = new Bundle();
+                        bundle.putString("offerId", offerObject.getOfferId());
+                        sendRequest2 fragment = new sendRequest2();
+                        fragment.setArguments(bundle);
+                        navController.navigate(R.id.action_sendRequest, bundle);
                     }
                 });
             }
@@ -105,12 +106,7 @@ public class OfferDetailsFragment extends Fragment {
             }
         });
     }
-
-    /**
-     * Method that adds the userId to the applicant list of the offer.
-     * @param offerId
-     */
-    public void addAplicantToOffer(String offerId) {
+    /*public void addAplicantToOffer(String offerId) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String applicantId = currentUser.getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -131,6 +127,6 @@ public class OfferDetailsFragment extends Fragment {
                         offerRef.update("applicantsId", applicantsIds);
                     }
                 });
-    }
+    }*/
 
 }

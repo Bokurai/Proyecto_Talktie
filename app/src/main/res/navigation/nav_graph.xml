@@ -5,8 +5,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/login">
 
-
-
     <fragment
         android:id="@+id/first"
         android:name="com.example.proyecto_talktie.First"
@@ -137,6 +135,9 @@
     <action
         android:id="@+id/action_goCompanyProfile"
         app:destination="@+id/companyProfile" />
+    <action
+        android:id="@+id/action_sendRequest"
+        app:destination="@+id/sendRequest2" />
     <fragment
         android:id="@+id/messagesHome"
         android:name="com.example.proyecto_talktie.messagesHome"
@@ -171,4 +172,9 @@
         android:name="com.example.proyecto_talktie.OfferDetailsFragment"
         android:label="fragment_offer_details"
         tools:layout="@layout/fragment_offer_details" />
+    <fragment
+        android:id="@+id/sendRequest2"
+        android:name="com.example.proyecto_talktie.sendRequest2"
+        android:label="fragment_send_request2"
+        tools:layout="@layout/fragment_send_request2" />
 </navigation>

@@ -101,7 +101,7 @@ public class SignIn1 extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    crearCuentaMailPassword();
+                crearCuentaMailPassword();
             }
         });
 

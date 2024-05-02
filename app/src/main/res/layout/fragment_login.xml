@@ -49,7 +49,6 @@
     <EditText
         android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_4"
         android:ellipsize="end"
-        android:hint="@string/lbl_mail_mail_com"
         android:id="@+id/emailEditText"
         android:inputType="textEmailAddress"
         android:layout_height="wrap_content"
@@ -61,8 +60,10 @@
         android:paddingEnd="@dimen/_30pxh"
         android:paddingStart="@dimen/_16pxh"
         android:paddingTop="@dimen/_13pxv" android:singleLine="true"
+        android:hint="@string/lbl_mail_mail_com"
+        style="@style/etSolidRounded_3"
         android:textColorHint="@color/gray_400_a2"
-        style="@style/etSolidRoundedOutline" tools:ignore="Autofill"/>
+        tools:ignore="Autofill"/>
     <FrameLayout android:id="@+id/frameStackcreatefromfraOne"
         android:layout_height="@dimen/_19pxv"
         android:layout_marginEnd="@dimen/_32pxh"
@@ -109,8 +110,9 @@
             android:paddingStart="@dimen/_16pxh"
             android:paddingTop="@dimen/_12pxv"
             android:singleLine="true"
+            style="@style/etSolidRounded_3"
             android:textColorHint="@color/gray_400_a2"
-            style="@style/etSolidRoundedOutline" tools:ignore="Autofill"/>
+            tools:ignore="Autofill"/>
     </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -151,7 +153,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_12pxv" />
-
 
 </LinearLayout>
 
