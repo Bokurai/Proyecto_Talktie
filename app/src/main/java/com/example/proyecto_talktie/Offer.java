@@ -103,8 +103,6 @@ public class Offer extends Fragment {
                 holder.tag3.setVisibility(View.GONE);
             }
 
-
-
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

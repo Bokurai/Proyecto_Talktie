@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -20,9 +21,30 @@ public class OfferViewModel extends AndroidViewModel {
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
     private MutableLiveData<List<OfferObject>> offersCompany = new MutableLiveData<>();
     private MutableLiveData<OfferObject> offerSingle = new MutableLiveData<>();
+    private int previousTotal = 0;
+
+    private MutableLiveData<Integer> totalOffers = new MutableLiveData<>();
 
     public OfferViewModel(@NonNull Application application) {
         super(application);
+    }
+
+   /** public void listenForTotalOffers() {
+        db.collection("Offer").addSnapshotListener((snapshot, e) -> {
+            if (snapshot != null) {
+                int total = snapshot.size();
+                totalOffers.setValue(total);
+
+                if (total > previousTotal) {
+                    //showNotification()
+                }
+
+            }
+        });
+    }**/
+
+    public LiveData<Integer> getTotalOffers() {
+        return totalOffers;
     }
 
 
