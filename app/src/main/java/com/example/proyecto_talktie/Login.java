@@ -221,8 +221,6 @@ public class Login extends Fragment {
                             Snackbar.make(requireView(), "You have to sign up first", Snackbar.LENGTH_LONG).show();
                             navController.navigate(R.id.selectRegister);
                         }
-                    } else {
-                        Snackbar.make(requireView(), "Error: " + task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
                     }
                 });
     }

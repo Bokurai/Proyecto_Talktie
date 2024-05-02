@@ -152,7 +152,6 @@ public class ProfileStudent extends Fragment {
                                     .load(uriImagep)
                                     .into(profileImg);
                         } else {
-                            // Si imageprofileURL es null o vacío, carga una imagen predeterminada
                             Glide.with(context)
                                     .load(R.drawable.profile_image_defaut)
                                     .into(profileImg);
