@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,10 +55,12 @@ public class ProfileStudent extends Fragment {
     TextView textAbout, profileEditTxt, studentName, txtRecommendation;
     CircleImageView profileImg;
     StorageReference storageReference;
+    NavController navController;
     Storage storage;
     Uri uri;
     String studentId;
     int SELECT_PICTURE = 200;
+
 
 
     @Override
@@ -101,6 +105,7 @@ public class ProfileStudent extends Fragment {
         textAbout = view.findViewById(R.id.txtDescription);
         txtRecommendation = view.findViewById(R.id.textRecommend);
         profileEditTxt = view.findViewById(R.id.edit_profiletxt);
+        navController = Navigation.findNavController(view);
         profileImg = view.findViewById(R.id.profileImgStudent);
         studentName = view.findViewById(R.id.txtStudentName);
 
@@ -288,8 +293,7 @@ public class ProfileStudent extends Fragment {
                         // Aquí puedes poner la lógica para cerrar sesión
                         // Por ejemplo, limpiar datos de sesión, cerrar sesión en el servidor, etc.
                         // Luego, cierra la aplicación o realiza otras acciones necesarias
-                        FirebaseAuth.getInstance().signOut();
-                        NavController navController = NavHostFragment.findNavController(ProfileStudent.this);
+                        mAuth.signOut();
                         navController.navigate(R.id.login);
 
                     }

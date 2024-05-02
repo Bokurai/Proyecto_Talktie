@@ -57,6 +57,7 @@ public class Login extends Fragment {
     //LOGIN-emial passw
     private EditText emailEditText, passwordEditText;
     private Button emailSignInButton, registerButton;
+    public static final String EXTRA_FORCE_ACCOUNT_CHOOSER = "force_account_chooser";
     MainActivity mainActivity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +85,6 @@ public class Login extends Fragment {
         navController = Navigation.findNavController(view);
         googleSignInButton = view.findViewById(R.id.googleSignInButton);
         signInForm = view.findViewById(R.id.linearLogin);
-        //signInProgressBar.setVisibility(View.GONE);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,13 +188,15 @@ public class Login extends Fragment {
         }
     }
     private void accederConGoogle() {
-        GoogleSignInClient googleSignInClient =
-                GoogleSignIn.getClient(requireActivity(), new
-                        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(getString(R.string.default_web_client_id))
-                        .requestEmail()
-                        .build());
-        activityResultLauncher.launch(googleSignInClient.getSignInIntent());
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        signInIntent.putExtra(EXTRA_FORCE_ACCOUNT_CHOOSER, true);
+        activityResultLauncher.launch(signInIntent);
     }
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         if (acct == null) {
@@ -221,7 +223,6 @@ public class Login extends Fragment {
                                     });
                         } else {
                             Snackbar.make(requireView(), "You have to sign up first", Snackbar.LENGTH_LONG).show();
-                            navController.navigate(R.id.selectRegister);
                         }
                     }
                 });

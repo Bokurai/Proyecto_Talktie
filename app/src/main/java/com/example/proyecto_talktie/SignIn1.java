@@ -49,6 +49,7 @@ public class SignIn1 extends Fragment {
 
     FragmentSignIn1Binding binding;
     private Button registerButton;
+    public static final String EXTRA_FORCE_ACCOUNT_CHOOSER = "force_account_chooser";
     NavController navController;
     private FirebaseAuth mAuth;
     private EditText emailEditText, passwordEditText, nameEditText, mobileEditText;
@@ -85,7 +86,6 @@ public class SignIn1 extends Fragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            // There are no request codes
                             Intent data = result.getData();
                             try {
                                 crearCuentaGoogle(GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException.class));
@@ -114,14 +114,17 @@ public class SignIn1 extends Fragment {
     }
 
     private void accederConGoogle() {
-        GoogleSignInClient googleSignInClient =
-                GoogleSignIn.getClient(requireActivity(), new
-                        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(getString(R.string.default_web_client_id))
-                        .requestEmail()
-                        .build());
-        activityResultLauncher.launch(googleSignInClient.getSignInIntent());
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        signInIntent.putExtra(EXTRA_FORCE_ACCOUNT_CHOOSER, true);
+        activityResultLauncher.launch(signInIntent);
     }
+
 
     private void crearCuentaGoogle(GoogleSignInAccount acct){
         if(acct == null) return;
