@@ -177,4 +177,35 @@
         android:name="com.example.proyecto_talktie.sendRequest2"
         android:label="fragment_send_request2"
         tools:layout="@layout/fragment_send_request2" />
+
+    <fragment
+        android:id="@+id/SignIn1_company"
+        android:name="com.example.proyecto_talktie.SignIn1_company"
+        android:label="fragment_sign_in1_company"
+        tools:layout="@layout/fragment_sign_in1_company" />
+    <fragment
+        android:id="@+id/SignIn2_company"
+        android:name="com.example.proyecto_talktie.signIn2_company"
+        android:label="fragment_sign_in2_company"
+        tools:layout="@layout/fragment_sign_in2_company" />
+    <fragment
+        android:id="@+id/SignIn3_company"
+        android:name="com.example.proyecto_talktie.signIn3_company"
+        android:label="fragment_sign_in3_company"
+        tools:layout="@layout/fragment_sign_in3_company" />
+    <fragment
+        android:id="@+id/SignIn4_company"
+        android:name="com.example.proyecto_talktie.signIn4_company"
+        android:label="fragment_sign_in4_company"
+        tools:layout="@layout/fragment_sign_in4_company" />
+    <fragment
+        android:id="@+id/SignIn5_company"
+        android:name="com.example.proyecto_talktie.signIn5_company"
+        android:label="fragment_sign_in5_company"
+        tools:layout="@layout/fragment_sign_in5_company" />
+    <fragment
+        android:id="@+id/SignIn6_company"
+        android:name="com.example.proyecto_talktie.signIn6_company"
+        android:label="fragment_sign_in6_company"
+        tools:layout="@layout/fragment_sign_in6_company" />
 </navigation>

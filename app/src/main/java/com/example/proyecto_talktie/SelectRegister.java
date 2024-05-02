@@ -41,5 +41,12 @@ public class SelectRegister extends Fragment {
                 navController.navigate(R.id.signIn1);
             }
         });
+
+        binding.btnStartAsACompanyOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.compa);
+            }
+        });
     }
 }

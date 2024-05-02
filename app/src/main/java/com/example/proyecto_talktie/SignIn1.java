@@ -24,6 +24,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import com.example.proyecto_talktie.databinding.FragmentSignIn1Binding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -53,6 +55,7 @@ public class SignIn1 extends Fragment {
     NavController navController;
     private FirebaseAuth mAuth;
     private EditText emailEditText, passwordEditText, nameEditText, mobileEditText;
+    private TextView haveaccount;
     StudentRegisterViewModel registerViewModel;
     SignInButton signUpButton;
     ActivityResultLauncher activityResultLauncher;
@@ -80,6 +83,7 @@ public class SignIn1 extends Fragment {
         mobileEditText = view.findViewById(R.id.etMobile);
         registerButton = view.findViewById(R.id.btnSingIn);
         signUpButton = view.findViewById(R.id.googleSignUpButton);
+        haveaccount = view.findViewById(R.id.havecount);
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -109,6 +113,12 @@ public class SignIn1 extends Fragment {
             @Override
             public void onClick(View view) {
                 accederConGoogle();
+            }
+        });
+        haveaccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.action_goLogin);
             }
         });
     }
