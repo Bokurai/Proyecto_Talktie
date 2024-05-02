@@ -66,7 +66,6 @@ public class sendRequest2 extends Fragment {
                 // Obtener los datos de la aplicación
                 String letter = letterEditText.getText().toString();
                 String experience = experienceEditText.getText().toString();
-
                 // Verificar si el ID de la oferta está disponible
                 if (offerId != null) {
                     // Añadir los datos del usuario a la subcolección "applicants" dentro del documento de la oferta correspondiente
