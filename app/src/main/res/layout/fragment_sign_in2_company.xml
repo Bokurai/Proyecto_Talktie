@@ -206,7 +206,7 @@
                 tools:text="@string/lbl_name_company" />
 
             <EditText
-                android:id="@+id/etNameSignOne"
+                android:id="@+id/etNameCompany"
                 style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -214,7 +214,7 @@
                 android:layout_marginTop="@dimen/_8pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/lbl_rabab_beihaqi"
+                android:hint="@string/your_company_name"
                 android:inputType="text"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -249,7 +249,7 @@
                 android:layout_marginTop="@dimen/_9pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/lbl_phone_number"
+                android:hint="@string/your_company_code"
                 android:inputType="phone"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -284,7 +284,6 @@
                 android:layout_marginTop="@dimen/_9pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/msg_rababbeihaqi_gm"
                 android:inputType="textEmailAddress"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -311,7 +310,7 @@
                 tools:text="@string/lbl_type_company" />
 
             <EditText
-                android:id="@+id/idtypecompany"
+                android:id="@+id/ETtypecompany"
                 style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -326,7 +325,6 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:text="female"
                 android:textColorHint="@color/black_900"
                 tools:ignore="Autofill" />
 
@@ -373,7 +371,7 @@
                         android:layout_marginStart="@dimen/_1pxh">
 
                         <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnContinueOne"
+                            android:id="@+id/btnContinue2Company"
                             style="@style/btnSolidRounded_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

@@ -267,6 +267,7 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         String uid = firebaseAuth.getUid();
         DocumentReference newUser = db.collection("User").document(uid);
+        String uT = "student";
 
         Map<String, Object> user = new HashMap<>();
         user.put("id", firebaseAuth.getUid());
@@ -278,6 +279,7 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         user.put("phone", phoneNumber.getValue());
         user.put("profileImage", "");
         user.put("website", website.getValue());
+        user.put("userT", uT);
 
         newUser.set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

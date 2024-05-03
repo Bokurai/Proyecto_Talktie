@@ -118,9 +118,9 @@
                 android:paddingStart="@dimen/_30pxh"
                 android:paddingTop="@dimen/_15pxv"
                 android:singleLine="true"
-                android:text="@string/lbl_sing_in"
+                android:text="@string/sign_up"
                 android:textAllCaps="false"
-                style="@style/btnSolidRounded_3" tools:text="@string/lbl_sing_in"/>
+                style="@style/btnSolidRounded_3" />
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/googleSignUpButtonCompany"
                 android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_12pxv" />
             <TextView
-                android:id="@+id/txtConfirmation"
+                android:id="@+id/havecountCompany"
                 style="@style/txtRobotoromanregular17_1"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"

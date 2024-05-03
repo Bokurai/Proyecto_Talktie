@@ -45,7 +45,13 @@ public class SelectRegister extends Fragment {
         binding.btnStartAsACompanyOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.compa);
+                navController.navigate(R.id.SignIn1_company);
+            }
+        });
+        binding.btnStartAsASchoolOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

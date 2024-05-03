@@ -55,10 +55,6 @@ public class Login extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        actualizarUI(user);
-
     }
 
     @Override
@@ -82,7 +78,7 @@ public class Login extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.selectRegister);
+                navController.navigate(R.id.signIn1);
             }
         });
         activityResultLauncher = registerForActivityResult(
@@ -156,7 +152,6 @@ public class Login extends Fragment {
         }
 
         signInForm.setVisibility(View.GONE);
-        signInProgressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
