@@ -539,5 +539,6 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="edit_profile_image">Edit profile image</string>
     <string name="sign_up">Sign up</string>
     <string name="lbl_details">Details</string>
+    <string name="lbl_teacher_name">Teacher Name</string>
 
 </resources>

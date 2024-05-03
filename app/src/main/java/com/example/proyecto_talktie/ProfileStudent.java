@@ -241,7 +241,7 @@ public class ProfileStudent extends Fragment {
 
             //change image and teacher name by a search through their id.
             holder.nameTeacher.setText(recommendation.getTeacherName());
-            holder.imageTeacher.setImageResource(R.drawable.img_pngtreeavatar);
+           // holder.imageTeacher.setImageResource(R.drawable.img_pngtreeavatar);
 
             holder.textRecommendation.setText(recommendation.getRecommendationText());
 

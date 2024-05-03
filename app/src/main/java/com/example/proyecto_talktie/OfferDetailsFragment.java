@@ -1,5 +1,7 @@
 package com.example.proyecto_talktie;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -29,7 +32,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +48,7 @@ public class OfferDetailsFragment extends Fragment {
 
     AppCompatButton apply_job;
 
-    ImageView backArrow;
+    ImageView backArrow, companyImage;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -75,13 +80,32 @@ public class OfferDetailsFragment extends Fragment {
         job_description = view.findViewById(R.id.txtJobDescription);
         apply_job = view.findViewById(R.id.btnapplyJob);
         backArrow = view.findViewById(R.id.backArrow);
+        companyImage = view.findViewById(R.id.companyLogoJD);
 
         offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
                offer_name.setText(offerObject.getName());
-               business_name.setText(offerObject.getCompanyId());
-               offer_date.setText((CharSequence) offerObject.getDate().toString());
+               business_name.setText(offerObject.getCompanyName());
+
+                SimpleDateFormat format = new SimpleDateFormat("HH:MM  dd/mm/yyyy");
+                Date date = offerObject.getDate();String formattedDate = format.format(date);
+               offer_date.setText(formattedDate);
+
+                String imageProfile = offerObject.getCompanyImageUrl();
+                Context context = getView().getContext();
+                if (!imageProfile.equals("null")){
+                    Uri uriImage = Uri.parse(imageProfile);
+                    Glide.with(context)
+                            .load(uriImage)
+                            .into(companyImage);
+
+                } else {
+                    Glide.with(context)
+                            .load(R.drawable.build_image_default)
+                            .into(companyImage);
+                }
+
                job_category.setText(offerObject.getJob_category());
                contract_time.setText(offerObject.getContract_time());
                job_description.setText(offerObject.getJob_description());

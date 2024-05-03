@@ -21,9 +21,9 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageCompany"
-            android:layout_width="@dimen/_40pxh"
-            android:layout_height="@dimen/_40pxh"
-            android:src="@drawable/company_logo" />
+            android:layout_width="@dimen/_50pxh"
+            android:layout_height="@dimen/_50pxh"
+            android:src="@drawable/build_image_default" />
 
         <LinearLayout
             android:id="@+id/description"

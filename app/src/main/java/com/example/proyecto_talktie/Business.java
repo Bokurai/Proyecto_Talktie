@@ -18,12 +18,22 @@ public class Business extends User{
     String headquarters;
     List<String> offers;
 
+    String profileImage;
+
     Map<String, Boolean> followers = new HashMap<>();
 
 
     //constructor vacío requerido por Firebase
     public Business(){
         super();
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
     public Map<String, Boolean> getFollowers() {

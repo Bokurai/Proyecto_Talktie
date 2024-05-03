@@ -1,5 +1,7 @@
 package com.example.proyecto_talktie;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +16,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +84,22 @@ public class Offer extends Fragment {
             holder.name.setText(offerObject.getName());
             holder.companyName.setText(offerObject.getCompanyName());
 
+            String imageProfile = offerObject.getCompanyImageUrl();
+            Context context = getView().getContext();
+            if (!imageProfile.equals("null")){
+                Uri uriImage = Uri.parse(imageProfile);
+                Glide.with(context)
+                        .load(uriImage)
+                        .into(holder.companyImage);
+
+            } else {
+                Glide.with(context)
+                        .load(R.drawable.build_image_default)
+                        .into(holder.companyImage);
+            }
+
+
+
             if(offerObject.getTags() != null) {
                 if (offerObject.getTags().size() > 0) {
                     holder.tag1.setText(offerObject.getTags().get(0));
@@ -89,13 +110,13 @@ public class Offer extends Fragment {
                 if (offerObject.getTags().size() > 1) {
                     holder.tag2.setText(offerObject.getTags().get(1));
                 } else {
-                    holder.tag2.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                    holder.tag2.setVisibility(View.GONE);
                 }
 
                 if (offerObject.getTags().size() > 2) {
                     holder.tag3.setText(offerObject.getTags().get(2));
                 } else {
-                    holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                    holder.tag3.setVisibility(View.GONE);
                 }
             } else {
                 holder.tag1.setVisibility(View.GONE);
@@ -131,8 +152,8 @@ public class Offer extends Fragment {
 
         class OffersViewHolder extends RecyclerView.ViewHolder {
 
-            //Faltan campos
             TextView name, companyName, tag1, tag2, tag3;
+            ImageView companyImage;
 
             public OffersViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -142,6 +163,7 @@ public class Offer extends Fragment {
                 tag1 = itemView.findViewById(R.id.btnTagOne);
                 tag2 = itemView.findViewById(R.id.btnTagTwo);
                 tag3 = itemView.findViewById(R.id.btnTagThree);
+                companyImage = itemView.findViewById(R.id.imageCompany);
             }
         }
     }

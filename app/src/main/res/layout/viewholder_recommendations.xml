@@ -24,14 +24,16 @@
                 android:id="@+id/imageTeacherRecommend"
                 android:layout_height="@dimen/_40pxh"
                 android:layout_width="@dimen/_40pxh"
-                android:src="@drawable/img_image3_1" />
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:src="@drawable/teacher_default" />
 
             <TextView android:ellipsize="end"
                 android:id="@+id/nameTeacherRecommend"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:singleLine="true"
-                android:text="@string/lbl_ux_researcher"
+                android:text="@string/lbl_teacher_name"
                 style="@style/txtRobotoromanbold17"/>
         </LinearLayout>
 

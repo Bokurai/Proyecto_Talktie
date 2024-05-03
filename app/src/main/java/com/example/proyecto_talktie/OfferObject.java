@@ -22,6 +22,7 @@ public class OfferObject {
     String job_description;
 
     String companyName;
+    String companyImageUrl;
 
     public OfferObject() {
     }
@@ -31,6 +32,13 @@ public class OfferObject {
         this.companyId = companyId;
     }
 
+    public String getCompanyImageUrl() {
+        return companyImageUrl;
+    }
+
+    public void setCompanyImageUrl(String companyImageUrl) {
+        this.companyImageUrl = companyImageUrl;
+    }
 
     public String getCompanyName() {
         return companyName;

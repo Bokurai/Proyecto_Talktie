@@ -88,6 +88,10 @@
         app:destination="@+id/login" />
 
     <action
+        android:id="@+id/action_goProfileStudent"
+        app:destination="@+id/profileStudent" />
+
+    <action
         android:id="@+id/action_goSignIn1"
         app:destination="@+id/signIn1" />
 
@@ -121,6 +125,9 @@
     <action
         android:id="@+id/action_to_Register"
         app:destination="@id/signIn1" />
+    <action
+        android:id="@+id/action_to_MessagesHome"
+        app:destination="@id/messagesHome" />
     <action
         android:id="@+id/action_goHome"
         app:destination="@+id/home" />

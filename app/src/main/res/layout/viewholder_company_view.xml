@@ -16,12 +16,12 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/shapeableImageView"
+                android:id="@+id/company_image"
                 android:layout_width="@dimen/_90pxh"
                 android:layout_height="@dimen/_90pxh"
                 android:layout_gravity="center"
                 android:padding="5sp"
-                android:src="@drawable/company_logo" />
+                android:src="@drawable/build_image_default" />
 
             <LinearLayout
                 android:id="@+id/description"

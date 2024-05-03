@@ -50,6 +50,7 @@
 
                     <LinearLayout
                         android:id="@+id/LogoutLinear"
+                        android:gravity="right"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -83,24 +84,16 @@
                 android:layout_marginStart="@dimen/_73pxh"
                 android:layout_marginTop="@dimen/_10pxv"
                 android:layout_width="match_parent" android:orientation="vertical">
-                <FrameLayout
-                    android:id="@+id/frameAvatar"
-                    android:layout_width="102dp"
-                    android:layout_height="102dp"
-                    android:layout_gravity="top|start"
-                    android:layout_marginEnd="@dimen/_73pxh"
-                    android:layout_marginStart="@dimen/_73pxh">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profileImgStudent"
                         android:layout_width="102dp"
                         android:layout_height="102dp"
-                        android:layout_gravity="top|start"
-                        android:layout_marginBottom="@dimen/_10pxv"
+                        android:layout_gravity="center_horizontal"
                         android:src="@drawable/profile_image_defaut"
                         tools:ignore="ContentDescription"
                         />
-                </FrameLayout>
+
 
                 <TextView
                     android:id="@+id/txtStudentName"
@@ -111,8 +104,7 @@
                     android:gravity="center"
                     android:lineSpacingExtra="@dimen/_9pxh"
                     android:singleLine="true"
-                    android:text="@string/lbl_rabab_beihaqi2"
-                    tools:text="@string/lbl_rabab_beihaqi2" />
+                    android:text="@string/lbl_name" />
                 <TextView
                     android:id="@+id/edit_profiletxt"
                     android:layout_width="match_parent"

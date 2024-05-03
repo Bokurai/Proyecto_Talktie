@@ -7,19 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class HomeViewModel extends AndroidViewModel {
@@ -51,7 +44,7 @@ public class HomeViewModel extends AndroidViewModel {
                         List<OfferObject> allOffers = new ArrayList<>();
                         companiesFollowed.forEach(companyId -> {
 
-                            getCompanyName(companyId, companyName -> {
+                            getCompanyInfo(companyId, (companyName, companyImageUrl) -> {
 
                                 FirebaseFirestore.getInstance().collection("Offer")
                                         .whereEqualTo("companyId", companyId)
@@ -61,13 +54,10 @@ public class HomeViewModel extends AndroidViewModel {
                                         .addOnSuccessListener(queryDocumentSnapshots -> {
                                             queryDocumentSnapshots.forEach(offerSnapshot -> {
 
-                                                String name = offerSnapshot.getString("name");
-                                                String idCompany = offerSnapshot.getString("companyId");
-                                                Date date = offerSnapshot.getDate("date");
+                                                OfferObject offer = offerSnapshot.toObject(OfferObject.class);
 
-                                                OfferObject offer = new OfferObject(name, idCompany);
-                                                offer.setDate(date);
                                                 offer.setCompanyName(companyName);
+                                                offer.setCompanyImageUrl(companyImageUrl);
 
                                                 allOffers.add(offer);
                                             });
@@ -77,7 +67,7 @@ public class HomeViewModel extends AndroidViewModel {
 
                                             if (cont == contMax) {
                                                 //sort list of all offers by date
-                                                Collections.sort(allOffers, (o1, o2) -> o2.getDate().compareTo(o1.getDate()));
+                                                allOffers.sort((o1, o2) -> o2.getDate().compareTo(o1.getDate()));
 
                                                 offersCompany.setValue(allOffers);
                                                 cont = 0;
@@ -94,17 +84,18 @@ public class HomeViewModel extends AndroidViewModel {
         return offersCompany;
     }
 
-    public void getCompanyName(String companyId, Consumer<String> callback) {
+    public void getCompanyInfo(String companyId, BiConsumer<String, String> callback) {
         db.collection("Company").document(companyId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String companyName = documentSnapshot.getString("name");
-                        callback.accept(companyName);
+                        String companyImageUrl = documentSnapshot.getString("profileImage") != null ? documentSnapshot.getString("profileImage") :"null";
+                        callback.accept(companyName, companyImageUrl);
                     } else {
-                        callback.accept("Unknown");
+                        callback.accept("Unknown", "null");
                     }
                 }).addOnFailureListener(e -> {
-                    callback.accept("Unknown");
+                    callback.accept("Unknown", "null");
                 });
     }
 }
