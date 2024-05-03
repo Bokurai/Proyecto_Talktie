@@ -211,11 +211,11 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
     }
 
 
-    public void saveStudentFirestore() {
+    public void saveBusinessFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         String uid = firebaseAuth.getUid();
-        DocumentReference newStudent = db.collection("Business").document(uid);
+        DocumentReference newBusiness = db.collection("Business").document(uid);
 
         Map<String, Object> business = new HashMap<>();
         business.put("studentId", firebaseAuth.getUid());
@@ -227,23 +227,15 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
         business.put("phone", phoneNumber.getValue());
         business.put("profileImage", "");
         business.put("website", website.getValue());
-        business.put("foundation_date", birth_date.getValue());
-        business.put("gender", gender.getValue());
-        business.put("currently_working", currently_working.getValue());
-        business.put("center", center.getValue());
-        business.put("company", company.getValue());
-        business.put("startJob", start_date_job.getValue());
-        business.put("endJob", end_date_job.getValue());
-        business.put("starFormation", start_date_formation.getValue());
-        business.put("endFormation", end_date_formation.getValue());
-        business.put("location", locationSchoolFormation.getValue());
-        business.put("jobLocation", locationJobStudent.getValue());
-        business.put("jobCategories", job_categories.getValue());
-        business.put("degree", degree.getValue());
+        business.put("foundation_date", foundation_date.getValue());
+        business.put("company_code", companycode.getValue());
+        business.put("sector", sector.getValue());
+        business.put("company_type", companytype.getValue());
         business.put("country", country.getValue());
-        business.put("jobTitle", jobTitle.getValue());
+        business.put("summary", summary.getValue());
+        business.put("specialities", specialities.getValue());
 
-        newStudent.set(business)
+        newBusiness.set(business)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

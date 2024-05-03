@@ -113,6 +113,7 @@ public class signIn5_company extends Fragment {
                     registerViewModel.setFoundation_date(fecha_cambiada);
                     registerViewModel.setSpecialities(etSpecialities.getText().toString());
                     registerViewModel.saveUserFirestore();
+                    registerViewModel.saveBusinessFirestore();
                     navController.navigate(R.id.SignIn6_company);
             }
         });
