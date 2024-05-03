@@ -204,7 +204,7 @@
                 tools:text="@string/lbl_country" />
 
             <EditText
-                android:id="@+id/etNameSignOne"
+                android:id="@+id/etCountryCompany"
                 style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -238,7 +238,7 @@
                 tools:text="@string/lbl_street_address" />
 
             <EditText
-                android:id="@+id/etcodecompany"
+                android:id="@+id/etStreetAddressCompany"
                 style="@style/etSolidRounded_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -272,7 +272,7 @@
                 tools:text="@string/lbl_city_company" />
 
             <EditText
-                android:id="@+id/etsectorcompany"
+                android:id="@+id/etCityCompany"
                 style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -332,7 +332,7 @@
                         android:layout_marginStart="@dimen/_1pxh">
 
                         <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnContinueOne"
+                            android:id="@+id/btnContinue5Company"
                             style="@style/btnSolidRounded_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

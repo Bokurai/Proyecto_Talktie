@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -50,6 +51,13 @@ public class SignIn1_company extends Fragment {
 
 
     //IMPORTANTE Falta añadir el view model
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        registerViewModel = new ViewModelProvider(requireActivity()).get(BusinessRegisterViewModel.class);
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -126,7 +134,7 @@ public class SignIn1_company extends Fragment {
                                 if (task.isSuccessful()) {
                                     Log.e("ABCD", "signInWithCredential:success");
                                     registerViewModel.setEmail(acct.getEmail());
-                                    registerViewModel.setName(acct.getDisplayName());
+
                                     actualizarUI(mAuth.getCurrentUser());
                                 } else {
                                     Log.e("ABCD", "signInWithCredential:failure",

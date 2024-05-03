@@ -54,7 +54,10 @@ public class signIn2_company extends Fragment {
             @Override
             public void onClick(View v) {
                 if (validarFormulario()) {
-
+                    registerViewModel.setName(namecompanyET.getText().toString());
+                    registerViewModel.setCompanycode(codecompanyET.getText().toString());
+                    registerViewModel.setSector(sectorcompanyET.getText().toString());
+                    registerViewModel.setCompanytype(typecompanyET.getText().toString());
                     navController.navigate(R.id.signIn3_company);
                 }
             }
@@ -78,6 +81,27 @@ public class signIn2_company extends Fragment {
             valid = false;
         } else {
             typecompanyET.setError(null);
+        }
+
+        if (TextUtils.isEmpty(namecompanyET.getText().toString())) {
+            namecompanyET.setError("Required.");
+            valid = false;
+        } else {
+            namecompanyET.setError(null);
+        }
+
+        if (TextUtils.isEmpty(sectorcompanyET.getText().toString())) {
+            sectorcompanyET.setError("Required.");
+            valid = false;
+        } else {
+            sectorcompanyET.setError(null);
+        }
+
+        if (TextUtils.isEmpty(codecompanyET.getText().toString())) {
+            codecompanyET.setError("Required.");
+            valid = false;
+        } else {
+            codecompanyET.setError(null);
         }
         return valid;
     }

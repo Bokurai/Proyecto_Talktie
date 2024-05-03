@@ -206,7 +206,7 @@
                 tools:text="@string/lbl_phone" />
 
             <EditText
-                android:id="@+id/etNameSignOne"
+                android:id="@+id/ETphoneCompany"
                 style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -214,7 +214,7 @@
                 android:layout_marginTop="@dimen/_8pxv"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:inputType="text"
+                android:inputType="phone"
                 android:hint="@string/lbl_phone_number"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -241,7 +241,7 @@
                 tools:text="@string/lbl_email" />
 
             <EditText
-                android:id="@+id/etcodecompany"
+                android:id="@+id/ETEmailCompany"
                 style="@style/etSolidRounded_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -250,7 +250,7 @@
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
                 android:hint="@string/lbl_email_example"
-                android:inputType="phone"
+                android:inputType="textEmailAddress"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
                 android:paddingTop="@dimen/_11pxv"
@@ -276,7 +276,7 @@
                 tools:text="@string/lbl_web_site" />
 
             <EditText
-                android:id="@+id/etsectorcompany"
+                android:id="@+id/etwebsite"
                 style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -336,7 +336,7 @@
                         android:layout_marginStart="@dimen/_1pxh">
 
                         <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnContinueOne"
+                            android:id="@+id/btnContinue3Company"
                             style="@style/btnSolidRounded_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

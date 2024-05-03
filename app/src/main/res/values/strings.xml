@@ -541,5 +541,7 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_details">Details</string>
     <string name="your_company_name">Your company name</string>
     <string name="your_company_code">Your company code</string>
+    <string name="a_brief_summary">A brief summary</string>
+    <string name="dd_mm_yyyy">DD/MM/YYYY</string>
 
 </resources>
