@@ -17,7 +17,9 @@ import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -50,12 +52,17 @@ public class SignIn1_company extends Fragment {
     private EditText emailEditText, passwordEditText, nameEditText;
 
 
-    //IMPORTANTE Falta añadir el view model
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         registerViewModel = new ViewModelProvider(requireActivity()).get(BusinessRegisterViewModel.class);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_sign_in1_company, container, false);
     }
 
 
@@ -67,7 +74,7 @@ public class SignIn1_company extends Fragment {
         passwordEditText = view.findViewById(R.id.etPasswordCompany);
         nameEditText = view.findViewById(R.id.etNameCompany);
         registerButton = view.findViewById(R.id.btnSingInCompany);
-        registerButton = view.findViewById(R.id.googleSignUpButtonCompany);
+        signUpButton = view.findViewById(R.id.googleSignUpButtonCompany);
         haveaccount = view.findViewById(R.id.havecountCompany);
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),

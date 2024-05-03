@@ -280,9 +280,7 @@ public class ProfileStudent extends Fragment {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // Aquí puedes poner la lógica para cerrar sesión
-                        // Por ejemplo, limpiar datos de sesión, cerrar sesión en el servidor, etc.
-                        // Luego, cierra la aplicación o realiza otras acciones necesarias
+
                         mAuth.signOut();
                         navController.navigate(R.id.login);
 

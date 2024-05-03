@@ -208,4 +208,18 @@
         android:name="com.example.proyecto_talktie.signIn6_company"
         android:label="fragment_sign_in6_company"
         tools:layout="@layout/fragment_sign_in6_company" />
+    <fragment
+        android:id="@+id/companyHomeFragment"
+        android:name="com.example.proyecto_talktie.CompanyHomeFragment"
+        android:label="fragment_company_home"
+        tools:layout="@layout/fragment_company_home" />
+
+    <action
+        android:id="@+id/action_goCompanyHome"
+        app:destination="@+id/companyHomeFragment" />
+
+
+    <action
+        android:id="@+id/action_goSignIn1Company"
+        app:destination="@+id/SignIn1_company" />
 </navigation>

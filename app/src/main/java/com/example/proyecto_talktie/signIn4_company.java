@@ -21,7 +21,7 @@ import android.widget.TextView;
 public class signIn4_company extends Fragment {
     BusinessRegisterViewModel registerViewModel;
     NavController navController;
-    TextView etCountry, etAddress, etCity;
+    TextView etCountry, etAddress, etCity, etZipcode;
     AppCompatButton button;
 
 
@@ -46,6 +46,7 @@ public class signIn4_company extends Fragment {
         etCity = view.findViewById(R.id.etCityCompany);
         button = view.findViewById(R.id.btnContinue5Company);
         navController = Navigation.findNavController(view);
+        etZipcode = view.findViewById(R.id.etzipcode);
 
         etAddress.setText(registerViewModel.getEmail().toString());
 
@@ -55,7 +56,8 @@ public class signIn4_company extends Fragment {
                 if (validarFormulario()) {
                     registerViewModel.setCountry(etCountry.getText().toString());
                     registerViewModel.setCity(etCity.getText().toString());
-                    registerViewModel.setHomeAddress(etAddress.getText().toString());
+                    registerViewModel.setHeadquarters(etAddress.getText().toString());
+                    registerViewModel.setZipcode(etZipcode.getText().toString());
                     navController.navigate(R.id.signIn5_company);
                 }
             }

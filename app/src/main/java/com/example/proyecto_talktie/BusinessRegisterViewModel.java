@@ -32,7 +32,7 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
     private MutableLiveData<String> password = new MutableLiveData<>();
     private MutableLiveData<String> city = new MutableLiveData<>();
     private MutableLiveData<String> zipcode = new MutableLiveData<>();
-    private MutableLiveData<String> homeAddress = new MutableLiveData<>();
+    private MutableLiveData<String> headquarters = new MutableLiveData<>();
     private MutableLiveData<String> phoneNumber = new MutableLiveData<>();
     private MutableLiveData<String> website = new MutableLiveData<>();
     private MutableLiveData<String> companycode = new MutableLiveData<>();
@@ -86,12 +86,12 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
         return zipcode;
     }
 
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress.setValue(homeAddress);
+    public void setHeadquarters(String headquarters) {
+        this.headquarters.setValue(headquarters);
     }
 
-    public LiveData<String> getHomeAddress() {
-        return homeAddress;
+    public LiveData<String> getHeadquarters() {
+        return headquarters;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -189,7 +189,7 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
         user.put("email", email.getValue());
         user.put("city", city.getValue());
         user.put("zipcode", zipcode.getValue());
-        user.put("homeAddress", homeAddress.getValue());
+        user.put("headquarters", headquarters.getValue());
         user.put("phone", phoneNumber.getValue());
         user.put("profileImage", "");
         user.put("website", website.getValue());
@@ -218,19 +218,19 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
         DocumentReference newBusiness = db.collection("Business").document(uid);
 
         Map<String, Object> business = new HashMap<>();
-        business.put("studentId", firebaseAuth.getUid());
+        business.put("companyId", firebaseAuth.getUid());
         business.put("name", name.getValue());
         business.put("email", email.getValue());
         business.put("city", city.getValue());
         business.put("zipcode", zipcode.getValue());
-        business.put("homeAddress", homeAddress.getValue());
+        business.put("headquarters", headquarters.getValue());
         business.put("phone", phoneNumber.getValue());
         business.put("profileImage", "");
         business.put("website", website.getValue());
         business.put("foundation_date", foundation_date.getValue());
         business.put("company_code", companycode.getValue());
         business.put("sector", sector.getValue());
-        business.put("company_type", companytype.getValue());
+        business.put("typeCompany", companytype.getValue());
         business.put("country", country.getValue());
         business.put("summary", summary.getValue());
         business.put("specialities", specialities.getValue());

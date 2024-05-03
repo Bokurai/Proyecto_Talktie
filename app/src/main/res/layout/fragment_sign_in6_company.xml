@@ -90,7 +90,7 @@
                     android:textAlignment="center"
                     tools:text="@string/lbl_finishmessage_company" />
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnContinue"
+                    android:id="@+id/btnContinueHome"
                     style="@style/btnSolidRounded_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
