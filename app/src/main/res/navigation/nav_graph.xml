@@ -204,11 +204,6 @@
         android:label="fragment_sign_in5_company"
         tools:layout="@layout/fragment_sign_in5_company" />
     <fragment
-        android:id="@+id/SignIn6_company"
-        android:name="com.example.proyecto_talktie.signIn6_company"
-        android:label="fragment_sign_in6_company"
-        tools:layout="@layout/fragment_sign_in6_company" />
-    <fragment
         android:id="@+id/companyHomeFragment"
         android:name="com.example.proyecto_talktie.CompanyHomeFragment"
         android:label="fragment_company_home"

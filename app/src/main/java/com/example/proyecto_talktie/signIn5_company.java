@@ -114,7 +114,7 @@ public class signIn5_company extends Fragment {
                     registerViewModel.setSpecialities(etSpecialities.getText().toString());
                     registerViewModel.saveUserFirestore();
                     registerViewModel.saveBusinessFirestore();
-                    navController.navigate(R.id.action_goSignIn6Company);
+                    navController.navigate(R.id.action_goCompanyHome);
             }
         });
 
