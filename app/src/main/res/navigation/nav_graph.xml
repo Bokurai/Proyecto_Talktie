@@ -246,5 +246,10 @@
     <action
         android:id="@+id/action_goNewOffer"
         app:destination="@+id/newOfferFragment" />
+    <fragment
+        android:id="@+id/companyLogin"
+        android:name="com.example.proyecto_talktie.CompanyLogin"
+        android:label="fragment_company_login"
+        tools:layout="@layout/fragment_company_login" />
 
 </navigation>
