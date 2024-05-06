@@ -57,7 +57,7 @@
 
                         <ImageView
                             android:id="@+id/logout"
-                            android:layout_width="@dimen/_35pxh"
+                            android:layout_width="@dimen/_40pxh"
                             android:layout_height="@dimen/_35pxh"
                             android:layout_marginStart="@dimen/_334pxh"
                             android:layout_marginTop="@dimen/_8pxv"
@@ -151,25 +151,33 @@
                         style="@style/txtRobotoromanbold17"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10pxv"
                         android:layout_weight="0.54"
+                        android:layout_gravity="center"
                         android:ellipsize="end"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
-                        android:text="@string/lbl_about_me"
-                        tools:text="@string/lbl_about_me" />
+                        android:text="@string/lbl_about_me" />
 
                     <ImageView
                         android:id="@+id/aboutEdit"
-                        android:layout_width="@dimen/_11pxh"
-                        android:layout_height="@dimen/_13pxh"
+                        android:layout_width="@dimen/_15pxh"
+                        android:layout_height="@dimen/_15pxh"
                         android:layout_gravity="center"
-                        android:layout_marginHorizontal="@dimen/_9pxh"
-                        android:layout_marginVertical="@dimen/_9pxv"
+                       android:layout_margin="@dimen/_10pxh"
                         android:scaleType="fitXY"
                         android:src="@drawable/img_edit"/>
 
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSave"
+                        style="@style/btnSolidRounded_P"
+                        android:layout_width="@dimen/_40pxh"
+                        android:layout_height="30dp"
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        android:text="@string/lbl_save"/>
+
                 </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/txtDescription"
@@ -182,7 +190,8 @@
                     android:gravity="start"
                     android:letterSpacing="0.01"
                     android:lineSpacingExtra="@dimen/_5pxh"
-                    android:text="@string/lbl_about"/>
+                    android:hint="@string/lbl_about"/>
+
 
                 <LinearLayout
                     android:id="@+id/linearTitle4"

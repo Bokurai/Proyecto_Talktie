@@ -43,11 +43,11 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/linearBotonMarketing"
+                        android:id="@+id/linearBotonTI"
                         style="@style/groupStylebluegray_50cornerRadius"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.45"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -58,7 +58,7 @@
                             android:layout_marginTop="@dimen/_14pxv"
                             android:layout_marginBottom="@dimen/_13pxv"
                             android:scaleType="fitXY"
-                            android:src="@drawable/img_computer"
+                            android:src="@drawable/ti"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -78,12 +78,12 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/linearBotonTechnologi"
+                        android:id="@+id/linearBotonMarketing"
                         style="@style/groupStylebluegray_50cornerRadius"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8pxh"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.45"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -94,7 +94,7 @@
                             android:layout_marginTop="@dimen/_14pxv"
                             android:layout_marginBottom="@dimen/_13pxv"
                             android:scaleType="fitXY"
-                            android:src="@drawable/img_maximize_black_900"
+                            android:src="@drawable/marketing"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -114,12 +114,12 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/linearButton03"
+                        android:id="@+id/linearButtonHealth"
                         style="@style/groupStylebluegray_50cornerRadius"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_8pxh"
-                        android:layout_weight="0.33"
+                        android:layout_weight="0.45"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -130,7 +130,7 @@
                             android:layout_marginTop="@dimen/_14pxv"
                             android:layout_marginBottom="@dimen/_13pxv"
                             android:scaleType="fitXY"
-                            android:src="@drawable/img_calendar_black_900"
+                            android:src="@drawable/health"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -146,8 +146,7 @@
                             android:ellipsize="end"
                             android:lineSpacingExtra="@dimen/_3pxh"
                             android:singleLine="true"
-                            android:text="@string/lbl_developer"
-                            tools:text="@string/lbl_developer" />
+                            android:text="@string/lbl_health"/>
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>

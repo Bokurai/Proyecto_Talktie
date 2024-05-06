@@ -90,7 +90,7 @@ public class CompanyProfile extends Fragment {
         imageReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_goStudentSearchView);
+                navController.popBackStack();
             }
         });
 

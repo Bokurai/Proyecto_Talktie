@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -22,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,6 +51,10 @@ public class ProfileStudent extends Fragment {
     private RecyclerView recyclerView;
     private RecommendAdapter adapter;
     private FirebaseAuth mAuth;
+    private ImageView editButton;
+    private AppCompatButton saveButton;
+    private String newAbout = "";
+    private EditText editTextAbout;
     FirebaseUser user;
     TextView textAbout, profileEditTxt, studentName, txtRecommendation;
     CircleImageView profileImg;
@@ -104,6 +110,10 @@ public class ProfileStudent extends Fragment {
         profileImg = view.findViewById(R.id.profileImgStudent);
         studentName = view.findViewById(R.id.txtStudentName);
 
+        editButton = view.findViewById(R.id.aboutEdit);
+        saveButton = view.findViewById(R.id.btnSave);
+
+
         loadUserInfo();
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
 
@@ -128,6 +138,74 @@ public class ProfileStudent extends Fragment {
             @Override
             public void onClick(View v) {
                 selectGalleryImageRegister();
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                editButton.setVisibility(View.GONE);
+                saveButton.setVisibility(View.VISIBLE);
+
+               if (editTextAbout == null) {
+                   editTextAbout = new EditText(requireActivity());
+               }
+
+                editTextAbout.setText(textAbout.getText());
+
+               //remplazar el texview con el editText
+                ViewGroup parent = (ViewGroup) textAbout.getParent();
+                int index = parent.indexOfChild(textAbout);
+                parent.removeView(textAbout);
+                parent.addView(editTextAbout, index);
+
+                editTextAbout.requestFocus();
+                editTextAbout.selectAll();
+
+                //actualizar newAbout
+                newAbout = textAbout.getText().toString().trim();
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String updateAbout = editTextAbout.getText().toString().trim();
+
+                if (!updateAbout.isEmpty()) {
+
+                    if (!updateAbout.equals(newAbout)) {
+                        newAbout = updateAbout;
+
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        db.collection("Student").document(studentId)
+                                .update("about", newAbout)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+
+                                        Log.d("UPDATE", "About actualizado");
+
+                                    }
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.d("UPDATE", "No ha sido posible actualizar el about", e);
+                                });
+                    }
+
+                    //volver a un textView
+                    ViewGroup parent = (ViewGroup) editTextAbout.getParent();
+                    int index = parent.indexOfChild(editTextAbout);
+                    parent.removeView(editTextAbout);
+                    parent.addView(textAbout, index);
+
+                    editButton.setVisibility(View.VISIBLE);
+                    saveButton.setVisibility(View.GONE);
+
+                    textAbout.setText(newAbout);
+
+                }
             }
         });
 
@@ -239,11 +317,22 @@ public class ProfileStudent extends Fragment {
         public void onBindViewHolder(@NonNull RecommendationViewHolder holder, int position) {
             Recommendation recommendation = recommendationList.get(position);
 
-            //change image and teacher name by a search through their id.
             holder.nameTeacher.setText(recommendation.getTeacherName());
-           // holder.imageTeacher.setImageResource(R.drawable.img_pngtreeavatar);
-
             holder.textRecommendation.setText(recommendation.getRecommendationText());
+
+            String imageProfileUrl = recommendation.getProfileImage();
+            Context context = getView().getContext();
+            if (imageProfileUrl != null && !imageProfileUrl.isEmpty()) {
+                Uri uriImagep = Uri.parse(imageProfileUrl);
+
+                Glide.with(context)
+                        .load(uriImagep)
+                        .into(holder.imageTeacher);
+            } else {
+                Glide.with(context)
+                        .load(R.drawable.teacher_default)
+                        .into(holder.imageTeacher);
+            }
 
         }
 
@@ -285,9 +374,6 @@ public class ProfileStudent extends Fragment {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // Aquí puedes poner la lógica para cerrar sesión
-                        // Por ejemplo, limpiar datos de sesión, cerrar sesión en el servidor, etc.
-                        // Luego, cierra la aplicación o realiza otras acciones necesarias
                         FirebaseAuth.getInstance().signOut();
                         NavController navController = NavHostFragment.findNavController(ProfileStudent.this);
                         navController.navigate(R.id.login);

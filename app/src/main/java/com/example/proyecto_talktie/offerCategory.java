@@ -17,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,24 +24,24 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Offer extends Fragment {
+public class offerCategory extends Fragment {
+    private TextView nameCategory;
     private OfferViewModel offerViewModel;
     private RecyclerView recyclerView;
-    private LinearLayout ti, marketing, health;
-    NavController navController;
-    private OffersAdapter adapter;
+    private NavController navController;
+    private OffersCategory adapter;
+    private String category = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_offer, container, false);
+        View view = inflater.inflate(R.layout.fragment_offer_category, container, false);
 
-        adapter = new OffersAdapter(new ArrayList<>());
+        adapter = new OffersCategory(new ArrayList<>());
 
-        recyclerView = view.findViewById(R.id.offerRecyclerView);
+        recyclerView = view.findViewById(R.id.categoryRecyclerView);
         recyclerView.setAdapter(adapter);
-
 
         return view;
     }
@@ -51,63 +50,38 @@ public class Offer extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ti = view.findViewById(R.id.linearBotonTI);
-        marketing = view.findViewById(R.id.linearBotonMarketing);
-        health = view.findViewById(R.id.linearButtonHealth);
-
         navController = Navigation.findNavController(view);
+
+        nameCategory = view.findViewById(R.id.nameCategories);
 
         offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
-        /**
-         *  I get the livedata with the offers from the view-model to show it to the user
-         */
-        offerViewModel.getOffersLiveData().observe(getViewLifecycleOwner(), offerObjects -> {
+        category = offerViewModel.getCategory();
+
+        nameCategory.setText(category);
+
+
+        offerViewModel.getOfferCategory(category).observe(getViewLifecycleOwner(), offerObjects -> {
             adapter.setOfferObjectList(offerObjects);
-        });
-
-        ti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_goCategoryOffer);
-                offerViewModel.setCategory("IT");
-            }
-        });
-
-        marketing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_goCategoryOffer);
-                offerViewModel.setCategory("Marketing");
-            }
-        });
-
-        health.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_goCategoryOffer);
-                offerViewModel.setCategory("Health");
-            }
         });
 
     }
 
-    class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersViewHolder> {
-       private List<OfferObject> offerObjectList;
+    class OffersCategory extends RecyclerView.Adapter<OffersCategory.OfferViewHolder> {
+        private List<OfferObject> offerObjectList;
 
-        public OffersAdapter(List<OfferObject> offerObjectList) {
+        public OffersCategory(List<OfferObject> offerObjectList) {
             this.offerObjectList = offerObjectList;
         }
 
         @NonNull
         @Override
-        public OffersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new OffersViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_offers,parent,false));
+        public OfferViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new OfferViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_offers,parent,false));
         }
 
         @Override
-        public void onBindViewHolder(@NonNull OffersViewHolder holder, int position) {
-
+        public void onBindViewHolder(@NonNull OfferViewHolder holder, int position) {
             OfferObject offerObject = offerObjectList.get(position);
 
             holder.name.setText(offerObject.getName());
@@ -162,6 +136,7 @@ public class Offer extends Fragment {
                 }
             });
 
+
         }
 
         @Override
@@ -169,22 +144,19 @@ public class Offer extends Fragment {
             return offerObjectList.size();
         }
 
-        /**
-         *  Method updating the list of offers
-         * @param offerObjectList list of offers
-         */
         public void setOfferObjectList(List<OfferObject> offerObjectList) {
-            this.offerObjectList = offerObjectList;
+            this.offerObjectList.clear();
+            this.offerObjectList.addAll(offerObjectList);
             notifyDataSetChanged();
-            Log.d("OffersAdapter", "Cantidad de ofertas recibidas: " + offerObjectList.size());
         }
 
-        class OffersViewHolder extends RecyclerView.ViewHolder {
 
+
+        class OfferViewHolder extends RecyclerView.ViewHolder {
             TextView name, companyName, tag1, tag2, tag3;
             ImageView companyImage;
 
-            public OffersViewHolder(@NonNull View itemView) {
+            public OfferViewHolder(@NonNull View itemView) {
                 super(itemView);
 
                 name = itemView.findViewById(R.id.offerName);
@@ -196,5 +168,4 @@ public class Offer extends Fragment {
             }
         }
     }
-
 }

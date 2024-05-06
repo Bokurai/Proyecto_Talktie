@@ -34,7 +34,7 @@ I'm contacting you because I'm looking for an internship for the DAM higher degr
     <string name="msg_don_t_receive_c2">Don\u2019t receive code ? </string>
     <string name="lbl_associate">Associate</string>
     <string name="msg_2_use_of_your">2. Use of your personal data</string>
-    <string name="lbl_technology">Technology</string>
+    <string name="lbl_technology">IT</string>
     <string name="msg_i_am_currently">I am currently working here</string>
     <string name="msg_sri_wedari_soek">Sri Wedari Soekarno</string>
     <string name="lbl_applied">Applied</string>
@@ -96,7 +96,7 @@ Raffles Place, Boat Band M83</string>
     <string name="lbl_soraya_mar">Soraya Mar </string>
     <string name="lbl_add_new_message">Add New Message</string>
     <string name="msg_192_open_positi">192 open positions</string>
-    <string name="lbl_developer">Developer</string>
+    <string name="lbl_health">Health</string>
     <string name="lbl_privacy_policy">Privacy policy</string>
     <string name="lbl_russian">Russian</string>
     <string name="lbl_best_studio">Best Studio</string>
@@ -264,7 +264,7 @@ Rec</string>
     <string name="lbl_add_recruiter">Add Recruiter</string>
     <string name="lbl_school_code">School Code</string>
     <string name="lbl_email_address">Email Address</string>
-    <string name="lbl_about">About </string>
+    <string name="lbl_about">Write something about you</string>
     <string name="lbl_date_of_birth">Date of Birth</string>
     <string name="msg_64k_80k_yearl">64k - 80k/yearly</string>
     <string name="lbl_candidates">Candidates</string>

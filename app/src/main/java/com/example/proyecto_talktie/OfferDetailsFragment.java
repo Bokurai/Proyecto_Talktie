@@ -82,6 +82,7 @@ public class OfferDetailsFragment extends Fragment {
         backArrow = view.findViewById(R.id.backArrow);
         companyImage = view.findViewById(R.id.companyLogoJD);
 
+
         offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {

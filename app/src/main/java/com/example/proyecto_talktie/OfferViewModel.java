@@ -28,11 +28,21 @@ public class OfferViewModel extends AndroidViewModel {
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
     private MutableLiveData<List<OfferObject>> offersCompany = new MutableLiveData<>();
     private MutableLiveData<OfferObject> offerSingle = new MutableLiveData<>();
+    private MutableLiveData<List<OfferObject>> offerCategory = new MutableLiveData<>();
+    private String category = "";
 
     public OfferViewModel(@NonNull Application application) {
         super(application);
     }
 
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
 
     /**
      * Method that goes through each offer in the list, sorts them by date in descending order and limits to 50 results.
@@ -116,6 +126,42 @@ public class OfferViewModel extends AndroidViewModel {
                 });
         return offersCompany;
     }
+
+    public MutableLiveData<List<OfferObject>> getOfferCategory(String category) {
+        db.collection("Offer")
+                .whereEqualTo("job_category", category)
+                .orderBy("date", Query.Direction.DESCENDING)
+                .limit(50)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<OfferObject> offers = new ArrayList<>();
+
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                        OfferObject offer = document.toObject(OfferObject.class);
+
+                        getCompanyInfo(offer.getCompanyId(), (companyName, companyImageUrl) -> {
+                            offer.setCompanyName(companyName);
+                            offer.setCompanyImageUrl(companyImageUrl);
+                            offers.add(offer);
+
+                            if (offers.size() == queryDocumentSnapshots.size()) {
+                                Log.d("TAG", "Cantidad de ofertas recuperadas: " + offers.size());
+
+                                Collections.sort(offers, ((o1, o2) -> o2.getDate().compareTo(o1.getDate())));
+
+                                offerCategory.setValue(offers);
+                            }
+                        });
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getApplication(), "Error loading the offer", Toast.LENGTH_SHORT).show();
+                    Log.d("ERRPR", "No se pueden cargar", e);
+                });
+
+        return offerCategory;
+    }
+
     public void seleccionar(OfferObject offerObject){
         offerSingle.postValue(offerObject);
     }
@@ -123,5 +169,6 @@ public class OfferViewModel extends AndroidViewModel {
     MutableLiveData<OfferObject> seleccionado(){
         return offerSingle;
     }
+
 
 }

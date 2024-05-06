@@ -4,7 +4,7 @@ public class Recommendation {
     private String idTeacher;
     private String recommendationText;
     private String teacherName;
-    private String teacherImage;
+    private String profileImage;
 
     public Recommendation() {
     }
@@ -13,6 +13,14 @@ public class Recommendation {
         this.idTeacher = idTeacher;
         this.recommendationText = recommendationText;
         this.teacherName = teacherName;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
     public String getIdTeacher() {
@@ -39,11 +47,4 @@ public class Recommendation {
         this.teacherName = teacherName;
     }
 
-    public String getTeacherImage() {
-        return teacherImage;
-    }
-
-    public void setTeacherImage(String teacherImage) {
-        this.teacherImage = teacherImage;
-    }
 }

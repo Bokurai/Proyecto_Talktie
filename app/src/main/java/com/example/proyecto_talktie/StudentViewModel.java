@@ -87,15 +87,12 @@ public class StudentViewModel extends AndroidViewModel {
                 if (!querySnapshot.isEmpty()) {
                     QueryDocumentSnapshot document = (QueryDocumentSnapshot) querySnapshot.getDocuments().get(0);
                     String teacherName = document.getString("name");
-                    String teacherImage = document.getString("imageProfile");
+                    String teacherImage = document.getString("profileImage") != null ? document.getString("profileImage") : "null";
 
                     Recommendation recommendation = new Recommendation(teacherId, recommendationText, teacherName);
 
-                    if (teacherImage != null) {
-                        recommendation.setTeacherImage(teacherImage);
-                    } else {
 
-                    }
+                    recommendation.setProfileImage(teacherImage);
 
                     recommendationList.add(recommendation);
                     recommendationsLiveData.setValue(recommendationList);
@@ -133,6 +130,11 @@ public class StudentViewModel extends AndroidViewModel {
             }
         });
         return aboutStudent;
+    }
+
+    public void editAbout() {
+
+
     }
 
 }

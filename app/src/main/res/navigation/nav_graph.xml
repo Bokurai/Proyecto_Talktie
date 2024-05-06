@@ -174,6 +174,10 @@
     <action
         android:id="@+id/action_goStudentSearchView"
         app:destination="@id/studentSearchView" />
+
+    <action
+        android:id="@+id/action_goCategoryOffer"
+        app:destination="@id/offerCategory" />
     <fragment
         android:id="@+id/offerDetailsFragment"
         android:name="com.example.proyecto_talktie.OfferDetailsFragment"
@@ -184,4 +188,9 @@
         android:name="com.example.proyecto_talktie.sendRequest2"
         android:label="fragment_send_request2"
         tools:layout="@layout/fragment_send_request2" />
+    <fragment
+        android:id="@+id/offerCategory"
+        android:name="com.example.proyecto_talktie.offerCategory"
+        android:label="fragment_offer_category"
+        tools:layout="@layout/fragment_offer_category" />
 </navigation>
