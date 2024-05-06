@@ -2,6 +2,8 @@ package com.example.proyecto_talktie;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +25,17 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,37 +46,41 @@ public class sendRequest2 extends Fragment {
 
     private EditText letterEditText;
     private EditText experienceEditText;
-    private ImageButton cvButton;
+    private ImageButton uploadCV;
     private Button sendButton;
     private NavController navController;
 
-
+    private String documentUrl;
     private String offerId;
+    private FirebaseAuth mAuth;
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    private StorageReference storageReference = storage.getReference();
+    private static final int SELECT_DOCUMENT = 1;
+    private FirebaseUser user;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_send_request2, container, false);
-        // Inflar el layout para este fragmento
         LinearLayout linearLayout = rootView.findViewById(R.id.letter);
         letterEditText = linearLayout.findViewById(R.id.txtWriteyourlett);
 
         experienceEditText = rootView.findViewById(R.id.txtexperience);
-        cvButton = rootView.findViewById(R.id.uploadCV);
+        uploadCV = rootView.findViewById(R.id.uploadCV);
         sendButton = rootView.findViewById(R.id.btnSendNow);
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
-        // Obtener el ID de la oferta de los argumentos del fragmento (puedes pasar este ID al abrir el fragmento)
         Bundle args = getArguments();
         if (args != null) {
             offerId = args.getString("offerId");
         }
 
-        // Agregar un OnClickListener al botón de enviar
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Obtener los datos de la aplicación
                 String letter = letterEditText.getText().toString();
                 String experience = experienceEditText.getText().toString();
                 // Verificar si el ID de la oferta está disponible
@@ -84,7 +97,6 @@ public class sendRequest2 extends Fragment {
                                     navController.navigate(R.id.action_goOffer);
                                 }
                             });
-                    // Crear y mostrar el dialogo
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 } else {
@@ -92,18 +104,87 @@ public class sendRequest2 extends Fragment {
                 }
             }
         });
+        // Agregar un OnClickListener al botón de subir CV
+        uploadCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectGalleryDocument();
+            }
+        });
 
         return rootView;
     }
 
+    private void selectGalleryDocument() {
+        Intent intent = new Intent();
+        intent.setType("*/*"); // Tipo de archivo
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Document"), SELECT_DOCUMENT);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == getActivity().RESULT_OK && requestCode == SELECT_DOCUMENT && data != null && data.getData() != null) {
+            Uri uri = data.getData();
+            uploadDocument(uri);
+        }
+    }
+
+    private void uploadDocument(Uri documentUri) {
+        if (documentUri != null) {
+            // Generar una referencia única para el documento en Firebase Storage
+            String filename = offerId + "_" + System.currentTimeMillis();
+            StorageReference documentRef = storageReference.child("documents/" + filename);
+            documentRef.putFile(documentUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            documentRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    documentUrl = uri.toString(); // Actualizar la variable de instancia documentUrl
+                                    addDocumentToOffer(offerId, documentUrl);
+                                    Log.d("tag", "esta es la url" + documentUrl);
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getContext(), "Error al obtener la URL del documento: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getContext(), "Error al subir el documento: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+    private void addDocumentToOffer(String offerId, String documentUrl) {
+        DocumentReference offerRef = db.collection("Offer").document(offerId);
+
+        // Actualizar el campo de documentoUrl de la oferta con la URL del documento
+        offerRef.update("documentUrl", documentUrl)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getContext(), "Documento subido exitosamente", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Error al subir el documento: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     private void addApplicantToOffer(String offerId, String letter, String experience) {
-        // Obtener la referencia a la colección "Student"
         CollectionReference studentCollectionRef = db.collection("Student");
-
-// Obtener el ID del usuario actualmente autenticado desde Firebase Auth
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-// Realizar una consulta para obtener el documento de Student correspondiente al usuario actual
         studentCollectionRef.whereEqualTo("studentId", userId)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -112,20 +193,14 @@ public class sendRequest2 extends Fragment {
                         if (!queryDocumentSnapshots.isEmpty()) {
                             // Obtener el primer documento (asumiendo que solo hay uno)
                             DocumentSnapshot documentSnapshot = queryDocumentSnapshots.getDocuments().get(0);
-
-                            // Obtener el ID del documento de Student
                             String studentId = documentSnapshot.getId();
-
-                            // Ahora puedes usar studentId para añadir los datos del solicitante a la subcolección "applicants" dentro del documento de la oferta
-                            // Obtener la referencia al documento de la oferta
                             DocumentReference offerRef = db.collection("Offer").document(offerId);
 
-                            // Crear un objeto Map para representar los datos del solicitante
                             Map<String, Object> applicantData = new HashMap<>();
                             applicantData.put("letter", letter);
                             applicantData.put("experience", experience);
+                            applicantData.put("documentUrl", documentUrl);
 
-                            // Añadir los datos del solicitante a la subcolección "applicants" dentro del documento de la oferta
                             offerRef.collection("Applicants").document(studentId)
                                     .set(applicantData)
                                     .addOnFailureListener(new OnFailureListener() {
@@ -147,4 +222,5 @@ public class sendRequest2 extends Fragment {
                 });
 
     }
+
 }
