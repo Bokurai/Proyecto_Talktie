@@ -238,5 +238,10 @@
         android:name="com.example.proyecto_talktie.ProfileCompanySelf"
         android:label="fragment_profile_company_self"
         tools:layout="@layout/fragment_profile_company_self" />
+    <fragment
+        android:id="@+id/newOfferFragment"
+        android:name="com.example.proyecto_talktie.NewOfferFragment"
+        android:label="fragment_new_offer"
+        tools:layout="@layout/fragment_new_offer" />
 
 </navigation>
