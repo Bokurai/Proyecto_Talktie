@@ -243,5 +243,8 @@
         android:name="com.example.proyecto_talktie.NewOfferFragment"
         android:label="fragment_new_offer"
         tools:layout="@layout/fragment_new_offer" />
+    <action
+        android:id="@+id/action_goNewOffer"
+        app:destination="@+id/newOfferFragment" />
 
 </navigation>
