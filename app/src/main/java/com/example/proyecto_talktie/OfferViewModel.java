@@ -5,18 +5,19 @@ import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-
+import androidx.lifecycle.LiveData;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.Collections;
-
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import java.util.HashMap;
 import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.List;
 import java.util.function.Consumer;
 
 
@@ -59,7 +60,7 @@ public class OfferViewModel extends AndroidViewModel {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         OfferObject offer = document.toObject(OfferObject.class);
 
-                        getCompanyInfo(offer.getCompanyId(), (companyName, companyImageUrl) -> {
+                        getCompanyInfo(offer.getCompanyId(), companyName, companyImageUrl)  -> {
                             offer.setCompanyName(companyName);
                             offer.setCompanyImageUrl(companyImageUrl);
                             offers.add(offer);
@@ -81,7 +82,7 @@ public class OfferViewModel extends AndroidViewModel {
         return offersLiveData;
     }
 
-    public void getCompanyInfo(String companyId, BiConsumer<String, String> callback) {
+    public void  getCompanyInfo(String companyId, BiConsumer<String, String> callback) {
         db.collection("Company").document(companyId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
@@ -162,6 +163,7 @@ public class OfferViewModel extends AndroidViewModel {
         return offerCategory;
     }
 
+
     public void seleccionar(OfferObject offerObject){
         offerSingle.postValue(offerObject);
     }
@@ -169,6 +171,5 @@ public class OfferViewModel extends AndroidViewModel {
     MutableLiveData<OfferObject> seleccionado(){
         return offerSingle;
     }
-
 
 }

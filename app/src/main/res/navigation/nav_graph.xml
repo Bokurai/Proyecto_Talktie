@@ -126,11 +126,12 @@
         android:id="@+id/action_to_Register"
         app:destination="@id/signIn1" />
     <action
-        android:id="@+id/action_to_MessagesHome"
-        app:destination="@id/messagesHome" />
-    <action
         android:id="@+id/action_goHome"
         app:destination="@+id/home" />
+
+    <action
+        android:id="@+id/action_to_MessagesHome"
+        app:destination="@id/messagesHome" />
 
     <action
         android:id="@+id/action_goOffer"
@@ -188,9 +189,73 @@
         android:name="com.example.proyecto_talktie.sendRequest2"
         android:label="fragment_send_request2"
         tools:layout="@layout/fragment_send_request2" />
+
     <fragment
         android:id="@+id/offerCategory"
         android:name="com.example.proyecto_talktie.offerCategory"
         android:label="fragment_offer_category"
         tools:layout="@layout/fragment_offer_category" />
+
+
+    <fragment
+        android:id="@+id/SignIn1_company"
+        android:name="com.example.proyecto_talktie.SignIn1_company"
+        android:label="fragment_sign_in1_company"
+        tools:layout="@layout/fragment_sign_in1_company" />
+    <fragment
+        android:id="@+id/SignIn2_company"
+        android:name="com.example.proyecto_talktie.signIn2_company"
+        android:label="fragment_sign_in2_company"
+        tools:layout="@layout/fragment_sign_in2_company" />
+    <fragment
+        android:id="@+id/SignIn3_company"
+        android:name="com.example.proyecto_talktie.signIn3_company"
+        android:label="fragment_sign_in3_company"
+        tools:layout="@layout/fragment_sign_in3_company" />
+    <fragment
+        android:id="@+id/SignIn4_company"
+        android:name="com.example.proyecto_talktie.signIn4_company"
+        android:label="fragment_sign_in4_company"
+        tools:layout="@layout/fragment_sign_in4_company" />
+    <fragment
+        android:id="@+id/SignIn5_company"
+        android:name="com.example.proyecto_talktie.signIn5_company"
+        android:label="fragment_sign_in5_company"
+        tools:layout="@layout/fragment_sign_in5_company" />
+    <fragment
+        android:id="@+id/companyHomeFragment"
+        android:name="com.example.proyecto_talktie.CompanyHomeFragment"
+        android:label="fragment_company_home"
+        tools:layout="@layout/fragment_company_home" />
+
+    <action
+        android:id="@+id/action_goCompanyHome"
+        app:destination="@+id/companyHomeFragment" />
+
+
+    <action
+        android:id="@+id/action_goSignIn1Company"
+        app:destination="@+id/SignIn1_company" />
+
+    <action
+        android:id="@+id/action_SignIn2_company"
+        app:destination="@id/SignIn2_company" />
+    <action
+        android:id="@+id/action_goSignIn3Company"
+        app:destination="@+id/SignIn3_company" />
+    <action
+        android:id="@+id/action_goSignIn4Company"
+        app:destination="@+id/SignIn4_company" />
+    <action
+        android:id="@+id/action_goSignIn5Company"
+        app:destination="@+id/SignIn5_company" />
+    <action
+        android:id="@+id/action_goSignIn6Company"
+        app:destination="@+id/SignIn6_company" />
+    <fragment
+        android:id="@+id/profileCompanySelf"
+        android:name="com.example.proyecto_talktie.ProfileCompanySelf"
+        android:label="fragment_profile_company_self"
+        tools:layout="@layout/fragment_profile_company_self" />
+
 </navigation>

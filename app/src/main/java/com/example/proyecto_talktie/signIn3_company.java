@@ -2,57 +2,35 @@ package com.example.proyecto_talktie;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link signIn3_company#newInstance} factory method to
- * create an instance of this fragment.
- */
+
+
 public class signIn3_company extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    BusinessRegisterViewModel registerViewModel;
+    NavController navController;
+    EditText etPhone, etEmail, etWebsite;
+    AppCompatButton button;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public signIn3_company() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment signIn3_company.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static signIn3_company newInstance(String param1, String param2) {
-        signIn3_company fragment = new signIn3_company();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        registerViewModel = new ViewModelProvider(requireActivity()).get(BusinessRegisterViewModel.class);
     }
 
     @Override
@@ -60,5 +38,57 @@ public class signIn3_company extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_in3_company, container, false);
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        etPhone = view.findViewById(R.id.ETphoneCompany);
+        etEmail = view.findViewById(R.id.ETEmailCompany);
+        etWebsite = view.findViewById(R.id.etwebsite);
+        button = view.findViewById(R.id.btnContinue3Company);
+        navController = Navigation.findNavController(view);
+
+        etEmail.setText(registerViewModel.getEmail().getValue());
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validarFormulario()) {
+                    registerViewModel.setPhoneNumber(etPhone.getText().toString());
+                    registerViewModel.setWebsite(etWebsite.getText().toString());
+                    navController.navigate(R.id.action_goSignIn4Company);
+                }
+            }
+        });
+
+        //flecha atras
+        ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
+        imageArrowleft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.SignIn2_company);
+            }
+        });
+    }
+
+    private boolean validarFormulario() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(etPhone.getText().toString())) {
+            etPhone.setError("Required.");
+            valid = false;
+        } else {
+            etPhone.setError(null);
+        }
+
+        if (TextUtils.isEmpty(etWebsite.getText().toString())) {
+            etWebsite.setError("Required.");
+            valid = false;
+        } else {
+            etWebsite.setError(null);
+        }
+        return valid;
     }
 }

@@ -24,6 +24,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import com.example.proyecto_talktie.databinding.FragmentSignIn1Binding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -49,9 +51,11 @@ public class SignIn1 extends Fragment {
 
     FragmentSignIn1Binding binding;
     private Button registerButton;
+    public static final String EXTRA_FORCE_ACCOUNT_CHOOSER = "force_account_chooser";
     NavController navController;
     private FirebaseAuth mAuth;
     private EditText emailEditText, passwordEditText, nameEditText, mobileEditText;
+    private TextView haveaccount;
     StudentRegisterViewModel registerViewModel;
     SignInButton signUpButton;
     ActivityResultLauncher activityResultLauncher;
@@ -79,13 +83,13 @@ public class SignIn1 extends Fragment {
         mobileEditText = view.findViewById(R.id.etMobile);
         registerButton = view.findViewById(R.id.btnSingIn);
         signUpButton = view.findViewById(R.id.googleSignUpButton);
+        haveaccount = view.findViewById(R.id.havecount);
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            // There are no request codes
                             Intent data = result.getData();
                             try {
                                 crearCuentaGoogle(GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException.class));
@@ -111,17 +115,26 @@ public class SignIn1 extends Fragment {
                 accederConGoogle();
             }
         });
+        haveaccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.action_goLogin);
+            }
+        });
     }
 
     private void accederConGoogle() {
-        GoogleSignInClient googleSignInClient =
-                GoogleSignIn.getClient(requireActivity(), new
-                        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken(getString(R.string.default_web_client_id))
-                        .requestEmail()
-                        .build());
-        activityResultLauncher.launch(googleSignInClient.getSignInIntent());
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        signInIntent.putExtra(EXTRA_FORCE_ACCOUNT_CHOOSER, true);
+        activityResultLauncher.launch(signInIntent);
     }
+
 
     private void crearCuentaGoogle(GoogleSignInAccount acct){
         if(acct == null) return;

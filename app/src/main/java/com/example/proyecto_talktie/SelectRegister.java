@@ -7,12 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.example.proyecto_talktie.databinding.FragmentSelectRegisterBinding;
 
 
@@ -42,6 +39,19 @@ public class SelectRegister extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.signIn1);
+            }
+        });
+
+        binding.btnStartAsACompanyOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_goSignIn1Company);
+            }
+        });
+        binding.btnStartAsASchoolOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

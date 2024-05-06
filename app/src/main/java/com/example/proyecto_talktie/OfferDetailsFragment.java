@@ -1,7 +1,5 @@
 package com.example.proyecto_talktie;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -80,8 +78,6 @@ public class OfferDetailsFragment extends Fragment {
         job_description = view.findViewById(R.id.txtJobDescription);
         apply_job = view.findViewById(R.id.btnapplyJob);
         backArrow = view.findViewById(R.id.backArrow);
-        companyImage = view.findViewById(R.id.companyLogoJD);
-
 
         offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
@@ -91,7 +87,7 @@ public class OfferDetailsFragment extends Fragment {
 
                 SimpleDateFormat format = new SimpleDateFormat("HH:MM  dd/mm/yyyy");
                 Date date = offerObject.getDate();String formattedDate = format.format(date);
-               offer_date.setText(formattedDate);
+                offer_date.setText(formattedDate);
 
                 String imageProfile = offerObject.getCompanyImageUrl();
                 Context context = getView().getContext();

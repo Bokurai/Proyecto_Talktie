@@ -8,22 +8,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.widget.EditText;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -61,6 +60,7 @@ public class ProfileStudent extends Fragment {
     StorageReference storageReference;
     Storage storage;
     Uri uri;
+    NavController navController;
     String studentId;
     int SELECT_PICTURE = 200;
 
@@ -109,10 +109,10 @@ public class ProfileStudent extends Fragment {
         profileEditTxt = view.findViewById(R.id.edit_profiletxt);
         profileImg = view.findViewById(R.id.profileImgStudent);
         studentName = view.findViewById(R.id.txtStudentName);
+        navController = Navigation.findNavController(view);
 
         editButton = view.findViewById(R.id.aboutEdit);
         saveButton = view.findViewById(R.id.btnSave);
-
 
         loadUserInfo();
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
@@ -148,13 +148,13 @@ public class ProfileStudent extends Fragment {
                 editButton.setVisibility(View.GONE);
                 saveButton.setVisibility(View.VISIBLE);
 
-               if (editTextAbout == null) {
-                   editTextAbout = new EditText(requireActivity());
-               }
+                if (editTextAbout == null) {
+                    editTextAbout = new EditText(requireActivity());
+                }
 
                 editTextAbout.setText(textAbout.getText());
 
-               //remplazar el texview con el editText
+                //remplazar el texview con el editText
                 ViewGroup parent = (ViewGroup) textAbout.getParent();
                 int index = parent.indexOfChild(textAbout);
                 parent.removeView(textAbout);
@@ -317,7 +317,10 @@ public class ProfileStudent extends Fragment {
         public void onBindViewHolder(@NonNull RecommendationViewHolder holder, int position) {
             Recommendation recommendation = recommendationList.get(position);
 
+            //change image and teacher name by a search through their id.
             holder.nameTeacher.setText(recommendation.getTeacherName());
+            holder.textRecommendation.setText(recommendation.getRecommendationText());
+
             holder.textRecommendation.setText(recommendation.getRecommendationText());
 
             String imageProfileUrl = recommendation.getProfileImage();
@@ -374,8 +377,7 @@ public class ProfileStudent extends Fragment {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        FirebaseAuth.getInstance().signOut();
-                        NavController navController = NavHostFragment.findNavController(ProfileStudent.this);
+                        mAuth.signOut();
                         navController.navigate(R.id.login);
 
                     }

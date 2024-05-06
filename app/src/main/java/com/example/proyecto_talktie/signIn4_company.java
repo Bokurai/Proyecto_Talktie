@@ -2,57 +2,33 @@ package com.example.proyecto_talktie;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link signIn4_company#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class signIn4_company extends Fragment {
+    BusinessRegisterViewModel registerViewModel;
+    NavController navController;
+    TextView etCountry, etAddress, etCity, etZipcode;
+    AppCompatButton button;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public signIn4_company() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment signIn4_company.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static signIn4_company newInstance(String param1, String param2) {
-        signIn4_company fragment = new signIn4_company();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        registerViewModel = new ViewModelProvider(requireActivity()).get(BusinessRegisterViewModel.class);
     }
 
     @Override
@@ -60,5 +36,64 @@ public class signIn4_company extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_in4_company, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        etCountry = view.findViewById(R.id.etCountryCompany);
+        etAddress = view.findViewById(R.id.etStreetAddressCompany);
+        etCity = view.findViewById(R.id.etCityCompany);
+        button = view.findViewById(R.id.btnContinue5Company);
+        navController = Navigation.findNavController(view);
+        etZipcode = view.findViewById(R.id.etzipcode);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validarFormulario()) {
+                    registerViewModel.setCountry(etCountry.getText().toString());
+                    registerViewModel.setCity(etCity.getText().toString());
+                    registerViewModel.setHeadquarters(etAddress.getText().toString());
+                    registerViewModel.setZipcode(etZipcode.getText().toString());
+                    navController.navigate(R.id.action_goSignIn5Company);
+                }
+            }
+        });
+
+        //flecha atras
+        ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
+        imageArrowleft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.SignIn2_company);
+            }
+        });
+    }
+
+    private boolean validarFormulario() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(etCountry.getText().toString())) {
+            etCountry.setError("Required.");
+            valid = false;
+        } else {
+            etCountry.setError(null);
+        }
+
+        if (TextUtils.isEmpty(etCity.getText().toString())) {
+            etCity.setError("Required.");
+            valid = false;
+        } else {
+            etCity.setError(null);
+        }
+
+        if (TextUtils.isEmpty(etAddress.getText().toString())) {
+            etAddress.setError("Required.");
+            valid = false;
+        } else {
+            etAddress.setError(null);
+        }
+        return valid;
     }
 }

@@ -201,10 +201,10 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_country" />
+                android:text="@string/lbl_country" />
 
             <EditText
-                android:id="@+id/etNameSignOne"
+                android:id="@+id/etCountryCompany"
                 style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -235,10 +235,10 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_street_address" />
+                android:text="@string/lbl_street_address" />
 
             <EditText
-                android:id="@+id/etcodecompany"
+                android:id="@+id/etStreetAddressCompany"
                 style="@style/etSolidRounded_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -247,7 +247,7 @@
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
                 android:hint="Enter street address"
-                android:inputType="phone"
+                android:inputType="text"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
                 android:paddingTop="@dimen/_11pxv"
@@ -269,10 +269,10 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_city_company" />
+                android:text="@string/lbl_city_company" />
 
             <EditText
-                android:id="@+id/etsectorcompany"
+                android:id="@+id/etCityCompany"
                 style="@style/etSolidRounded_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -281,6 +281,40 @@
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
                 android:hint="Enter City, State"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_13pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingBottom="@dimen/_10pxv"
+                android:singleLine="true"
+                android:textColorHint="@color/bluegray_900"
+                tools:ignore="Autofill" />
+
+            <TextView
+                android:id="@+id/zipcode"
+                style="@style/txtRobotosemibolditalic17_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_64pxh"
+                android:layout_marginTop="@dimen/_16pxv"
+                android:layout_marginEnd="@dimen/_64pxh"
+                android:ellipsize="end"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="@string/zipcode" />
+
+            <EditText
+                android:id="@+id/etzipcode"
+                style="@style/etSolidRounded_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_9pxv"
+                android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
+                android:ellipsize="end"
+                android:hint="@string/enter_zipcode"
                 android:inputType="textEmailAddress"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
@@ -332,7 +366,7 @@
                         android:layout_marginStart="@dimen/_1pxh">
 
                         <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnContinueOne"
+                            android:id="@+id/btnContinue5Company"
                             style="@style/btnSolidRounded_3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
