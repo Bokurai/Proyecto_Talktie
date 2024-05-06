@@ -201,7 +201,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_summary_company" />
+                android:text="@string/lbl_summary_company" />
 
             <EditText
                 android:id="@+id/etSummary"
@@ -235,7 +235,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_foundation" />
+                android:text="@string/lbl_foundation" />
 
             <EditText
                 android:id="@+id/etFoundationDate"
@@ -269,7 +269,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_specialities_company" />
+                android:text="@string/lbl_specialities_company" />
 
             <EditText
                 android:id="@+id/etSpecialities"

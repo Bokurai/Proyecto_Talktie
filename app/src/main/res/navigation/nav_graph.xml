@@ -238,5 +238,10 @@
     <action
         android:id="@+id/action_goSignIn6Company"
         app:destination="@+id/SignIn6_company" />
+    <fragment
+        android:id="@+id/profileCompanySelf"
+        android:name="com.example.proyecto_talktie.ProfileCompanySelf"
+        android:label="fragment_profile_company_self"
+        tools:layout="@layout/fragment_profile_company_self" />
 
 </navigation>

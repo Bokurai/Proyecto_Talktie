@@ -135,7 +135,7 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
     }
 
     public void setCompanytype(String companytype) {
-        this.companycode.setValue(companytype);
+        this.companytype.setValue(companytype);
     }
 
     public LiveData<String> getCompanytype() {
