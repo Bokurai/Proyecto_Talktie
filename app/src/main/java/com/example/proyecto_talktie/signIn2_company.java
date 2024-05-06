@@ -47,7 +47,7 @@ public class signIn2_company extends Fragment {
         codecompanyET = view.findViewById(R.id.etcodecompany);
         sectorcompanyET = view.findViewById(R.id.etsectorcompany);
         typecompanyET = view.findViewById(R.id.ETtypecompany);
-        nextButton = view.findViewById(R.id.btnContinue2Company);
+        nextButton = view.findViewById(R.id.btnContinue3Company);
         navController = Navigation.findNavController(view);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +58,7 @@ public class signIn2_company extends Fragment {
                     registerViewModel.setCompanycode(codecompanyET.getText().toString());
                     registerViewModel.setSector(sectorcompanyET.getText().toString());
                     registerViewModel.setCompanytype(typecompanyET.getText().toString());
-                    navController.navigate(R.id.signIn3_company);
+                    navController.navigate(R.id.action_goSignIn3Company);
                 }
             }
         });

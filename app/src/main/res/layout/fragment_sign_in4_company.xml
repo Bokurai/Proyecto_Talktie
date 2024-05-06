@@ -201,7 +201,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_country" />
+                android:text="@string/lbl_country" />
 
             <EditText
                 android:id="@+id/etCountryCompany"
@@ -235,7 +235,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_street_address" />
+                android:text="@string/lbl_street_address" />
 
             <EditText
                 android:id="@+id/etStreetAddressCompany"
@@ -247,7 +247,7 @@
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
                 android:hint="Enter street address"
-                android:inputType="phone"
+                android:inputType="text"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
                 android:paddingTop="@dimen/_11pxv"
@@ -269,7 +269,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_city_company" />
+                android:text="@string/lbl_city_company" />
 
             <EditText
                 android:id="@+id/etCityCompany"
@@ -303,7 +303,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                tools:text="@string/lbl_city_company" />
+                android:text="@string/zipcode" />
 
             <EditText
                 android:id="@+id/etzipcode"

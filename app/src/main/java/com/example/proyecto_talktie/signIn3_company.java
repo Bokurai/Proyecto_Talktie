@@ -50,7 +50,7 @@ public class signIn3_company extends Fragment {
         button = view.findViewById(R.id.btnContinue3Company);
         navController = Navigation.findNavController(view);
 
-        etEmail.setText(registerViewModel.getEmail().toString());
+        etEmail.setText(registerViewModel.getEmail().getValue());
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,7 @@ public class signIn3_company extends Fragment {
                 if (validarFormulario()) {
                     registerViewModel.setPhoneNumber(etPhone.getText().toString());
                     registerViewModel.setWebsite(etWebsite.getText().toString());
-                    navController.navigate(R.id.signIn4_company);
+                    navController.navigate(R.id.action_goSignIn4Company);
                 }
             }
         });

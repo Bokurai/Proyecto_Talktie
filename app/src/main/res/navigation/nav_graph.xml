@@ -222,4 +222,21 @@
     <action
         android:id="@+id/action_goSignIn1Company"
         app:destination="@+id/SignIn1_company" />
+
+    <action
+        android:id="@+id/action_SignIn2_company"
+        app:destination="@id/SignIn2_company" />
+    <action
+        android:id="@+id/action_goSignIn3Company"
+        app:destination="@+id/SignIn3_company" />
+    <action
+        android:id="@+id/action_goSignIn4Company"
+        app:destination="@+id/SignIn4_company" />
+    <action
+        android:id="@+id/action_goSignIn5Company"
+        app:destination="@+id/SignIn5_company" />
+    <action
+        android:id="@+id/action_goSignIn6Company"
+        app:destination="@+id/SignIn6_company" />
+
 </navigation>

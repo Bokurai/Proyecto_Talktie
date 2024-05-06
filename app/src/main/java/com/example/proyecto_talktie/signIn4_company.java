@@ -48,8 +48,6 @@ public class signIn4_company extends Fragment {
         navController = Navigation.findNavController(view);
         etZipcode = view.findViewById(R.id.etzipcode);
 
-        etAddress.setText(registerViewModel.getEmail().toString());
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +56,7 @@ public class signIn4_company extends Fragment {
                     registerViewModel.setCity(etCity.getText().toString());
                     registerViewModel.setHeadquarters(etAddress.getText().toString());
                     registerViewModel.setZipcode(etZipcode.getText().toString());
-                    navController.navigate(R.id.signIn5_company);
+                    navController.navigate(R.id.action_goSignIn5Company);
                 }
             }
         });

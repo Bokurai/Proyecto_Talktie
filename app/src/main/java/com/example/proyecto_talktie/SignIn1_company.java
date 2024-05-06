@@ -73,7 +73,7 @@ public class SignIn1_company extends Fragment {
         emailEditText = view.findViewById(R.id.etEmailCompany);
         passwordEditText = view.findViewById(R.id.etPasswordCompany);
         nameEditText = view.findViewById(R.id.etNameCompany);
-        registerButton = view.findViewById(R.id.btnSingInCompany);
+        registerButton = view.findViewById(R.id.btnSingInCompany2);
         signUpButton = view.findViewById(R.id.googleSignUpButtonCompany);
         haveaccount = view.findViewById(R.id.havecountCompany);
         activityResultLauncher = registerForActivityResult(

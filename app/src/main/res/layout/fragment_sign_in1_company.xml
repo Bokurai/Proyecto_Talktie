@@ -107,7 +107,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:ellipsize="end" android:gravity="center"
-                android:id="@+id/btnSingInCompany"
+                android:id="@+id/btnSingInCompany2"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_48pxh"
                 android:layout_marginStart="@dimen/_48pxh"

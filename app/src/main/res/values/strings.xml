@@ -544,5 +544,6 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="a_brief_summary">A brief summary</string>
     <string name="dd_mm_yyyy">DD/MM/YYYY</string>
     <string name="enter_zipcode">Enter zipcode</string>
+    <string name="zipcode">Zipcode</string>
 
 </resources>
