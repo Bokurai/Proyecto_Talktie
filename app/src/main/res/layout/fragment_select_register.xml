@@ -7,7 +7,8 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        style="@style/groupStylelight_green_1">
+        style="@style/selectregisterbg">
+
         <LinearLayout android:gravity="center_horizontal"
             android:id="@+id/linearColumntalktie"
             android:layout_height="match_parent"
