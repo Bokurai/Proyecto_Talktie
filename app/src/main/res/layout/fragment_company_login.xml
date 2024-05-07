@@ -12,11 +12,24 @@
         android:id="@+id/imageRectangleSix"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginStart="@dimen/_32pxh"
+        android:layout_gravity="center|top"
         android:layout_marginTop="12dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/img_rectangle6" />
+
+    <TextView android:ellipsize="end"
+        android:id="@+id/txtSignuptojoin"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_1pxv"
+        android:layout_width="match_parent"
+        android:fontFamily="@font/robotoromanbold"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/_3pxh"
+        android:singleLine="true"
+        android:text="@string/sign_in_as_a_company"
+        style="@style/txtRobotoromanregular17_1"
+        />
 
     <FrameLayout
         android:id="@+id/frameStackcreatefromfra"
@@ -24,7 +37,8 @@
         android:layout_height="@dimen/_19pxv"
         android:layout_marginStart="@dimen/_33pxh"
         android:layout_marginEnd="@dimen/_33pxh"
-        android:layout_marginTop="@dimen/_48pxv">
+        android:layout_marginTop="@dimen/_20pxv">
+
 
         <View
             android:id="@+id/viewCreatefromfra"
@@ -49,7 +63,7 @@
     <EditText
         android:background="@drawable/rectangle_bg_white_a700_border_gray_100_radius_4"
         android:ellipsize="end"
-        android:id="@+id/emailEditText"
+        android:id="@+id/emailEditTextCompany"
         android:inputType="textEmailAddress"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_27pxh"
@@ -100,7 +114,7 @@
             android:drawablePadding="@dimen/_30pxh"
             android:ellipsize="end"
             android:hint="@string/lbl_password"
-            android:id="@+id/passwordEditText"
+            android:id="@+id/passwordEditTextCompany"
             android:inputType="textPassword"
             android:layout_gravity="start"
             android:layout_height="wrap_content"
@@ -117,7 +131,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:ellipsize="end" android:gravity="center"
-        android:id="@+id/btnLogIn"
+        android:id="@+id/btnLogInCompany"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_26pxh"
         android:layout_marginStart="@dimen/_32pxh"
@@ -132,7 +146,7 @@
         style="@style/btnSolidRounded_3"/>
     <androidx.appcompat.widget.AppCompatButton
         android:ellipsize="end" android:gravity="center"
-        android:id="@+id/btnCreateAccountOne"
+        android:id="@+id/btnCreateAccountOneCompany"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_26pxh"
         android:layout_marginStart="@dimen/_32pxh"
@@ -148,7 +162,7 @@
 
 
     <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleSignInButton"
+        android:id="@+id/googleSignInButtonCompany"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
