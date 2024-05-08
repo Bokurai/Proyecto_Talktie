@@ -5,143 +5,61 @@
         android:id="@+id/linearOferrsposted"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical" style="@style/groupStylewhite_A700">
-        <FrameLayout android:id="@+id/frameStackrectanglefifty"
-            android:layout_height="@dimen/_481pxv" android:layout_width="match_parent">
+        android:orientation="vertical"
+        style="@style/groupStylewhite_A700">
+        <FrameLayout
+            android:id="@+id/frameStackrectanglefifty"
+            android:layout_height="@dimen/_481pxv"
+            android:layout_width="match_parent">
             <ImageView android:id="@+id/imageRectangleFifty"
                 android:layout_gravity="start"
                 android:layout_height="@dimen/_450pxv"
                 android:layout_width="match_parent"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_rectangle50_bluegray_51"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle50_bluegray_51"/>
-            <LinearLayout android:id="@+id/linearColumnaddanofferhe"
-                android:layout_gravity="center"
+                tools:ignore="ContentDescription"
+                />
+            <FrameLayout android:id="@+id/linearColumnaddanofferhe"
+                android:layout_gravity="top"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_5pxv"
                 android:layout_marginEnd="@dimen/_14pxh"
                 android:layout_marginStart="@dimen/_17pxh"
                 android:layout_marginTop="@dimen/_8pxv"
-                android:layout_width="match_parent" android:orientation="vertical">
-                <LinearLayout android:gravity="end"
-                    android:id="@+id/linearRowaddanofferhe"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10pxh"
-                    android:layout_width="match_parent" android:orientation="horizontal">
-                    <TextView android:ellipsize="end"
-                        android:id="@+id/txtAddanofferhe"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.91"
-                        android:layout_width="0dp"
-                        android:lineSpacingExtra="@dimen/_11pxh"
-                        android:singleLine="true"
-                        android:text="@string/msg_add_an_offer_he"
-                        style="@style/txtPoppinssemibold22" tools:text="@string/msg_add_an_offer_he"/>
-                </LinearLayout>
-                <EditText
-                    android:background="@drawable/rectangle_bg_white_a700_radius_8"
-                    android:ellipsize="end"
-                    android:hint="@string/lbl_job_title"
-                    android:id="@+id/etGroupSeventyTwo"
-                    android:inputType="text"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5pxh"
-                    android:layout_marginTop="@dimen/_32pxv"
-                    android:layout_width="match_parent"
-                    android:letterSpacing="0.01"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingBottom="@dimen/_17pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingStart="@dimen/_19pxh"
-                    android:paddingTop="@dimen/_14pxv"
-                    android:singleLine="true"
-                    android:textColorHint="@color/gray_701"
-                    style="@style/etSolidRounded_5" tools:ignore="Autofill"/>
+                android:layout_width="match_parent"
+                android:orientation="vertical">
 
-                <Spinner
-                    android:background="@drawable/rectangle_bg_white_a700_radius_8"
-                    android:ellipsize="end"
-                    android:hint="@string/job_category"
-                    android:id="@+id/jobcatOfferET"
-                    android:inputType="text"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5pxh"
-                    android:layout_marginTop="@dimen/_7pxv"
-                    android:layout_width="match_parent"
-                    android:letterSpacing="0.01"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingBottom="@dimen/_17pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingStart="@dimen/_19pxh"
-                    android:paddingTop="@dimen/_14pxv"
-                    android:singleLine="true"
-                    android:textColorHint="@color/gray_701"
-                    style="@style/etSolidRounded_5" tools:ignore="Autofill"/>
-                <EditText
-                    android:background="@drawable/rectangle_bg_white_a700_radius_8"
-                    android:ellipsize="end"
-                    android:hint="@string/contract_time"
-                    android:id="@+id/contractTimeET"
-                    android:inputType="text"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5pxh"
-                    android:layout_marginTop="@dimen/_7pxv"
-                    android:layout_width="match_parent"
-                    android:letterSpacing="0.01"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingBottom="@dimen/_16pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingStart="@dimen/_19pxh"
-                    android:paddingTop="@dimen/_15pxv"
-                    android:singleLine="true"
-                    android:textColorHint="@color/gray_701"
-                    style="@style/etSolidRounded_5" tools:ignore="Autofill"/>
-                <EditText
-                    android:background="@drawable/rectangle_bg_white_a700_radius_8"
-                    android:ellipsize="end"
-                    android:hint="@string/lbl_description"
-                    android:id="@+id/jobdescofferET"
-                    android:inputType="text"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5pxh"
-                    android:layout_marginTop="@dimen/_7pxv"
-                    android:layout_width="match_parent"
-                    android:letterSpacing="0.01"
-                    android:lineSpacingExtra="@dimen/_3pxh"
-                    android:paddingBottom="@dimen/_16pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingStart="@dimen/_19pxh"
-                    android:paddingTop="@dimen/_15pxv"
-                    android:singleLine="true"
-                    android:textColorHint="@color/gray_701"
-                    style="@style/etSolidRounded_5" tools:ignore="Autofill"/>
                 <androidx.appcompat.widget.AppCompatButton
                     android:ellipsize="end" android:gravity="center"
                     android:id="@+id/btnPublish"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_4pxh"
                     android:layout_marginTop="@dimen/_9pxv"
-                    android:layout_width="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_width="wrap_content"
                     android:paddingBottom="@dimen/_13pxv"
                     android:paddingEnd="@dimen/_30pxh"
                     android:paddingStart="@dimen/_30pxh"
                     android:paddingTop="@dimen/_13pxv"
                     android:singleLine="true"
-                    android:text="@string/lbl_publish"
+                    android:text="@string/post_offer"
                     android:textAllCaps="false"
-                    style="@style/btnSolidRounded_5" tools:text="@string/lbl_publish"/>
-                <TextView android:ellipsize="end"
+                    style="@style/btnSolidRounded_5" />
+                <TextView
+                    android:ellipsize="end"
                     android:id="@+id/txtLanguage"
                     android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_20pxh"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_10pxh"
                     android:layout_marginStart="@dimen/_9pxh"
-                    android:layout_marginTop="@dimen/_20pxv"
                     android:layout_width="wrap_content"
+                    android:textSize="@dimen/_30pxh"
                     android:singleLine="true"
                     android:text="@string/lbl_jobs_list"
-                    style="@style/txtRobotoromansemibold18" tools:text="@string/lbl_jobs_list"/>
-            </LinearLayout>
+                    style="@style/txtRobotoromansemibold18" tools:text="@string/lbl_jobs_list"
+                    tools:ignore="SpUsage" />
+            </FrameLayout>
         </FrameLayout>
     </LinearLayout>
 </layout>

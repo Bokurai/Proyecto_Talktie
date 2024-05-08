@@ -37,8 +37,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.jetbrains.annotations.Nullable;
 
 
-public class Login extends Fragment {
+public class CompanyLogin extends Fragment {
 
+    //
     private FirebaseAuth mAuth;
     //LOGIN-rabab
     NavController navController;
@@ -55,30 +56,28 @@ public class Login extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return inflater.inflate(R.layout.fragment_company_login, container, false);
     }
     public void onViewCreated(@NonNull View view, @Nullable Bundle
             savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
 
-        emailEditText = view.findViewById(R.id.emailEditText);
-        passwordEditText = view.findViewById(R.id.passwordEditText);
-        emailSignInButton = view.findViewById(R.id.btnLogIn);
-        signInForm = view.findViewById(R.id.linearLogin);
-        registerButton = view.findViewById(R.id.btnCreateAccountOne);
+        emailEditText = view.findViewById(R.id.emailEditTextCompany);
+        passwordEditText = view.findViewById(R.id.passwordEditTextCompany);
+        emailSignInButton = view.findViewById(R.id.btnLogInCompany);
+        signInForm = view.findViewById(R.id.linearLoginCompany);
+        registerButton = view.findViewById(R.id.btnCreateAccountOneCompany);
         navController = Navigation.findNavController(view);
-        googleSignInButton = view.findViewById(R.id.googleSignInButton);
-        signInForm = view.findViewById(R.id.linearLogin);
+        googleSignInButton = view.findViewById(R.id.googleSignInButtonCompany);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.signIn1);
+                navController.navigate(R.id.SignIn1_company);
             }
         });
         activityResultLauncher = registerForActivityResult(
@@ -135,7 +134,7 @@ public class Login extends Fragment {
                 accederConGoogle();
             }
         });
-   //esconder el menu
+        //esconder el menu
         mainActivity = (MainActivity) requireActivity();
         mainActivity.hideNavBot();
 
@@ -171,7 +170,7 @@ public class Login extends Fragment {
     private void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
             navController = NavHostFragment.findNavController(this);
-            navController.navigate(R.id.home);
+            navController.navigate(R.id.companyHomeFragment);
 
         }
     }

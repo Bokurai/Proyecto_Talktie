@@ -41,7 +41,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class SignIn1_company extends Fragment {
 
     public static final String EXTRA_FORCE_ACCOUNT_CHOOSER = "force_account_chooser";
-
     BusinessRegisterViewModel registerViewModel;
     private Button registerButton;
     NavController navController;
@@ -110,7 +109,7 @@ public class SignIn1_company extends Fragment {
         haveaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_goLogin);
+                navController.navigate(R.id.action_gocompanyLogin);
             }
         });
     }

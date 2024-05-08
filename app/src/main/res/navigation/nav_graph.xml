@@ -86,7 +86,6 @@
     <action
         android:id="@+id/action_goLogin"
         app:destination="@+id/login" />
-
     <action
         android:id="@+id/action_goProfileStudent"
         app:destination="@+id/profileStudent" />
@@ -128,7 +127,6 @@
     <action
         android:id="@+id/action_goHome"
         app:destination="@+id/home" />
-
     <action
         android:id="@+id/action_to_MessagesHome"
         app:destination="@id/messagesHome" />
@@ -175,10 +173,26 @@
     <action
         android:id="@+id/action_goStudentSearchView"
         app:destination="@id/studentSearchView" />
+    <fragment
+        android:id="@+id/offerDetailsFragment"
+        android:name="com.example.proyecto_talktie.OfferDetailsFragment"
+        android:label="fragment_offer_details"
+        tools:layout="@layout/fragment_offer_details" />
+    <fragment
+        android:id="@+id/sendRequest2"
+        android:name="com.example.proyecto_talktie.sendRequest2"
+        android:label="fragment_send_request2"
+        tools:layout="@layout/fragment_send_request2" />
 
     <action
         android:id="@+id/action_goSignIn3School"
         app:destination="@+id/signIn3_school" />
+
+    <fragment
+        android:id="@+id/offerCategory"
+        android:name="com.example.proyecto_talktie.offerCategory"
+        android:label="fragment_offer_category"
+        tools:layout="@layout/fragment_offer_category" />
 
 
     <action
@@ -196,23 +210,6 @@
     <action
         android:id="@+id/action_goCategoryOffer"
         app:destination="@id/offerCategory" />
-    <fragment
-        android:id="@+id/offerDetailsFragment"
-        android:name="com.example.proyecto_talktie.OfferDetailsFragment"
-        android:label="fragment_offer_details"
-        tools:layout="@layout/fragment_offer_details" />
-    <fragment
-        android:id="@+id/sendRequest2"
-        android:name="com.example.proyecto_talktie.sendRequest2"
-        android:label="fragment_send_request2"
-        tools:layout="@layout/fragment_send_request2" />
-
-    <fragment
-        android:id="@+id/offerCategory"
-        android:name="com.example.proyecto_talktie.offerCategory"
-        android:label="fragment_offer_category"
-        tools:layout="@layout/fragment_offer_category" />
-
 
     <fragment
         android:id="@+id/SignIn1_company"
@@ -269,7 +266,6 @@
     <action
         android:id="@+id/action_goSignIn6Company"
         app:destination="@+id/SignIn6_company" />
-
     <action
         android:id="@+id/action_goSignIn1School"
         app:destination="@+id/signIn1_School" />
@@ -283,6 +279,7 @@
         android:name="com.example.proyecto_talktie.ProfileCompanySelf"
         android:label="fragment_profile_company_self"
         tools:layout="@layout/fragment_profile_company_self" />
+
     <fragment
         android:id="@+id/signIn1_School"
         android:name="com.example.proyecto_talktie.SignIn1_School"
@@ -348,5 +345,22 @@
         android:name="com.example.proyecto_talktie.signIn5_school"
         android:label="fragment_sig_in5_school"
         tools:layout="@layout/fragment_sig_in5_school" />
+
+    <fragment
+        android:id="@+id/newOfferFragment"
+        android:name="com.example.proyecto_talktie.NewOfferFragment"
+        android:label="fragment_new_offer"
+        tools:layout="@layout/fragment_new_offer" />
+    <action
+        android:id="@+id/action_goNewOffer"
+        app:destination="@+id/newOfferFragment" />
+    <fragment
+        android:id="@+id/companyLogin"
+        android:name="com.example.proyecto_talktie.CompanyLogin"
+        android:label="fragment_company_login"
+        tools:layout="@layout/fragment_company_login" />
+    <action
+        android:id="@+id/action_gocompanyLogin"
+        app:destination="@+id/companyLogin" />
 
 </navigation>

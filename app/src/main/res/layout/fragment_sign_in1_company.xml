@@ -45,7 +45,8 @@
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
                         android:text="@string/lbl_sign_up_to_join_company"
-                        style="@style/txtRobotoromanregular17_1" tools:text="@string/lbl_sign_up_to_join_company"/>
+                        style="@style/txtRobotoromanregular17_1"
+                        tools:text="@string/lbl_sign_up_to_join_company"/>
                 </LinearLayout>
             </LinearLayout>
             <EditText
