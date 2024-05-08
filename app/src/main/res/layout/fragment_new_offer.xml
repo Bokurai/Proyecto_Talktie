@@ -181,17 +181,17 @@
                     tools:ignore="Autofill"/>
                 <androidx.appcompat.widget.AppCompatButton
                     android:ellipsize="end" android:gravity="center"
-                    android:id="@+id/btnPublish"
+                    android:id="@+id/btnPublishOffer"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_4pxh"
-                    android:layout_marginTop="@dimen/_9pxv"
+                    android:layout_marginTop="@dimen/_40pxv"
                     android:layout_width="match_parent"
                     android:paddingBottom="@dimen/_13pxv"
                     android:paddingEnd="@dimen/_30pxh"
                     android:paddingStart="@dimen/_30pxh"
                     android:paddingTop="@dimen/_13pxv"
                     android:singleLine="true"
-                    android:text="@string/lbl_publish"
+                    android:text="@string/publish_offer"
                     android:textAllCaps="false"
                     style="@style/btnSolidRounded_5" tools:text="@string/lbl_publish"/>
             </LinearLayout>

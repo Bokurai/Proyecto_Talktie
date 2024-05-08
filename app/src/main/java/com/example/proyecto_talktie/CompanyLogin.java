@@ -110,7 +110,7 @@ public class CompanyLogin extends Fragment {
                 accederConEmail();
             }
         });
-        googleSignInButton = view.findViewById(R.id.googleSignInButton);
+
         activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
