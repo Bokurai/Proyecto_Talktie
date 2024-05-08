@@ -49,7 +49,6 @@ public class sendRequest2 extends Fragment {
     private ImageButton uploadCV;
     private Button sendButton;
     private NavController navController;
-
     private String documentUrl;
     private String offerId;
     private FirebaseAuth mAuth;
