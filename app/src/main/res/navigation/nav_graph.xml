@@ -177,6 +177,23 @@
         app:destination="@id/studentSearchView" />
 
     <action
+        android:id="@+id/action_goSignIn3School"
+        app:destination="@+id/signIn3_school" />
+
+
+    <action
+        android:id="@+id/action_goSignIn4School"
+        app:destination="@+id/signIn4_school" />
+
+    <action
+        android:id="@+id/action_goSignIn5School"
+        app:destination="@+id/sigIn5_School" />
+
+    <action
+        android:id="@+id/action_goSchoolHome"
+        app:destination="@+id/schoolHome" />
+
+    <action
         android:id="@+id/action_goCategoryOffer"
         app:destination="@id/offerCategory" />
     <fragment
@@ -252,10 +269,84 @@
     <action
         android:id="@+id/action_goSignIn6Company"
         app:destination="@+id/SignIn6_company" />
+
+    <action
+        android:id="@+id/action_goSignIn1School"
+        app:destination="@+id/signIn1_School" />
+
+    <action
+        android:id="@+id/action_goSignIn2School"
+        app:destination="@+id/signIn2_school" />
+
     <fragment
         android:id="@+id/profileCompanySelf"
         android:name="com.example.proyecto_talktie.ProfileCompanySelf"
         android:label="fragment_profile_company_self"
         tools:layout="@layout/fragment_profile_company_self" />
+    <fragment
+        android:id="@+id/signIn1_School"
+        android:name="com.example.proyecto_talktie.SignIn1_School"
+        android:label="fragment_sign_in1__school"
+        tools:layout="@layout/fragment_sign_in1__school" />
+    <fragment
+        android:id="@+id/signIn2_school"
+        android:name="com.example.proyecto_talktie.signIn2_school"
+        android:label="fragment_sign_in2_school"
+        tools:layout="@layout/fragment_sign_in2_school" />
+    <fragment
+        android:id="@+id/signIn3_school"
+        android:name="com.example.proyecto_talktie.signIn3_school"
+        android:label="fragment_sign_in3_school"
+        tools:layout="@layout/fragment_sign_in3_school" />
+    <fragment
+        android:id="@+id/signIn4_school"
+        android:name="com.example.proyecto_talktie.signIn4_school"
+        android:label="fragment_sign_in4_school"
+        tools:layout="@layout/fragment_sign_in4_school" />
+    <fragment
+        android:id="@+id/schoolHome"
+        android:name="com.example.proyecto_talktie.schoolHome"
+        android:label="fragment_school_home"
+        tools:layout="@layout/fragment_school_home" />
+    <fragment
+        android:id="@+id/schoolProfile"
+        android:name="com.example.proyecto_talktie.schoolProfile"
+        android:label="fragment_school_profile"
+        tools:layout="@layout/fragment_school_profile" />
+    <fragment
+        android:id="@+id/studentSchoolProfile"
+        android:name="com.example.proyecto_talktie.studentSchoolProfile"
+        android:label="fragment_student_school_profile"
+        tools:layout="@layout/fragment_student_school_profile" />
+    <fragment
+        android:id="@+id/schoolSearchView"
+        android:name="com.example.proyecto_talktie.schoolSearchView"
+        android:label="fragment_school_search_view"
+        tools:layout="@layout/fragment_school_search_view" />
+    <fragment
+        android:id="@+id/addRecommendation"
+        android:name="com.example.proyecto_talktie.addRecommendation"
+        android:label="fragment_add_recommendation"
+        tools:layout="@layout/fragment_add_recommendation" />
+    <fragment
+        android:id="@+id/teacherRecommendations"
+        android:name="com.example.proyecto_talktie.teacherRecommendations"
+        android:label="fragment_teacher_recommendations"
+        tools:layout="@layout/fragment_teacher_recommendations" />
+    <fragment
+        android:id="@+id/teacherProfile"
+        android:name="com.example.proyecto_talktie.teacherProfile"
+        android:label="fragment_teacher_profile"
+        tools:layout="@layout/fragment_teacher_profile" />
+    <fragment
+        android:id="@+id/createTeacher"
+        android:name="com.example.proyecto_talktie.createTeacher"
+        android:label="fragment_create_teacher"
+        tools:layout="@layout/fragment_create_teacher" />
+    <fragment
+        android:id="@+id/sigIn5_School"
+        android:name="com.example.proyecto_talktie.signIn5_school"
+        android:label="fragment_sig_in5_school"
+        tools:layout="@layout/fragment_sig_in5_school" />
 
 </navigation>

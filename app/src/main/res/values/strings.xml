@@ -547,4 +547,18 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="enter_zipcode">Enter zipcode</string>
     <string name="zipcode">Zipcode</string>
 
+    <string name="lbl_sign_up_to_join_school">Sign up as a school</string>
+    <string name="lbl_name_school">School Name</string>
+    <string name="lbl_school_information">School Information</string>
+    <string name="lbl_code_school">School Code</string>
+    <string name="your_school_name">Your school name</string>
+    <string name="your_school_code">Your school code</string>
+    <string name="lbl_type_school">Type of school</string>
+    <string name="lbl_contact_school">Contact</string>
+    <string name="lbl_student_search">What student are you looking for?</string>
+    <string name="symbol">|</string>
+    <string name="add_recommendation">Add a recommendation</string>
+    <string name="lbl_recommendation">Say something nice about the student</string>
+
+
 </resources>

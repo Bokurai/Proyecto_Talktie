@@ -60,7 +60,7 @@ public class OfferViewModel extends AndroidViewModel {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         OfferObject offer = document.toObject(OfferObject.class);
 
-                        getCompanyInfo(offer.getCompanyId(), companyName, companyImageUrl)  -> {
+                        getCompanyInfo(offer.getCompanyId(), (companyName, companyImageUrl)  -> {
                             offer.setCompanyName(companyName);
                             offer.setCompanyImageUrl(companyImageUrl);
                             offers.add(offer);
