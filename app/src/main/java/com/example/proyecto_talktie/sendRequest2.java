@@ -65,6 +65,16 @@ public class sendRequest2 extends Fragment {
         letterEditText = linearLayout.findViewById(R.id.txtWriteyourlett);
 
         experienceEditText = rootView.findViewById(R.id.txtexperience);
+        experienceEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Verificar si el texto actual coincide con el texto de ejemplo
+                if (experienceEditText.getText().toString().equals(getString(R.string.msg_write_your_lett))) {
+                    // Limpiar el texto del EditText
+                    experienceEditText.setText("");
+                }
+            }
+        });
         uploadCV = rootView.findViewById(R.id.uploadCV);
         sendButton = rootView.findViewById(R.id.btnSendNow);
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);

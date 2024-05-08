@@ -104,7 +104,7 @@ Raffles Place, Boat Band M83</string>
     <string name="msg_institution_inf">Institution Information</string>
     <string name="lbl_king_com">king.com</string>
     <string name="lbl_done">Done</string>
-    <string name="msg_pdf_doc_tx">.pdf, .doc, .txt, .rtf accepted</string>
+    <string name="msg_pdf_doc_tx">Only .pdf format are accepted.</string>
     <string name="lbl_log_in2">Log In</string>
     <string name="lbl_photo">Photo</string>
     <string name="msg_rababbeihaqi_gm">rababbeihaqi@gmail.com</string>
