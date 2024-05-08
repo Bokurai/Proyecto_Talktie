@@ -66,14 +66,13 @@ public class CompanyLogin extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
 
-        emailEditText = view.findViewById(R.id.emailEditText);
-        passwordEditText = view.findViewById(R.id.passwordEditText);
-        emailSignInButton = view.findViewById(R.id.btnLogIn);
-        signInForm = view.findViewById(R.id.linearLogin);
-        registerButton = view.findViewById(R.id.btnCreateAccountOne);
+        emailEditText = view.findViewById(R.id.emailEditTextCompany);
+        passwordEditText = view.findViewById(R.id.passwordEditTextCompany);
+        emailSignInButton = view.findViewById(R.id.btnLogInCompany);
+        signInForm = view.findViewById(R.id.linearLoginCompany);
+        registerButton = view.findViewById(R.id.btnCreateAccountOneCompany);
         navController = Navigation.findNavController(view);
-        googleSignInButton = view.findViewById(R.id.googleSignInButton);
-        signInForm = view.findViewById(R.id.linearLogin);
+        googleSignInButton = view.findViewById(R.id.googleSignInButtonCompany);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
