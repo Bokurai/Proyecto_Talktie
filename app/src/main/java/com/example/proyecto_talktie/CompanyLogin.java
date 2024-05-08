@@ -39,7 +39,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class CompanyLogin extends Fragment {
 
-    FragmentLoginBinding binding;
     //
     private FirebaseAuth mAuth;
     //LOGIN-rabab
@@ -57,9 +56,10 @@ public class CompanyLogin extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return (binding = FragmentLoginBinding.inflate(inflater, container, false)).getRoot();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_company_login, container, false);
     }
     public void onViewCreated(@NonNull View view, @Nullable Bundle
             savedInstanceState) {
@@ -78,7 +78,7 @@ public class CompanyLogin extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.signIn1);
+                navController.navigate(R.id.SignIn1_company);
             }
         });
         activityResultLauncher = registerForActivityResult(
@@ -171,7 +171,7 @@ public class CompanyLogin extends Fragment {
     private void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
             navController = NavHostFragment.findNavController(this);
-            navController.navigate(R.id.home);
+            navController.navigate(R.id.companyHomeFragment);
 
         }
     }

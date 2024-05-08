@@ -39,8 +39,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class Login extends Fragment {
 
-    FragmentLoginBinding binding;
-//
     private FirebaseAuth mAuth;
     //LOGIN-rabab
     NavController navController;
@@ -58,8 +56,10 @@ public class Login extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return (binding = FragmentLoginBinding.inflate(inflater, container, false)).getRoot();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_login, container, false);
     }
     public void onViewCreated(@NonNull View view, @Nullable Bundle
             savedInstanceState) {
