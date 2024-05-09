@@ -111,12 +111,9 @@ public class Offer extends Fragment {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
-                                    // El usuario está en la subcolección "Applicants"
                                     holder.stateOffer.setBackgroundColor(colorLightGreen900);
-                                    //holder.stateOffer.setTextColor(Color.GREEN);
                                     holder.stateOffer.setText("Applied");
                                 } else {
-                                    // El usuario no está en la subcolección "Applicants"
                                     holder.stateOffer.setTextColor(Color.BLACK);
                                     holder.stateOffer.setBackgroundColor(coloramarillo);
                                     holder.stateOffer.setText("Apply");

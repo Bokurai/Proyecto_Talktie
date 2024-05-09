@@ -94,12 +94,8 @@ public class sendRequest2 extends Fragment {
             public void onClick(View v) {
                 String letter = letterEditText.getText().toString();
                 String experience = experienceEditText.getText().toString();
-                // Verificar si el ID de la oferta está disponible
                 if (offerId != null) {
-                    // Añadir los datos del usuario a la subcolección "applicants" dentro del documento de la oferta correspondiente
                     addApplicantToOffer(offerId, letter, experience);
-
-                    // Mostrar mensaje de éxito como un popup
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setMessage("Correctly applied to the offer. We will contact you within 23-48 hours.\n\nGood luck! :)")
 
@@ -122,7 +118,6 @@ public class sendRequest2 extends Fragment {
                 selectGalleryDocument();
             }
         });
-        // Inicializar el contador obteniendo la cantidad de aplicantes actual
         if (offerId != null) {
             initNumApplicants(offerId);
         }
@@ -241,9 +236,7 @@ public class sendRequest2 extends Fragment {
         db.collection("Offer").document(offerId).collection("Applicants")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    // Obtener la lista de documentos de aplicantes
                     List<DocumentSnapshot> applicantsDocuments = queryDocumentSnapshots.getDocuments();
-                    // Obtener el tamaño de la lista para obtener el número de aplicantes
                     numApplicants = applicantsDocuments.size();
                 })
                 .addOnFailureListener(e -> {
