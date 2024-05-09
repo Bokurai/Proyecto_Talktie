@@ -58,8 +58,8 @@
                         android:gravity="start"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
-                        android:text="@string/msg_write_your_lett"
-                        tools:text="@string/msg_write_your_lett" />
+                        android:hint="@string/msg_write_your_lett"
+                         />
                 </LinearLayout>
 
                 <TextView
@@ -95,13 +95,12 @@
                         android:layout_marginTop="@dimen/_16pxv"
                         android:layout_marginBottom="@dimen/_16pxv">
 
-
                         <ImageButton
                             android:id="@+id/uploadCV"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_40pxv"
                             android:layout_marginStart="@dimen/_17pxh"
-                            android:layout_marginTop="@dimen/_16pxv"
+                            android:layout_marginTop="@dimen/_1pxv"
                             android:layout_marginBottom="@dimen/_16pxv"
                             android:background="@drawable/rectangle_bg_bluegray_50_radius_22_08"
                             android:src="@drawable/img_twitter" />
@@ -109,11 +108,11 @@
 
                     <LinearLayout
                         android:id="@+id/linearColumnupload"
-                        android:layout_width="0dp"
+                        android:layout_width="226dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_17pxh"
                         android:layout_marginTop="@dimen/_17pxv"
-                        android:layout_marginEnd="@dimen/_142pxh"
+                        android:layout_marginEnd="@dimen/_42pxh"
                         android:layout_marginBottom="@dimen/_16pxv"
                         android:layout_weight="0.78"
                         android:gravity="start"
@@ -128,8 +127,7 @@
                             android:ellipsize="end"
                             android:lineSpacingExtra="@dimen/_3pxh"
                             android:singleLine="true"
-                            android:text="@string/lbl_upload"
-                            tools:text="@string/lbl_upload" />
+                            android:text="@string/lbl_upload" />
 
                         <TextView
                             android:id="@+id/txtPdfdoctx"
@@ -140,8 +138,7 @@
                             android:ellipsize="end"
                             android:lineSpacingExtra="@dimen/_3pxh"
                             android:singleLine="true"
-                            android:text="@string/msg_pdf_doc_tx"
-                            tools:text="@string/msg_pdf_doc_tx" />
+                            android:text="@string/msg_pdf_doc_tx" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -203,8 +200,8 @@
                             android:gravity="start"
                             android:lineSpacingExtra="@dimen/_3pxh"
                             android:singleLine="true"
-                            android:text="@string/msg_write_your_lett"
-                            tools:text="@string/lbl_expirience" />
+                            android:hint="@string/lbl_expirience"
+                            />
                     </LinearLayout>
                 </LinearLayout>
 
