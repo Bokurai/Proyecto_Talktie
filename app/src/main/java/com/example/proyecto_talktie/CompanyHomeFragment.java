@@ -1,5 +1,7 @@
 package com.example.proyecto_talktie;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,9 +12,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -47,12 +52,25 @@ public class CompanyHomeFragment extends Fragment {
         mainActivity.showNavBotComp();
         offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
-        /**
-         *  I get the livedata with the offers from the view-model to show it to the user
-         */
-        offerViewModel.getOffersLiveData().observe(getViewLifecycleOwner(), offerObjects -> {
-            adapter.setOfferObjectList(offerObjects);
-        });
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("Company").document("companyId")
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String companyId = documentSnapshot.getString("companyId");
+
+                        // Obtener las ofertas de la compañía correspondiente
+                        offerViewModel.getOffersCompany(companyId).observe(getViewLifecycleOwner(), offerObjects -> {
+                            adapter.setOfferObjectList(offerObjects);
+                        });
+                    } else {
+                    }
+                })
+                .addOnFailureListener(e -> {
+                });
+
+
 
         navController = Navigation.findNavController(requireView());
 

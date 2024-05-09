@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
-    <LinearLayout android:gravity="start"
+
+    <ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+    <LinearLayout
+    android:gravity="start"
         android:id="@+id/linearOferrsposted"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -42,6 +47,20 @@
                         android:text="@string/post_a_new_offer"
                         style="@style/txtPoppinssemibold22" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtJobTitleOffer"
+                    style="@style/txtRobotosemibolditalic17_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_marginEnd="@dimen/_64pxh"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@string/lbl_job_title"
+                    />
                 <EditText
                     android:background="@drawable/rectangle_bg_white_a700_radius_8"
                     android:ellipsize="end"
@@ -50,7 +69,7 @@
                     android:inputType="text"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_5pxh"
-                    android:layout_marginTop="@dimen/_32pxv"
+                    android:layout_marginTop="@dimen/_12pxv"
                     android:layout_width="match_parent"
                     android:letterSpacing="0.01"
                     android:lineSpacingExtra="@dimen/_3pxh"
@@ -61,7 +80,19 @@
                     android:singleLine="true"
                     android:textColorHint="@color/gray_701"
                     style="@style/etSolidRounded_5" tools:ignore="Autofill"/>
-
+                <TextView
+                    android:id="@+id/txtJobCategoryOffer"
+                    style="@style/txtRobotosemibolditalic17_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_marginEnd="@dimen/_64pxh"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@string/job_category"
+                    />
                 <Spinner
                     android:background="@drawable/rectangle_bg_white_a700_radius_8"
                     android:ellipsize="end"
@@ -81,6 +112,19 @@
                     android:singleLine="true"
                     android:textColorHint="@color/gray_701"
                     style="@style/etSolidRounded_5" tools:ignore="Autofill"/>
+                <TextView
+                    android:id="@+id/txtContractTimeOffer"
+                    style="@style/txtRobotosemibolditalic17_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_marginEnd="@dimen/_64pxh"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@string/contract_time"
+                    />
                 <EditText
                     android:background="@drawable/rectangle_bg_white_a700_radius_8"
                     android:ellipsize="end"
@@ -100,13 +144,26 @@
                     android:singleLine="true"
                     android:textColorHint="@color/gray_701"
                     style="@style/etSolidRounded_5" tools:ignore="Autofill"/>
+                <TextView
+                    android:id="@+id/txtDescriptionOffer"
+                    style="@style/txtRobotosemibolditalic17_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_marginEnd="@dimen/_64pxh"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@string/lbl_description"
+                    />
                 <EditText
                     android:background="@drawable/rectangle_bg_white_a700_radius_8"
                     android:ellipsize="end"
                     android:hint="@string/lbl_description"
                     android:id="@+id/jobdescofferET"
                     android:inputType="text"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_75pxh"
                     android:layout_marginEnd="@dimen/_5pxh"
                     android:layout_marginTop="@dimen/_7pxv"
                     android:layout_width="match_parent"
@@ -119,6 +176,19 @@
                     android:singleLine="true"
                     android:textColorHint="@color/gray_701"
                     style="@style/etSolidRounded_5" tools:ignore="Autofill"/>
+                <TextView
+                    android:id="@+id/txtTagOne"
+                    style="@style/txtRobotosemibolditalic17_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_marginEnd="@dimen/_64pxh"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@string/tag_1"
+                    />
                 <EditText
                     android:background="@drawable/rectangle_bg_white_a700_radius_8"
                     android:ellipsize="end"
@@ -139,6 +209,19 @@
                     android:textColorHint="@color/gray_701"
                     style="@style/etSolidRounded_5"
                     tools:ignore="Autofill"/>
+                <TextView
+                    android:id="@+id/txtTagTwo"
+                    style="@style/txtRobotosemibolditalic17_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_marginEnd="@dimen/_64pxh"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@string/tag_2"
+                    />
                 <EditText
                     android:background="@drawable/rectangle_bg_white_a700_radius_8"
                     android:ellipsize="end"
@@ -159,6 +242,20 @@
                     android:textColorHint="@color/gray_701"
                     style="@style/etSolidRounded_5"
                     tools:ignore="Autofill"/>
+
+                <TextView
+                    android:id="@+id/txtTagThree"
+                    style="@style/txtRobotosemibolditalic17_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_marginEnd="@dimen/_64pxh"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@string/tag_3"
+                    />
                 <EditText
                     android:background="@drawable/rectangle_bg_white_a700_radius_8"
                     android:ellipsize="end"
@@ -184,7 +281,7 @@
                     android:id="@+id/btnPublishOffer"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_4pxh"
-                    android:layout_marginTop="@dimen/_40pxv"
+                    android:layout_marginTop="@dimen/_15pxv"
                     android:layout_width="match_parent"
                     android:paddingBottom="@dimen/_13pxv"
                     android:paddingEnd="@dimen/_30pxh"
@@ -197,4 +294,4 @@
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>
-</layout>
+</ScrollView>

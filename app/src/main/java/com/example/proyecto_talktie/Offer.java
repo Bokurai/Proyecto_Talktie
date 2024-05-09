@@ -53,9 +53,6 @@ public class Offer extends Fragment {
         recyclerView = view.findViewById(R.id.offerRecyclerView);
         recyclerView.setAdapter(adapter);
 
-
-
-
     }
 
     /*
