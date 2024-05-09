@@ -1,10 +1,13 @@
 package com.example.proyecto_talktie;
 
+import static androidx.fragment.app.FragmentManager.TAG;
+
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -17,9 +20,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -62,8 +69,6 @@ public class Offer extends Fragment {
         });
         recyclerView.setAdapter(adapter);
         navController = Navigation.findNavController(view);
-
-
     }
 
     class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersViewHolder> {
@@ -75,6 +80,7 @@ public class Offer extends Fragment {
             this.offerObjectList = offerObjectList;
             this.db = db;
         }
+
 
         public OffersAdapter(List<OfferObject> offerObjectList) {
             this.offerObjectList = offerObjectList;
@@ -90,11 +96,37 @@ public class Offer extends Fragment {
         public void onBindViewHolder(@NonNull OffersViewHolder holder, int position) {
 
             OfferObject offerObject = offerObjectList.get(position);
-
+            int colorLightGreen900 = ContextCompat.getColor(holder.itemView.getContext(), R.color.light_green_900);
+            int coloramarillo = ContextCompat.getColor(holder.itemView.getContext(), R.color.amber_700);
             holder.name.setText(offerObject.getName());
             holder.companyName.setText(offerObject.getCompanyName());
-            // Numero "Applicants"
+
+            // Verificar si el usuario está dentro de la subcolección "Applicants"
             CollectionReference applicantsRef = db.collection("Offer").document(offerObject.getOfferId()).collection("Applicants");
+            applicantsRef.document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    // El usuario está en la subcolección "Applicants"
+                                    holder.stateOffer.setBackgroundColor(colorLightGreen900);
+                                    //holder.stateOffer.setTextColor(Color.GREEN);
+                                    holder.stateOffer.setText("Applied");
+                                } else {
+                                    // El usuario no está en la subcolección "Applicants"
+                                    holder.stateOffer.setTextColor(Color.BLACK);
+                                    holder.stateOffer.setBackgroundColor(coloramarillo);
+                                    holder.stateOffer.setText("Apply");
+                                }
+                            } else {
+                                Log.e("OffersAdapter", "Error al verificar si el usuario está en la subcolección de aplicantes: ", task.getException());
+                            }
+                        }
+                    });
+
             applicantsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -107,6 +139,7 @@ public class Offer extends Fragment {
                     Log.e("OffersAdapter", "Error al obtener la cantidad de aplicantes: " + e.getMessage());
                 }
             });
+
             if(offerObject.getTags() != null) {
                 if (offerObject.getTags().size() > 0) {
                     holder.tag1.setText(offerObject.getTags().get(0));
@@ -157,17 +190,17 @@ public class Offer extends Fragment {
         class OffersViewHolder extends RecyclerView.ViewHolder {
 
             //Faltan campos
-            TextView name, companyName, tag1, tag2, tag3, numApplicants;
+            TextView name, companyName, tag1, tag2, tag3, numApplicants, stateOffer;
 
             public OffersViewHolder(@NonNull View itemView) {
                 super(itemView);
-
                 name = itemView.findViewById(R.id.offerName);
                 companyName = itemView.findViewById(R.id.companyName);
                 tag1 = itemView.findViewById(R.id.btnTagOne);
                 tag2 = itemView.findViewById(R.id.btnTagTwo);
                 tag3 = itemView.findViewById(R.id.btnTagThree);
                 numApplicants = itemView.findViewById(R.id.numApplicants);
+                stateOffer=itemView.findViewById(R.id.stateOffer);
 
             }
         }
