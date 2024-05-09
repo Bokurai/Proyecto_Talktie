@@ -54,21 +54,32 @@ public class CompanyHomeFragment extends Fragment {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+// Obtener la ID de la compañía desde Firestore
         db.collection("Company").document("companyId")
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String companyId = documentSnapshot.getString("companyId");
 
+                        // Log para verificar que la ID de la compañía se obtiene correctamente
+                        Log.d("Company ID", companyId);
 
+                        // Obtener las ofertas de la compañía correspondiente
                         offerViewModel.getOffersCompany(companyId).observe(getViewLifecycleOwner(), offerObjects -> {
                             adapter.setOfferObjectList(offerObjects);
+                            // Log para verificar el número de ofertas obtenidas
+                            Log.d("Número de ofertas", String.valueOf(offerObjects.size()));
                         });
                     } else {
+                        // Log para indicar que no se encontró el documento de la compañía
+                        Log.d("No such document", "El documento de la compañía no existe");
                     }
                 })
                 .addOnFailureListener(e -> {
+                    // Log para indicar un error al obtener el documento
+                    Log.e("Error getting document", "Error al obtener el documento de la compañía", e);
                 });
+
 
 
 
