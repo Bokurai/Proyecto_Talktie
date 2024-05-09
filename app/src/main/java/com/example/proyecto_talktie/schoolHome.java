@@ -2,63 +2,125 @@ package com.example.proyecto_talktie;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link schoolHome#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+
 public class schoolHome extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public schoolHome() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment schoolHome.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static schoolHome newInstance(String param1, String param2) {
-        schoolHome fragment = new schoolHome();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+   MainActivity mainActivity;
+   NavController navController;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+   private RecyclerView recyclerView;
+   private SearchView searchViewBar;
+   private schoolHomeViewModel homeViewModel;
+   private String name;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        homeViewModel = new ViewModelProvider(requireActivity()).get(schoolHomeViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        homeViewModel = new ViewModelProvider(requireActivity()).get(schoolHomeViewModel.class);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_school_home, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        mainActivity = (MainActivity) requireActivity();
+        mainActivity.showNavBotSchool();
+
+        navController = Navigation.findNavController(view);
+
+        searchViewBar = view.findViewById(R.id.searchViewSearchSchool);
+        recyclerView = view.findViewById(R.id.searchRecyclerViewSchool);
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        homeViewModel.getNameSchool().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                name = s;
+
+                Log.d("TAG", "El nombre del instituto es" + name);
+
+                Query baseQuery = FirebaseFirestore.getInstance().collection("Student")
+                        .whereEqualTo("center", name);
+
+                //Adapatador inicial
+                FirestoreRecyclerOptions<Student> options = new FirestoreRecyclerOptions.Builder<Student>()
+                        .setQuery(baseQuery, Student.class)
+                        .setLifecycleOwner(schoolHome.this)
+                        .build();
+
+                //Adaptador opciones iniciales
+                final studentSchoolAdapter adapter = new studentSchoolAdapter(options, navController, homeViewModel);
+                recyclerView.setAdapter(adapter);
+
+                //Listener de la barra de la búsqueda
+                searchViewBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String s) {
+                        Query searchQuery = baseQuery;
+
+                        if (!s.isEmpty()) {
+                            searchQuery = baseQuery.orderBy("name").startAt(s).endAt(s+"\uf8ff");
+                        }
+
+                        FirestoreRecyclerOptions<Student> newOptions = new FirestoreRecyclerOptions.Builder<Student>()
+                                .setQuery(searchQuery, Student.class)
+                                .setLifecycleOwner(schoolHome.this)
+                                .build();
+
+                        adapter.updateOptions(newOptions);
+                        adapter.notifyDataSetChanged();
+
+
+                        return true;
+                    }
+                });
+
+
+            }
+        });
+
+
+
+
     }
 }

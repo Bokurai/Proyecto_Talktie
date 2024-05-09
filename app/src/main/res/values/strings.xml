@@ -563,6 +563,8 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="symbol">|</string>
     <string name="add_recommendation">Add a recommendation</string>
     <string name="lbl_recommendation">Say something nice about the student</string>
+    <string name="sign_in_as_a_school">Sign in as a school</string>
+    <string name="lbl_teachers">Teachers\n</string>
 
 
 </resources>

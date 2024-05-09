@@ -208,6 +208,24 @@
         app:destination="@+id/schoolHome" />
 
     <action
+        android:id="@+id/action_goStudentSchoolProfile"
+        app:destination="@+id/studentSchoolProfile" />
+
+    <action
+        android:id="@+id/action_goSchoolProfile"
+        app:destination="@+id/schoolProfile" />
+
+
+    <action
+        android:id="@+id/action_goSchoolCompanies"
+        app:destination="@+id/schoolCompanies" />
+
+
+    <action
+        android:id="@+id/action_goSchoolMessages"
+        app:destination="@+id/schoolMessages" />
+
+    <action
         android:id="@+id/action_goCategoryOffer"
         app:destination="@id/offerCategory" />
 
@@ -250,6 +268,10 @@
     <action
         android:id="@+id/action_goSignIn1Company"
         app:destination="@+id/SignIn1_company" />
+
+    <action
+        android:id="@+id/action_goSLoginSchool"
+        app:destination="@+id/schoolLogin" />
 
     <action
         android:id="@+id/action_SignIn2_company"
@@ -316,11 +338,6 @@
         android:label="fragment_student_school_profile"
         tools:layout="@layout/fragment_student_school_profile" />
     <fragment
-        android:id="@+id/schoolSearchView"
-        android:name="com.example.proyecto_talktie.schoolSearchView"
-        android:label="fragment_school_search_view"
-        tools:layout="@layout/fragment_school_search_view" />
-    <fragment
         android:id="@+id/addRecommendation"
         android:name="com.example.proyecto_talktie.addRecommendation"
         android:label="fragment_add_recommendation"
@@ -362,5 +379,20 @@
     <action
         android:id="@+id/action_gocompanyLogin"
         app:destination="@+id/companyLogin" />
+    <fragment
+        android:id="@+id/schoolLogin"
+        android:name="com.example.proyecto_talktie.schoolLogin"
+        android:label="fragment_school_login"
+        tools:layout="@layout/fragment_school_login" />
+    <fragment
+        android:id="@+id/schoolMessages"
+        android:name="com.example.proyecto_talktie.schoolMessages"
+        android:label="fragment_school_messages"
+        tools:layout="@layout/fragment_school_messages" />
+    <fragment
+        android:id="@+id/schoolCompanies"
+        android:name="com.example.proyecto_talktie.schoolCompanies"
+        android:label="fragment_school_companies"
+        tools:layout="@layout/fragment_school_companies" />
 
 </navigation>

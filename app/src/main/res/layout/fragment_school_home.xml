@@ -5,70 +5,39 @@
     tools:context=".schoolHome"
     android:gravity="start"
     android:id="@+id/home"
-    android:layout_marginTop="@dimen/_10pxh"
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/_35pxv"
     android:layout_width="match_parent"
     android:orientation="vertical"
     style="@style/groupStylewhite_A700">
 
-    <TextView
-        android:id="@+id/nameCategories"
-        style="@style/txtRobotoromanbold22_C"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ellipsize="end"
-        android:lineSpacingExtra="@dimen/_3pxh"
-        android:singleLine="true"
-        android:text="@string/lbl_recommendations"/>
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarToolbar"
         android:layout_height="wrap_content"
         android:layout_width="match_parent" app:contentInsetStart="0dp">
 
-
-            <LinearLayout
-                android:id="@+id/linearScreen"
-                style="@style/groupStylewhite_A700"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="top|start"
-                android:layout_marginTop="@dimen/_20pxh"
-                android:orientation="horizontal">
-
-
-                <LinearLayout
-                    android:id="@+id/search_bar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_10pxh"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/_5pxh"
-                        android:src="@drawable/img_search_black_900" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="@dimen/_5pxh"
-                        android:text="@string/lbl_student_search" />
-
-                </LinearLayout>
+        <androidx.appcompat.widget.SearchView
+            android:layout_margin="@dimen/_20pxh"
+            android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
+            android:id="@+id/searchViewSearchSchool"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:theme="@style/searchViewSearch"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="@string/lbl_search2"/>
 
 
-            </LinearLayout>
+
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginEnd="@dimen/_10pxh"
         android:layout_marginStart="@dimen/_10pxh"
         android:layout_marginBottom="@dimen/_25pxh"
-        android:id="@+id/searchRecyclerView"
+        android:id="@+id/searchRecyclerViewSchool"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

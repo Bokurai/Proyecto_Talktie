@@ -119,7 +119,7 @@ public class SignIn1_School extends Fragment {
         haveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_goLogin);
+                navController.navigate(R.id.action_goSLoginSchool);
             }
         });
 

@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ActivityMainBinding binding; //para navigation button
     NavController navController;
-    BottomNavigationView bottomNavigationView;
+    BottomNavigationView bottomNavigationView, bottomNavSchool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         // Configurar el BottomNavigationView con el NavController
         NavigationUI.setupWithNavController(binding.bottomNavView, navController);
         bottomNavigationView = findViewById(R.id.bottom_nav_view);
+
+        NavigationUI.setupWithNavController(binding.bottomNavViewSchool, navController);
+        bottomNavSchool = findViewById(R.id.bottom_nav_view_school);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -62,6 +65,31 @@ public class MainActivity extends AppCompatActivity {
                 } else if (itemId == R.id.profileStudent) {
                     // Navegar al fragmento de perfil
                     navController.navigate(R.id.action_goProfileStudent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        bottomNavSchool.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.recommends) {
+                    // Navegar al fragmento de inicio
+                    navController.navigate(R.id.action_goSchoolHome);
+                    return true;
+                } else if (itemId == R.id.companiesSchool) {
+                    // Navegar al fragmento de ofertas
+                    navController.navigate(R.id.action_goSchoolCompanies);
+                    return true;
+                } else if (itemId == R.id.messagesSchool) {
+                    // Navegar al fragmento de mensajes
+                    navController.navigate(R.id.action_goSchoolMessages);
+                    return true;
+                } else if (itemId == R.id.profileSchool) {
+                    // Navegar al fragmento de perfil
+                    navController.navigate(R.id.action_goSchoolProfile);
                     return true;
                 }
                 return false;
@@ -101,5 +129,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void showNavBot() {
         bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
+    public void hideNavBotSchool() {
+        bottomNavSchool.setVisibility(View.GONE);
+    }
+    public void showNavBotSchool() {
+        bottomNavSchool.setVisibility(View.VISIBLE);
     }
 }

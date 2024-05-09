@@ -138,6 +138,7 @@ public class Login extends Fragment {
    //esconder el menu
         mainActivity = (MainActivity) requireActivity();
         mainActivity.hideNavBot();
+        mainActivity.hideNavBotSchool();
 
     }
     private void accederConEmail() {
