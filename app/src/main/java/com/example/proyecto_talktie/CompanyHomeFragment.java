@@ -60,7 +60,7 @@ public class CompanyHomeFragment extends Fragment {
                     if (documentSnapshot.exists()) {
                         String companyId = documentSnapshot.getString("companyId");
 
-                        // Obtener las ofertas de la compañía correspondiente
+
                         offerViewModel.getOffersCompany(companyId).observe(getViewLifecycleOwner(), offerObjects -> {
                             adapter.setOfferObjectList(offerObjects);
                         });
