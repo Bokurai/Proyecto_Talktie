@@ -213,7 +213,7 @@ Rec</string>
     <string name="msg_with_a_mission2">With a mission of Making the World Playful, King is a leading interactive entertainment company with a 20-year history of delivering some of the world\u2019s most iconic games in the mobile gaming\u2026</string>
     <string name="msg_set_your_locati">Set your location to start find a dream job around you</string>
     <string name="lbl_add_more">Add More</string>
-    <string name="lbl_expires_soon">Expires Soon</string>
+    <string name="lbl_expires_soon">Apply</string>
     <string name="lbl_web_site">Web site</string>
     <string name="lbl_contacts">Contacts</string>
     <string name="msg_ferran_porcel_p">Ferran Porcel Pino</string>
@@ -323,7 +323,7 @@ Rec</string>
     <string name="msg_create_teacher">Create teacher profile</string>
     <string name="lbl_internships">Internships</string>
     <string name="lbl_www_iesbla_net">www.iesbla.net</string>
-    <string name="lbl_apply">Apply </string>
+    <string name="lbl_apply2">Apply </string>
     <string name="msg_verifying_numbe">Verifying Number</string>
     <string name="lbl_english">English</string>
     <string name="msg_forget_password">Forget Password?</string>

@@ -22,13 +22,27 @@ public class OfferObject {
     String job_description;
 
     String companyName;
+    private int numApplicants;
+
+    public int getNumApplicants() {
+        return numApplicants;
+    }
+
+    public void setNumApplicants(int numApplicants) {
+        this.numApplicants = numApplicants;
+    }
 
     public OfferObject() {
+        // Inicializar numApplicants a 0 por defecto
+        this.numApplicants = 0;
     }
 
     public OfferObject(String name, String companyId) {
         this.name = name;
         this.companyId = companyId;
+    }
+    public OfferObject(int numApplicants) {
+        this.numApplicants = numApplicants;
     }
 
 

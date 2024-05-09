@@ -38,6 +38,7 @@ import com.google.firebase.storage.UploadTask;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -56,6 +57,7 @@ public class sendRequest2 extends Fragment {
     private StorageReference storageReference = storage.getReference();
     private static final int SELECT_DOCUMENT = 1;
     private FirebaseUser user;
+    private int numApplicants = 0;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -120,6 +122,10 @@ public class sendRequest2 extends Fragment {
                 selectGalleryDocument();
             }
         });
+        // Inicializar el contador obteniendo la cantidad de aplicantes actual
+        if (offerId != null) {
+            initNumApplicants(offerId);
+        }
 
         return rootView;
     }
@@ -231,5 +237,19 @@ public class sendRequest2 extends Fragment {
                 });
 
     }
+    private void initNumApplicants(String offerId) {
+        db.collection("Offer").document(offerId).collection("Applicants")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    // Obtener la lista de documentos de aplicantes
+                    List<DocumentSnapshot> applicantsDocuments = queryDocumentSnapshots.getDocuments();
+                    // Obtener el tamaño de la lista para obtener el número de aplicantes
+                    numApplicants = applicantsDocuments.size();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("sendRequest2", "Error al obtener la cantidad de aplicantes: " + e.getMessage());
+                });
+    }
+
 
 }
