@@ -550,5 +550,8 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="new_tag">New tag</string>
     <string name="sign_in_as_a_company">Sign in as a company</string>
     <string name="publish_offer">Publish offer</string>
+    <string name="i_m_a_company">I\'m a company</string>
+    <string name="i_am_a_company">I am a company</string>
+    <string name="i_am_a_school">I am a school</string>
 
 </resources>

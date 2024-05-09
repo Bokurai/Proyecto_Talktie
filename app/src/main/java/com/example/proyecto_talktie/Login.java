@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -27,12 +29,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,6 +52,7 @@ public class Login extends Fragment {
     private ActivityResultLauncher<Intent> activityResultLauncher;
     //LOGIN-emial passw
     private EditText emailEditText, passwordEditText;
+    private TextView  iamcompany, iamschool;
     private Button emailSignInButton, registerButton;
     public static final String EXTRA_FORCE_ACCOUNT_CHOOSER = "force_account_chooser";
     MainActivity mainActivity;
@@ -73,7 +79,16 @@ public class Login extends Fragment {
         registerButton = view.findViewById(R.id.btnCreateAccountOne);
         navController = Navigation.findNavController(view);
         googleSignInButton = view.findViewById(R.id.googleSignInButton);
+        iamcompany = view.findViewById(R.id.imcompany);
+        iamschool = view.findViewById(R.id.imschool);
         signInForm = view.findViewById(R.id.linearLogin);
+
+        iamcompany.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_gocompanyLogin);
+            }
+        });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,8 +156,6 @@ public class Login extends Fragment {
 
     }
     private void accederConEmail() {
-
-
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
@@ -153,19 +166,41 @@ public class Login extends Fragment {
 
         signInForm.setVisibility(View.GONE);
 
-        mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            actualizarUI(mAuth.getCurrentUser());
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                verificarTipoUsuario(user);
+                            }
                         } else {
                             Snackbar.make(requireView(), "Error: " + task.getException(), Snackbar.LENGTH_LONG).show();
+                            signInForm.setVisibility(View.VISIBLE);
                         }
-                        signInForm.setVisibility(View.VISIBLE);
-
                     }
                 });
+    }
+
+    private void verificarTipoUsuario(FirebaseUser user) {
+        DocumentReference userRef = FirebaseFirestore.getInstance().collection("User").document(user.getUid());
+
+        userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    String userType = documentSnapshot.getString("userT");
+                    if ("student".equals(userType)) {
+                        actualizarUI(user);
+                    } else {
+                        Snackbar.make(requireView(), "Only student login, please use one of the other login types listed in the bottom of the screen", Snackbar.LENGTH_LONG).show();
+                        mAuth.signOut();
+                        signInForm.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
     }
     //login with google
     private void actualizarUI(FirebaseUser currentUser) {

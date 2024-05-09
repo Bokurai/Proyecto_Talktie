@@ -29,15 +29,8 @@ public class Offer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_offer, container, false);
+        return inflater.inflate(R.layout.fragment_offer, container, false);
 
-        adapter = new OffersAdapter(new ArrayList<>());
-
-        recyclerView = view.findViewById(R.id.offerRecyclerView);
-        recyclerView.setAdapter(adapter);
-
-
-        return view;
     }
 
     @Override
@@ -53,11 +46,19 @@ public class Offer extends Fragment {
             adapter.setOfferObjectList(offerObjects);
         });
 
-        navController = Navigation.findNavController(view);
+        navController = Navigation.findNavController(requireView());
+
+        adapter = new OffersAdapter(new ArrayList<>(), navController, offerViewModel);
+
+        recyclerView = view.findViewById(R.id.offerRecyclerView);
+        recyclerView.setAdapter(adapter);
+
+
 
 
     }
 
+    /*
     class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersViewHolder> {
        private List<OfferObject> offerObjectList;
 
@@ -123,13 +124,15 @@ public class Offer extends Fragment {
          *  Method updating the list of offers
          * @param offerObjectList list of offers
          */
+
+    /*
         public void setOfferObjectList(List<OfferObject> offerObjectList) {
             this.offerObjectList = offerObjectList;
             notifyDataSetChanged();
             Log.d("OffersAdapter", "Cantidad de ofertas recibidas: " + offerObjectList.size());
         }
 
-        class OffersViewHolder extends RecyclerView.ViewHolder {
+        static class OffersViewHolder extends RecyclerView.ViewHolder {
 
             //Faltan campos
             TextView name, companyName, tag1, tag2, tag3;
@@ -144,6 +147,5 @@ public class Offer extends Fragment {
                 tag3 = itemView.findViewById(R.id.btnTagThree);
             }
         }
-    }
-
+        */
 }

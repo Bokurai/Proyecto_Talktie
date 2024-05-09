@@ -38,14 +38,14 @@ public class SelectRegister extends Fragment {
         binding.btnStartAsACondidate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.signIn1);
+                navController.navigate(R.id.login);
             }
         });
 
         binding.btnStartAsACompanyOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_goSignIn1Company);
+                navController.navigate(R.id.companyLogin);
             }
         });
         binding.btnStartAsASchoolOne.setOnClickListener(new View.OnClickListener() {

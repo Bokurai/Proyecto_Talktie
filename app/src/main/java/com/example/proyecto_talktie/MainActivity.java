@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ActivityMainBinding binding; //para navigation button
     NavController navController;
-    BottomNavigationView bottomNavigationView;
+    BottomNavigationView bottomNavigationView, bottomNavigationViewCompany;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Configurar el BottomNavigationView con el NavController
         NavigationUI.setupWithNavController(binding.bottomNavView, navController);
+        NavigationUI.setupWithNavController(binding.bottomNavViewCompany, navController);
         bottomNavigationView = findViewById(R.id.bottom_nav_view);
+        bottomNavigationViewCompany = findViewById(R.id.bottom_nav_view_company);
 
         // Verificar si hay un usuario autenticado
         if (currentUser == null) {
@@ -71,5 +73,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void showNavBot() {
         bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
+    public void hideNavBotComp() {
+        bottomNavigationViewCompany.setVisibility(View.GONE);
+    }
+
+    public void showNavBotComp() {
+        bottomNavigationViewCompany.setVisibility(View.VISIBLE);
     }
 }

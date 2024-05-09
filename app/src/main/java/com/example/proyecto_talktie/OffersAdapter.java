@@ -7,27 +7,32 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class OffersAdapters {
+    class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersViewHolder> {
 
-    class OffersAdapter extends RecyclerView.Adapter<Offer.OffersAdapter.OffersViewHolder> {
+        NavController navController;
+        OfferViewModel offerViewModel;
+
         private List<OfferObject> offerObjectList;
 
-        public OffersAdapter(List<OfferObject> offerObjectList) {
+        public OffersAdapter(List<OfferObject> offerObjectList, NavController navController, OfferViewModel offerViewModel) {
+            this.offerViewModel = offerViewModel;
+            this.navController = navController;
             this.offerObjectList = offerObjectList;
         }
 
         @NonNull
         @Override
-        public Offer.OffersAdapter.OffersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new Offer.OffersAdapter.OffersViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_offers,parent,false));
+        public OffersAdapter.OffersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new OffersAdapter.OffersViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_offers,parent,false));
         }
 
         @Override
-        public void onBindViewHolder(@NonNull Offer.OffersAdapter.OffersViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull OffersAdapter.OffersViewHolder holder, int position) {
 
             OfferObject offerObject = offerObjectList.get(position);
 
@@ -100,4 +105,4 @@ public class OffersAdapters {
             }
         }
     }
-}
+
