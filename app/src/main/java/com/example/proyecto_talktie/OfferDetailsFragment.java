@@ -10,15 +10,31 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
+import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Button;
+import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class OfferDetailsFragment extends Fragment {
@@ -29,7 +45,7 @@ public class OfferDetailsFragment extends Fragment {
 
     AppCompatButton apply_job;
 
-    ImageView backArrow;
+    ImageView backArrow, companyImage;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -66,12 +82,31 @@ public class OfferDetailsFragment extends Fragment {
             @Override
             public void onChanged(OfferObject offerObject) {
                offer_name.setText(offerObject.getName());
-               business_name.setText(offerObject.getCompanyId());
-               offer_date.setText(offerObject.getDate().toString());
+               business_name.setText(offerObject.getCompanyName());
                job_category.setText(offerObject.getJob_category());
                contract_time.setText(offerObject.getContract_time());
                job_description.setText(offerObject.getJob_description());
-                apply_job.setOnClickListener(new View.OnClickListener() {
+
+                SimpleDateFormat format = new SimpleDateFormat("HH:MM  dd/mm/yyyy");
+                Date date = offerObject.getDate();String formattedDate = format.format(date);
+                offer_date.setText(formattedDate);
+
+                String imageProfile = offerObject.getCompanyImageUrl();
+                Context context = getView().getContext();
+                if (!imageProfile.equals("null")){
+                    Uri uriImage = Uri.parse(imageProfile);
+                    Glide.with(context)
+                            .load(uriImage)
+                            .into(companyImage);
+
+                } else {
+                    Glide.with(context)
+                            .load(R.drawable.build_image_default)
+                            .into(companyImage);
+                }
+
+
+               apply_job.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Log.d("TAG", offerObject.getOfferId());
@@ -92,27 +127,5 @@ public class OfferDetailsFragment extends Fragment {
             }
         });
     }
-    /*public void addAplicantToOffer(String offerId) {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        String applicantId = currentUser.getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        db.collection("Offer")
-                .whereEqualTo("offerId", offerId)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        DocumentReference offerRef = documentSnapshot.getReference();
-
-                        List<String> applicantsIds = documentSnapshot.contains("applicantsId") ?
-                                (List<String>) documentSnapshot.get("applicantsId") : new ArrayList<>();
-
-                        if (!applicantsIds.contains(applicantId)) {
-                            applicantsIds.add(applicantId);
-                        }
-                        offerRef.update("applicantsId", applicantsIds);
-                    }
-                });
-    }*/
 
 }

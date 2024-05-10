@@ -30,29 +30,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:text="@string/date_format"
-                app:layout_constraintBottom_toTopOf="@+id/frameCompamyImage"
+                app:layout_constraintBottom_toTopOf="@+id/shapeableImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <FrameLayout
-                android:id="@+id/frameCompamyImage"
-                android:layout_width="@dimen/_114pxh"
-                android:layout_height="@dimen/_110pxv"
-                android:layout_marginTop="@dimen/_20pxh"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/shapeableImageView"
                     android:layout_width="@dimen/_100pxh"
                     android:layout_height="@dimen/_100pxh"
+                    android:layout_marginTop="@dimen/_20pxh"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_gravity="center"
-
-                    android:padding="5sp"
-                    android:src="@drawable/company_logo"
+                    android:src="@drawable/build_image_default"
                      />
-            </FrameLayout>
 
 
             <LinearLayout
@@ -61,22 +55,21 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/frameCompamyImage"
-                app:layout_constraintStart_toStartOf="@+id/frameCompamyImage"
-                app:layout_constraintTop_toBottomOf="@+id/frameCompamyImage">
+                app:layout_constraintEnd_toEndOf="@+id/shapeableImageView"
+                app:layout_constraintStart_toStartOf="@+id/shapeableImageView"
+                app:layout_constraintTop_toBottomOf="@+id/shapeableImageView">
 
                 <TextView
-                    android:id="@+id/companyNameOffer"
+                    android:id="@+id/offerNameCompany"
                     style="@style/txtPoppinssemibold19"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_10pxh"
                     android:singleLine="true"
                     android:gravity="center"
                     android:text="@string/lbl_nameCompany" />
 
                 <TextView
-                    android:id="@+id/offerNameCompany"
+                    android:id="@+id/companyNameOffer"
                     style="@style/txtPoppinssemibold17_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

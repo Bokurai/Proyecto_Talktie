@@ -8,13 +8,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.widget.EditText;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +26,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +37,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -43,14 +50,19 @@ public class ProfileStudent extends Fragment {
     private RecyclerView recyclerView;
     private RecommendAdapter adapter;
     private FirebaseAuth mAuth;
+    private ImageView editButton;
+    private AppCompatButton saveButton;
+    private String newAbout = "";
+    private EditText editTextAbout;
     FirebaseUser user;
     TextView textAbout, profileEditTxt, studentName, txtRecommendation;
     CircleImageView profileImg;
     StorageReference storageReference;
+    Storage storage;
+    Uri uri;
     NavController navController;
     String studentId;
     int SELECT_PICTURE = 200;
-
 
 
     @Override
@@ -95,9 +107,12 @@ public class ProfileStudent extends Fragment {
         textAbout = view.findViewById(R.id.txtDescription);
         txtRecommendation = view.findViewById(R.id.textRecommend);
         profileEditTxt = view.findViewById(R.id.edit_profiletxt);
-        navController = Navigation.findNavController(view);
         profileImg = view.findViewById(R.id.profileImgStudent);
         studentName = view.findViewById(R.id.txtStudentName);
+        navController = Navigation.findNavController(view);
+
+        editButton = view.findViewById(R.id.aboutEdit);
+        saveButton = view.findViewById(R.id.btnSave);
 
         loadUserInfo();
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
@@ -123,6 +138,74 @@ public class ProfileStudent extends Fragment {
             @Override
             public void onClick(View v) {
                 selectGalleryImageRegister();
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                editButton.setVisibility(View.GONE);
+                saveButton.setVisibility(View.VISIBLE);
+
+                if (editTextAbout == null) {
+                    editTextAbout = new EditText(requireActivity());
+                }
+
+                editTextAbout.setText(textAbout.getText());
+
+                //remplazar el texview con el editText
+                ViewGroup parent = (ViewGroup) textAbout.getParent();
+                int index = parent.indexOfChild(textAbout);
+                parent.removeView(textAbout);
+                parent.addView(editTextAbout, index);
+
+                editTextAbout.requestFocus();
+                editTextAbout.selectAll();
+
+                //actualizar newAbout
+                newAbout = textAbout.getText().toString().trim();
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String updateAbout = editTextAbout.getText().toString().trim();
+
+                if (!updateAbout.isEmpty()) {
+
+                    if (!updateAbout.equals(newAbout)) {
+                        newAbout = updateAbout;
+
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        db.collection("Student").document(studentId)
+                                .update("about", newAbout)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+
+                                        Log.d("UPDATE", "About actualizado");
+
+                                    }
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.d("UPDATE", "No ha sido posible actualizar el about", e);
+                                });
+                    }
+
+                    //volver a un textView
+                    ViewGroup parent = (ViewGroup) editTextAbout.getParent();
+                    int index = parent.indexOfChild(editTextAbout);
+                    parent.removeView(editTextAbout);
+                    parent.addView(textAbout, index);
+
+                    editButton.setVisibility(View.VISIBLE);
+                    saveButton.setVisibility(View.GONE);
+
+                    textAbout.setText(newAbout);
+
+                }
             }
         });
 
@@ -236,9 +319,23 @@ public class ProfileStudent extends Fragment {
 
             //change image and teacher name by a search through their id.
             holder.nameTeacher.setText(recommendation.getTeacherName());
-            holder.imageTeacher.setImageResource(R.drawable.img_pngtreeavatar);
+            holder.textRecommendation.setText(recommendation.getRecommendationText());
 
             holder.textRecommendation.setText(recommendation.getRecommendationText());
+
+            String imageProfileUrl = recommendation.getProfileImage();
+            Context context = getView().getContext();
+            if (imageProfileUrl != null && !imageProfileUrl.isEmpty()) {
+                Uri uriImagep = Uri.parse(imageProfileUrl);
+
+                Glide.with(context)
+                        .load(uriImagep)
+                        .into(holder.imageTeacher);
+            } else {
+                Glide.with(context)
+                        .load(R.drawable.teacher_default)
+                        .into(holder.imageTeacher);
+            }
 
         }
 
@@ -280,7 +377,6 @@ public class ProfileStudent extends Fragment {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         mAuth.signOut();
                         navController.navigate(R.id.login);
 

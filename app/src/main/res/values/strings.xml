@@ -34,7 +34,7 @@ I'm contacting you because I'm looking for an internship for the DAM higher degr
     <string name="msg_don_t_receive_c2">Don\u2019t receive code ? </string>
     <string name="lbl_associate">Associate</string>
     <string name="msg_2_use_of_your">2. Use of your personal data</string>
-    <string name="lbl_technology">Technology</string>
+    <string name="lbl_technology">IT</string>
     <string name="msg_i_am_currently">I am currently working here</string>
     <string name="msg_sri_wedari_soek">Sri Wedari Soekarno</string>
     <string name="lbl_applied">Applied</string>
@@ -96,7 +96,7 @@ Raffles Place, Boat Band M83</string>
     <string name="lbl_soraya_mar">Soraya Mar </string>
     <string name="lbl_add_new_message">Add New Message</string>
     <string name="msg_192_open_positi">192 open positions</string>
-    <string name="lbl_developer">Developer</string>
+    <string name="lbl_health">Health</string>
     <string name="lbl_privacy_policy">Privacy policy</string>
     <string name="lbl_russian">Russian</string>
     <string name="lbl_best_studio">Best Studio</string>
@@ -264,7 +264,7 @@ Rec</string>
     <string name="lbl_add_recruiter">Add Recruiter</string>
     <string name="lbl_school_code">School Code</string>
     <string name="lbl_email_address">Email Address</string>
-    <string name="lbl_about">About </string>
+    <string name="lbl_about">Write something about you</string>
     <string name="lbl_date_of_birth">Date of Birth</string>
     <string name="msg_64k_80k_yearl">64k - 80k/yearly</string>
     <string name="lbl_candidates">Candidates</string>
@@ -539,6 +539,7 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="edit_profile_image">Edit profile image</string>
     <string name="sign_up">Sign up</string>
     <string name="lbl_details">Details</string>
+    <string name="lbl_teacher_name">Teacher Name</string>
     <string name="your_company_name">Your company name</string>
     <string name="your_company_code">Your company code</string>
     <string name="a_brief_summary">A brief summary</string>
@@ -557,5 +558,21 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="tag_2">Tag 2</string>
     <string name="tag_3">Tag 3</string>
     <string name="upload_n_only_pdf_format_are_accepted">Upload. \nOnly .pdf format docs are accepted.</string>
+
+    <string name="lbl_sign_up_to_join_school">Sign up as a school</string>
+    <string name="lbl_name_school">School Name</string>
+    <string name="lbl_school_information">School Information</string>
+    <string name="lbl_code_school">School Code</string>
+    <string name="your_school_name">Your school name</string>
+    <string name="your_school_code">Your school code</string>
+    <string name="lbl_type_school">Type of school</string>
+    <string name="lbl_contact_school">Contact</string>
+    <string name="lbl_student_search">What student are you looking for?</string>
+    <string name="symbol">|</string>
+    <string name="add_recommendation">Add a recommendation</string>
+    <string name="lbl_recommendation">Say something nice about the student</string>
+    <string name="sign_in_as_a_school">Sign in as a school</string>
+    <string name="lbl_teachers">Teachers\n</string>
+
 
 </resources>

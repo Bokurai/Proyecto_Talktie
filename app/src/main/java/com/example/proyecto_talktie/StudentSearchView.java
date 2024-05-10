@@ -1,5 +1,7 @@
 package com.example.proyecto_talktie;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -86,7 +90,6 @@ public class StudentSearchView extends Fragment {
                 Query searchQuery = baseQuery;
 
                 if (!s.isEmpty()) {
-                  // searchQuery = baseQuery.whereEqualTo("name", s);
                     searchQuery = baseQuery.orderBy("name").startAt(s).endAt(s+"\uf8ff");
                 }
 
@@ -119,6 +122,21 @@ public class StudentSearchView extends Fragment {
             holder.sector_company.setText(model.getSector());
             holder.location_company.setText(model.getAddress());
 
+
+            String imageProfile = model.getProfileImage() != null ? model.getProfileImage() : "null";
+            Context context = getView().getContext();
+            if (!imageProfile.equals("null")) {
+                Uri uriImage = Uri.parse(imageProfile);
+                Glide.with(context)
+                        .load(uriImage)
+                        .into(holder.companyImage);
+            } else {
+                Glide.with(context)
+                        .load(R.drawable.build_image_default)
+                        .into(holder.companyImage);
+            }
+
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -137,8 +155,8 @@ public class StudentSearchView extends Fragment {
         }
 
         class CompanyViewHolder extends RecyclerView.ViewHolder {
-            //Faltan campo image
             TextView company_name, sector_company,location_company;
+            ImageView companyImage;
 
             public CompanyViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -146,6 +164,7 @@ public class StudentSearchView extends Fragment {
                 company_name = itemView.findViewById(R.id.company_name);
                 sector_company = itemView.findViewById(R.id.sector_company);
                 location_company = itemView.findViewById(R.id.location_company);
+                companyImage = itemView.findViewById(R.id.company_image);
 
             }
         }

@@ -1,15 +1,21 @@
 package com.example.proyecto_talktie;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import android.view.View;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import com.example.proyecto_talktie.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import android.view.MenuItem;
+import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ActivityMainBinding binding; //para navigation button
     NavController navController;
-    BottomNavigationView bottomNavigationView, bottomNavigationViewCompany;
+    BottomNavigationView bottomNavigationView, bottomNavigationViewCompany, bottomNavSchool ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +41,63 @@ public class MainActivity extends AppCompatActivity {
         // Configurar el BottomNavigationView con el NavController
         NavigationUI.setupWithNavController(binding.bottomNavView, navController);
         NavigationUI.setupWithNavController(binding.bottomNavViewCompany, navController);
+        NavigationUI.setupWithNavController(binding.bottomNavViewSchool, navController);
+
         bottomNavigationView = findViewById(R.id.bottom_nav_view);
         bottomNavigationViewCompany = findViewById(R.id.bottom_nav_view_company);
+        bottomNavSchool = findViewById(R.id.bottom_nav_view_school);
+
+        //Botones Student
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.home) {
+                    // Navegar al fragmento de inicio
+                    navController.navigate(R.id.action_goHome);
+                    return true;
+                } else if (itemId == R.id.offer) {
+                    // Navegar al fragmento de ofertas
+                    navController.navigate(R.id.action_goOffer);
+                    return true;
+                } else if (itemId == R.id.messagesHome) {
+                    // Navegar al fragmento de mensajes
+                    navController.navigate(R.id.action_to_MessagesHome);
+                    return true;
+                } else if (itemId == R.id.profileStudent) {
+                    // Navegar al fragmento de perfil
+                    navController.navigate(R.id.action_goProfileStudent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        //Botones School
+        bottomNavSchool.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.recommends) {
+                    // Navegar al fragmento de inicio
+                    navController.navigate(R.id.action_goSchoolHome);
+                    return true;
+                } else if (itemId == R.id.companiesSchool) {
+                    // Navegar al fragmento de ofertas
+                    navController.navigate(R.id.action_goSchoolCompanies);
+                    return true;
+                } else if (itemId == R.id.messagesSchool) {
+                    // Navegar al fragmento de mensajes
+                    navController.navigate(R.id.action_goSchoolMessages);
+                    return true;
+                } else if (itemId == R.id.profileSchool) {
+                    // Navegar al fragmento de perfil
+                    navController.navigate(R.id.action_goSchoolProfile);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         // Verificar si hay un usuario autenticado
         if (currentUser == null) {
@@ -73,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void showNavBot() {
         bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
+    public void hideNavBotSchool() {
+        bottomNavSchool.setVisibility(View.GONE);
+    }
+    public void showNavBotSchool() {
+        bottomNavSchool.setVisibility(View.VISIBLE);
     }
 
     public void hideNavBotComp() {

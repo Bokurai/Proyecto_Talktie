@@ -1,5 +1,8 @@
 package com.example.proyecto_talktie;
 
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,16 +13,18 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
-import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -27,6 +32,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home extends Fragment {
 
@@ -39,38 +46,15 @@ public class Home extends Fragment {
     private companyOfferAdapter adapter;
     private FirebaseAuth mAuth;
     private  String studentId;
-    private Handler handler;
-    private Runnable runnable;
-    private final int ACTUALIZACION_INTER = 5000;
+    private CircleImageView profileImg;
+
+
+    private int total;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        handler = new Handler(Looper.getMainLooper());
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                homeViewModel.getOffersComapanies(studentId).observe(getViewLifecycleOwner(), offer -> {
-                    adapter.setOfferObjectList(offer);
-                });
-                handler.postDelayed(this, ACTUALIZACION_INTER);
-            }
-        };
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        handler.postDelayed(runnable, ACTUALIZACION_INTER);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        handler.removeCallbacks(runnable);
     }
 
     @Override
@@ -98,10 +82,20 @@ public class Home extends Fragment {
         mainActivity = (MainActivity) requireActivity();
         mainActivity.showNavBot();
 
+        profileImg = view.findViewById(R.id.profileHome);
+
         search_bar = view.findViewById(R.id.search_bar);
+
 
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
+
+
+        homeViewModel.getOffersComapanies(studentId).observe(getViewLifecycleOwner(), offer -> {
+            adapter.setOfferObjectList(offer);
+        });
+
+        loadImageUser();
 
         search_bar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +103,28 @@ public class Home extends Fragment {
                 navController.navigate(R.id.action_goStudentSearchView);
             }
         });
+    }
+
+
+    public void loadImageUser() {
+        if (getView() != null) {
+        FirebaseFirestore.getInstance().collection("Student").document(studentId).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    String imageProfile = documentSnapshot.getString("profileImage");
+                    Context context = getView().getContext();
+                    if (imageProfile != null && !imageProfile.isEmpty()) {
+                        Uri uriImage = Uri.parse(imageProfile);
+
+                        Glide.with(context)
+                                .load(uriImage)
+                                .into(profileImg);
+                    } else {
+                        Glide.with(context)
+                                .load(R.drawable.profile_image_defaut)
+                                .into(profileImg);
+                    }
+                });
+        }
     }
 
     class companyOfferAdapter extends RecyclerView.Adapter<companyOfferAdapter.companyOfferViewHolder> {
@@ -137,6 +153,21 @@ public class Home extends Fragment {
             String formattedDate = formatter.format(date);
             holder.dateOffer.setText(formattedDate);
 
+            String imageProfile = offer.getCompanyImageUrl();
+            Context context = getView().getContext();
+            if (!imageProfile.equals("null")){
+                Uri uriImage = Uri.parse(imageProfile);
+                Glide.with(context)
+                        .load(uriImage)
+                        .into(holder.imgeCompany);
+
+            } else {
+                Glide.with(context)
+                        .load(R.drawable.build_image_default)
+                        .into(holder.imgeCompany);
+            }
+
+
             holder.bntDatails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -159,8 +190,8 @@ public class Home extends Fragment {
         }
 
         class companyOfferViewHolder extends RecyclerView.ViewHolder {
-            //Falta image view
             TextView nameCompany, nameOffer, dateOffer;
+            ImageView imgeCompany;
             AppCompatButton bntDatails;
 
             public companyOfferViewHolder(@NonNull View itemView) {
@@ -169,6 +200,7 @@ public class Home extends Fragment {
                 nameCompany = itemView.findViewById(R.id.companyNameOffer);
                 nameOffer = itemView.findViewById(R.id.offerNameCompany);
                 dateOffer = itemView.findViewById(R.id.dateOffer);
+                imgeCompany = itemView.findViewById(R.id.shapeableImageView);
                 bntDatails = itemView.findViewById(R.id.btnDatailsOffer);
             }
         }

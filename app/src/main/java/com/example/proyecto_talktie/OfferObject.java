@@ -23,25 +23,36 @@ public class OfferObject {
 
     String companyName;
     private int numApplicants;
+    String companyImageUrl;
+
+
+
+    public OfferObject(String name, String companyId) {
+        this.name = name;
+        this.companyId = companyId;
+    }
+    public OfferObject() {
+        // Inicializar numApplicants a 0 por defecto
+        this.numApplicants = 0;
+    }
+
+    public OfferObject(int numApplicants) {
+        this.numApplicants = numApplicants;
+    }
+
+    public String getCompanyImageUrl() {
+        return companyImageUrl;
+    }
+
+    public void setCompanyImageUrl(String companyImageUrl) {
+        this.companyImageUrl = companyImageUrl;
+    }
 
     public int getNumApplicants() {
         return numApplicants;
     }
 
     public void setNumApplicants(int numApplicants) {
-        this.numApplicants = numApplicants;
-    }
-
-    public OfferObject() {
-        // Inicializar numApplicants a 0 por defecto
-        this.numApplicants = 0;
-    }
-
-    public OfferObject(String name, String companyId) {
-        this.name = name;
-        this.companyId = companyId;
-    }
-    public OfferObject(int numApplicants) {
         this.numApplicants = numApplicants;
     }
 
