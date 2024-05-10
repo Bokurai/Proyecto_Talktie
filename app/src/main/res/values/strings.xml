@@ -332,7 +332,7 @@ Rec</string>
     <string name="msg_name_and_surnam">Name and surname</string>
     <string name="lbl_recommend">Recommend </string>
     <string name="msg_roles_and_respo">Roles AND RESPONSIBILITIES</string>
-    <string name="lbl_tahnks">Tahnks ,:) </string>
+    <string name="lbl_tahnks">Thanks ,:) </string>
     <string name="msg_yes_i_ll_send">"Yes, I'll send it to you now!"</string>
     <string name="lbl_lithuanian">Lithuanian</string>
     <string name="lbl_company_size">Company Size</string>
@@ -343,10 +343,10 @@ Rec</string>
     <string name="lbl_contact_us">Contact us</string>
     <string name="lbl_no_experience">No experience</string>
     <string name="lbl_add_expirience">Add your experience</string>
-    <string name="lbl_expirience">3 years, no expirience, .....</string>
+    <string name="lbl_expirience">1 year, no experience, etc.</string>
     <string name="lbl_mobile">Mobile</string>
     <string name="msg_with_a_mission">With a mission of Making the World Playful, King is a leading interactive entertainment company with a 20-year history of delivering some of the world\u2019s most iconic games in the mobile gaming\u2026 read more</string>
-    <string name="msg_entre_your_pass">entre your password</string>
+    <string name="msg_entre_your_pass">enter your password</string>
     <string name="lbl_maria_g_selen">Maria G. Selen</string>
     <string name="lbl_submit">Submit</string>
     <string name="lbl_save">Save</string>
@@ -377,11 +377,11 @@ Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</str
     <string name="msg_4_9_349_rating">4.9 (349 ratings)</string>
     <string name="lbl_90k_year">90K/year</string>
     <string name="lbl_type_of_company">Type of company</string>
-    <string name="msg_reactjs_develop">ReactJs Developer</string>
+    <string name="msg_reactjs_develop">ReactJS Developer</string>
     <string name="msg_email_gmail_com">email@gmail.com | +34 699 045 999</string>
     <string name="lbl_remote">Remote</string>
     <string name="lbl_next">Next</string>
-    <string name="lbl_type_message">Type Message</string>
+    <string name="lbl_type_message">Type a message</string>
     <string name="lbl_10_years">10+ years</string>
     <string name="lbl_telephone">Telephone</string>
     <string name="lbl_upload">Upload</string>
@@ -399,7 +399,7 @@ Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</str
     <string name="lbl_of_course">Of course.</string>
     <string name="lbl_job_description">Job Description</string>
     <string name="lbl_90k_year2">$90K/year</string>
-    <string name="msg_type_location_y">Type location you want\u2026</string>
+    <string name="msg_type_location_y">Type the location you want\u2026</string>
     <string name="lbl_problem_solving">Problem solving</string>
     <string name="msg_senior_product">Senior Product Designer</string>
     <string name="lbl_hindi">Hindi</string>
@@ -556,5 +556,6 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="tag_1">Tag 1</string>
     <string name="tag_2">Tag 2</string>
     <string name="tag_3">Tag 3</string>
+    <string name="upload_n_only_pdf_format_are_accepted">Upload. \nOnly .pdf format docs are accepted.</string>
 
 </resources>

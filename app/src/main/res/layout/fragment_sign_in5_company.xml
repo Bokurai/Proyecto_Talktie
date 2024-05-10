@@ -210,6 +210,7 @@
                 android:layout_height="@dimen/_95pxh"
                 android:layout_marginStart="@dimen/_10pxh"
                 android:layout_marginTop="@dimen/_8pxv"
+                android:gravity="start"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
                 android:inputType="text"
@@ -220,7 +221,6 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_10pxv"
                 android:singleLine="true"
-                android:textAlignment="textStart"
                 android:textColorHint="@color/bluegray_900"
                 tools:ignore="Autofill" />
 
