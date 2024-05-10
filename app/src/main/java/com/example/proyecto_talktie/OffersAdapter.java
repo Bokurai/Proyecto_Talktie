@@ -1,10 +1,13 @@
 package com.example.proyecto_talktie;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,12 +34,14 @@ import java.util.List;
         OfferViewModel offerViewModel;
         private FirebaseFirestore db;
         private List<OfferObject> offerObjectList;
+        Context context;
 
-        public OffersAdapter(List<OfferObject> offerObjectList, NavController navController, OfferViewModel offerViewModel, FirebaseFirestore db) {
+        public OffersAdapter(List<OfferObject> offerObjectList, NavController navController, OfferViewModel offerViewModel, FirebaseFirestore db, Context context) {
             this.offerViewModel = offerViewModel;
             this.navController = navController;
             this.offerObjectList = offerObjectList;
             this.db = db;
+            this.context = context;
         }
 
         public OffersAdapter(List<OfferObject> offerObjectList, FirebaseFirestore db) {
@@ -60,6 +66,21 @@ import java.util.List;
             int coloramarillo = ContextCompat.getColor(holder.itemView.getContext(), R.color.amber_700);
             holder.name.setText(offerObject.getName());
             holder.companyName.setText(offerObject.getCompanyName());
+
+            //Imagen compañia en la oferta
+            String imageProfile = offerObject.getCompanyImageUrl();;
+            if (!imageProfile.equals("null")){
+                Uri uriImage = Uri.parse(imageProfile);
+                Glide.with(context)
+                        .load(uriImage)
+                        .into(holder.companyImage);
+
+            } else {
+                Glide.with(context)
+                        .load(R.drawable.build_image_default)
+                        .into(holder.companyImage);
+            }
+
 
             CollectionReference applicantsRef = db.collection("Offer").document(offerObject.getOfferId()).collection("Applicants");
             applicantsRef.document(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -151,6 +172,8 @@ import java.util.List;
         class OffersViewHolder extends RecyclerView.ViewHolder {
 
             TextView name, companyName, tag1, tag2, tag3,numApplicants,stateOffer;
+            ImageView companyImage;
+
 
             public OffersViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -162,8 +185,12 @@ import java.util.List;
                 tag3 = itemView.findViewById(R.id.btnTagThree);
                 numApplicants = itemView.findViewById(R.id.numApplicants);
                 stateOffer=itemView.findViewById(R.id.stateOffer);
+                companyImage = itemView.findViewById(R.id.imageCompany);
             }
         }
+
+
+
     }
 
 

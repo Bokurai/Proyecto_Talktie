@@ -1,5 +1,6 @@
 package com.example.proyecto_talktie;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public class Offer extends Fragment {
     FirebaseFirestore db;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class Offer extends Fragment {
         ti = view.findViewById(R.id.linearBotonTI);
         marketing = view.findViewById(R.id.linearBotonMarketing);
         health = view.findViewById(R.id.linearButtonHealth);
-        adapter = new com.example.proyecto_talktie.OffersAdapter(new ArrayList<>(), navController, offerViewModel, db);
+        adapter = new com.example.proyecto_talktie.OffersAdapter(new ArrayList<>(), navController, offerViewModel, db, getContext());
         offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
         /**

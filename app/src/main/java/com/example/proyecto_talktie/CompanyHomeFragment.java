@@ -33,6 +33,7 @@ public class CompanyHomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private OffersAdapter adapter;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +86,7 @@ public class CompanyHomeFragment extends Fragment {
 
         navController = Navigation.findNavController(requireView());
 
-        adapter = new OffersAdapter(new ArrayList<>(), navController, offerViewModel, db);
+        adapter = new OffersAdapter(new ArrayList<>(), navController, offerViewModel, db, getContext());
 
         recyclerView = view.findViewById(R.id.offerRecyclerViewCompany);
         recyclerView.setAdapter(adapter);
