@@ -5,7 +5,7 @@
     tools:context=".schoolProfile"
     android:gravity="start"
     android:id="@+id/profileStudent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="vertical"
     style="@style/groupStylewhite_A700">
@@ -35,8 +35,7 @@
                     android:layout_gravity="start"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_rectangle49"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_rectangle49" />
+                    tools:ignore="ContentDescription" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbarToolbar"
@@ -114,13 +113,14 @@
                     android:text="@string/edit_profile_image"/>
             </LinearLayout>
         </FrameLayout>
-
     </LinearLayout>
+
+
     <androidx.core.widget.NestedScrollView
         android:clipToPadding="false"
         android:fillViewport="true"
         android:id="@+id/scrollViewScrollview"
-        android:layout_height="0dp" android:layout_weight="1"
+        android:layout_height="match_parent"
         android:layout_width="match_parent">
 
         <FrameLayout android:id="@+id/frameModificarperfi"
@@ -202,23 +202,42 @@
                     android:layout_marginStart="@dimen/_17pxh"
                     android:layout_marginTop="@dimen/_9pxv"
                     android:layout_marginEnd="@dimen/_17pxh"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textRecommend"
                         style="@style/txtRobotoromanbold17"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10pxv"
-                        android:layout_weight="0.54"
                         android:ellipsize="end"
                         android:textAlignment="center"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
                         android:text="@string/lbl_teachers" />
+
                 </LinearLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/teachersRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
             </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/newTeacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                app:backgroundTint="@color/light_green_900"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
         </FrameLayout>
     </androidx.core.widget.NestedScrollView>
+
 </LinearLayout>

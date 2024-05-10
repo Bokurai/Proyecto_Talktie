@@ -28,6 +28,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -40,6 +42,7 @@ import java.util.UUID;
 
 
 public class schoolProfile extends Fragment {
+    private FloatingActionButton fab;
     private SchoolViewModel schoolViewModel;
     private ImageView imageSchool, editButton;
     private EditText editTextAbout;
@@ -92,6 +95,7 @@ public class schoolProfile extends Fragment {
 
         editButton = view.findViewById(R.id.aboutEditS);
         saveButton = view.findViewById(R.id.btnSaveS);
+        fab = view.findViewById(R.id.newTeacher);
 
         imageSchool = view.findViewById(R.id.profileImgSchool);
         name = view.findViewById(R.id.txtSchoolName);
@@ -99,6 +103,15 @@ public class schoolProfile extends Fragment {
         editImage = view.findViewById(R.id.edit_profiletxtS);
 
         loadUserInfo();
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Add teacher", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
 
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override
