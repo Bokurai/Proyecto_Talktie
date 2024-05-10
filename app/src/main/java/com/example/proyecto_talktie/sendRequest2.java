@@ -47,7 +47,7 @@ public class sendRequest2 extends Fragment {
 
     private EditText letterEditText;
     private EditText experienceEditText;
-    private ImageButton uploadCV;
+    private TextView uploadCV;
     private Button sendButton;
     private NavController navController;
     private String documentUrl;
@@ -77,7 +77,7 @@ public class sendRequest2 extends Fragment {
                 }
             }
         });
-        uploadCV = rootView.findViewById(R.id.uploadCV);
+        uploadCV = rootView.findViewById(R.id.txtUpload);
         sendButton = rootView.findViewById(R.id.btnSendNow);
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
 
