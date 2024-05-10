@@ -85,7 +85,7 @@ public class CompanyHomeFragment extends Fragment {
 
         navController = Navigation.findNavController(requireView());
 
-        adapter = new OffersAdapter(new ArrayList<>(), navController, offerViewModel);
+        adapter = new OffersAdapter(new ArrayList<>(), navController, offerViewModel, db);
 
         recyclerView = view.findViewById(R.id.offerRecyclerViewCompany);
         recyclerView.setAdapter(adapter);
