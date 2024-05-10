@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                                         navController.navigate(R.id.action_goCompanyHome);
                                         break;
                                     case "school":
+                                        navController.navigate(R.id.action_goSchoolHome);
                                         break;
                                 }
                             }

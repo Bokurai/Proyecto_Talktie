@@ -363,6 +363,7 @@
         android:label="fragment_sig_in5_school"
         tools:layout="@layout/fragment_sig_in5_school" />
 
+
     <fragment
         android:id="@+id/newOfferFragment"
         android:name="com.example.proyecto_talktie.NewOfferFragment"
