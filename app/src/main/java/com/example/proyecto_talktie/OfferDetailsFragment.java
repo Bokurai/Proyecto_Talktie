@@ -35,6 +35,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class OfferDetailsFragment extends Fragment {
@@ -92,7 +93,7 @@ public class OfferDetailsFragment extends Fragment {
                 offer_date.setText(formattedDate);
 
                 String imageProfile = offerObject.getCompanyImageUrl();
-                Context context = getView().getContext();
+                Context context = requireView().getContext();
                 if (!imageProfile.equals("null")){
                     Uri uriImage = Uri.parse(imageProfile);
                     Glide.with(context)
