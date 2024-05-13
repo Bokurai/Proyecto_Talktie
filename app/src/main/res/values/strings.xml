@@ -559,6 +559,9 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="tag_3">Tag 3</string>
     <string name="upload_n_only_pdf_format_are_accepted">Upload. \nOnly .pdf format docs are accepted.</string>
 
+    <string name="company"> <u>Company</u> </string>
+    <string name="school"> <u>School</u></string>
+
     <string name="lbl_sign_up_to_join_school">Sign up as a school</string>
     <string name="lbl_name_school">School Name</string>
     <string name="lbl_school_information">School Information</string>

@@ -90,6 +90,13 @@ public class Login extends Fragment {
             }
         });
 
+        iamschool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_goSLoginSchool);
+            }
+        });
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

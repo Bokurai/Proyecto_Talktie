@@ -157,29 +157,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_20pxh"
-        android:layout_marginStart="@dimen/_10pxh">
+        android:layout_marginTop="@dimen/_40pxh"
+        >
 
     <TextView
         android:id="@+id/imcompany"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/i_am_a_company"
-        android:layout_weight="1"
-        android:textSize="@dimen/_15pxh"
+        android:textColor="@color/light_green_900"
+        android:text="@string/company"
+        android:textSize="@dimen/_18pxh"
         android:layout_marginStart="@dimen/_10pxh"
         tools:ignore="SpUsage" />
 
+        <TextView
+            android:id="@+id/separator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light_green_900"
+            android:text="@string/symbol"
+            android:textSize="@dimen/_18pxh"
+            android:layout_marginStart="@dimen/_10pxh"
+            tools:ignore="SpUsage" />
+
     <TextView
         android:id="@+id/imschool"
+        android:textColor="@color/light_green_900"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/i_am_a_school"
-        android:textSize="@dimen/_15pxh"
-        android:gravity="end"
-        android:layout_marginEnd="@dimen/_10pxh"
-
+        android:text="@string/school"
+        android:textSize="@dimen/_18pxh"
+        android:layout_marginStart="@dimen/_10pxh"
         tools:ignore="SpUsage" />
     </LinearLayout>
 
