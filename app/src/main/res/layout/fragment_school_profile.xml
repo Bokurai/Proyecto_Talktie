@@ -5,7 +5,7 @@
     tools:context=".schoolProfile"
     android:gravity="start"
     android:id="@+id/profileStudent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
     style="@style/groupStylewhite_A700">
@@ -120,8 +120,10 @@
         android:clipToPadding="false"
         android:fillViewport="true"
         android:id="@+id/scrollViewScrollview"
-        android:layout_height="match_parent"
+        android:layout_height="0dp" android:layout_weight="1"
         android:layout_width="match_parent">
+
+
 
         <FrameLayout android:id="@+id/frameModificarperfi"
             android:layout_height="match_parent"
@@ -134,7 +136,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|start"
                 android:layout_marginTop="@dimen/_5pxv"
-                android:layout_marginBottom="@dimen/_223pxv"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -161,10 +162,10 @@
 
                     <ImageView
                         android:id="@+id/aboutEditS"
-                        android:layout_width="@dimen/_15pxh"
-                        android:layout_height="@dimen/_15pxh"
+                        android:layout_width="@dimen/_20pxh"
+                        android:layout_height="@dimen/_20pxh"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/_10pxh"
+                        android:layout_margin="@dimen/_15pxh"
                         android:scaleType="fitXY"
                         android:src="@drawable/img_edit"/>
 
@@ -220,7 +221,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/teachersRecyclerView"
+                    android:id="@+id/recommendRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5pxv"
@@ -228,16 +229,18 @@
 
             </LinearLayout>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/newTeacher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/_10pxh"
-                app:backgroundTint="@color/light_green_900"
-                app:srcCompat="@android:drawable/ic_input_add" />
-
         </FrameLayout>
     </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/newTeacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="@dimen/_45pxh"
+            android:layout_marginEnd="@dimen/_20pxh"
+            app:backgroundTint="@color/light_green_900"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
 
 </LinearLayout>

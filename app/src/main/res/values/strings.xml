@@ -15,7 +15,7 @@
     <string name="lbl_interviews">Interviews</string>
     <string name="lbl_8_19_am">8:19 AM</string>
     <string name="msg_enter_street_ad">Enter street address</string>
-    <string name="msg_teacher_s_crede">Teacher\u2019s credentials</string>
+    <string name="msg_teacher_s_info">Teacher\u2019s information</string>
     <string name="msg_hello_how_are">"Hello, how are you?
 I'm contacting you because I'm looking for an internship for the DAM higher degree. "</string>
     <string name="lbl_30_july_2021">30 July, 2021</string>
@@ -573,6 +573,7 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_recommendation">Say something nice about the student</string>
     <string name="sign_in_as_a_school">Sign in as a school</string>
     <string name="lbl_teachers">Teachers\n</string>
+    <string name="lbl_position">Position</string>
 
 
 </resources>

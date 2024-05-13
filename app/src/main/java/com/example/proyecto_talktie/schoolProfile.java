@@ -109,8 +109,11 @@ public class schoolProfile extends Fragment {
             public void onClick(View view) {
                 Snackbar.make(view, "Add teacher", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                navController.navigate(R.id.action_goCreateTeacher);
             }
         });
+
+
 
 
         editImage.setOnClickListener(new View.OnClickListener() {
