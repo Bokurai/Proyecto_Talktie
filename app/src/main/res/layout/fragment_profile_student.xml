@@ -123,6 +123,7 @@
         android:layout_width="match_parent">
 
         <FrameLayout android:id="@+id/frameModificarperfi"
+            android:layout_marginBottom="@dimen/_50pxh"
             android:layout_height="match_parent"
             android:layout_width="match_parent">
 

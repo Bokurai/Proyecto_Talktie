@@ -153,7 +153,7 @@ public class Home extends Fragment {
             String formattedDate = formatter.format(date);
             holder.dateOffer.setText(formattedDate);
 
-            String imageProfile = offer.getCompanyImageUrl();
+            String imageProfile = offer.getCompanyImageUrl() != null && !offer.getCompanyImageUrl().isEmpty() ? offer.getCompanyImageUrl() : "null";
             Context context = getView().getContext();
             if (!imageProfile.equals("null")){
                 Uri uriImage = Uri.parse(imageProfile);

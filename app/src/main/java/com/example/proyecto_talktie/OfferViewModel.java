@@ -22,8 +22,6 @@ import java.util.function.Consumer;
 
 
 public class OfferViewModel extends AndroidViewModel {
-
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
@@ -87,7 +85,7 @@ public class OfferViewModel extends AndroidViewModel {
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String companyName = documentSnapshot.getString("name");
-                        String companyImageUrl = documentSnapshot.getString("profileImage") != null ? documentSnapshot.getString("profileImage") :"null";
+                        String companyImageUrl = documentSnapshot.getString("profileImage");
                         callback.accept(companyName, companyImageUrl);
                     } else {
                         callback.accept("Unknown", "null");

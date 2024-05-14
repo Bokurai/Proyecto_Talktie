@@ -48,7 +48,6 @@ public class Offer extends Fragment {
         offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
         adapter = new com.example.proyecto_talktie.OffersAdapter(new ArrayList<>(), navController, offerViewModel, db, getContext());
 
-
         /**
          *  I get the livedata with the offers from the view-model to show it to the user
          */

@@ -1,14 +1,140 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    tools:context=".createTeacher"
+    android:gravity="center_horizontal"
+    android:id="@+id/linearSinginOne"
     android:layout_height="match_parent"
-    tools:context=".createTeacher">
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    style="@style/groupStylewhite_A700">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+
+    <LinearLayout android:id="@+id/linear08SignUp"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_margin="@dimen/_5pxh"
+            android:layout_height="@dimen/_50pxh"
+            android:padding="@dimen/_10pxh"
+            android:src="@drawable/img_arrowleft_black_900"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout android:gravity="start"
+            android:id="@+id/linearColumnwelcomeuser"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical" style="@style/groupStylewhite_A700">
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearRowwelcomeuser"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_48pxh"
+                android:layout_marginStart="@dimen/_48pxh"
+                android:layout_marginTop="@dimen/_80pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <LinearLayout android:gravity="start"
+                    android:id="@+id/linearTitle"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.64"
+                    android:layout_width="0dp" android:orientation="vertical">
+                    <TextView android:id="@+id/txtWelcomeuser"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_width="match_parent"
+                        android:textSize="35dp"
+                        android:text="@string/msg_create_teacher"
+                        style="@style/txtRobotoromanbold32" />
+                    <TextView android:ellipsize="end"
+                        android:id="@+id/txtSignuptojoin"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:layout_marginTop="@dimen/_20pxv"
+                        android:layout_width="match_parent"
+                        android:lineSpacingExtra="@dimen/_3pxh"
+                        android:singleLine="true"
+                        android:text="@string/msg_teacher_s_info"
+                        style="@style/txtRobotoromanregular17_1"/>
+                </LinearLayout>
+            </LinearLayout>
+            <EditText
+                android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
+                android:ellipsize="end"
+                android:hint="@string/name_and_surname"
+                android:id="@+id/etTeacherSchool"
+                android:inputType="text"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_48pxh"
+                android:layout_marginStart="@dimen/_48pxh"
+                android:layout_marginTop="@dimen/_40pxv"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingBottom="@dimen/_11pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_12pxv"
+                android:singleLine="true"
+                android:textColorHint="@color/bluegray_400"
+                style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
+            <EditText
+                android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
+                android:ellipsize="end"
+                android:hint="@string/lbl_position"
+                android:id="@+id/etPositionTeacher"
+                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_48pxh"
+                android:layout_marginStart="@dimen/_48pxh"
+                android:layout_marginTop="@dimen/_8pxv"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingBottom="@dimen/_12pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_11pxv"
+                android:singleLine="true"
+                android:textColorHint="@color/bluegray_400"
+                style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
+            <EditText
+                android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
+                android:ellipsize="end"
+                android:hint="@string/lbl_email"
+                android:id="@+id/etEmailTeacher"
+                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_48pxh"
+                android:layout_marginStart="@dimen/_48pxh"
+                android:layout_marginTop="@dimen/_8pxv"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:paddingBottom="@dimen/_12pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_11pxv"
+                android:singleLine="true"
+                android:textColorHint="@color/bluegray_400"
+                style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:ellipsize="end" android:gravity="center"
+                android:id="@+id/btnSaveTeacher"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_48pxh"
+                android:layout_marginStart="@dimen/_48pxh"
+                android:layout_marginTop="@dimen/_20pxv"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/_15pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingStart="@dimen/_30pxh"
+                android:paddingTop="@dimen/_15pxv"
+                android:singleLine="true"
+                android:text="@string/lbl_save"
+                android:textAllCaps="false"
+                style="@style/btnSolidRounded_3" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

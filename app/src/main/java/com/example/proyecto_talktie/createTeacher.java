@@ -2,58 +2,36 @@ package com.example.proyecto_talktie;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link createTeacher#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class createTeacher extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public createTeacher() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment createTeacher.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static createTeacher newInstance(String param1, String param2) {
-        createTeacher fragment = new createTeacher();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private AppCompatButton save;
+    private EditText nameT, positionT, emailT;
+   private ImageView backArrow;
+   NavController navController;
+   FirebaseAuth mAuth = FirebaseAuth.getInstance();
+   String userId = mAuth.getUid();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,4 +39,88 @@ public class createTeacher extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_teacher, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        backArrow = view.findViewById(R.id.img_back);
+        navController = Navigation.findNavController(view);
+
+        nameT = view.findViewById(R.id.etTeacherSchool);
+        positionT = view.findViewById(R.id.etPositionTeacher);
+        emailT = view.findViewById(R.id.etEmailTeacher);
+        save = view.findViewById(R.id.btnSaveTeacher);
+
+
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_goSchoolProfile);
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validarFormulario()) {
+
+                    String name = nameT.getText().toString();
+                    String email = emailT.getText().toString();
+                    String position = positionT.getText().toString();
+
+                    createTeacher(name, email, position, userId);
+                }
+            }
+        });
+
+
+    }
+
+    private boolean validarFormulario() {
+        boolean valid = true;
+
+        if (TextUtils.isEmpty(nameT.getText().toString())) {
+            nameT.setError("Required.");
+            valid = false;
+        } else {
+            nameT.setError(null);
+        }
+
+        return valid;
+    }
+
+    private void createTeacher(String name, String email, String position, String userId) {
+
+        Teacher teacher = new Teacher(name, userId);
+
+        if (!email.isEmpty()) {
+            teacher.setEmail(email);
+        }
+
+        if (!position.isEmpty()) {
+            teacher.setPosition(position);
+        }
+
+        FirebaseFirestore.getInstance().collection("Teacher")
+                .add(teacher)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        String teacherId = documentReference.getId();
+                        teacher.setTeacherId(teacherId);
+
+                       documentReference.set(teacher)
+                               .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                   @Override
+                                   public void onSuccess(Void unused) {
+                                       Toast.makeText(getContext(), "Teacher created", Toast.LENGTH_SHORT).show();
+                                       navController.popBackStack();
+                                       Log.d("ACTUALIZACION", "Profesor creado y actualizado con éxito");
+                                   }
+                               });
+                    }
+                });
+    }
+
 }

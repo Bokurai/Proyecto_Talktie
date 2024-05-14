@@ -18,6 +18,22 @@
         android:scaleType="fitCenter"
         android:src="@drawable/img_rectangle6" />
 
+
+    <TextView android:ellipsize="end"
+        android:id="@+id/txtSignuptojoin"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_1pxv"
+        android:layout_width="match_parent"
+        android:fontFamily="@font/robotoromanbold"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/_3pxh"
+        android:singleLine="true"
+        android:text="@string/sign_in_as_a_student"
+        style="@style/txtRobotoromanregular17_1"
+        />
+
+
+
     <FrameLayout
         android:id="@+id/frameStackcreatefromfra"
         android:layout_width="match_parent"

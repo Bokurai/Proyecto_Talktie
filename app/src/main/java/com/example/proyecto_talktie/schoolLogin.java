@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -45,6 +46,7 @@ public class schoolLogin extends Fragment {
     NavController navController;
     private LinearLayout signInForm;
     private SignInButton googleSignInButton;
+    private TextView iamcompany, iamstudent;
     private ActivityResultLauncher<Intent> activityResultLauncher;
 
     private EditText emailEditText, passwordEditText;
@@ -70,6 +72,9 @@ public class schoolLogin extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
+        iamcompany = view.findViewById(R.id.imcompany);
+        iamstudent = view.findViewById(R.id.imstudent);
+
         emailEditText = view.findViewById(R.id.emailEditTextSchool);
         passwordEditText = view.findViewById(R.id.passwordEditTextSchool);
         emailSignInButton = view.findViewById(R.id.btnLogInSchool);
@@ -77,6 +82,20 @@ public class schoolLogin extends Fragment {
         registerButton = view.findViewById(R.id.btnCreateAccountOneSchool);
         navController = Navigation.findNavController(view);
         googleSignInButton = view.findViewById(R.id.googleSignInButtonSchool);
+
+        iamcompany.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_gocompanyLogin);
+            }
+        });
+
+        iamstudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_goLogin);
+            }
+        });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
