@@ -580,7 +580,7 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="sign_in_as_a_school">Sign in as a school</string>
     <string name="lbl_teachers">Teachers\n</string>
     <string name="lbl_position">Position</string>
-
+    <string name="sign_in_as_a_student">Sign in as a student</string>
 
 
 </resources>
