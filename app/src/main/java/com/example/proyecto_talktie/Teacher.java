@@ -6,12 +6,22 @@ public class Teacher {
     String teacherId;
     String email;
     String position;
+    String schoolId;
 
     public Teacher() {
     }
 
-    public Teacher(String name) {
+    public Teacher(String name, String schoolId) {
         this.name = name;
+        this.schoolId = schoolId;
+    }
+
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
     }
 
     public String getName() {

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +30,8 @@ public class createTeacher extends Fragment {
     private EditText nameT, positionT, emailT;
    private ImageView backArrow;
    NavController navController;
+   FirebaseAuth mAuth = FirebaseAuth.getInstance();
+   String userId = mAuth.getUid();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,7 +69,7 @@ public class createTeacher extends Fragment {
                     String email = emailT.getText().toString();
                     String position = positionT.getText().toString();
 
-                    createTeacher(name, email, position);
+                    createTeacher(name, email, position, userId);
                 }
             }
         });
@@ -87,9 +90,9 @@ public class createTeacher extends Fragment {
         return valid;
     }
 
-    private void createTeacher(String name, String email, String position) {
+    private void createTeacher(String name, String email, String position, String userId) {
 
-        Teacher teacher = new Teacher(name);
+        Teacher teacher = new Teacher(name, userId);
 
         if (!email.isEmpty()) {
             teacher.setEmail(email);
@@ -111,6 +114,7 @@ public class createTeacher extends Fragment {
                                .addOnSuccessListener(new OnSuccessListener<Void>() {
                                    @Override
                                    public void onSuccess(Void unused) {
+                                       Toast.makeText(getContext(), "Teacher created", Toast.LENGTH_SHORT).show();
                                        navController.popBackStack();
                                        Log.d("ACTUALIZACION", "Profesor creado y actualizado con éxito");
                                    }

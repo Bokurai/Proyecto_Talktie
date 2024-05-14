@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,16 +40,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 
 public class schoolProfile extends Fragment {
     private FloatingActionButton fab;
     private SchoolViewModel schoolViewModel;
+    private TeacherViewModel teacherViewModel;
+    private RecyclerView recyclerView;
     private ImageView imageSchool, editButton;
     private EditText editTextAbout;
     private FirebaseAuth mAuth;
     private String newSummary = "";
+    private TeachersAdapter adapter;
     private AppCompatButton saveButton;
     private TextView name, summary, editImage;
     StorageReference storageReference;
@@ -87,6 +93,9 @@ public class schoolProfile extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         schoolViewModel = new ViewModelProvider(requireActivity()).get(SchoolViewModel.class);
+        teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
+
+        adapter = new TeachersAdapter(new ArrayList<>(), getContext());
 
         mAuth = FirebaseAuth.getInstance();
         navController = Navigation.findNavController(view);
@@ -101,20 +110,22 @@ public class schoolProfile extends Fragment {
         name = view.findViewById(R.id.txtSchoolName);
         summary = view.findViewById(R.id.txtDescriptionSchool);
         editImage = view.findViewById(R.id.edit_profiletxtS);
+        recyclerView = view.findViewById(R.id.teachersRecyclerView);
 
         loadUserInfo();
+
+        teacherViewModel.getTeachers().observe(getViewLifecycleOwner(), teachers -> {
+            adapter.setTeacherList(teachers);
+        });
+
+        recyclerView.setAdapter(adapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Add teacher", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 navController.navigate(R.id.action_goCreateTeacher);
             }
         });
-
-
-
 
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override

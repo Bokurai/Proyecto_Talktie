@@ -561,6 +561,9 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
 
     <string name="company"> <u>Company</u> </string>
     <string name="school"> <u>School</u></string>
+    <string name="student"> <u>Student</u> </string>
+
+    <string name="lbl_pipe">|</string>
 
     <string name="lbl_sign_up_to_join_school">Sign up as a school</string>
     <string name="lbl_name_school">School Name</string>
@@ -577,6 +580,7 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="sign_in_as_a_school">Sign in as a school</string>
     <string name="lbl_teachers">Teachers\n</string>
     <string name="lbl_position">Position</string>
+
 
 
 </resources>

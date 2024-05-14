@@ -47,6 +47,7 @@ public class OfferDetailsFragment extends Fragment {
 
     ImageView backArrow, companyImage;
 
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -70,6 +71,7 @@ public class OfferDetailsFragment extends Fragment {
         OfferViewModel offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
         offer_name = view.findViewById(R.id.txtOfferPosition);
+        companyImage = view.findViewById(R.id.companyLogoJD);
         business_name = view.findViewById(R.id.txtBusinessName);
         offer_date = view.findViewById(R.id.txtOfferDate);
         job_category = view.findViewById(R.id.txtWorkField);
@@ -92,8 +94,11 @@ public class OfferDetailsFragment extends Fragment {
                 offer_date.setText(formattedDate);
 
                 String imageProfile = offerObject.getCompanyImageUrl();
+                Log.d("TAG", "view " + getView().getContext());
+
+
                 Context context = getView().getContext();
-                if (!imageProfile.equals("null")){
+               if (imageProfile != null && !imageProfile.isEmpty()){
                     Uri uriImage = Uri.parse(imageProfile);
                     Glide.with(context)
                             .load(uriImage)
