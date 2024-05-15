@@ -62,12 +62,13 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/photo_teacher"
                     android:layout_width="@dimen/_50pxh"
                     android:layout_height="@dimen/_50pxh"
                     android:src="@drawable/teacher_default" />
 
                 <TextView
-                    android:id="@+id/txtGuillermoVidal"
+                    android:id="@+id/txtName_teacher"
                     style="@style/txtRobotoromanbold17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -82,7 +83,7 @@
 
 
             <EditText
-                android:id="@+id/txtDescription"
+                android:id="@+id/txtRecommendation"
                 style="@style/txtRobotoromanregular15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

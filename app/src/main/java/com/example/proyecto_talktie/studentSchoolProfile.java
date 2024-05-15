@@ -78,8 +78,9 @@ public class studentSchoolProfile extends Fragment {
             @Override
             public void onChanged(Student student) {
 
-                name.setText(student.getName());
+                teacherViewModel.setStudentId(student.getStudentId());
 
+                name.setText(student.getName());
 
                 if (student.getAbout() != null && !student.getAbout().isEmpty()) {
                     cardAbout.setVisibility(View.VISIBLE);
@@ -102,8 +103,6 @@ public class studentSchoolProfile extends Fragment {
                 if (TextUtils.isEmpty(student.getEmail()) || TextUtils.isEmpty(student.getPhone())) {
                     separator.setVisibility(View.GONE);
                 }
-
-
 
                 Context context = getView().getContext();
                 String imageProfile = student.getProfileImage();

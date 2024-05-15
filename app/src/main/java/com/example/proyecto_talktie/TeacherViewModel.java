@@ -21,11 +21,20 @@ public class TeacherViewModel extends AndroidViewModel {
     private MutableLiveData<Teacher> teacherSingle = new MutableLiveData<>();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String userId = mAuth.getUid();
+    private String studentId = "";
 
     private MutableLiveData<List<Teacher>> teachersLiveData = new MutableLiveData<>();
 
     public TeacherViewModel(@NonNull Application application) {
         super(application);
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public MutableLiveData<List<Teacher>> getTeachers() {
