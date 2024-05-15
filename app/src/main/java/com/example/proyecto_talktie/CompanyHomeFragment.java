@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -16,12 +17,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class CompanyHomeFragment extends Fragment {
 
@@ -29,14 +38,18 @@ public class CompanyHomeFragment extends Fragment {
 
     MainActivity mainActivity;
     NavController navController;
-    private OfferViewModel offerViewModel;
+    private CompanyViewModel companyViewModel;
     private RecyclerView recyclerView;
-    private OffersAdapter adapter;
+    private CompanyAdapter adapter;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    String userId= mAuth.getUid();
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -49,49 +62,17 @@ public class CompanyHomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle
             savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.d("TAG", "user id es:"+ userId);
         mainActivity = (MainActivity) requireActivity();
         mainActivity.showNavBotComp();
-        offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-// Obtener la ID de la compañía desde Firestore
-        db.collection("Company").document("companyId")
-                .get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        String companyId = documentSnapshot.getString("companyId");
-
-                        // Log para verificar que la ID de la compañía se obtiene correctamente
-                        Log.d("Company ID", companyId);
-
-                        // Obtener las ofertas de la compañía correspondiente
-                        offerViewModel.getOffersCompany(companyId).observe(getViewLifecycleOwner(), offerObjects -> {
-                            adapter.setOfferObjectList(offerObjects);
-                            // Log para verificar el número de ofertas obtenidas
-                            Log.d("Número de ofertas", String.valueOf(offerObjects.size()));
-                        });
-                    } else {
-                        // Log para indicar que no se encontró el documento de la compañía
-                        Log.d("No such document", "El documento de la compañía no existe");
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    // Log para indicar un error al obtener el documento
-                    Log.e("Error getting document", "Error al obtener el documento de la compañía", e);
-                });
-
-
-
-
+        companyViewModel = new ViewModelProvider(requireActivity()).get(CompanyViewModel.class);
         navController = Navigation.findNavController(requireView());
-
-        adapter = new OffersAdapter(new ArrayList<>(), navController, offerViewModel, db, getContext());
-
+        adapter = new CompanyAdapter(new ArrayList<>());
         recyclerView = view.findViewById(R.id.offerRecyclerViewCompany);
+        companyViewModel.getOffersCompany(userId).observe(getViewLifecycleOwner(), offerObjects -> {
+            adapter.setOfferObjectList(offerObjects);
+        });
         recyclerView.setAdapter(adapter);
-
-
         publishButton = view.findViewById(R.id.btnPublish);
 
         publishButton.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +81,5 @@ public class CompanyHomeFragment extends Fragment {
                 navController.navigate(R.id.action_goNewOffer);
             }
         });
-
     }
 }
