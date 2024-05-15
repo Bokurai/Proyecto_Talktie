@@ -399,5 +399,10 @@
         android:name="com.example.proyecto_talktie.schoolCompanies"
         android:label="fragment_school_companies"
         tools:layout="@layout/fragment_school_companies" />
+    <fragment
+        android:id="@+id/schoolViewCompany"
+        android:name="com.example.proyecto_talktie.SchoolViewCompany"
+        android:label="fragment_school_view_company"
+        tools:layout="@layout/fragment_school_view_company" />
 
 </navigation>

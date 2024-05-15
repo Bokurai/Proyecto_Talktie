@@ -113,6 +113,7 @@ public class signIn5_school extends Fragment {
                 registerViewModel.setFoundation_date(fecha_cambiada);
                 registerViewModel.saveUserFirestore();
                 registerViewModel.saveSchoolFirestore();
+                registerViewModel.saveSchoolinList();
                 navController.navigate(R.id.action_goSchoolHome);
             }
         });
