@@ -20,7 +20,7 @@
 
         <TextView
             android:gravity="center_vertical"
-            android:id="@+id/offerNamePC"
+            android:id="@+id/offerName"
             style="@style/txtPoppinssemibold19"
             tools:text="@string/msg_interaction_des"
             android:layout_width="@dimen/_250pxh"

@@ -67,8 +67,10 @@ public class CompanyHomeFragment extends Fragment {
         mainActivity.showNavBotComp();
         companyViewModel = new ViewModelProvider(requireActivity()).get(CompanyViewModel.class);
         navController = Navigation.findNavController(requireView());
+
         adapter = new CompanyAdapter(new ArrayList<>());
         recyclerView = view.findViewById(R.id.offerRecyclerViewCompany);
+
         companyViewModel.getOffersCompany(userId).observe(getViewLifecycleOwner(), offerObjects -> {
             adapter.setOfferObjectList(offerObjects);
         });
