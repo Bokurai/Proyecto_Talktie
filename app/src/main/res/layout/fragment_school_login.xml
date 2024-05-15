@@ -168,5 +168,45 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_12pxv" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_40pxh"
+        >
+
+        <TextView
+            android:id="@+id/imcompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light_green_900"
+            android:text="@string/company"
+            android:textSize="@dimen/_18pxh"
+            android:layout_marginStart="@dimen/_10pxh"
+            tools:ignore="SpUsage" />
+
+        <TextView
+            android:id="@+id/separator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light_green_900"
+            android:text="@string/symbol"
+            android:textSize="@dimen/_18pxh"
+            android:layout_marginStart="@dimen/_10pxh"
+            tools:ignore="SpUsage" />
+
+        <TextView
+            android:id="@+id/imstudent"
+            android:textColor="@color/light_green_900"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student"
+            android:textSize="@dimen/_18pxh"
+            android:layout_marginStart="@dimen/_10pxh"
+            tools:ignore="SpUsage" />
+    </LinearLayout>
+
+
 </LinearLayout>
 

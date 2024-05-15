@@ -123,9 +123,9 @@ public class StudentSearchView extends Fragment {
             holder.location_company.setText(model.getAddress());
 
 
-            String imageProfile = model.getProfileImage() != null ? model.getProfileImage() : "null";
+            String imageProfile = model.getProfileImage();
             Context context = getView().getContext();
-            if (!imageProfile.equals("null")) {
+            if (imageProfile != null && !imageProfile.isEmpty()) {
                 Uri uriImage = Uri.parse(imageProfile);
                 Glide.with(context)
                         .load(uriImage)

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -62,14 +63,16 @@ import java.util.List;
         @Override
         public void onBindViewHolder(@NonNull OffersAdapter.OffersViewHolder holder, int position) {
             OfferObject offerObject = offerObjectList.get(position);
+
             int colorLightGreen900 = ContextCompat.getColor(holder.itemView.getContext(), R.color.light_green_900);
             int coloramarillo = ContextCompat.getColor(holder.itemView.getContext(), R.color.amber_700);
             holder.name.setText(offerObject.getName());
             holder.companyName.setText(offerObject.getCompanyName());
 
             //Imagen compañia en la oferta
-            String imageProfile = offerObject.getCompanyImageUrl();;
-            if (!imageProfile.equals("null")){
+            String imageProfile = offerObject.getCompanyImageUrl();
+
+            if (imageProfile != null && !imageProfile.isEmpty()){
                 Uri uriImage = Uri.parse(imageProfile);
                 Glide.with(context)
                         .load(uriImage)
@@ -146,8 +149,9 @@ import java.util.List;
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    NavController navController = Navigation.findNavController(v);
                     offerViewModel.seleccionar(offerObject);
-                    Log.d("TAG", "Oferta seleccionada " + offerObject.getName());
+                    Log.d("TAG", "Oferta seleccionada " + offerObject.getCompanyImageUrl());
                     navController.navigate(R.id.action_goOfferDetailsFragment);
                 }
             });
