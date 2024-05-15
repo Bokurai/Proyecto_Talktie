@@ -212,6 +212,10 @@
         app:destination="@+id/studentSchoolProfile" />
 
     <action
+        android:id="@+id/action_goAddRecommendation"
+        app:destination="@+id/addRecommendation" />
+
+    <action
         android:id="@+id/action_goSchoolProfile"
         app:destination="@+id/schoolProfile" />
 
@@ -349,11 +353,6 @@
         android:name="com.example.proyecto_talktie.addRecommendation"
         android:label="fragment_add_recommendation"
         tools:layout="@layout/fragment_add_recommendation" />
-    <fragment
-        android:id="@+id/teacherRecommendations"
-        android:name="com.example.proyecto_talktie.teacherRecommendations"
-        android:label="fragment_teacher_recommendations"
-        tools:layout="@layout/fragment_teacher_recommendations" />
     <fragment
         android:id="@+id/teacherProfile"
         android:name="com.example.proyecto_talktie.teacherProfile"

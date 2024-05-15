@@ -177,14 +177,14 @@
                     android:textAlignment="center"
                     android:lineSpacingExtra="@dimen/_3pxh"
                     android:singleLine="true"
-                    android:text="@string/add_recommendation" />
+                    android:text="@string/msg_selectprofile" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recommendRecyclerView"
+                android:id="@+id/listTRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5pxv"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_marginBottom="@dimen/_50pxh"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
         </LinearLayout>
 </LinearLayout>

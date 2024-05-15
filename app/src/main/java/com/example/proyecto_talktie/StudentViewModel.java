@@ -50,7 +50,7 @@ public class StudentViewModel extends AndroidViewModel {
                             String idTeacher = entry.getKey();
                             String recommendationText = entry.getValue();
 
-                            getTeacherInfo(idTeacher, recommendationText, recommendationList);
+                            getTeacherData(idTeacher, recommendationText, recommendationList);
 
                             /**Recommendation recommendation = new Recommendation(idTeacher, recommendationText);
                             recommendationList.add(recommendation);**/
@@ -68,39 +68,21 @@ public class StudentViewModel extends AndroidViewModel {
     }
 
 
-    /**
-     * Method that searches the Teacher collection for the teacherID and extracts its name and image.
-     * @param teacherId Professor's Id to search
-     * @param recommendationText Teacher's recommendation
-     * @param recommendationList List of recommendations
-     */
-    public void getTeacherInfo(String teacherId, String recommendationText, List<Recommendation> recommendationList) {
-        CollectionReference teacherRef = db.collection("Teacher");
-        Query query = teacherRef.whereEqualTo("teacherId", teacherId);
+    public void getTeacherData(String teacherId, String recommendationText, List<Recommendation> recommendationList) {
+        db.collection("Teacher").document(teacherId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
 
-        query.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                QuerySnapshot querySnapshot = task.getResult();
-                if (!querySnapshot.isEmpty()) {
-                    QueryDocumentSnapshot document = (QueryDocumentSnapshot) querySnapshot.getDocuments().get(0);
-                    String teacherName = document.getString("name");
-                    String teacherImage = document.getString("profileImage") != null ? document.getString("profileImage") : "null";
+                        Teacher teacher = documentSnapshot.toObject(Teacher.class);
+                        Recommendation recommendation = new Recommendation(recommendationText, teacher);
 
-                    Recommendation recommendation = new Recommendation(teacherId, recommendationText, teacherName);
+                        recommendationList.add(recommendation);
+                        recommendationsLiveData.setValue(recommendationList);
 
-
-                    recommendation.setProfileImage(teacherImage);
-
-                    recommendationList.add(recommendation);
-                    recommendationsLiveData.setValue(recommendationList);
-
-                } else {
-
-                }
-            } else {
-
-            }
-        });
+                    }
+                });
     }
 
     public MutableLiveData<Student> getStudentData(String studentId) {

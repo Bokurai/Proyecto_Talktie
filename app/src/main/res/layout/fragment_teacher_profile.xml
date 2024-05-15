@@ -250,7 +250,7 @@
                         android:textAlignment="center"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
-                        android:text="@string/lbl_recommendations" />
+                        android:text="@string/your_recommendations" />
 
                 </LinearLayout>
 

@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -22,7 +23,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+
 public class studentSchoolProfile extends Fragment {
+    private RecyclerView recyclerView;
+    private TeacherViewModel teacherViewModel;
+    private AddRecommendationAdapter adapter;
     private CardView cardAbout;
     private ImageView photoProfile, imageReturn;
     private TextView name, email, phone, about, separator;
@@ -49,6 +55,8 @@ public class studentSchoolProfile extends Fragment {
         imageReturn = view.findViewById(R.id.img_returnS);
         navController = Navigation.findNavController(view);
 
+        recyclerView = view.findViewById(R.id.listTRecyclerView);
+
         photoProfile = view.findViewById(R.id.profileImgStudentS);
         name = view.findViewById(R.id.txtStudentNameS);
         email = view.findViewById(R.id.emailS);
@@ -57,6 +65,14 @@ public class studentSchoolProfile extends Fragment {
         separator = view.findViewById(R.id.separator);
         cardAbout = view.findViewById(R.id.cardAbout);
 
+        teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
+        adapter = new AddRecommendationAdapter(new ArrayList<>(), getContext(), navController, teacherViewModel);
+
+        teacherViewModel.getTeachers().observe(getViewLifecycleOwner(), teachers -> {
+            adapter.setTeacherList(teachers);
+        });
+
+        recyclerView.setAdapter(adapter);
 
         homeViewModel.selectd().observe(getViewLifecycleOwner(), new Observer<Student>() {
             @Override
