@@ -87,7 +87,7 @@ public class ProfileCompanySelf extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle
             savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        mAuth = FirebaseAuth.getInstance();
         companyId = user.getUid();
         textAboutC = view.findViewById(R.id.txtDescriptionCompProfile);
         profileEditTxtC = view.findViewById(R.id.edit_profiletxtcompany);
