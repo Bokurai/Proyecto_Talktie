@@ -7,7 +7,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
+
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -20,6 +23,7 @@ import java.util.Map;
 public class StudentViewModel extends AndroidViewModel {
     private MutableLiveData<List<Recommendation>> recommendationsLiveData = new MutableLiveData<>();
     private MutableLiveData<String> aboutStudent = new MutableLiveData<>();
+    private MutableLiveData<Student> studentData = new MutableLiveData<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public StudentViewModel(@NonNull Application application) {
@@ -99,35 +103,28 @@ public class StudentViewModel extends AndroidViewModel {
         });
     }
 
-    /**
-     * Method that extracts from the student collection the student's description and stores it in a mutableLiveData.
-     * @param studentId Current student ID
-     * @return MutableLiveData of description
-     */
-    public MutableLiveData<String> getAbout(String studentId) {
-        CollectionReference studentRef = db.collection("Student");
-        Query query = studentRef.whereEqualTo("studentId", studentId);
+    public MutableLiveData<Student> getStudentData(String studentId) {
 
-        query.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                QuerySnapshot querySnapshot = task.getResult();
-                if (!querySnapshot.isEmpty()) {
-                    QueryDocumentSnapshot document = (QueryDocumentSnapshot) querySnapshot.getDocuments().get(0);
-                    String about = document.getString("about");
-                    if (about != null) {
-                        aboutStudent.setValue(about);
+        db.collection("Student").document(studentId)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String name = documentSnapshot.getString("name");
+                        String about = documentSnapshot.getString("about");
+                        String imageprofileURL = documentSnapshot.getString("profileImage");
+
+                        Student student = new Student();
+                        student.setName(name);
+                        student.setAbout(about);
+                        student.setProfileImage(imageprofileURL);
+
+                        studentData.setValue(student);
                     }
-                }
-            } else {
-                Toast.makeText(getApplication(), "Error loading on user", Toast.LENGTH_SHORT).show();
-            }
-        });
-        return aboutStudent;
+                });
+
+        return studentData;
     }
 
-    public void editAbout() {
-
-
-    }
 
 }

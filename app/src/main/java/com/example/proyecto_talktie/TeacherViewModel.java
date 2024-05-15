@@ -18,6 +18,7 @@ import java.util.List;
 public class TeacherViewModel extends AndroidViewModel {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private MutableLiveData<Teacher> teacherSingle = new MutableLiveData<>();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String userId = mAuth.getUid();
 
@@ -36,10 +37,6 @@ public class TeacherViewModel extends AndroidViewModel {
 
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         Teacher teacher = document.toObject(Teacher.class);
-
-                        String teacherImage = document.getString("profileImage") != null ? document.getString("profileImage") : "null";
-                        teacher.setProfileImage(teacherImage);
-
                         teachers.add(teacher);
                     }
 
@@ -54,6 +51,14 @@ public class TeacherViewModel extends AndroidViewModel {
                     Toast.makeText(getApplication(), "Error loading teachers", Toast.LENGTH_SHORT).show();
                 });
         return teachersLiveData;
+    }
+
+    public void select(Teacher teacher){
+        teacherSingle.postValue(teacher);
+    }
+
+    MutableLiveData<Teacher> selected() {
+        return teacherSingle;
     }
 
 }

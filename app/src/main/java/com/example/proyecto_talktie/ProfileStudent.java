@@ -114,15 +114,28 @@ public class ProfileStudent extends Fragment {
         editButton = view.findViewById(R.id.aboutEdit);
         saveButton = view.findViewById(R.id.btnSave);
 
-        loadUserInfo();
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
 
-        /**
-         * I get the livedata about from the view-model to show it to the user
-         */
-        studentViewModel.getAbout(studentId).observe(getViewLifecycleOwner(), aboutMe -> {
-            Log.d("Recomendaciones", "Obtiene about " + studentId);
-            textAbout.setText(aboutMe);
+
+        studentViewModel.getStudentData(studentId).observe(getViewLifecycleOwner(), student -> {
+            studentName.setText(student.getName());
+            textAbout.setText(student.getAbout());
+
+            String imageprofileURL = student.getProfileImage();
+            Context context = getView().getContext();
+            if (imageprofileURL != null && !imageprofileURL.isEmpty()) {
+                Uri uriImagep = Uri.parse(imageprofileURL);
+
+                Glide.with(context)
+                        .load(uriImagep)
+                        .into(profileImg);
+            } else {
+                Glide.with(context)
+                        .load(R.drawable.profile_image_defaut)
+                        .into(profileImg);
+            }
+
+
         });
 
         studentViewModel.getRecommendationLiveData(studentId).observe(getViewLifecycleOwner(), recommendations -> {
@@ -210,34 +223,6 @@ public class ProfileStudent extends Fragment {
         });
 
     }
-
-    public void loadUserInfo() {
-        if (user != null && getView() != null) {
-            DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Student").document(studentId);
-            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (getView() != null) {
-                        studentName.setText(documentSnapshot.getString("name"));
-                        String imageprofileURL = documentSnapshot.getString("profileImage");
-                        Context context = getView().getContext();
-                        if (imageprofileURL != null && !imageprofileURL.isEmpty()) {
-                            Uri uriImagep = Uri.parse(imageprofileURL);
-
-                            Glide.with(context)
-                                    .load(uriImagep)
-                                    .into(profileImg);
-                        } else {
-                            Glide.with(context)
-                                    .load(R.drawable.profile_image_defaut)
-                                    .into(profileImg);
-                        }
-                    }
-                }
-            });
-        }
-    }
-
 
 
     private void selectGalleryImageRegister() {

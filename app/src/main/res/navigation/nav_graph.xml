@@ -219,6 +219,9 @@
         android:id="@+id/action_goCreateTeacher"
         app:destination="@+id/createTeacher" />
 
+    <action
+        android:id="@+id/action_goTeacherProfile"
+        app:destination="@+id/teacherProfile" />
 
     <action
         android:id="@+id/action_goSchoolCompanies"

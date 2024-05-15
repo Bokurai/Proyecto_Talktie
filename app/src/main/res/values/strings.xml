@@ -536,7 +536,7 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_email_example">press@king.com</string>
     <string name="buttoneditprofile">ButtoneditProfile</string>
     <string name="edit_profile">Edit profile</string>
-    <string name="edit_profile_image">Edit profile image</string>
+    <string name="edit_profile_image"> Edit profile image</string>
     <string name="sign_up">Sign up</string>
     <string name="lbl_details">Details</string>
     <string name="lbl_teacher_name">Teacher Name</string>
@@ -575,12 +575,14 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_contact_school">Contact</string>
     <string name="lbl_student_search">What student are you looking for?</string>
     <string name="symbol">|</string>
-    <string name="add_recommendation">Add a recommendation</string>
+    <string name="add_recommendation">Add a recommendation as:</string>
     <string name="lbl_recommendation">Say something nice about the student</string>
     <string name="sign_in_as_a_school">Sign in as a school</string>
     <string name="lbl_teachers">Teachers\n</string>
     <string name="lbl_position">Position</string>
     <string name="sign_in_as_a_student">Sign in as a student</string>
+    <string name="write_email_teacher">Write the teacher\'s email address</string>
+    <string name="write_position_teacher">Write the teacher\'s position</string>
 
 
 </resources>

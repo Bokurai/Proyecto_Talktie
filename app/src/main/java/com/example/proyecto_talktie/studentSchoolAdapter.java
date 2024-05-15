@@ -37,8 +37,8 @@ public class studentSchoolAdapter extends FirestoreRecyclerAdapter<Student, stud
 
         Context context1 = holder.itemView.getContext();
 
-        String imageProfile = model.getProfileImage() != null ? model.getProfileImage() : "null";
-        if (!imageProfile.equals("null")) {
+        String imageProfile = model.getProfileImage();
+        if (imageProfile != null & !imageProfile.isEmpty()) {
             Uri uriImage = Uri.parse(imageProfile);
             Glide.with(context1)
                     .load(uriImage)

@@ -10,24 +10,24 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.List;
 
 public class SchoolViewModel extends AndroidViewModel {
     private MutableLiveData<School> schoolData = new MutableLiveData<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public SchoolViewModel(@NonNull Application application) {
         super(application);
     }
 
-   /* public MutableLiveData<School> getSchoolData() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+   public MutableLiveData<School> getSchoolData(String schoolId) {
 
-        db.collection("School").document(currentUser.getUid())
+        db.collection("School").document(schoolId)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -40,7 +40,7 @@ public class SchoolViewModel extends AndroidViewModel {
                 });
 
         return schoolData;
-    }*/
+    }
 
 
 
