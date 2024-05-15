@@ -243,17 +243,17 @@ public class ProfileCompanySelf extends Fragment {
         }
     }
 
-    private void linkImagetoUser(String imageUrl){
-        if (user!= null){
+    private void linkImagetoUser(String imageUrl) {
+        if (user != null) {
             FirebaseFirestore.getInstance().collection("User").document(companyId)
-                    .update("profileImage",imageUrl)
+                    .update("profileImage", imageUrl)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
                         }
                     });
             FirebaseFirestore.getInstance().collection("Company").document(companyId)
-                    .update("profileImage",imageUrl)
+                    .update("profileImage", imageUrl)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
 
@@ -261,6 +261,7 @@ public class ProfileCompanySelf extends Fragment {
                         }
                     });
         }
+    }
 
         private void showLogoutDialog() {
             AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
@@ -285,4 +286,3 @@ public class ProfileCompanySelf extends Fragment {
         }
 
     }
-}
