@@ -1,5 +1,7 @@
 package com.example.proyecto_talktie;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.util.List;
@@ -17,14 +25,17 @@ import java.util.List;
 public class AddRecommendationAdapter extends RecyclerView.Adapter<AddRecommendationAdapter.AddRecommendationViewHolder> {
     private List<Teacher> teacherList;
     private Context context;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     NavController navController;
     TeacherViewModel teacherViewModel;
+    String studentId;
 
-    public AddRecommendationAdapter(List<Teacher> teacherList, Context context, NavController navController, TeacherViewModel teacherViewModel) {
+    public AddRecommendationAdapter(List<Teacher> teacherList, Context context, NavController navController, TeacherViewModel teacherViewModel, String studentId) {
         this.teacherList = teacherList;
         this.context = context;
         this.navController = navController;
         this.teacherViewModel = teacherViewModel;
+        this.studentId = studentId;
     }
 
     @NonNull
@@ -54,11 +65,37 @@ public class AddRecommendationAdapter extends RecyclerView.Adapter<AddRecommenda
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                teacherViewModel.select(teacher);
-                navController.navigate(R.id.action_goAddRecommendation);
+
+                db.collection("Teacher").document(teacher.getTeacherId()).get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                List<String> recommendedStudents = (List<String>) documentSnapshot.get("recommendedStudents");
+                                if (recommendedStudents != null && recommendedStudents.contains(studentId)) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                    builder.setMessage("You have already written a recommendation to this student.\n\nWould you like to edit it?")
+                                            .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    dialog.dismiss();
+                                                }
+                                            })
+                                            .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    teacherViewModel.select(teacher);
+                                                    navController.navigate(R.id.action_goEditRecommendation);
+                                                }
+                                            });
+                                    AlertDialog dialog = builder.create();
+                                    dialog.show();
+
+                                } else {
+                                    teacherViewModel.select(teacher);
+                                    navController.navigate(R.id.action_goAddRecommendation);
+                                }
+                            }
+                        });
             }
         });
-
     }
 
     @Override

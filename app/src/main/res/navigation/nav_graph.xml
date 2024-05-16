@@ -228,6 +228,11 @@
         app:destination="@+id/teacherProfile" />
 
     <action
+        android:id="@+id/action_goEditRecommendation"
+        app:destination="@+id/editRecommendation" />
+
+
+    <action
         android:id="@+id/action_goSchoolCompanies"
         app:destination="@+id/schoolCompanies" />
 
@@ -401,5 +406,10 @@
         android:name="com.example.proyecto_talktie.schoolCompanies"
         android:label="fragment_school_companies"
         tools:layout="@layout/fragment_school_companies" />
+    <fragment
+        android:id="@+id/editRecommendation"
+        android:name="com.example.proyecto_talktie.EditRecommendation"
+        android:label="fragment_edite_recommendation"
+        tools:layout="@layout/fragment_edite_recommendation" />
 
 </navigation>

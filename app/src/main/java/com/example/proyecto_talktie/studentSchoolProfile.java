@@ -65,20 +65,21 @@ public class studentSchoolProfile extends Fragment {
         separator = view.findViewById(R.id.separator);
         cardAbout = view.findViewById(R.id.cardAbout);
 
-        teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
-        adapter = new AddRecommendationAdapter(new ArrayList<>(), getContext(), navController, teacherViewModel);
-
-        teacherViewModel.getTeachers().observe(getViewLifecycleOwner(), teachers -> {
-            adapter.setTeacherList(teachers);
-        });
-
-        recyclerView.setAdapter(adapter);
-
         homeViewModel.selectd().observe(getViewLifecycleOwner(), new Observer<Student>() {
             @Override
             public void onChanged(Student student) {
 
-                teacherViewModel.setStudentId(student.getStudentId());
+
+                teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
+                adapter = new AddRecommendationAdapter(new ArrayList<>(), getContext(), navController, teacherViewModel, student.getStudentId());
+
+                teacherViewModel.getTeachers().observe(getViewLifecycleOwner(), teachers -> {
+                    adapter.setTeacherList(teachers);
+                });
+
+                recyclerView.setAdapter(adapter);
+
+                teacherViewModel.setStudent(student);
 
                 name.setText(student.getName());
 

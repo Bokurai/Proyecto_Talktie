@@ -21,7 +21,7 @@ public class TeacherViewModel extends AndroidViewModel {
     private MutableLiveData<Teacher> teacherSingle = new MutableLiveData<>();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String userId = mAuth.getUid();
-    private String studentId = "";
+    private Student student = new Student();
 
     private MutableLiveData<List<Teacher>> teachersLiveData = new MutableLiveData<>();
 
@@ -29,13 +29,14 @@ public class TeacherViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public String getStudentId() {
-        return studentId;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    public void setStudent(Student student) {
+        this.student = student;
     }
+
 
     public MutableLiveData<List<Teacher>> getTeachers() {
         db.collection("Teacher")
@@ -60,6 +61,11 @@ public class TeacherViewModel extends AndroidViewModel {
                     Toast.makeText(getApplication(), "Error loading teachers", Toast.LENGTH_SHORT).show();
                 });
         return teachersLiveData;
+    }
+
+    public void getRecommendationTeachers() {
+
+
     }
 
     public void select(Teacher teacher){

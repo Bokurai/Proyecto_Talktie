@@ -32,11 +32,13 @@ import java.util.Map;
 
 
 public class addRecommendation extends Fragment {
-    private ImageView backArrow, teacherImage;
-    private TextView nameTacher;
+    private ImageView backArrow, teacherImage, studentImage;
+    private TextView nameTacher, nameStudent;
     private EditText recommendationText;
     private AppCompatButton cancel, save;
-    private String studentId = "";
+    private Student student;
+    private String studentId;
+    Context context;
     NavController navController;
 
 
@@ -53,15 +55,37 @@ public class addRecommendation extends Fragment {
 
         backArrow = view.findViewById(R.id.img_return);
         teacherImage = view.findViewById(R.id.photo_teacher);
+        studentImage = view.findViewById(R.id.photo_student);
         nameTacher = view.findViewById(R.id.txtName_teacher);
+        nameStudent = view.findViewById(R.id.txtName_student);
         cancel = view.findViewById(R.id.btnCancel);
         save = view.findViewById(R.id.btnSave);
         recommendationText = view.findViewById(R.id.txtRecommendation);
         navController = Navigation.findNavController(view);
 
+        context = getView().getContext();
+
         TeacherViewModel teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
 
-        studentId = teacherViewModel.getStudentId();
+
+        student = teacherViewModel.getStudent();
+        studentId = student.getStudentId();
+
+        nameStudent.setText(student.getName());
+
+        String imageStudent = student.getProfileImage();
+
+        if (imageStudent != null && !imageStudent.isEmpty()) {
+            Uri uriImage = Uri.parse(imageStudent);
+            Glide.with(context)
+                    .load(uriImage)
+                    .into(studentImage);
+        } else {
+            Glide.with(context)
+                    .load(R.drawable.profile_image_defaut)
+                    .into(studentImage);
+        }
+
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +102,7 @@ public class addRecommendation extends Fragment {
 
                 String imageProfile = teacher.getProfileImage();
 
-                Context context = getView().getContext();
+
                 if (imageProfile != null && !imageProfile.isEmpty()) {
                     Uri uriImage = Uri.parse(imageProfile);
                     Glide.with(context)
