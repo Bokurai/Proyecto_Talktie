@@ -22,7 +22,7 @@
             tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnFollowCompany"
+            android:id="@+id/btnMessageSchool"
             style="@style/btnSolidRounded_F"
             android:layout_width="@dimen/_100pxh"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:id="@+id/txtNameCompany"
+                android:id="@+id/txtNameSchool"
                 style="@style/txtRobotoromanbold40"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -237,7 +237,7 @@
                     <!-- Columna 2 -->
                     <TextView
                         style="@style/txtRobotoromanbold16"
-                        android:id="@+id/schooolwebsiteTextView"
+                        android:id="@+id/schoolwebsiteTextView"
                         android:text="@string/lbl_web_site"
                         android:layout_marginStart="@dimen/_10pxh"
                         android:layout_width="wrap_content"

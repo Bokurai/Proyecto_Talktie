@@ -1,20 +1,19 @@
 package com.example.proyecto_talktie;
 
-import java.util.List;
-
 public class School extends User{
 
     String schoolId;
-    String about;
+    String summary;
     String school_code;
-    String school_type;
+    String typeSchool;
+    String headquarters;
 
 
-    public School(String name, String email, String password, String city, String zipcode, String home_address, String phone_number, String profile_image, String website, String about, String school_code, String school_type) {
+    public School(String name, String email, String password, String city, String zipcode, String home_address, String phone_number, String profile_image, String website, String about, String school_code, String typeSchool) {
         super(name, email, password, city, zipcode, home_address, phone_number, profile_image, website);
-        this.about = about;
+        this.summary = about;
         this.school_code = school_code;
-        this.school_type = school_type;
+        this.typeSchool = typeSchool;
     }
 
     //constructor vacío requerido por Firebase
@@ -30,12 +29,12 @@ public class School extends User{
         this.schoolId = schoolId;
     }
 
-    public String getAbout() {
-        return about;
+    public String getSummary() {
+        return summary;
     }
 
-    public void setAbout(String about) {
-        this.about = about;
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public String getSchool_code() {
@@ -46,11 +45,19 @@ public class School extends User{
         this.school_code = school_code;
     }
 
-    public String getSchool_type() {
-        return school_type;
+    public String getTypeSchool() {
+        return typeSchool;
     }
 
-    public void setSchool_type(String school_type) {
-        this.school_type = school_type;
+    public void setTypeSchool(String typeSchool) {
+        this.typeSchool = typeSchool;
     }
+    public String getHeadquarters() {
+        return headquarters;
+    }
+
+    public void setHeadquarters(String headquarters) {
+        this.headquarters = headquarters;
+    }
+
 }

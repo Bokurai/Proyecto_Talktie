@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".SelectRegister"
         android:gravity="center_horizontal"
         android:id="@+id/linearIPhone8Plus"
         android:layout_height="match_parent"

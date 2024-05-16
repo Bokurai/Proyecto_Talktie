@@ -74,7 +74,7 @@ public class SchoolViewCompany extends Fragment {
         @Override
         protected void onBindViewHolder(@NonNull SchoolViewAdapter.SchoolViewHolder holder, int position, @NonNull School model) {
             holder.school_name.setText(model.getName());
-            holder.school_type.setText(model.getSchool_type());
+            holder.school_type.setText(model.getTypeSchool());
 
             String imageProfile = model.getProfile_image();
             Context context = getView().getContext();
