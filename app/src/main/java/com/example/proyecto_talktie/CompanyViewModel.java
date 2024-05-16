@@ -19,6 +19,7 @@ import java.util.List;
 
 public class CompanyViewModel extends AndroidViewModel {
     private MutableLiveData<List<OfferObject>> offersCompany = new MutableLiveData<>();
+    private MutableLiveData<OfferObject> offerSingle = new MutableLiveData<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -49,5 +50,12 @@ public class CompanyViewModel extends AndroidViewModel {
                     Toast.makeText(getApplication(), "Error loading offers", Toast.LENGTH_SHORT).show();
                 });
         return offersCompany;
+    }
+    public void seleccionar(OfferObject offerObject){
+        offerSingle.postValue(offerObject);
+    }
+
+    MutableLiveData<OfferObject> seleccionado(){
+        return offerSingle;
     }
 }

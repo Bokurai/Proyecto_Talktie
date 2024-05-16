@@ -137,7 +137,7 @@
 
     <action
         android:id="@+id/action_goOfferDetailsFragment"
-        app:destination="@id/offerDetailsFragment"/>
+        app:destination="@id/offersDetailsApplicants"/>
     <action
         android:id="@+id/action_goCompanyProfile"
         app:destination="@+id/companyProfile" />
@@ -267,6 +267,10 @@
     <action
         android:id="@+id/action_goCompanyHome"
         app:destination="@+id/companyHomeFragment" />
+
+    <action
+        android:id="@+id/action_goOfferDetailsApplicant"
+        app:destination="@+id/offersDetailsApplicants" />
 
 
     <action
@@ -401,7 +405,7 @@
         tools:layout="@layout/fragment_school_companies" />
     <fragment
         android:id="@+id/offersDetailsApplicants"
-        android:name="com.example.proyecto_talktie.OffersDetailsApplicants"
+        android:name="com.example.proyecto_talktie.OffersDetailsApplicantsFragment"
         android:label="fragment_offers_details_applicants"
         tools:layout="@layout/fragment_offers_details_applicants" />
 

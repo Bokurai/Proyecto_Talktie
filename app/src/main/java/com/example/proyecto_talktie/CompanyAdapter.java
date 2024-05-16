@@ -28,10 +28,14 @@ import java.util.List;
  public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>{
     private List<OfferObject> offerObjectList;
     private FirebaseFirestore db;
+     CompanyViewModel viewModel;
+     NavController navController;
 
-    public CompanyAdapter(List<OfferObject> offerObjectList) {
+    public CompanyAdapter(List<OfferObject> offerObjectList,CompanyViewModel viewModel, NavController navController) {
         this.offerObjectList = offerObjectList;
         db = FirebaseFirestore.getInstance();
+        this.viewModel=viewModel;
+        this.navController=navController;
     }
 
     @NonNull
@@ -70,6 +74,15 @@ import java.util.List;
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.e("OffersAdapter", "Error al obtener la cantidad de aplicantes: " + e.getMessage());
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                viewModel.seleccionar(offerObject);
+                navController.navigate(R.id.action_goOfferDetailsApplicant);
             }
         });
 

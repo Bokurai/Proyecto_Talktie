@@ -68,7 +68,7 @@ public class CompanyHomeFragment extends Fragment {
         companyViewModel = new ViewModelProvider(requireActivity()).get(CompanyViewModel.class);
         navController = Navigation.findNavController(requireView());
 
-        adapter = new CompanyAdapter(new ArrayList<>());
+        adapter = new CompanyAdapter(new ArrayList<>(), companyViewModel, navController);
         recyclerView = view.findViewById(R.id.offerRecyclerViewCompany);
 
         companyViewModel.getOffersCompany(userId).observe(getViewLifecycleOwner(), offerObjects -> {
