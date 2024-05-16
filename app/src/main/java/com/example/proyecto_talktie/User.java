@@ -18,7 +18,7 @@ public class User {
 
     String phone;
 
-    int profile_image;
+    String profile_image;
 
     String website;
 
@@ -26,7 +26,7 @@ public class User {
         super();
     }
 
-    public User(String name, String email, String password, String city, String zipcode, String home_address, String phone_number, int profile_image, String website) {
+    public User(String name, String email, String password, String city, String zipcode, String home_address, String phone_number, String profile_image, String website) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -102,11 +102,11 @@ public class User {
         this.phone = phone;
     }
 
-    public int getProfile_image() {
+    public String getProfile_image() {
         return profile_image;
     }
 
-    public void setProfile_image(int profile_image) {
+    public void setProfile_image(String profile_image) {
         this.profile_image = profile_image;
     }
 

@@ -73,6 +73,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Botones Company
+        bottomNavigationViewCompany.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.companyHomeFragment) {
+                    // Navegar al fragmento de inicio
+                    navController.navigate(R.id.action_goCompanyHome);
+                    return true;
+                } else if (itemId == R.id.SchoolViewCompany) {
+                    // Navegar al fragmento de ofertas
+                    navController.navigate(R.id.action_goCompanySchool);
+                    return true;
+                } else if (itemId == R.id.companyMessages) {
+                    // Navegar al fragmento de mensajes
+                    navController.navigate(R.id.action_goCompanyMessages);
+                    return true;
+                } else if (itemId == R.id.profileCompanySelf) {
+                    // Navegar al fragmento de perfil
+                    navController.navigate(R.id.action_goCompanyProfileSelf);
+                    return true;
+                }
+                return false;
+            }
+        });
+
         //Botones School
         bottomNavSchool.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

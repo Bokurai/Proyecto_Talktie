@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -229,4 +230,25 @@ public class SchoolRegisterViewModel extends AndroidViewModel {
                });
 
     }
+    public void saveSchoolinList() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        String schoolUid = firebaseAuth.getUid();
+        String mapUid = "rIh64FpBBfR1Wmu1zyEy";
+        DocumentReference newSchool = db.collection("SchoolListVerification").document(mapUid);
+
+        newSchool.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot != null && documentSnapshot.exists()) {
+                Map<String, String> schoolnamesMap = (Map<String, String>) documentSnapshot.get("school_names");
+                if (schoolnamesMap != null && !schoolnamesMap.containsKey(schoolUid)) {
+                    schoolnamesMap.put(schoolUid, name.getValue());
+                    newSchool.update("school_names", schoolnamesMap)
+                            .addOnSuccessListener(aVoid -> Log.d("saveSchoolInList", "School added to list"))
+                            .addOnFailureListener(e -> Log.e("saveSchoolInList", "Error adding school to list", e));
+                }
+            }
+        }).addOnFailureListener(e -> Log.e("saveSchoolInList", "Error getting document", e));
+    }
+
+
 }
