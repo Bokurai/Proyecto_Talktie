@@ -17,8 +17,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/student_image"
-                android:layout_width="@dimen/_90pxh"
-                android:layout_height="@dimen/_90pxh"
+                android:layout_width="@dimen/_50pxh"
+                android:layout_height="@dimen/_50pxh"
                 android:layout_gravity="center"
                 android:padding="5sp"
                 android:src="@drawable/profile_image_defaut" />
