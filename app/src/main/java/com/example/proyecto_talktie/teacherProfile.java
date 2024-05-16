@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,7 +41,9 @@ import java.util.UUID;
 public class teacherProfile extends Fragment {
     NavController navController;
     private ImageView backArrow, imageTeacher, editPostion, editEmail;
+    private LinearLayout listRecommended;
     private TextView txtName, txtPosition, txtEmail, editImage;
+    private RecommendedAdapter adapter;
     private EditText editTextPosition, editTextEmail;
     private AppCompatButton savePosition, saveEmail;
     private String newPosition = "";
@@ -64,6 +68,7 @@ public class teacherProfile extends Fragment {
 
         navController = Navigation.findNavController(view);
 
+        adapter = new RecommendedAdapter(new ArrayList<>());
         TeacherViewModel teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
 
         editPostion = view.findViewById(R.id.positionEditS);
@@ -79,13 +84,25 @@ public class teacherProfile extends Fragment {
         txtPosition = view.findViewById(R.id.txtPositionTeacher);
         txtEmail = view.findViewById(R.id.txtEmailTeacher);
         editImage = view.findViewById(R.id.edit_profiletxtT);
-        recyclerView = view.findViewById(R.id.recommendationTRecyclerView);
+        recyclerView = view.findViewById(R.id.recommendedRecyclerView);
+        listRecommended = view.findViewById(R.id.listStudentRecommended);
 
         teacherViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Teacher>() {
             @Override
             public void onChanged(Teacher teacher) {
 
                 teacherId = teacher.getTeacherId();
+
+                teacherViewModel.getRecommendationTeachers(teacherId).observe(getViewLifecycleOwner(), students -> {
+                    if (students != null && !students.isEmpty()) {
+                        listRecommended.setVisibility(View.VISIBLE);
+                       // adapter.setStudentList(students);
+                        recyclerView.setAdapter(new RecommendedAdapter(students));
+                    } else {
+                        listRecommended.setVisibility(View.GONE);
+                    }
+                });
+
 
                 txtName.setText(teacher.getName());
                 txtPosition.setText(teacher.getPosition());
@@ -303,6 +320,77 @@ public class teacherProfile extends Fragment {
                         public void onSuccess(Void unused) {
                         }
                     });
+        }
+
+    }
+
+    class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.RecommendedViewHolder> {
+        private List<Student> studentList;
+
+        public RecommendedAdapter(List<Student> studentList) {
+            this.studentList = studentList;
+        }
+
+        @NonNull
+        @Override
+        public RecommendedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new RecommendedAdapter.RecommendedViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_student_school, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull RecommendedViewHolder holder, int position) {
+            Student student = studentList.get(position);
+
+
+            holder.nameStudent.setText(student.getName());
+            holder.degree.setText(student.getDegree());
+
+            Context context1 = holder.itemView.getContext();
+
+            String imageProfile = student.getProfileImage();
+            if (imageProfile != null & !imageProfile.isEmpty()) {
+                Uri uriImage = Uri.parse(imageProfile);
+                Glide.with(context1)
+                        .load(uriImage)
+                        .into(holder.photoStudent);
+            } else {
+                Glide.with(context1)
+                        .load(R.drawable.profile_image_defaut)
+                        .into(holder.photoStudent);
+            }
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return studentList.size();
+        }
+
+        public void setStudentList(List<Student> studentList) {
+            this.studentList.clear();
+            this.studentList = studentList;
+            notifyDataSetChanged();
+        }
+
+        class RecommendedViewHolder extends RecyclerView.ViewHolder {
+            TextView nameStudent, degree;
+            ImageView photoStudent;
+            public RecommendedViewHolder(@NonNull View itemView) {
+                super(itemView);
+
+                nameStudent = itemView.findViewById(R.id.student_name);
+                degree = itemView.findViewById(R.id.degree);
+                photoStudent = itemView.findViewById(R.id.student_image);
+
+            }
         }
 
     }

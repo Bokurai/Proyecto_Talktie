@@ -1,19 +1,23 @@
 package com.example.proyecto_talktie;
 
 import android.app.Application;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class TeacherViewModel extends AndroidViewModel {
 
@@ -63,9 +67,42 @@ public class TeacherViewModel extends AndroidViewModel {
         return teachersLiveData;
     }
 
-    public void getRecommendationTeachers() {
+    public MutableLiveData<List<Student>> getRecommendationTeachers(String teacherId) {
+        MutableLiveData<List<Student>> listStudents = new MutableLiveData<>();
 
+        db.collection("Teacher").document(teacherId).get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        List<String> recommendedStudents = (List<String>) documentSnapshot.get("recommendedStudents");
 
+                        if (recommendedStudents != null && !recommendedStudents.isEmpty()) {
+
+                            List<Student> students = new ArrayList<>();
+                            for (String studentId : recommendedStudents) {
+                                db.collection("Student").document(studentId).get()
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                Student student = documentSnapshot.toObject(Student.class);
+                                                students.add(student);
+
+                                                if (students.size() == recommendedStudents.size()) {
+                                                    Collections.sort(students, ((o1, o2) -> o2.getName().compareTo(o1.getName())));
+
+                                                    listStudents.setValue(students);
+                                                }
+                                            }
+                                        });
+                            }
+                        }
+
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.d("TAG", "Error al cargar profesor", e);
+                });
+        return listStudents;
     }
 
     public void select(Teacher teacher){

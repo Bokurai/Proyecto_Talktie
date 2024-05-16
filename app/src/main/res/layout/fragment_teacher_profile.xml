@@ -230,13 +230,14 @@
 
 
                 <LinearLayout
-                    android:id="@+id/linearTitle4"
+                    android:id="@+id/listStudentRecommended"
                     style="@style/groupStylecornerRadius_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_17pxh"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/_5pxh"
                     android:layout_marginTop="@dimen/_9pxv"
-                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:layout_marginEnd="@dimen/_5pxh"
                     android:orientation="vertical">
 
                     <TextView
@@ -252,14 +253,16 @@
                         android:singleLine="true"
                         android:text="@string/your_recommendations" />
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recommendedRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5pxv"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recommendationTRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
 
             </LinearLayout>
 

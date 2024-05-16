@@ -51,14 +51,10 @@ public class StudentViewModel extends AndroidViewModel {
                             String recommendationText = entry.getValue();
 
                             getTeacherData(idTeacher, recommendationText, recommendationList);
-
-                            /**Recommendation recommendation = new Recommendation(idTeacher, recommendationText);
-                            recommendationList.add(recommendation);**/
                             Log.d("Recomendaciones", "Recomendación obtenida - ID del profesor: " + idTeacher + ", Texto de la recomendación: " + recommendationText);
                         }
                     }
                 }
-                //recommendationsLiveData.setValue(recommendationList);
             } else {
                 Toast.makeText(getApplication(), "Error loading recommendations", Toast.LENGTH_SHORT).show();
             }

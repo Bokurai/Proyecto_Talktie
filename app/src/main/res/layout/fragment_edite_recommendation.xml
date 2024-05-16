@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".addRecommendation">
+    tools:context=".EditRecommendation">
 
 
     <LinearLayout
@@ -150,6 +150,16 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSave"
+                    style="@style/btnSolidRounded_S"
+                    android:layout_margin="@dimen/_5pxh"
+                    android:layout_width="@dimen/_70pxh"
+                    android:visibility="gone"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:text="@string/lbl_save"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnEdit"
                     style="@style/btnSolidRounded_S"
                     android:layout_margin="@dimen/_5pxh"
                     android:layout_width="@dimen/_70pxh"
