@@ -27,12 +27,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import org.jetbrains.annotations.Nullable;
 
@@ -157,7 +160,10 @@ public class CompanyLogin extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            actualizarUI(mAuth.getCurrentUser());
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                verificarTipoUsuario(user);
+                            }
                         } else {
                             Snackbar.make(requireView(), "Error: " + task.getException(), Snackbar.LENGTH_LONG).show();
                         }
@@ -165,6 +171,26 @@ public class CompanyLogin extends Fragment {
 
                     }
                 });
+    }
+
+    private void verificarTipoUsuario(FirebaseUser user) {
+        DocumentReference userRef = FirebaseFirestore.getInstance().collection("User").document(user.getUid());
+
+        userRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    String userType = documentSnapshot.getString("userT");
+                    if ("company".equals(userType)) {
+                        actualizarUI(user);
+                    } else {
+                        Snackbar.make(requireView(), "Only company login, please use one of the other login types listed in the bottom of the screen", Snackbar.LENGTH_LONG).show();
+                        mAuth.signOut();
+                        signInForm.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
     }
     //login with google
     private void actualizarUI(FirebaseUser currentUser) {
