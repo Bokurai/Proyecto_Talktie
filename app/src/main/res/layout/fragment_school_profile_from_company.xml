@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SchoolProfileFromCompany">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10pxh"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_return"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_50pxh"
+            android:padding="@dimen/_10pxh"
+            android:src="@drawable/img_arrowleft_black_900"
+            tools:ignore="ContentDescription" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFollowCompany"
+            style="@style/btnSolidRounded_F"
+            android:layout_width="@dimen/_100pxh"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_245pxh"
+            android:padding="@dimen/_10pxh"
+            android:singleLine="true"
+            android:text="@string/lbl_message"
+            android:textAllCaps="false"
+            android:layout_gravity="end"
+            tools:ignore="RtlCompat" />
+    </LinearLayout>
+
+    <!--<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"> -->
+
+    <androidx.core.widget.NestedScrollView
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:id="@+id/scrollViewScrollview"
+        android:layout_height="0dp" android:layout_weight="1"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imagePortadaCompany"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_136pxh"
+                android:layout_gravity="start"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_rectangle49"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/txtNameCompany"
+                style="@style/txtRobotoromanbold40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:lineSpacingExtra="@dimen/_11pxh"
+                android:singleLine="true"
+                android:text="@string/lbl_name_school"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:orientation="horizontal">
+
+                <ImageView android:id="@+id/imageLocationSchool"
+                    android:layout_height="@dimen/_19pxh"
+                    android:layout_width="@dimen/_16pxh"
+                    android:layout_gravity="top"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_linkedin_gray_401"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/txtLocationSchool"
+                    style="@style/txtPoppinssemibold17_2"
+                    android:layout_marginStart="@dimen/_5pxh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:lineSpacingExtra="@dimen/_11pxh"
+                    android:text="@string/lbl_location" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/txtAboutSchool"
+                style="@style/txtRobotoromanbold17"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:ellipsize="end"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="@string/lbl_description" />
+
+            <TextView
+                android:id="@+id/txtSchoolDescription"
+                style="@style/txtRobotoromanregular15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_12pxv"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:gravity="start"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/_5pxh"
+                android:text="@string/msg_i_know_i_can_he" />
+
+
+            <TextView
+                android:id="@+id/txtOverView"
+                style="@style/txtRobotoromanbold17"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:ellipsize="end"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="@string/lbl_overview" />
+
+            <TableLayout
+                android:layout_marginTop="@dimen/_12pxv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!-- Fila 1 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <!-- Columna 1 -->
+                    <TextView
+                        style="@style/txtRobotoromanbold15_3"
+                        android:text="@string/lbl_type_school"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:padding="@dimen/_5pxh"
+                        android:gravity="start"
+                        android:textStyle="bold"/>
+
+                    <!-- Columna 2 -->
+                    <TextView
+                        style="@style/txtRobotoromanbold15_4"
+                        android:id="@+id/typeSchoolTextView"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:layout_width="wrap_content"
+                        android:text="@string/lbl_type_school"
+                        android:gravity="start"/>
+                </TableRow>
+
+
+                <!-- Fila 2 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Columna 1 -->
+                    <TextView
+                        style="@style/txtRobotoromanbold15_3"
+                        android:text="@string/lbl_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:padding="@dimen/_5pxh"
+                        android:gravity="start"
+                        android:textStyle="bold"/>
+
+                    <!-- Columna 2 -->
+                    <TextView
+                        style="@style/txtRobotoromanbold16"
+                        android:id="@+id/schoolphoneTextView"
+                        android:text="@string/lbl_phone"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:layout_width="wrap_content"
+                        android:gravity="start"/>
+                </TableRow>
+
+
+                <!-- Fila  3-->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Columna 1 -->
+                    <TextView
+                        style="@style/txtRobotoromanbold16_1"
+                        android:text="@string/lbl_email"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:padding="@dimen/_5pxh"
+                        android:gravity="start"
+                        android:textStyle="bold"/>
+
+                    <!-- Columna 2 -->
+                    <TextView
+                        style="@style/txtRobotoromanbold16"
+                        android:id="@+id/schoolemailTextView"
+                        android:text="@string/lbl_email"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:layout_width="wrap_content"
+                        android:gravity="start"/>
+
+                </TableRow>
+
+                <!-- Fila 4 -->
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Columna 1 -->
+                    <TextView
+                        style="@style/txtRobotoromanbold16_1"
+                        android:text="@string/lbl_web_site"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:padding="@dimen/_5pxh"
+                        android:gravity="start"
+                        android:textStyle="bold"/>
+
+                    <!-- Columna 2 -->
+                    <TextView
+                        style="@style/txtRobotoromanbold16"
+                        android:id="@+id/schooolwebsiteTextView"
+                        android:text="@string/lbl_web_site"
+                        android:layout_marginStart="@dimen/_10pxh"
+                        android:layout_width="wrap_content"
+                        android:gravity="start"/>
+
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

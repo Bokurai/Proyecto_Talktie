@@ -418,5 +418,14 @@
     <action
         android:id="@+id/action_goCompanyMessages"
         app:destination="@+id/companyMessages" />
+    <fragment
+        android:id="@+id/schoolProfileFromCompany"
+        android:name="com.example.proyecto_talktie.SchoolProfileFromCompany"
+        android:label="fragment_school_profile_from_company"
+        tools:layout="@layout/fragment_school_profile_from_company" />
+
+    <action
+        android:id="@+id/action_goSchoolProfileFromCompany"
+        app:destination="@+id/schoolProfileFromCompany" />
 
 </navigation>

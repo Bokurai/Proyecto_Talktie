@@ -88,7 +88,17 @@ public class SchoolViewCompany extends Fragment {
                         .load(R.drawable.build_image_default)
                         .into(holder.school_image);
             }
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    schoolSearchViewModel.select(model);
+                    navController.navigate(R.id.schoolProfileFromCompany);
+                }
+            });
         }
+
+
 
         @NonNull
         @Override
