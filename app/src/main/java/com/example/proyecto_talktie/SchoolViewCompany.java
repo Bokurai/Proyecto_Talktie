@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -24,12 +23,16 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class SchoolViewCompany extends Fragment {
 
     NavController navController;
     private RecyclerView recyclerView;
     SchoolSearchViewModel schoolSearchViewModel;
+
+    MainActivity mainActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,9 @@ public class SchoolViewCompany extends Fragment {
         schoolSearchViewModel = new ViewModelProvider(requireActivity()).get(SchoolSearchViewModel.class);
         navController = Navigation.findNavController(view);
         recyclerView = view.findViewById(R.id.schoolRecyclerView);
+
+        mainActivity = (MainActivity) requireActivity();
+        mainActivity.showNavBotComp();
         Query baseQuery = FirebaseFirestore.getInstance().collection("School");
 
         FirestoreRecyclerOptions<School> options = new FirestoreRecyclerOptions.Builder<School>()
@@ -59,64 +65,46 @@ public class SchoolViewCompany extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
-    class SchoolViewAdapter extends FirestoreRecyclerAdapter<School, StudentSearchView.SchoolViewAdapter.SchoolView> {
+    class SchoolViewAdapter extends FirestoreRecyclerAdapter<School, SchoolViewAdapter.SchoolViewHolder>{
 
-        public SchoolViewAdapter(@NonNull FirestoreRecyclerOptions<School> options) {
-            super(options);
-
-        }
+       public SchoolViewAdapter(@NonNull FirestoreRecyclerOptions<School> options){
+           super(options);
+       }
 
         @Override
-        protected void onBindViewHolder(@NonNull schoolSearchView.SchoolViewAdapter.SchoolViewHolder holder, int position, @NonNull Business model) {
+        protected void onBindViewHolder(@NonNull SchoolViewAdapter.SchoolViewHolder holder, int position, @NonNull School model) {
+            holder.school_name.setText(model.getName());
+            holder.school_type.setText(model.getSchool_type());
 
-            holder.company_name.setText(model.getName());
-            holder.sector_company.setText(model.getSector());
-            holder.location_company.setText(model.getAddress());
-
-
-            String imageProfile = model.getProfileImage();
+            String imageProfile = model.getProfile_image();
             Context context = getView().getContext();
             if (imageProfile != null && !imageProfile.isEmpty()) {
                 Uri uriImage = Uri.parse(imageProfile);
                 Glide.with(context)
                         .load(uriImage)
-                        .into(holder.companyImage);
+                        .into(holder.school_image);
             } else {
                 Glide.with(context)
                         .load(R.drawable.build_image_default)
-                        .into(holder.companyImage);
+                        .into(holder.school_image);
             }
-
-
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    searchViewModel.select(model);
-                    navController.navigate(R.id.action_goCompanyProfile);
-                }
-            });
-
         }
-
 
         @NonNull
         @Override
-        public StudentSearchView.CompanyViewAdapter.CompanyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new StudentSearchView.CompanyViewAdapter.CompanyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_company_view,parent,false));
+        public SchoolViewAdapter.SchoolViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new SchoolViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_school_view, parent, false));
         }
 
-        class CompanyViewHolder extends RecyclerView.ViewHolder {
-            TextView company_name, sector_company,location_company;
-            ImageView companyImage;
-
-            public CompanyViewHolder(@NonNull View itemView) {
+        class SchoolViewHolder extends  RecyclerView.ViewHolder{
+            TextView school_name, school_type;
+            CircleImageView school_image;
+            public SchoolViewHolder(@NonNull View itemView){
                 super(itemView);
 
-                company_name = itemView.findViewById(R.id.company_name);
-                sector_company = itemView.findViewById(R.id.sector_company);
-                location_company = itemView.findViewById(R.id.location_company);
-                companyImage = itemView.findViewById(R.id.company_image);
-
+                school_name = itemView.findViewById(R.id.school_name);
+                school_type = itemView.findViewById(R.id.school_type);
+                school_image = itemView.findViewById(R.id.school_image);
             }
         }
     }

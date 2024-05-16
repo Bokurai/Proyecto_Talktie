@@ -305,6 +305,9 @@
         android:name="com.example.proyecto_talktie.ProfileCompanySelf"
         android:label="fragment_profile_company_self"
         tools:layout="@layout/fragment_profile_company_self" />
+    <action
+        android:id="@+id/action_goCompanyProfileSelf"
+        app:destination="@+id/profileCompanySelf" />
 
     <fragment
         android:id="@+id/signIn1_School"
@@ -404,5 +407,16 @@
         android:name="com.example.proyecto_talktie.SchoolViewCompany"
         android:label="fragment_school_view_company"
         tools:layout="@layout/fragment_school_view_company" />
+    <action
+        android:id="@+id/action_goCompanySchool"
+        app:destination="@+id/schoolViewCompany" />
+    <fragment
+        android:id="@+id/companyMessages"
+        android:name="com.example.proyecto_talktie.companyMessages"
+        android:label="fragment_company_messages"
+        tools:layout="@layout/fragment_company_messages" />
+    <action
+        android:id="@+id/action_goCompanyMessages"
+        app:destination="@+id/companyMessages" />
 
 </navigation>

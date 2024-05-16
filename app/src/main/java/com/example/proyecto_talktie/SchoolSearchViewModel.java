@@ -7,17 +7,17 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 public class SchoolSearchViewModel extends AndroidViewModel {
-    private MutableLiveData<Business> companySelected = new MutableLiveData<>();
+    private MutableLiveData<School> schoolSelected = new MutableLiveData<>();
 
     public SchoolSearchViewModel(@NonNull Application application) {
         super(application);
     }
-    public void select(Business business) {
-        companySelected.setValue(business);
+    public void select(School school) {
+        schoolSelected.setValue(school);
     }
 
-    MutableLiveData<Business> selected() {
-        return companySelected;
+    MutableLiveData<School> selected() {
+        return schoolSelected;
     }
 
 }

@@ -9,7 +9,7 @@
         android:icon="@drawable/school_icon"
         android:title="School List" />
     <item
-        android:id="@+id/messagesHome"
+        android:id="@+id/companyMessages"
         android:icon="@drawable/img_user_black_900_23x24"
         android:title="Messages" />
     <item
