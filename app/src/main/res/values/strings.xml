@@ -582,6 +582,7 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_position">Position</string>
     <string name="sign_in_as_a_student">Sign in as a student</string>
     <string name="schools">Schools</string>
+    <string name="unapply">UNAPPLY</string>
 
 
 </resources>
