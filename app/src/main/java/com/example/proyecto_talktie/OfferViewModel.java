@@ -27,7 +27,7 @@ public class OfferViewModel extends AndroidViewModel {
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
     private MutableLiveData<List<OfferObject>> offersCompany = new MutableLiveData<>();
     private MutableLiveData<OfferObject> offerSingle = new MutableLiveData<>();
-    private MutableLiveData<List<OfferObject>> offerCategory = new MutableLiveData<>();
+    //private MutableLiveData<List<OfferObject>> offerCategory = new MutableLiveData<>();
     private String category = "";
 
     public OfferViewModel(@NonNull Application application) {
@@ -127,6 +127,8 @@ public class OfferViewModel extends AndroidViewModel {
     }
 
     public MutableLiveData<List<OfferObject>> getOfferCategory(String category) {
+        MutableLiveData<List<OfferObject>> offerCategory = new MutableLiveData<>();
+
         db.collection("Offer")
                 .whereEqualTo("job_category", category)
                 .orderBy("date", Query.Direction.DESCENDING)

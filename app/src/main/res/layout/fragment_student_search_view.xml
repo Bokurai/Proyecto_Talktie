@@ -39,7 +39,7 @@
      <androidx.recyclerview.widget.RecyclerView
          android:layout_marginEnd="@dimen/_10pxh"
          android:layout_marginStart="@dimen/_10pxh"
-         android:layout_marginBottom="@dimen/_25pxh"
+         android:layout_marginBottom="@dimen/_50pxh"
          android:id="@+id/searchRecyclerView"
          android:layout_width="match_parent"
          android:layout_height="match_parent"

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,10 +20,14 @@ import java.util.List;
 public class TeachersAdapter extends RecyclerView.Adapter<TeachersAdapter.TeacherViewHolder> {
     private List<Teacher> teacherList;
     private Context context;
+    NavController navController;
+    TeacherViewModel teacherViewModel;
 
-    public TeachersAdapter(List<Teacher> teacherList, Context context) {
+    public TeachersAdapter(List<Teacher> teacherList, Context context, NavController navController, TeacherViewModel teacherViewModel) {
         this.teacherList = teacherList;
         this.context = context;
+        this.navController = navController;
+        this.teacherViewModel = teacherViewModel;
     }
 
     @NonNull
@@ -33,30 +38,35 @@ public class TeachersAdapter extends RecyclerView.Adapter<TeachersAdapter.Teache
 
     @Override
     public void onBindViewHolder(@NonNull TeachersAdapter.TeacherViewHolder holder, int position) {
-
         Teacher teacher = teacherList.get(position);
 
         holder.name.setText(teacher.getName());
 
-        if (teacher.getEmail() == null) {
-            holder.email.setVisibility(View.GONE);
+        boolean emailIsEmpty = isNullOrEmpty(teacher.getEmail());
+        boolean positionIsEmpty = isNullOrEmpty(teacher.getPosition());
 
-        } else {
-            holder.email.setText(teacher.getEmail());
-        }
-
-        if (teacher.getPosition() == null) {
-            holder.postiion.setVisibility(View.GONE);
-        } else {
-            holder.postiion.setText(teacher.getPosition());
-        }
-
-        if (TextUtils.isEmpty(teacher.getEmail()) || TextUtils.isEmpty(teacher.getPosition())) {
+        if (emailIsEmpty || positionIsEmpty) {
             holder.separator.setVisibility(View.GONE);
+        } else {
+            holder.separator.setVisibility(View.VISIBLE);
+        }
+
+        if (!emailIsEmpty) {
+            holder.email.setText(teacher.getEmail());
+            holder.email.setVisibility(View.VISIBLE);
+        } else {
+            holder.email.setVisibility(View.GONE);
+        }
+
+        if (!positionIsEmpty) {
+            holder.postiion.setText(teacher.getPosition());
+            holder.postiion.setVisibility(View.VISIBLE);
+        } else {
+            holder.postiion.setVisibility(View.GONE);
         }
 
        String imageProfile = teacher.getProfileImage();
-        if (!imageProfile.equals("null")) {
+        if (imageProfile != null && !imageProfile.isEmpty()) {
             Uri uriImage = Uri.parse(imageProfile);
             Glide.with(context)
                     .load(uriImage)
@@ -66,6 +76,19 @@ public class TeachersAdapter extends RecyclerView.Adapter<TeachersAdapter.Teache
                     .load(R.drawable.teacher_default)
                     .into(holder.imageProfile);
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                teacherViewModel.select(teacher);
+                navController.navigate(R.id.action_goTeacherProfile);
+            }
+        });
+
+    }
+
+    private boolean isNullOrEmpty(String string) {
+        return string == null || string.isEmpty();
     }
 
     @Override

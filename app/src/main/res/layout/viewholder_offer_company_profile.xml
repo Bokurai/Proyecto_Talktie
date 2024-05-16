@@ -35,10 +35,8 @@
             tools:ignore="Autofill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="@dimen/_25pxh"
             android:background="@drawable/rectangle_bg_amber_700"
-            android:drawableStart="@drawable/img_inbox"
             android:drawablePadding="@dimen/_5pxh"
             android:ellipsize="end"
             android:text="@string/lbl_expires_soon"

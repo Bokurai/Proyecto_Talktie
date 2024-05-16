@@ -212,12 +212,24 @@
         app:destination="@+id/studentSchoolProfile" />
 
     <action
+        android:id="@+id/action_goAddRecommendation"
+        app:destination="@+id/addRecommendation" />
+
+    <action
         android:id="@+id/action_goSchoolProfile"
         app:destination="@+id/schoolProfile" />
 
     <action
         android:id="@+id/action_goCreateTeacher"
         app:destination="@+id/createTeacher" />
+
+    <action
+        android:id="@+id/action_goTeacherProfile"
+        app:destination="@+id/teacherProfile" />
+
+    <action
+        android:id="@+id/action_goEditRecommendation"
+        app:destination="@+id/editRecommendation" />
 
 
     <action
@@ -300,14 +312,15 @@
         android:id="@+id/action_goSignIn2School"
         app:destination="@+id/signIn2_school" />
 
+    <action
+        android:id="@+id/action_goCompanyProfileSelf"
+        app:destination="@+id/profileCompanySelf" />
+
     <fragment
         android:id="@+id/profileCompanySelf"
         android:name="com.example.proyecto_talktie.ProfileCompanySelf"
         android:label="fragment_profile_company_self"
         tools:layout="@layout/fragment_profile_company_self" />
-    <action
-        android:id="@+id/action_goCompanyProfileSelf"
-        app:destination="@+id/profileCompanySelf" />
 
     <fragment
         android:id="@+id/signIn1_School"
@@ -349,11 +362,7 @@
         android:name="com.example.proyecto_talktie.addRecommendation"
         android:label="fragment_add_recommendation"
         tools:layout="@layout/fragment_add_recommendation" />
-    <fragment
-        android:id="@+id/teacherRecommendations"
-        android:name="com.example.proyecto_talktie.teacherRecommendations"
-        android:label="fragment_teacher_recommendations"
-        tools:layout="@layout/fragment_teacher_recommendations" />
+
     <fragment
         android:id="@+id/teacherProfile"
         android:name="com.example.proyecto_talktie.teacherProfile"
@@ -402,6 +411,12 @@
         android:name="com.example.proyecto_talktie.schoolCompanies"
         android:label="fragment_school_companies"
         tools:layout="@layout/fragment_school_companies" />
+    <fragment
+        android:id="@+id/editRecommendation"
+        android:name="com.example.proyecto_talktie.EditRecommendation"
+        android:label="fragment_edite_recommendation"
+        tools:layout="@layout/fragment_edite_recommendation" />
+
     <fragment
         android:id="@+id/schoolViewCompany"
         android:name="com.example.proyecto_talktie.SchoolViewCompany"

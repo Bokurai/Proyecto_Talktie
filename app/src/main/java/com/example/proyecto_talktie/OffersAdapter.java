@@ -98,7 +98,7 @@ import java.util.List;
                                     holder.stateOffer.setBackgroundColor(colorLightGreen900);
                                     holder.stateOffer.setText("Applied");
                                 } else {
-                                    holder.stateOffer.setTextColor(Color.BLACK);
+                                    holder.stateOffer.setTextColor(Color.WHITE);
                                     holder.stateOffer.setBackgroundColor(coloramarillo);
                                     holder.stateOffer.setText("Apply");
                                 }

@@ -114,15 +114,28 @@ public class ProfileStudent extends Fragment {
         editButton = view.findViewById(R.id.aboutEdit);
         saveButton = view.findViewById(R.id.btnSave);
 
-        loadUserInfo();
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
 
-        /**
-         * I get the livedata about from the view-model to show it to the user
-         */
-        studentViewModel.getAbout(studentId).observe(getViewLifecycleOwner(), aboutMe -> {
-            Log.d("Recomendaciones", "Obtiene about " + studentId);
-            textAbout.setText(aboutMe);
+
+        studentViewModel.getStudentData(studentId).observe(getViewLifecycleOwner(), student -> {
+            studentName.setText(student.getName());
+            textAbout.setText(student.getAbout());
+
+            String imageprofileURL = student.getProfileImage();
+            Context context = getView().getContext();
+            if (imageprofileURL != null && !imageprofileURL.isEmpty()) {
+                Uri uriImagep = Uri.parse(imageprofileURL);
+
+                Glide.with(context)
+                        .load(uriImagep)
+                        .into(profileImg);
+            } else {
+                Glide.with(context)
+                        .load(R.drawable.profile_image_defaut)
+                        .into(profileImg);
+            }
+
+
         });
 
         studentViewModel.getRecommendationLiveData(studentId).observe(getViewLifecycleOwner(), recommendations -> {
@@ -211,34 +224,6 @@ public class ProfileStudent extends Fragment {
 
     }
 
-    public void loadUserInfo() {
-        if (user != null && getView() != null) {
-            DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Student").document(studentId);
-            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (getView() != null) {
-                        studentName.setText(documentSnapshot.getString("name"));
-                        String imageprofileURL = documentSnapshot.getString("profileImage");
-                        Context context = getView().getContext();
-                        if (imageprofileURL != null && !imageprofileURL.isEmpty()) {
-                            Uri uriImagep = Uri.parse(imageprofileURL);
-
-                            Glide.with(context)
-                                    .load(uriImagep)
-                                    .into(profileImg);
-                        } else {
-                            Glide.with(context)
-                                    .load(R.drawable.profile_image_defaut)
-                                    .into(profileImg);
-                        }
-                    }
-                }
-            });
-        }
-    }
-
-
 
     private void selectGalleryImageRegister() {
         Intent i = new Intent();
@@ -318,15 +303,14 @@ public class ProfileStudent extends Fragment {
             Recommendation recommendation = recommendationList.get(position);
 
             //change image and teacher name by a search through their id.
-            holder.nameTeacher.setText(recommendation.getTeacherName());
+            holder.nameTeacher.setText(recommendation.getTeacher().getName());
             holder.textRecommendation.setText(recommendation.getRecommendationText());
 
-            holder.textRecommendation.setText(recommendation.getRecommendationText());
-
-            String imageProfileUrl = recommendation.getProfileImage();
+            String profileImage = recommendation.getTeacher().getProfileImage();
+          //  String imageProfileUrl = recommendation.getProfileImage();
             Context context = getView().getContext();
-            if (imageProfileUrl != null && !imageProfileUrl.isEmpty()) {
-                Uri uriImagep = Uri.parse(imageProfileUrl);
+            if (profileImage != null && !profileImage.isEmpty()) {
+                Uri uriImagep = Uri.parse(profileImage);
 
                 Glide.with(context)
                         .load(uriImagep)
@@ -337,7 +321,36 @@ public class ProfileStudent extends Fragment {
                         .into(holder.imageTeacher);
             }
 
+            boolean emailIsEmpty = isNullOrEmpty(recommendation.getTeacher().getEmail());
+            boolean positionIsEmpty = isNullOrEmpty(recommendation.getTeacher().getPosition());
+
+            if (emailIsEmpty || positionIsEmpty) {
+                holder.separator.setVisibility(View.GONE);
+            } else {
+                holder.separator.setVisibility(View.VISIBLE);
+            }
+
+            if (!emailIsEmpty) {
+                holder.email.setText(recommendation.getTeacher().getEmail());
+                holder.email.setVisibility(View.VISIBLE);
+            } else {
+                holder.email.setVisibility(View.GONE);
+            }
+
+            if (!positionIsEmpty) {
+                holder.position.setText(recommendation.getTeacher().getPosition());
+                holder.position.setVisibility(View.VISIBLE);
+            } else {
+                holder.position.setVisibility(View.GONE);
+            }
+
+
         }
+
+        private boolean isNullOrEmpty(String string) {
+            return string == null || string.isEmpty();
+        }
+
 
         @Override
         public int getItemCount() {
@@ -359,13 +372,16 @@ public class ProfileStudent extends Fragment {
          */
         class RecommendationViewHolder extends RecyclerView.ViewHolder {
             ImageView imageTeacher;
-            TextView nameTeacher, textRecommendation;
+            TextView nameTeacher, textRecommendation, position, email, separator;
             RecommendationViewHolder(@NonNull View itemView) {
                 super(itemView);
 
                 imageTeacher = itemView.findViewById(R.id.imageTeacherRecommend);
                 nameTeacher = itemView.findViewById(R.id.nameTeacherRecommend);
                 textRecommendation = itemView.findViewById(R.id.textTeacherRecommend);
+                position = itemView.findViewById(R.id.position_teacher);
+                email = itemView.findViewById(R.id.email_teacher);
+                separator = itemView.findViewById(R.id.separatorT);
             }
         }
     }

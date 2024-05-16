@@ -95,10 +95,11 @@ public class schoolProfile extends Fragment {
         schoolViewModel = new ViewModelProvider(requireActivity()).get(SchoolViewModel.class);
         teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
 
-        adapter = new TeachersAdapter(new ArrayList<>(), getContext());
+        navController = Navigation.findNavController(view);
+        adapter = new TeachersAdapter(new ArrayList<>(), getContext(), navController, teacherViewModel);
 
         mAuth = FirebaseAuth.getInstance();
-        navController = Navigation.findNavController(view);
+
 
         schoolId = user.getUid();
 
@@ -112,7 +113,26 @@ public class schoolProfile extends Fragment {
         editImage = view.findViewById(R.id.edit_profiletxtS);
         recyclerView = view.findViewById(R.id.teachersRecyclerView);
 
-        loadUserInfo();
+        schoolViewModel.getSchoolData(schoolId).observe(getViewLifecycleOwner(), school -> {
+
+            name.setText(school.getName());
+            summary.setText(school.getSummary());
+
+           String imageprofileURL = school.getProfileImage();
+
+            Context context = getView().getContext();
+            if (imageprofileURL != null && !imageprofileURL.isEmpty()) {
+                Uri uriImagep = Uri.parse(imageprofileURL);
+                Glide.with(context)
+                        .load(uriImagep)
+                        .into(imageSchool);
+            } else {
+                Glide.with(context)
+                        .load(R.drawable.profile_image_defaut)
+                        .into(imageSchool);
+            }
+        });
+
 
         teacherViewModel.getTeachers().observe(getViewLifecycleOwner(), teachers -> {
             adapter.setTeacherList(teachers);
@@ -206,40 +226,11 @@ public class schoolProfile extends Fragment {
 
     }
 
-    public void loadUserInfo() {
-        if (user != null && getView() != null) {
-            DocumentReference documentReference = FirebaseFirestore.getInstance().collection("School").document(schoolId);
-            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (getView() != null) {
-                        name.setText(documentSnapshot.getString("name"));
-                        summary.setText(documentSnapshot.getString("summary"));
-                        String imageprofileURL = documentSnapshot.getString("profileImage");
-                        Context context = getView().getContext();
-                        if (imageprofileURL != null && !imageprofileURL.isEmpty()) {
-                            Uri uriImagep = Uri.parse(imageprofileURL);
-
-                            Glide.with(context)
-                                    .load(uriImagep)
-                                    .into(imageSchool);
-                        } else {
-                            Glide.with(context)
-                                    .load(R.drawable.profile_image_defaut)
-                                    .into(imageSchool);
-                        }
-                    }
-                }
-            });
-        }
-    }
-
     private void selectGalleryImageRegister() {
         Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

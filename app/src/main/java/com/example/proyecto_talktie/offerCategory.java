@@ -1,11 +1,13 @@
 package com.example.proyecto_talktie;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -20,6 +22,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +80,7 @@ public class offerCategory extends Fragment {
 
     class OffersCategory extends RecyclerView.Adapter<OffersCategory.OfferViewHolder> {
         private List<OfferObject> offerObjectList;
+        private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         public OffersCategory(List<OfferObject> offerObjectList) {
             this.offerObjectList = offerObjectList;
@@ -84,12 +96,15 @@ public class offerCategory extends Fragment {
         public void onBindViewHolder(@NonNull OfferViewHolder holder, int position) {
             OfferObject offerObject = offerObjectList.get(position);
 
+            int colorLightGreen900 = ContextCompat.getColor(holder.itemView.getContext(), R.color.light_green_900);
+            int coloramarillo = ContextCompat.getColor(holder.itemView.getContext(), R.color.amber_700);
+
             holder.name.setText(offerObject.getName());
             holder.companyName.setText(offerObject.getCompanyName());
 
             String imageProfile = offerObject.getCompanyImageUrl();
             Context context = getView().getContext();
-            if (!imageProfile.equals("null")){
+            if (imageProfile != null && !imageProfile.isEmpty()){
                 Uri uriImage = Uri.parse(imageProfile);
                 Glide.with(context)
                         .load(uriImage)
@@ -101,6 +116,41 @@ public class offerCategory extends Fragment {
                         .into(holder.companyImage);
             }
 
+            CollectionReference applicantsRef = db.collection("Offer").document(offerObject.getOfferId()).collection("Applicants");
+            applicantsRef.document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    holder.stateOffer.setTextColor(Color.WHITE);
+                                    holder.stateOffer.setBackgroundColor(colorLightGreen900);
+                                    holder.stateOffer.setText("Applied");
+                                } else {
+                                    holder.stateOffer.setTextColor(Color.WHITE);
+                                    holder.stateOffer.setBackgroundColor(coloramarillo);
+                                    holder.stateOffer.setText("Apply");
+                                }
+                            } else {
+                                Log.e("OffersAdapter", "Error al verificar si el usuario está en la subcolección de aplicantes: ", task.getException());
+                            }
+                        }
+                    });
+
+            applicantsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    int numApplicants = queryDocumentSnapshots.size();
+                    holder.numApplicants.setText(String.valueOf(numApplicants));
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("OffersAdapter", "Error al obtener la cantidad de aplicantes: " + e.getMessage());
+                }
+            });
 
 
             if(offerObject.getTags() != null) {
@@ -153,7 +203,7 @@ public class offerCategory extends Fragment {
 
 
         class OfferViewHolder extends RecyclerView.ViewHolder {
-            TextView name, companyName, tag1, tag2, tag3;
+            TextView name, companyName, tag1, tag2, tag3, numApplicants,stateOffer;
             ImageView companyImage;
 
             public OfferViewHolder(@NonNull View itemView) {
@@ -164,6 +214,8 @@ public class offerCategory extends Fragment {
                 tag1 = itemView.findViewById(R.id.btnTagOne);
                 tag2 = itemView.findViewById(R.id.btnTagTwo);
                 tag3 = itemView.findViewById(R.id.btnTagThree);
+                numApplicants = itemView.findViewById(R.id.numApplicants);
+                stateOffer=itemView.findViewById(R.id.stateOffer);
                 companyImage = itemView.findViewById(R.id.imageCompany);
             }
         }

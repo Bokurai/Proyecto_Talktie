@@ -62,23 +62,21 @@
             <LinearLayout
                 android:layout_gravity="bottom|end"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_73pxh"
-                android:layout_marginStart="@dimen/_73pxh"
                 android:layout_marginTop="@dimen/_10pxv"
                 android:layout_width="match_parent" android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profileImgSchool"
+                    android:id="@+id/profileImgTeacher"
                     android:layout_width="102dp"
                     android:layout_height="102dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/profile_image_defaut"
+                    android:src="@drawable/teacher_default"
                     tools:ignore="ContentDescription"
                     />
 
 
                 <TextView
-                    android:id="@+id/txtSchoolName"
+                    android:id="@+id/txtTeacherName"
                     style="@style/txtPoppinssemibold22_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -88,10 +86,10 @@
                     android:singleLine="true"
                     android:text="@string/lbl_name" />
                 <TextView
-                    android:id="@+id/edit_profiletxtS"
+                    android:id="@+id/edit_profiletxtT"
                     android:layout_width="match_parent"
                     android:gravity="center"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_35pxh"
                     android:text="@string/edit_profile_image"/>
             </LinearLayout>
         </FrameLayout>
@@ -143,16 +141,15 @@
                         android:text="@string/lbl_position" />
 
                     <ImageView
-                        android:id="@+id/aboutEditS"
-                        android:layout_width="@dimen/_20pxh"
-                        android:layout_height="@dimen/_20pxh"
+                        android:id="@+id/positionEditS"
+                        android:layout_width="@dimen/_30pxh"
+                        android:layout_height="@dimen/_30pxh"
+                        android:padding="@dimen/_5pxh"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/_15pxh"
-                        android:scaleType="fitXY"
                         android:src="@drawable/img_edit"/>
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnSaveS"
+                        android:id="@+id/btnSavePosition"
                         style="@style/btnSolidRounded_P"
                         android:layout_width="@dimen/_40pxh"
                         android:layout_height="30dp"
@@ -164,7 +161,7 @@
 
 
                 <TextView
-                    android:id="@+id/txtDescriptionSchool"
+                    android:id="@+id/txtPositionTeacher"
                     style="@style/txtRobotoromanregular15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -174,7 +171,7 @@
                     android:gravity="start"
                     android:letterSpacing="0.01"
                     android:lineSpacingExtra="@dimen/_5pxh"
-                    android:hint="@string/lbl_position"/>
+                    android:hint="@string/write_position_teacher"/>
 
                 <LinearLayout
                     android:id="@+id/email"
@@ -199,16 +196,15 @@
                         android:text="@string/lbl_email" />
 
                     <ImageView
-                        android:id="@+id/aboutEditT"
-                        android:layout_width="@dimen/_20pxh"
-                        android:layout_height="@dimen/_20pxh"
+                        android:id="@+id/emailEditT"
+                        android:layout_width="@dimen/_30pxh"
+                        android:layout_height="@dimen/_30pxh"
+                        android:padding="@dimen/_5pxh"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/_15pxh"
-                        android:scaleType="fitXY"
                         android:src="@drawable/img_edit"/>
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnSaveT"
+                        android:id="@+id/btnSaveEmail"
                         style="@style/btnSolidRounded_P"
                         android:layout_width="@dimen/_40pxh"
                         android:layout_height="30dp"
@@ -220,7 +216,7 @@
 
 
                 <TextView
-                    android:id="@+id/txtEmailView"
+                    android:id="@+id/txtEmailTeacher"
                     style="@style/txtRobotoromanregular15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -230,17 +226,18 @@
                     android:gravity="start"
                     android:letterSpacing="0.01"
                     android:lineSpacingExtra="@dimen/_5pxh"
-                    android:hint="@string/lbl_email"/>
+                    android:hint="@string/write_email_teacher"/>
 
 
                 <LinearLayout
-                    android:id="@+id/linearTitle4"
+                    android:id="@+id/listStudentRecommended"
                     style="@style/groupStylecornerRadius_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_17pxh"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/_5pxh"
                     android:layout_marginTop="@dimen/_9pxv"
-                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:layout_marginEnd="@dimen/_5pxh"
                     android:orientation="vertical">
 
                     <TextView
@@ -254,16 +251,18 @@
                         android:textAlignment="center"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
-                        android:text="@string/lbl_recommendations" />
+                        android:text="@string/your_recommendations" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recommendedRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5pxv"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recommendationTRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5pxv"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
 
             </LinearLayout>
 

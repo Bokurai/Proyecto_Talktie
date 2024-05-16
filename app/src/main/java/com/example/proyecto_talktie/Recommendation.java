@@ -1,35 +1,26 @@
 package com.example.proyecto_talktie;
 
 public class Recommendation {
-    private String idTeacher;
     private String recommendationText;
-    private String teacherName;
-    private String profileImage;
+    private Teacher teacher;
 
     public Recommendation() {
     }
 
-    public Recommendation(String idTeacher, String recommendationText, String teacherName) {
-        this.idTeacher = idTeacher;
+    public Recommendation(String recommendationText, Teacher teacher) {
         this.recommendationText = recommendationText;
-        this.teacherName = teacherName;
+        this.teacher = teacher;
     }
 
-    public String getProfileImage() {
-        return profileImage;
+
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
-    public String getIdTeacher() {
-        return idTeacher;
-    }
-
-    public void setIdTeacher(String idTeacher) {
-        this.idTeacher = idTeacher;
-    }
 
     public String getRecommendationText() {
         return recommendationText;
@@ -39,12 +30,5 @@ public class Recommendation {
         this.recommendationText = recommendationText;
     }
 
-    public String getTeacherName() {
-        return teacherName;
-    }
-
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
-    }
 
 }

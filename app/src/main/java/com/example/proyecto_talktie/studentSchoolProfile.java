@@ -6,12 +6,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +23,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-public class studentSchoolProfile extends Fragment {
+import java.util.ArrayList;
 
+public class studentSchoolProfile extends Fragment {
+    private RecyclerView recyclerView;
+    private TeacherViewModel teacherViewModel;
+    private AddRecommendationAdapter adapter;
+    private CardView cardAbout;
     private ImageView photoProfile, imageReturn;
-    private TextView name, email, phone, about;
+    private TextView name, email, phone, about, separator;
     private schoolHomeViewModel homeViewModel;
     private NavController navController;
 
@@ -47,24 +55,59 @@ public class studentSchoolProfile extends Fragment {
         imageReturn = view.findViewById(R.id.img_returnS);
         navController = Navigation.findNavController(view);
 
+        recyclerView = view.findViewById(R.id.listTRecyclerView);
+
         photoProfile = view.findViewById(R.id.profileImgStudentS);
         name = view.findViewById(R.id.txtStudentNameS);
         email = view.findViewById(R.id.emailS);
         phone = view.findViewById(R.id.phoneS);
         about = view.findViewById(R.id.txtDescriptionS);
+        separator = view.findViewById(R.id.separator);
+        cardAbout = view.findViewById(R.id.cardAbout);
 
         homeViewModel.selectd().observe(getViewLifecycleOwner(), new Observer<Student>() {
             @Override
             public void onChanged(Student student) {
 
+
+                teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
+                adapter = new AddRecommendationAdapter(new ArrayList<>(), getContext(), navController, teacherViewModel, student.getStudentId());
+
+                teacherViewModel.getTeachers().observe(getViewLifecycleOwner(), teachers -> {
+                    adapter.setTeacherList(teachers);
+                });
+
+                recyclerView.setAdapter(adapter);
+
+                teacherViewModel.setStudent(student);
+
                 name.setText(student.getName());
-                email.setText(student.getEmail());
-                phone.setText(student.getPhone());
-                about.setText(student.getAbout());
+
+                if (student.getAbout() != null && !student.getAbout().isEmpty()) {
+                    cardAbout.setVisibility(View.VISIBLE);
+                    about.setText(student.getAbout());
+                }
+
+                if (student.getEmail() == null) {
+                    email.setVisibility(View.GONE);
+
+                } else {
+                   email.setText(student.getEmail());
+                }
+
+                if (student.getPhone() == null) {
+                    phone.setVisibility(View.GONE);
+                } else {
+                    phone.setText(student.getPhone());
+                }
+
+                if (TextUtils.isEmpty(student.getEmail()) || TextUtils.isEmpty(student.getPhone())) {
+                    separator.setVisibility(View.GONE);
+                }
 
                 Context context = getView().getContext();
-                String imageProfile = student.getProfileImage() != null ? student.getProfileImage() : "null";
-                if (!imageProfile.equals("null")) {
+                String imageProfile = student.getProfileImage();
+                if (imageProfile != null && !imageProfile.isEmpty()) {
                     Uri uriImage = Uri.parse(imageProfile);
                     Glide.with(context)
                             .load(uriImage)
