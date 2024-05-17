@@ -208,7 +208,7 @@ public class schoolLogin extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
                     String userType = documentSnapshot.getString("userT");
-                    if ("School".equals(userType)) {
+                    if ("school".equals(userType)) {
                         actualizarUI(user);
                     } else {
                         Snackbar.make(requireView(), "Only school login, please use one of the other login types listed in the bottom of the screen", Snackbar.LENGTH_LONG).show();

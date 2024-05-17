@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -67,12 +68,10 @@ public class addRecommendation extends Fragment {
 
         TeacherViewModel teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
 
-
         student = teacherViewModel.getStudent();
         studentId = student.getStudentId();
 
         nameStudent.setText(student.getName());
-
         String imageStudent = student.getProfileImage();
 
         if (imageStudent != null && !imageStudent.isEmpty()) {
@@ -99,9 +98,7 @@ public class addRecommendation extends Fragment {
             public void onChanged(Teacher teacher) {
 
                 nameTacher.setText(teacher.getName());
-
                 String imageProfile = teacher.getProfileImage();
-
 
                 if (imageProfile != null && !imageProfile.isEmpty()) {
                     Uri uriImage = Uri.parse(imageProfile);
@@ -141,8 +138,15 @@ public class addRecommendation extends Fragment {
                                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                             @Override
                                                             public void onSuccess(Void unused) {
-                                                                Toast.makeText(getContext(), "Recommendation added to student profile", Toast.LENGTH_SHORT).show();
-                                                                navController.popBackStack();
+                                                                db.collection("Student").document(studentId).get()
+                                                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                                            @Override
+                                                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                                                Student updatedStudent = documentSnapshot.toObject(Student.class);
+                                                                                teacherViewModel.setStudent(updatedStudent);
+                                                                                Toast.makeText(getContext(), "Recommendation added to student profile", Toast.LENGTH_SHORT).show();
+                                                                                navController.popBackStack();
+                                                                            }});
                                                             }
                                                         })
                                                 .addOnFailureListener(e -> {

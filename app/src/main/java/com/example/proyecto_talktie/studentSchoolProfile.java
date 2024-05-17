@@ -69,8 +69,13 @@ public class studentSchoolProfile extends Fragment {
             @Override
             public void onChanged(Student student) {
 
-
                 teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
+
+                if (teacherViewModel.getStudent().studentId == null ) {
+                    teacherViewModel.setStudent(student);
+                }
+
+
                 adapter = new AddRecommendationAdapter(new ArrayList<>(), getContext(), navController, teacherViewModel, student.getStudentId());
 
                 teacherViewModel.getTeachers().observe(getViewLifecycleOwner(), teachers -> {
@@ -79,7 +84,6 @@ public class studentSchoolProfile extends Fragment {
 
                 recyclerView.setAdapter(adapter);
 
-                teacherViewModel.setStudent(student);
 
                 name.setText(student.getName());
 

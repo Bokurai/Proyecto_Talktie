@@ -1,5 +1,7 @@
 package com.example.proyecto_talktie;
 
+import java.util.List;
+
 public class Teacher {
     String name;
     String profileImage;
@@ -7,6 +9,7 @@ public class Teacher {
     String email;
     String position;
     String schoolId;
+    List<String> recommendedStudents;
 
     public Teacher() {
     }
@@ -14,6 +17,14 @@ public class Teacher {
     public Teacher(String name, String schoolId) {
         this.name = name;
         this.schoolId = schoolId;
+    }
+
+    public List<String> getRecommendedStudents() {
+        return recommendedStudents;
+    }
+
+    public void setRecommendedStudents(List<String> recommendedStudents) {
+        this.recommendedStudents = recommendedStudents;
     }
 
     public String getSchoolId() {

@@ -65,7 +65,6 @@ public class schoolHome extends Fragment {
         searchViewBar = view.findViewById(R.id.searchViewSearchSchool);
         recyclerView = view.findViewById(R.id.searchRecyclerViewSchool);
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
 
         homeViewModel.getNameSchool().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -80,11 +79,12 @@ public class schoolHome extends Fragment {
                 //Adapatador inicial
                 FirestoreRecyclerOptions<Student> options = new FirestoreRecyclerOptions.Builder<Student>()
                         .setQuery(baseQuery, Student.class)
-                        .setLifecycleOwner(schoolHome.this)
+                        .setLifecycleOwner(getViewLifecycleOwner())
                         .build();
 
                 //Adaptador opciones iniciales
-                final studentSchoolAdapter adapter = new studentSchoolAdapter(options, navController, homeViewModel);
+                studentSchoolAdapter adapter = new studentSchoolAdapter(options, navController, homeViewModel);
+                adapter.notifyDataSetChanged();
                 recyclerView.setAdapter(adapter);
 
                 //Listener de la barra de la búsqueda
@@ -104,7 +104,7 @@ public class schoolHome extends Fragment {
 
                         FirestoreRecyclerOptions<Student> newOptions = new FirestoreRecyclerOptions.Builder<Student>()
                                 .setQuery(searchQuery, Student.class)
-                                .setLifecycleOwner(schoolHome.this)
+                                .setLifecycleOwner(getViewLifecycleOwner())
                                 .build();
 
                         adapter.updateOptions(newOptions);

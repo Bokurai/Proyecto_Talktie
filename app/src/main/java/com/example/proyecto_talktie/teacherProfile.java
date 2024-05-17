@@ -41,11 +41,13 @@ import java.util.UUID;
 public class teacherProfile extends Fragment {
     NavController navController;
     private ImageView backArrow, imageTeacher, editPostion, editEmail;
+    private TeacherViewModel teacherViewModel;
     private LinearLayout listRecommended;
     private TextView txtName, txtPosition, txtEmail, editImage;
     private RecommendedAdapter adapter;
     private EditText editTextPosition, editTextEmail;
     private AppCompatButton savePosition, saveEmail;
+    private Teacher teacherSelect = new Teacher();
     private String newPosition = "";
     private  String newEmail = "";
     RecyclerView recyclerView;
@@ -69,7 +71,8 @@ public class teacherProfile extends Fragment {
         navController = Navigation.findNavController(view);
 
         adapter = new RecommendedAdapter(new ArrayList<>());
-        TeacherViewModel teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
+        teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
+
 
         editPostion = view.findViewById(R.id.positionEditS);
         editEmail = view.findViewById(R.id.emailEditT);
@@ -91,13 +94,16 @@ public class teacherProfile extends Fragment {
             @Override
             public void onChanged(Teacher teacher) {
 
+                teacherSelect = teacher;
+
                 teacherId = teacher.getTeacherId();
 
                 teacherViewModel.getRecommendationTeachers(teacherId).observe(getViewLifecycleOwner(), students -> {
                     if (students != null && !students.isEmpty()) {
                         listRecommended.setVisibility(View.VISIBLE);
-                       // adapter.setStudentList(students);
-                        recyclerView.setAdapter(new RecommendedAdapter(students));
+                        adapter.setStudentList(students);
+                        //recyclerView.setAdapter(new RecommendedAdapter(students));
+                        recyclerView.setAdapter(adapter);
                     } else {
                         listRecommended.setVisibility(View.GONE);
                     }
@@ -362,7 +368,9 @@ public class teacherProfile extends Fragment {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    teacherViewModel.select(teacherSelect);
+                    teacherViewModel.setStudent(student);
+                    navController.navigate(R.id.action_goEditRecommendation);
                 }
             });
 
