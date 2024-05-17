@@ -148,7 +148,7 @@ public class ProfileCompanySelf extends Fragment {
 
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                         db.collection("Company").document(companyId)
-                                .update("about", newAboutC)
+                                .update("summary", newAboutC)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
@@ -186,6 +186,7 @@ public class ProfileCompanySelf extends Fragment {
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if (getView() != null) {
                         companyName.setText(documentSnapshot.getString("name"));
+                        textAboutC.setText(documentSnapshot.getString("summary"));
                         String imageprofileURL = documentSnapshot.getString("profileImage");
                         Context context = getView().getContext();
                         if (imageprofileURL != null && !imageprofileURL.isEmpty()) {

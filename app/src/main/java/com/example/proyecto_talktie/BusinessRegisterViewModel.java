@@ -181,7 +181,7 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         String uid = firebaseAuth.getUid();
         DocumentReference newUser = db.collection("User").document(uid);
-        String uT = "business";
+        String uT = "company";
 
         Map<String, Object> user = new HashMap<>();
         user.put("id", firebaseAuth.getUid());
