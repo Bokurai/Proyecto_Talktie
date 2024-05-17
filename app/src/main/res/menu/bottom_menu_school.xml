@@ -6,7 +6,7 @@
         android:icon="@drawable/star_02"
         android:title="Recommends" />
     <item
-        android:id="@+id/companiesSchool"
+        android:id="@+id/companyViewSchool"
         android:icon="@drawable/enterprise_icon_216179"
         android:title="Companies" />
 

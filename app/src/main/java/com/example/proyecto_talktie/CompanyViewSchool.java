@@ -50,7 +50,7 @@ public class CompanyViewSchool extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         companySearchViewModel = new ViewModelProvider(requireActivity()).get(CompanySearchViewModel.class);
         navController = Navigation.findNavController(view);
-        recyclerView = view.findViewById(R.id.schoolRecyclerView);
+        recyclerView = view.findViewById(R.id.schoolcompRecyclerView);
 
         mainActivity = (MainActivity) requireActivity();
         mainActivity.showNavBotComp();
