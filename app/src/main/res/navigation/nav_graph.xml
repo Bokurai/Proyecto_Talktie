@@ -312,6 +312,10 @@
         android:id="@+id/action_goSignIn2School"
         app:destination="@+id/signIn2_school" />
 
+    <action
+        android:id="@+id/action_goCompanyProfileSelf"
+        app:destination="@+id/profileCompanySelf" />
+
     <fragment
         android:id="@+id/profileCompanySelf"
         android:name="com.example.proyecto_talktie.ProfileCompanySelf"
@@ -358,6 +362,7 @@
         android:name="com.example.proyecto_talktie.addRecommendation"
         android:label="fragment_add_recommendation"
         tools:layout="@layout/fragment_add_recommendation" />
+
     <fragment
         android:id="@+id/teacherProfile"
         android:name="com.example.proyecto_talktie.teacherProfile"
@@ -411,5 +416,31 @@
         android:name="com.example.proyecto_talktie.EditRecommendation"
         android:label="fragment_edite_recommendation"
         tools:layout="@layout/fragment_edite_recommendation" />
+
+    <fragment
+        android:id="@+id/schoolViewCompany"
+        android:name="com.example.proyecto_talktie.SchoolViewCompany"
+        android:label="fragment_school_view_company"
+        tools:layout="@layout/fragment_school_view_company" />
+    <action
+        android:id="@+id/action_goCompanySchool"
+        app:destination="@+id/schoolViewCompany" />
+    <fragment
+        android:id="@+id/companyMessages"
+        android:name="com.example.proyecto_talktie.companyMessages"
+        android:label="fragment_company_messages"
+        tools:layout="@layout/fragment_company_messages" />
+    <action
+        android:id="@+id/action_goCompanyMessages"
+        app:destination="@+id/companyMessages" />
+    <fragment
+        android:id="@+id/schoolProfileFromCompany"
+        android:name="com.example.proyecto_talktie.SchoolProfileFromCompany"
+        android:label="fragment_school_profile_from_company"
+        tools:layout="@layout/fragment_school_profile_from_company" />
+
+    <action
+        android:id="@+id/action_goSchoolProfileFromCompany"
+        app:destination="@+id/schoolProfileFromCompany" />
 
 </navigation>

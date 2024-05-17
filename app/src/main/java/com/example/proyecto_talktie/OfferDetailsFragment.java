@@ -20,9 +20,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,23 +39,27 @@ import java.util.List;
 import java.util.Map;
 
 
+
+
 public class OfferDetailsFragment extends Fragment {
 
     NavController navController;
 
-    TextView offer_name, business_name,offer_date,job_category,contract_time,job_description;
+    TextView offer_name, business_name, offer_date, job_category, contract_time, job_description;
 
     AppCompatButton apply_job;
 
     ImageView backArrow, companyImage;
 
-
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    String offerId;
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -70,8 +76,8 @@ public class OfferDetailsFragment extends Fragment {
 
         OfferViewModel offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
-        offer_name = view.findViewById(R.id.txtOfferPosition);
         companyImage = view.findViewById(R.id.companyLogoJD);
+        offer_name = view.findViewById(R.id.txtOfferPosition);
         business_name = view.findViewById(R.id.txtBusinessName);
         offer_date = view.findViewById(R.id.txtOfferDate);
         job_category = view.findViewById(R.id.txtWorkField);
@@ -83,22 +89,21 @@ public class OfferDetailsFragment extends Fragment {
         offerViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
-               offer_name.setText(offerObject.getName());
-               business_name.setText(offerObject.getCompanyName());
-               job_category.setText(offerObject.getJob_category());
-               contract_time.setText(offerObject.getContract_time());
-               job_description.setText(offerObject.getJob_description());
+                offer_name.setText(offerObject.getName());
+                business_name.setText(offerObject.getCompanyName());
+                job_category.setText(offerObject.getJob_category());
+                contract_time.setText(offerObject.getContract_time());
+                job_description.setText(offerObject.getJob_description());
 
                 SimpleDateFormat format = new SimpleDateFormat("HH:MM  dd/mm/yyyy");
-                Date date = offerObject.getDate();String formattedDate = format.format(date);
+                Date date = offerObject.getDate();
+                String formattedDate = format.format(date);
                 offer_date.setText(formattedDate);
 
                 String imageProfile = offerObject.getCompanyImageUrl();
-                Log.d("TAG", "view " + getView().getContext());
-
 
                 Context context = getView().getContext();
-               if (imageProfile != null && !imageProfile.isEmpty()){
+                if (imageProfile != null && !imageProfile.isEmpty()) {
                     Uri uriImage = Uri.parse(imageProfile);
                     Glide.with(context)
                             .load(uriImage)
@@ -110,20 +115,29 @@ public class OfferDetailsFragment extends Fragment {
                             .into(companyImage);
                 }
 
+                offerId = offerObject.getOfferId();
+                changeButtonifApplied(offerId);
 
-               apply_job.setOnClickListener(new View.OnClickListener() {
+
+                apply_job.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("TAG", offerObject.getOfferId());
-                        Bundle bundle = new Bundle();
-                        bundle.putString("offerId", offerObject.getOfferId());
-                        sendRequest2 fragment = new sendRequest2();
-                        fragment.setArguments(bundle);
-                        navController.navigate(R.id.action_sendRequest, bundle);
+                        if (apply_job.getText().toString().equals("APPLY NOW")) {
+                            Log.d("TAG", offerObject.getOfferId());
+                            Bundle bundle = new Bundle();
+                            bundle.putString("offerId", offerObject.getOfferId());
+                            sendRequest2 fragment = new sendRequest2();
+                            fragment.setArguments(bundle);
+                            navController.navigate(R.id.action_sendRequest, bundle);
+                        } else {
+                            unApplyFromJob(offerId);
+                        }
                     }
+
                 });
             }
         });
+
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,4 +147,41 @@ public class OfferDetailsFragment extends Fragment {
         });
     }
 
+    public void changeButtonifApplied(String offerId) {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            db.collection("Offer").document(offerId).collection("Applicants")
+                    .document(userId)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            if (documentSnapshot.exists()) {
+                                    apply_job.setText(R.string.unapply);
+                            }
+                        }
+                    });
+        }
+
+
+    }
+
+    public void unApplyFromJob(String offerId){
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            db.collection("Offer").document(offerId).collection("Applicants")
+                    .document(userId)
+                    .delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            apply_job.setText(R.string.lbl_apply_now);
+                        }
+                    });
+        }
+    }
 }

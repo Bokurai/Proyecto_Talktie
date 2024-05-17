@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    tools:context=".NewOfferFragment"
     android:layout_height="wrap_content" >
     <LinearLayout
     android:gravity="start"
@@ -65,7 +66,7 @@
                     android:background="@drawable/rectangle_bg_white_a700_radius_8"
                     android:ellipsize="end"
                     android:hint="@string/lbl_job_title"
-                    android:id="@+id/etGroupSeventyTwo"
+                    android:id="@+id/jobtitleOfferET"
                     android:inputType="text"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_5pxh"
@@ -97,7 +98,7 @@
                     android:background="@drawable/rectangle_bg_white_a700_radius_8"
                     android:ellipsize="end"
                     android:hint="@string/job_category"
-                    android:id="@+id/jobcatOfferET"
+                    android:id="@+id/jobcatOfferSP"
                     android:inputType="text"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_5pxh"
@@ -110,6 +111,7 @@
                     android:paddingStart="@dimen/_19pxh"
                     android:paddingTop="@dimen/_14pxv"
                     android:singleLine="true"
+                    android:spinnerMode="dropdown"
                     android:textColorHint="@color/gray_701"
                     style="@style/etSolidRounded_5" tools:ignore="Autofill"/>
                 <TextView

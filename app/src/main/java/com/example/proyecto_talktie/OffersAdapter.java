@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -148,6 +149,7 @@ import java.util.List;
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    NavController navController = Navigation.findNavController(v);
                     offerViewModel.seleccionar(offerObject);
                     Log.d("TAG", "Oferta seleccionada " + offerObject.getCompanyImageUrl());
                     navController.navigate(R.id.action_goOfferDetailsFragment);

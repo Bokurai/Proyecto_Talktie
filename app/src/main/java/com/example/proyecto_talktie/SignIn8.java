@@ -13,17 +13,25 @@ import androidx.navigation.Navigation;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 public class SignIn8 extends Fragment {
     StudentRegisterViewModel registerViewModel;
@@ -62,6 +70,7 @@ public class SignIn8 extends Fragment {
             @Override
             public void onClick(View v) {
                 if (validarFormulario()) {
+                    validateSchool();
                     registerViewModel.setCenter(etSchool.getText().toString());
                     registerViewModel.setLocationSchoolFormation(etLocation.getText().toString());
                     registerViewModel.setDegree(etDegree.getText().toString());
@@ -222,4 +231,25 @@ public class SignIn8 extends Fragment {
         }
         return valid;
     }
+
+    private void validateSchool() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String mapUid = "rIh64FpBBfR1Wmu1zyEy";
+        DocumentReference schoolListVerification = db.collection("SchoolListVerification").document(mapUid);
+
+        schoolListVerification.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot != null && documentSnapshot.exists()) {
+                Map<String, String> schoolnamesMap = (Map<String, String>) documentSnapshot.get("school_names");
+                if (schoolnamesMap != null && etSchool != null && etSchool.getText() != null) {
+                    String schoolName= etSchool.getText().toString();
+                    if (!schoolnamesMap.containsValue(schoolName)) {
+                        etSchool.setError("Not an existent school.");
+                    }
+                }
+            }
+        }).addOnFailureListener(e -> {
+        });
+    }
+
+
 }

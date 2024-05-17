@@ -45,8 +45,6 @@ public class Offer extends Fragment {
         ti = view.findViewById(R.id.linearBotonTI);
         marketing = view.findViewById(R.id.linearBotonMarketing);
         health = view.findViewById(R.id.linearButtonHealth);
-
-
         offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
         adapter = new com.example.proyecto_talktie.OffersAdapter(new ArrayList<>(), navController, offerViewModel, db, getContext());
 
