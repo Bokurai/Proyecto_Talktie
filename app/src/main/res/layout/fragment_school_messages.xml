@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".schoolMessages">
+    tools:context=".schoolMessages"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        style="@style/txtRobotoromanbold40"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_construction" />
 
-</FrameLayout>
+    <TextView
+        style="@style/txtRobotoromanbold30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_ready_soon" />
+
+
+    <ImageView
+        android:layout_gravity="top|end"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/talktie"
+        tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle6"/>
+
+
+</LinearLayout>
