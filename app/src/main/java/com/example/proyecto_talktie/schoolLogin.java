@@ -235,9 +235,13 @@ public class schoolLogin extends Fragment {
                 .build();
 
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        signInIntent.putExtra(EXTRA_FORCE_ACCOUNT_CHOOSER, true);
-        activityResultLauncher.launch(signInIntent);
+        googleSignInClient.signOut().addOnCompleteListener(task -> {
+            googleSignInClient.revokeAccess().addOnCompleteListener(task1 -> {
+                Intent signInIntent = googleSignInClient.getSignInIntent();
+                signInIntent.putExtra(EXTRA_FORCE_ACCOUNT_CHOOSER, true);
+                activityResultLauncher.launch(signInIntent);
+            });
+        });
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
@@ -258,7 +262,9 @@ public class schoolLogin extends Fragment {
                                     .addOnCompleteListener(requireActivity(), authTask -> {
                                         if (authTask.isSuccessful()) {
                                             FirebaseUser user = mAuth.getCurrentUser();
-                                            actualizarUI(user);
+                                            if (user != null) {
+                                                verificarTipoUsuario(user);
+                                            }
                                         } else {
                                             Snackbar.make(requireView(), "Error: " + authTask.getException().getMessage(), Snackbar.LENGTH_LONG).show();
                                         }
