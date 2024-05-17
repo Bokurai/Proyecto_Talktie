@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -51,6 +53,7 @@ public class CompanyLogin extends Fragment {
     private ActivityResultLauncher<Intent> activityResultLauncher;
     //LOGIN-emial passw
     private EditText emailEditText, passwordEditText;
+    private TextView imschoolC, imstudentC;
     private Button emailSignInButton, registerButton;
     public static final String EXTRA_FORCE_ACCOUNT_CHOOSER = "force_account_chooser";
     MainActivity mainActivity;
@@ -76,6 +79,23 @@ public class CompanyLogin extends Fragment {
         registerButton = view.findViewById(R.id.btnCreateAccountOneCompany);
         navController = Navigation.findNavController(view);
         googleSignInButton = view.findViewById(R.id.googleSignInButtonCompany);
+        imschoolC = view.findViewById(R.id.imschoolC);
+        imstudentC = view.findViewById(R.id.imstudentC);
+
+        imschoolC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_goSLoginSchool);
+            }
+        });
+
+        imstudentC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_goLogin);
+            }
+        });
+
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override

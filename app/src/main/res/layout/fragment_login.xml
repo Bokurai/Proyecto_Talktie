@@ -40,7 +40,7 @@
         android:layout_height="@dimen/_19pxv"
         android:layout_marginStart="@dimen/_33pxh"
         android:layout_marginEnd="@dimen/_33pxh"
-        android:layout_marginTop="@dimen/_48pxv">
+        android:layout_marginTop="@dimen/_20pxv">
 
         <View
             android:id="@+id/viewCreatefromfra"
