@@ -105,7 +105,7 @@ public class CompanyViewSchool extends Fragment {
             return new CompanyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_company_view, parent,false));
         }
 
-        class  CompanyViewHolder extends  RecyclerView.ViewHolder{
+        class CompanyViewHolder extends RecyclerView.ViewHolder{
 
             TextView company_name, location_company, sector_company;
 
