@@ -13,34 +13,36 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-public class companyApplicantsAdapter extends FirestoreRecyclerAdapter<Student, companyApplicantsAdapter.studentApplicantViewHolder> {
+import java.util.List;
+
+public class companyApplicantsAdapter extends RecyclerView.Adapter<companyApplicantsAdapter.studentApplicantViewHolder> {
+    private List<Student> studentList;
+    schoolHomeViewModel schoolHomeViewModel;
     NavController navController;
-    schoolHomeViewModel homeViewModel;
 
-    /**
-     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
-     * FirestoreRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
-    public companyApplicantsAdapter(@NonNull FirestoreRecyclerOptions<Student> options) {
-        super(options);
+    public companyApplicantsAdapter(List<Student> studentList, schoolHomeViewModel homeViewModel, NavController navController) {
+        this.studentList = studentList;
+        this.schoolHomeViewModel = homeViewModel;
         this.navController = navController;
-        this.homeViewModel = homeViewModel;
     }
 
+    @NonNull
     @Override
-    protected void onBindViewHolder(@NonNull studentApplicantViewHolder holder, int position, @NonNull Student model) {
-        holder.nameStudent.setText(model.getName());
-        holder.degree.setText(model.getDegree());
+    public studentApplicantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new studentApplicantViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_student_school, parent, false));    }
 
+    @Override
+    public void onBindViewHolder(@NonNull studentApplicantViewHolder holder, int position) {
+        // OfferObject offerObject = offerObjectList.get(position);
+        Student student= studentList.get(position);
+        holder.nameStudent.setText(student.getName());
+        holder.degree.setText(student.getDegree());
         Context context1 = holder.itemView.getContext();
 
-        String imageProfile = model.getProfileImage() != null ? model.getProfileImage() : "null";
-        if (!imageProfile.equals("null")) {
+
+        String imageProfile = student.getProfileImage() ;
+        if (imageProfile!=null && !imageProfile.isEmpty()) {
             Uri uriImage = Uri.parse(imageProfile);
             Glide.with(context1)
                     .load(uriImage)
@@ -54,30 +56,32 @@ public class companyApplicantsAdapter extends FirestoreRecyclerAdapter<Student, 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                homeViewModel.select(model);
+                schoolHomeViewModel.select(student);
                 navController.navigate(R.id.action_goStudentSchoolProfile);
             }
         });
     }
 
-    @NonNull
     @Override
-    public studentApplicantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new studentApplicantViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_student_school, parent, false));
+    public int getItemCount() {
+        return studentList.size();
     }
 
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
+        notifyDataSetChanged();
+    }
 
     public class studentApplicantViewHolder extends RecyclerView.ViewHolder {
         TextView nameStudent, degree;
         ImageView photoStudent;
 
+
         public studentApplicantViewHolder(@NonNull View itemView) {
             super(itemView);
-
             nameStudent = itemView.findViewById(R.id.student_name);
             degree = itemView.findViewById(R.id.degree);
             photoStudent = itemView.findViewById(R.id.student_image);
-
         }
     }
 }

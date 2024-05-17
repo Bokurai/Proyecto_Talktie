@@ -238,7 +238,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recommendRecyclerView"
+            android:id="@+id/applicantsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="318dp"
             android:layout_marginStart="@dimen/_15pxv"
