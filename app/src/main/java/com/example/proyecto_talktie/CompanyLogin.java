@@ -131,12 +131,6 @@ public class CompanyLogin extends Fragment {
                         }
                     }
                 });
-        googleSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                accederConGoogle();
-            }
-        });
         //esconder el menu
         mainActivity = (MainActivity) requireActivity();
         mainActivity.hideNavBot();

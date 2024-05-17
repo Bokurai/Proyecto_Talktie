@@ -85,7 +85,7 @@ public class SchoolViewCompany extends Fragment {
                         .into(holder.school_image);
             } else {
                 Glide.with(context)
-                        .load(R.drawable.build_image_default)
+                        .load(R.drawable.school_default_image)
                         .into(holder.school_image);
             }
 
