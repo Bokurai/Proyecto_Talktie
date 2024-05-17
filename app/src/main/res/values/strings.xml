@@ -590,7 +590,11 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_delete">Delete</string>
     <string name="schools">Schools</string>
     <string name="unapply">UNAPPLY</string>
+    <string name="lbl_construction">Under construction</string>
+    <string name="lbl_ready_soon">This functionality will be ready soon</string>
     <string name="companies">Companies</string>
+
+
 
 
 </resources>
