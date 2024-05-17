@@ -225,9 +225,13 @@ public class Login extends Fragment {
                 .build();
 
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso);
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        signInIntent.putExtra(EXTRA_FORCE_ACCOUNT_CHOOSER, true);
-        activityResultLauncher.launch(signInIntent);
+        googleSignInClient.signOut().addOnCompleteListener(task -> {
+            googleSignInClient.revokeAccess().addOnCompleteListener(task2 -> {
+                Intent signInIntent = googleSignInClient.getSignInIntent();
+                signInIntent.putExtra(EXTRA_FORCE_ACCOUNT_CHOOSER, true);
+                activityResultLauncher.launch(signInIntent);
+            });
+        });
     }
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         if (acct == null) {
