@@ -192,9 +192,6 @@ import java.util.List;
                 companyImage = itemView.findViewById(R.id.imageCompany);
             }
         }
-
-
-
     }
 
 
