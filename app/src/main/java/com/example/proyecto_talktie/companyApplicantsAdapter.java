@@ -18,12 +18,12 @@ import java.util.List;
 
 public class companyApplicantsAdapter extends RecyclerView.Adapter<companyApplicantsAdapter.studentApplicantViewHolder> {
     private List<Student> studentList;
-    schoolHomeViewModel schoolHomeViewModel;
+    ApplicantsViewModel applicantsViewModel;
     NavController navController;
 
-    public companyApplicantsAdapter(List<Student> studentList, schoolHomeViewModel homeViewModel, NavController navController) {
+    public companyApplicantsAdapter(List<Student> studentList, ApplicantsViewModel applicantsViewModel, NavController navController) {
         this.studentList = studentList;
-        this.schoolHomeViewModel = homeViewModel;
+        this.applicantsViewModel = applicantsViewModel;
         this.navController = navController;
     }
 
@@ -56,8 +56,8 @@ public class companyApplicantsAdapter extends RecyclerView.Adapter<companyApplic
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                schoolHomeViewModel.select(student);
-                navController.navigate(R.id.action_goStudentSchoolProfile);
+                applicantsViewModel.select(student);
+                navController.navigate(R.id.action_goStudentProfileCompany);
             }
         });
     }

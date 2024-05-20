@@ -136,8 +136,14 @@
         app:destination="@id/offer"/>
 
     <action
-        android:id="@+id/action_goOfferDetailsFragment"
+        android:id="@+id/action_goOffersDetailsApplicants"
         app:destination="@id/offersDetailsApplicants"/>
+
+    <action
+        android:id="@+id/action_goStudentProfileCompany"
+        app:destination="@id/studentProfileCompany"/>
+
+
     <action
         android:id="@+id/action_goCompanyProfile"
         app:destination="@+id/companyProfile" />
@@ -173,6 +179,12 @@
     <action
         android:id="@+id/action_goStudentSearchView"
         app:destination="@id/studentSearchView" />
+
+    <action
+        android:id="@+id/action_goOfferDetailsFragment"
+        app:destination="@id/offerDetailsFragment" />
+
+
     <fragment
         android:id="@+id/offerDetailsFragment"
         android:name="com.example.proyecto_talktie.OfferDetailsFragment"
@@ -278,11 +290,6 @@
     <action
         android:id="@+id/action_goCompanyHome"
         app:destination="@+id/companyHomeFragment" />
-
-    <action
-        android:id="@+id/action_goOfferDetailsApplicant"
-        app:destination="@+id/offersDetailsApplicants" />
-
 
     <action
         android:id="@+id/action_goSignIn1Company"
@@ -450,5 +457,10 @@
     <action
         android:id="@+id/action_goSchoolProfileFromCompany"
         app:destination="@+id/schoolProfileFromCompany" />
+    <fragment
+        android:id="@+id/studentProfileCompany"
+        android:name="com.example.proyecto_talktie.StudentProfileCompany"
+        android:label="fragment_student_profile_company"
+        tools:layout="@layout/fragment_student_profile_company" />
 
 </navigation>

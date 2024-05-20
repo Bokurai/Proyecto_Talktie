@@ -11,18 +11,15 @@ public class OfferObject {
     List<String> tags;
     Date date;
     //De aquí se puede extraer el número de aplicantes a la oferta
-    List<String> applicantsId;
 
     //Si el id del usuario esta en la lista de aplicante se vuelve true;
-    boolean isApplied;
-
     // Información propia de los detalles de la oferta
     String contract_time;
     String job_category;
     String job_description;
 
     String companyName;
-    private int numApplicants;
+     int numApplicants;
     String companyImageUrl;
 
 
@@ -105,21 +102,6 @@ public class OfferObject {
         this.date = date;
     }
 
-    public List<String> getApplicantsId() {
-        return applicantsId;
-    }
-
-    public void setApplicantsId(List<String> applicantsId) {
-        this.applicantsId = applicantsId;
-    }
-
-    public boolean isApplied() {
-        return isApplied;
-    }
-
-    public void setApplied(boolean applied) {
-        isApplied = applied;
-    }
 
     public String getContract_time() {
         return contract_time;

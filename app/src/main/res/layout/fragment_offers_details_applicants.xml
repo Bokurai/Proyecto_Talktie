@@ -14,15 +14,16 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarToolbar"
         android:layout_width="match_parent"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10pxh"
         android:gravity="center_horizontal"
         app:contentInsetStart="0dp">
 
         <ImageView
             android:id="@+id/backArrow"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_52pxh"
-            android:layout_marginStart="@dimen/_5pxh"
+            android:layout_height="@dimen/_50pxh"
+            android:padding="@dimen/_10pxh"
             android:src="@drawable/img_arrowleft_black_900"
             tools:ignore="ContentDescription" />
 
@@ -214,14 +215,13 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/linearTitle3"
+            android:id="@+id/applicants"
             style="@style/groupStylecornerRadius_1"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_17pxh"
-            android:layout_marginTop="@dimen/_9pxv"
-            android:layout_marginEnd="@dimen/_17pxh"
-            android:orientation="horizontal">
+            android:layout_margin="@dimen/_5pxh"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txtAboutMe"
@@ -235,15 +235,17 @@
                 android:singleLine="true"
                 android:text="@string/msg_textApplicants"
                 android:textSize="@dimen/_20pxv" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/applicantsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="318dp"
+                android:layout_marginStart="@dimen/_15pxv"
+                android:layout_marginTop="@dimen/_5pxv"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/applicantsRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="318dp"
-            android:layout_marginStart="@dimen/_15pxv"
-            android:layout_marginTop="@dimen/_5pxv"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
 
     </LinearLayout>
 </LinearLayout>

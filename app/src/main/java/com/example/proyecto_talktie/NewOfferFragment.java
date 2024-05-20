@@ -93,7 +93,6 @@ public class NewOfferFragment extends Fragment {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         String uid = firebaseAuth.getUid();
-        String docUrl="";
         DocumentReference newOffer = db.collection("Offer").document();
         String offerId = newOffer.getId();
 
@@ -102,10 +101,9 @@ public class NewOfferFragment extends Fragment {
         offer.put("name", jobtitleET.getText().toString());
         offer.put("companyId", uid);
         offer.put("tags", Arrays.asList(tagOneET.getText().toString(), tagTwoET.getText().toString(), tagThreeET.getText().toString()));
-        offer.put("documentUrl", docUrl);
         offer.put("contract_time", contractimeET.getText().toString());
         offer.put("job_category", jobcategory.getSelectedItem().toString());
-        offer.put("description", descriptionET.getText().toString());
+        offer.put("job_description", descriptionET.getText().toString());
         offer.put("date", timestamp);
         newOffer.set(offer)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

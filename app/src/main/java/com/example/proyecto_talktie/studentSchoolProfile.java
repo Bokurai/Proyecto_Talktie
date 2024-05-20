@@ -22,6 +22,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -30,6 +33,7 @@ public class studentSchoolProfile extends Fragment {
     private TeacherViewModel teacherViewModel;
     private AddRecommendationAdapter adapter;
     private CardView cardAbout;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ImageView photoProfile, imageReturn;
     private TextView name, email, phone, about, separator;
     private schoolHomeViewModel homeViewModel;
@@ -71,10 +75,13 @@ public class studentSchoolProfile extends Fragment {
 
                 teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
 
-                if (teacherViewModel.getStudent().studentId == null ) {
-                    teacherViewModel.setStudent(student);
-                }
-
+                db.collection("Student").document(student.getStudentId()).get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                Student updatedStudent = documentSnapshot.toObject(Student.class);
+                                teacherViewModel.setStudent(updatedStudent);
+                            }});
 
                 adapter = new AddRecommendationAdapter(new ArrayList<>(), getContext(), navController, teacherViewModel, student.getStudentId());
 

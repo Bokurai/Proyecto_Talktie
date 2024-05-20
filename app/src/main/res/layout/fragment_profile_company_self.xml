@@ -108,8 +108,8 @@
                 <TextView
                     android:id="@+id/edit_profiletxtcompany"
                     android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35pxh"
                     android:gravity="center"
-                    android:layout_height="wrap_content"
                     android:text="@string/edit_profile_image"/>
             </LinearLayout>
         </FrameLayout>
@@ -161,11 +161,10 @@
 
                     <ImageView
                         android:id="@+id/aboutEditCompany"
-                        android:layout_width="@dimen/_15pxh"
-                        android:layout_height="@dimen/_15pxh"
+                        android:layout_width="@dimen/_30pxh"
+                        android:layout_height="@dimen/_30pxh"
+                        android:padding="@dimen/_5pxh"
                         android:layout_gravity="center"
-                        android:layout_margin="@dimen/_10pxh"
-                        android:scaleType="fitXY"
                         android:src="@drawable/img_edit"/>
 
                     <androidx.appcompat.widget.AppCompatButton

@@ -154,22 +154,22 @@ public class offerCategory extends Fragment {
 
 
             if(offerObject.getTags() != null) {
-                if (offerObject.getTags().size() > 0) {
+                if (!offerObject.getTags().get(0).isEmpty()) {
                     holder.tag1.setText(offerObject.getTags().get(0));
                 } else {
                     holder.tag1.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
                 }
 
-                if (offerObject.getTags().size() > 1) {
+                if (!offerObject.getTags().get(1).isEmpty()) {
                     holder.tag2.setText(offerObject.getTags().get(1));
                 } else {
-                    holder.tag2.setVisibility(View.GONE);
+                    holder.tag2.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
                 }
 
-                if (offerObject.getTags().size() > 2) {
+                if (!offerObject.getTags().get(2).isEmpty()) {
                     holder.tag3.setText(offerObject.getTags().get(2));
                 } else {
-                    holder.tag3.setVisibility(View.GONE);
+                    holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
                 }
             } else {
                 holder.tag1.setVisibility(View.GONE);

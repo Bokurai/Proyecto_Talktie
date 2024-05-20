@@ -8,7 +8,6 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        tools:context=".CompanyHomeFragment"
         style="@style/groupStylewhite_A700">
 
         <FrameLayout

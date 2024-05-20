@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -44,7 +45,8 @@ public class OffersDetailsApplicantsFragment extends Fragment {
     ApplicantsViewModel applicantsViewModel;
     private companyApplicantsAdapter adapter;
     private RecyclerView recyclerViewApplicants;
-    schoolHomeViewModel schoolHomeViewModel;
+    LinearLayout applicants;
+
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,10 @@ public class OffersDetailsApplicantsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
         navController = Navigation.findNavController(view);
+        recyclerViewApplicants = view.findViewById(R.id.applicantsRecyclerView);
 
         offer_name = view.findViewById(R.id.txtOfferPosition);
         offer_date = view.findViewById(R.id.txtOfferDate);
@@ -69,18 +74,19 @@ public class OffersDetailsApplicantsFragment extends Fragment {
         contract_time = view.findViewById(R.id.txtContractTime);
         job_description = view.findViewById(R.id.txtJobDescription);
         backArrow = view.findViewById(R.id.backArrow);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        applicants = view.findViewById(R.id.applicants);
 
         companyViewModel = new ViewModelProvider(requireActivity()).get(CompanyViewModel.class);
-        schoolHomeViewModel= new ViewModelProvider(requireActivity()).get(schoolHomeViewModel.class);
-
-        //applicantsViewModel = new ViewModelProvider(requireActivity()).get(ApplicantsViewModel.class);
-        recyclerViewApplicants = view.findViewById(R.id.applicantsRecyclerView);
-        //recyclerViewApplicants.setLayoutManager(new LinearLayoutManager(getContext()));
+        applicantsViewModel = new ViewModelProvider(requireActivity()).get(ApplicantsViewModel.class);
+        adapter = new companyApplicantsAdapter(new ArrayList<>(),applicantsViewModel, navController );
 
         companyViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
+                // Obtener los solicitantes para la oferta actual
+                String offerId = offerObject.getOfferId();
+                applicantsViewModel.getApplicantsIds(offerId);
+
                 offer_name.setText(offerObject.getName());
                 job_category.setText(offerObject.getJob_category());
                 contract_time.setText(offerObject.getContract_time());
@@ -91,27 +97,27 @@ public class OffersDetailsApplicantsFragment extends Fragment {
                 String formattedDate = format.format(date);
                 offer_date.setText(formattedDate);
 
-                // Obtener los solicitantes para la oferta actual
-                String offerId = offerObject.getOfferId();
-                companyViewModel.fetchApplicantIds(offerId);
-                /*
-                CollectionReference applicantsRef = db.collection("Offer").document(offerId).collection("Applicants");
+                applicantsViewModel.setOfferId(offerId);
 
-                FirestoreRecyclerOptions<Student> options = new FirestoreRecyclerOptions.Builder<Student>()
-                        .setQuery(applicantsRef, Student.class)
-                        .build();
+                applicantsViewModel.getApplicantsData().observe(getViewLifecycleOwner(), new Observer<List<Student>>() {
+                    @Override
+                    public void onChanged(List<Student> students) {
+                        if (students != null && !students.isEmpty()) {
+                            applicants.setVisibility(View.VISIBLE);
+                            adapter.setStudentList(students);
+                            recyclerViewApplicants.setAdapter(adapter);
+                        } else {
+                            applicants.setVisibility(View.GONE);
+                        }
 
-               // adapter = new companyApplicantsAdapter(new ArrayList<>(), navController, );
-                recyclerViewApplicants.setAdapter(adapter);
-                //adapter.startListening();
-                */
-
-
+                    }
+                });
             }
         });
-        adapter = new companyApplicantsAdapter(new ArrayList<>(),schoolHomeViewModel, navController );
 
-        companyViewModel.getApplicantsDetailsLiveData().observe(getViewLifecycleOwner(), new Observer<List<Student>>() {
+
+
+      /*  companyViewModel.getApplicantsDetailsLiveData().observe(getViewLifecycleOwner(), new Observer<List<Student>>() {
             @Override
             public void onChanged(List<Student> students) {
                 // Actualiza la UI con los detalles de los estudiantes si es necesario
@@ -122,8 +128,8 @@ public class OffersDetailsApplicantsFragment extends Fragment {
                // adapter.startListening();
             }
 
-        });
-        recyclerViewApplicants.setAdapter(adapter);
+        });*/
+        //recyclerViewApplicants.setAdapter(adapter);
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override

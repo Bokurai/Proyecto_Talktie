@@ -82,7 +82,7 @@ import java.util.List;
             public void onClick(View v) {
 
                 viewModel.seleccionar(offerObject);
-                navController.navigate(R.id.action_goOfferDetailsApplicant);
+                navController.navigate(R.id.action_goOffersDetailsApplicants);
             }
         });
 
