@@ -597,6 +597,8 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="lbl_resume">Resume</string>
     <string name="lbl_download_resume"><u>Download student resume</u></string>
     <string name="companies">Companies</string>
+    <string name="lbl_sign_up_to_join_student">Sign up as a student</string>
+    <string name="lbl_student_name">Student Name</string>
 
 
 </resources>

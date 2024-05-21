@@ -269,6 +269,7 @@
             </FrameLayout>
         </LinearLayout>
         <androidx.appcompat.widget.Toolbar
+            android:layout_marginStart="@dimen/_10pxh"
             android:id="@+id/toolbarToolbar"
             android:layout_gravity="top|start"
             android:layout_height="wrap_content"
@@ -286,8 +287,7 @@
 
                 <ImageView android:id="@+id/imageArrowleft"
                     android:layout_height="@dimen/_21pxh"
-                    android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_width="@dimen/_13pxh"
+                    android:layout_width="@dimen/_15pxh"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_arrowleft_black_900"
                     tools:ignore="ContentDescription" />

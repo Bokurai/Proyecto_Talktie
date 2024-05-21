@@ -64,6 +64,7 @@
                 android:paddingStart="@dimen/_16pxh"
                 android:paddingTop="@dimen/_12pxv"
                 android:singleLine="true"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/bluegray_400"
                 style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
             <EditText
@@ -82,6 +83,7 @@
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingStart="@dimen/_16pxh"
                 android:paddingTop="@dimen/_11pxv"
+                android:textColor="@android:color/black"
                 android:singleLine="true"
                 android:textColorHint="@color/bluegray_400"
                 style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
@@ -102,6 +104,7 @@
                 android:paddingStart="@dimen/_16pxh"
                 android:paddingTop="@dimen/_11pxv"
                 android:singleLine="true"
+                android:textColor="@android:color/black"
                 android:textColorHint="@color/bluegray_400"
                 style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
 

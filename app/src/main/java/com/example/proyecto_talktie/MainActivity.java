@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 } else if (itemId == R.id.companyViewSchool) {
                     // Navegar al fragmento de ofertas
-                    navController.navigate(R.id.companyViewSchool);
+                    navController.navigate(R.id.action_goCompanyViewSchool);
                     return true;
                 } else if (itemId == R.id.messagesSchool) {
                     // Navegar al fragmento de mensajes

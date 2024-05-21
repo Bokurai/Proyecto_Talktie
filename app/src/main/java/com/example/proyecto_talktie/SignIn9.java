@@ -54,7 +54,6 @@ public class SignIn9 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         nextButton = view.findViewById(R.id.btnContinuetoTen);
-        radioButton = view.findViewById(R.id.rbIamcurrently);
         etJobTitle = view.findViewById(R.id.etJobTitle);
         etCompanyName = view.findViewById(R.id.etCompanyName);
         etStartDateJob = view.findViewById(R.id.etStartDateJob);

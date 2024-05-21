@@ -11,6 +11,7 @@
     style="@style/groupStylewhite_A700">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarToolbar"
+        android:layout_marginStart="@dimen/_10pxh"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         app:contentInsetStart="0dp" style="@style/groupStylewhite_A700">
@@ -25,8 +26,7 @@
 
             <ImageView android:id="@+id/imageArrowleft"
                 android:layout_height="@dimen/_21pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_width="@dimen/_13pxh"
+                android:layout_width="@dimen/_15pxh"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_arrowleft_black_900"
                 tools:ignore="ContentDescription" />
@@ -51,17 +51,6 @@
                     android:text="@string/lbl_location"
                     tools:text="@string/lbl_location" />
 
-                <TextView
-                    android:id="@+id/txtSave"
-                    style="@style/txtRobotoromanregular17_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_130pxh"
-                    android:layout_marginBottom="@dimen/_1pxv"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="@string/lbl_save"
-                    tools:text="@string/lbl_save" />
             </LinearLayout>
         </LinearLayout>
 
@@ -449,14 +438,15 @@
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btnContinuetoEight"
                                 style="@style/btnSolidRounded_3"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="start"
                                 android:ellipsize="end"
                                 android:gravity="center"
-                                android:paddingStart="@dimen/_30pxh"
-                                android:paddingEnd="@dimen/_30pxh"
+                                android:layout_gravity="start"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
                                 android:paddingBottom="@dimen/_15pxv"
+                                android:paddingEnd="@dimen/_30pxh"
+                                android:paddingStart="@dimen/_30pxh"
+                                android:paddingTop="@dimen/_15pxv"
                                 android:singleLine="true"
                                 android:text="@string/lbl_continue"
                                 android:textAllCaps="false"

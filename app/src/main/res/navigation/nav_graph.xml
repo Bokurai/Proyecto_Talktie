@@ -244,13 +244,12 @@
 
 
     <action
-        android:id="@+id/action_goSchoolCompanies"
-        app:destination="@+id/schoolCompanies" />
-
-
-    <action
         android:id="@+id/action_goSchoolMessages"
         app:destination="@+id/schoolMessages" />
+
+    <action
+        android:id="@+id/action_goCompanyViewSchool"
+        app:destination="@+id/companyViewSchool" />
 
     <action
         android:id="@+id/action_goCategoryOffer"
@@ -417,11 +416,6 @@
         android:name="com.example.proyecto_talktie.schoolMessages"
         android:label="fragment_school_messages"
         tools:layout="@layout/fragment_school_messages" />
-    <fragment
-        android:id="@+id/schoolCompanies"
-        android:name="com.example.proyecto_talktie.schoolCompanies"
-        android:label="fragment_school_companies"
-        tools:layout="@layout/fragment_school_companies" />
 
     <fragment
         android:id="@+id/offersDetailsApplicants"
@@ -461,9 +455,6 @@
         android:id="@+id/action_goSchoolProfileFromCompany"
         app:destination="@+id/schoolProfileFromCompany" />
 
-    <action
-        android:id="@+id/action_goSchoolProfileFromCompany"
-        app:destination="@+id/schoolProfileFromCompany" />
     <fragment
         android:id="@+id/companyProfileFromSchool"
         android:name="com.example.proyecto_talktie.CompanyProfileFromSchool"

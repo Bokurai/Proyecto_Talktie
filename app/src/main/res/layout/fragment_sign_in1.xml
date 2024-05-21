@@ -46,8 +46,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
-                        android:text="@string/lbl_welcome_user"
-                        tools:text="@string/lbl_welcome_user" />
+                        android:textSize="35dp"
+                        android:text="@string/lbl_welcome_company"
+                        tools:text="@string/lbl_welcome_company"/>
 
                     <TextView
                         android:id="@+id/txtSignuptojoin"
@@ -59,17 +60,9 @@
                         android:ellipsize="end"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
-                        android:text="@string/lbl_sign_up_to_join"
-                        tools:text="@string/lbl_sign_up_to_join" />
+                        android:text="@string/lbl_sign_up_to_join_student" />
                 </LinearLayout>
 
-                <FrameLayout
-                    android:id="@+id/frameStackpngtreeavatar"
-                    android:layout_width="@dimen/_114pxh"
-                    android:layout_height="@dimen/_110pxv"
-                    android:layout_marginBottom="@dimen/_24pxv">
-
-                </FrameLayout>
             </LinearLayout>
 
             <EditText
@@ -82,7 +75,7 @@
                 android:layout_marginEnd="@dimen/_48pxh"
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
-                android:hint="@string/lbl_name"
+                android:hint="@string/lbl_student_name"
                 android:inputType="text"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:paddingStart="@dimen/_16pxh"
