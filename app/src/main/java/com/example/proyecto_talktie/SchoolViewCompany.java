@@ -76,7 +76,7 @@ public class SchoolViewCompany extends Fragment {
             holder.school_name.setText(model.getName());
             holder.school_type.setText(model.getTypeSchool());
 
-            String imageProfile = model.getProfile_image();
+            String imageProfile = model.getProfileImage();
             Context context = getView().getContext();
             if (imageProfile != null && !imageProfile.isEmpty()) {
                 Uri uriImage = Uri.parse(imageProfile);
