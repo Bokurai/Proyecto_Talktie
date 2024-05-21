@@ -135,9 +135,20 @@
         android:id="@+id/action_goOffer"
         app:destination="@id/offer"/>
 
+
     <action
         android:id="@+id/action_goOfferDetailsFragment"
-        app:destination="@id/offerDetailsFragment"/>
+        app:destination="@id/offerDetailsFragment" />
+
+    <action
+        android:id="@+id/action_goOffersDetailsApplicants"
+        app:destination="@id/offersDetailsApplicants"/>
+
+    <action
+        android:id="@+id/action_goStudentProfileCompany"
+        app:destination="@id/studentProfileCompany"/>
+
+
     <action
         android:id="@+id/action_goCompanyProfile"
         app:destination="@+id/companyProfile" />
@@ -411,6 +422,13 @@
         android:name="com.example.proyecto_talktie.schoolCompanies"
         android:label="fragment_school_companies"
         tools:layout="@layout/fragment_school_companies" />
+
+    <fragment
+        android:id="@+id/offersDetailsApplicants"
+        android:name="com.example.proyecto_talktie.OffersDetailsApplicantsFragment"
+        android:label="fragment_offers_details_applicants"
+        tools:layout="@layout/fragment_offers_details_applicants" />
+
     <fragment
         android:id="@+id/editRecommendation"
         android:name="com.example.proyecto_talktie.EditRecommendation"
@@ -442,6 +460,10 @@
     <action
         android:id="@+id/action_goSchoolProfileFromCompany"
         app:destination="@+id/schoolProfileFromCompany" />
+
+    <action
+        android:id="@+id/action_goSchoolProfileFromCompany"
+        app:destination="@+id/schoolProfileFromCompany" />
     <fragment
         android:id="@+id/companyProfileFromSchool"
         android:name="com.example.proyecto_talktie.CompanyProfileFromSchool"
@@ -452,5 +474,13 @@
         android:name="com.example.proyecto_talktie.CompanyViewSchool"
         android:label="fragment_company_view_school"
         tools:layout="@layout/fragment_company_view_school" />
+
+
+    <fragment
+        android:id="@+id/studentProfileCompany"
+        android:name="com.example.proyecto_talktie.StudentProfileCompany"
+        android:label="fragment_student_profile_company"
+        tools:layout="@layout/fragment_student_profile_company" />
+
 
 </navigation>

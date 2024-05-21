@@ -75,7 +75,7 @@ public class ProfileStudent extends Fragment {
         //Create and set the recyclerview
         adapter = new RecommendAdapter(new ArrayList<>());
 
-        recyclerView = view.findViewById(R.id.recommendRecyclerView);
+        recyclerView = view.findViewById(R.id.applicantsRecyclerView);
         recyclerView.setAdapter(adapter);
         storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -118,6 +118,8 @@ public class ProfileStudent extends Fragment {
 
 
         studentViewModel.getStudentData(studentId).observe(getViewLifecycleOwner(), student -> {
+
+
             studentName.setText(student.getName());
             textAbout.setText(student.getAbout());
 
@@ -137,6 +139,7 @@ public class ProfileStudent extends Fragment {
 
 
         });
+
 
         studentViewModel.getRecommendationLiveData(studentId).observe(getViewLifecycleOwner(), recommendations -> {
             Log.d("Recomendaciones", "Acceder livedata recomendaciones " + studentId);

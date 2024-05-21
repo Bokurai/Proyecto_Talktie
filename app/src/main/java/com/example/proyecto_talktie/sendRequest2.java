@@ -174,20 +174,24 @@ public class sendRequest2 extends Fragment {
         }
     }
     private void addDocumentToOffer(String offerId, String documentUrl) {
-        DocumentReference offerRef = db.collection("Offer").document(offerId);
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference offerRef = db.collection("Offer").document(offerId).collection("Applicants").document(userId);
+
+        Map<String, Object> docData = new HashMap<>();
+        docData.put("documentUrl", documentUrl);
 
         // Actualizar el campo de documentoUrl de la oferta con la URL del documento
-        offerRef.update("documentUrl", documentUrl)
+        offerRef.set(docData)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(getContext(), "Documento subido exitosamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Document uploaded successfully", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(), "Error al subir el documento: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Error uploading document: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

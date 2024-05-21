@@ -212,14 +212,6 @@ public class EditRecommendation extends Fragment {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
-                                                db.collection("Student").document(studentId).get()
-                                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                                            @Override
-                                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                                Student updatedStudent = documentSnapshot.toObject(Student.class);
-                                                                teacherViewModel.setStudent(updatedStudent);
-                                                            }});
-
                                                 Log.d("UPDATE", "recomendación actualizada");
                                             }
                                         });
@@ -262,7 +254,9 @@ public class EditRecommendation extends Fragment {
         studentRef.get()
                 .addOnSuccessListener(studentSnapshot -> {
                     Map<String, String> recommendations = (Map<String, String>) studentSnapshot.get("recommendations");
-                    recommendations.remove(teacherId);
+                    if (recommendations != null) {
+                        recommendations.remove(teacherId);
+                    }
 
                     studentRef.update("recommendations", recommendations)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {

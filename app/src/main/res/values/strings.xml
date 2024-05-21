@@ -592,9 +592,11 @@ Se rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et moles
     <string name="unapply">UNAPPLY</string>
     <string name="lbl_construction">Under construction</string>
     <string name="lbl_ready_soon">This functionality will be ready soon</string>
+    <string name="lbl_cover_letter">Cover Letter</string>
+    <string name="lbl_cover">Cover</string>
+    <string name="lbl_resume">Resume</string>
+    <string name="lbl_download_resume"><u>Download student resume</u></string>
     <string name="companies">Companies</string>
-
-
 
 
 </resources>
