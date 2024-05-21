@@ -57,8 +57,10 @@ public class SignIn6 extends Fragment {
         navController = Navigation.findNavController(view);
 
         emailET.setEnabled(false);
+        nameET.setEnabled(false);
         nameET.setText(registerViewModel.getName().getValue());
         emailET.setText(registerViewModel.getEmail().getValue());
+        phoneET.setText(registerViewModel.getPhoneNumber().getValue());
 
         // Agregar un TextWatcher al EditText de fecha (para que se vea en formato fecha)
         dateET.addTextChangedListener(new TextWatcher() {

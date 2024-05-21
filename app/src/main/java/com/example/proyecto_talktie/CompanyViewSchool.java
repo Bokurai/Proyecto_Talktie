@@ -77,7 +77,7 @@ public class CompanyViewSchool extends Fragment {
             holder.location_company.setText(model.getHeadquarters());
             holder.sector_company.setText(model.getSector());
 
-            String imageProfile = model.getProfile_image();
+            String imageProfile = model.getProfileImage();
             Context context = getView().getContext();
             if (imageProfile != null && !imageProfile.isEmpty()) {
                 Uri uriImage = Uri.parse(imageProfile);
