@@ -6,7 +6,7 @@
     android:gravity="start"
     android:id="@+id/home"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/_35pxv"
+    android:layout_marginBottom="@dimen/_40pxv"
     android:layout_width="match_parent"
     android:orientation="vertical"
     style="@style/groupStylewhite_A700">
@@ -54,10 +54,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginEnd="@dimen/_10pxh"
         android:layout_marginStart="@dimen/_10pxh"
-        android:layout_marginBottom="@dimen/_25pxh"
         android:id="@+id/searchRecyclerViewSchool"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 

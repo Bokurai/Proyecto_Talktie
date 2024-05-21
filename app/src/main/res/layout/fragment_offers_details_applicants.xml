@@ -241,6 +241,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="318dp"
                 android:layout_marginStart="@dimen/_15pxv"
+                android:layout_marginBottom="@dimen/_40pxh"
                 android:layout_marginTop="@dimen/_5pxv"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
