@@ -154,6 +154,9 @@ public class CompanyLogin extends Fragment {
         //esconder el menu
         mainActivity = (MainActivity) requireActivity();
         mainActivity.hideNavBot();
+        mainActivity.hideNavBotComp();
+        mainActivity.hideNavBotSchool();
+
 
     }
     private void accederConEmail() {

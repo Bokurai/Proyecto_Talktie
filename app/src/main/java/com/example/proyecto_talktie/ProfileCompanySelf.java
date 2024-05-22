@@ -272,7 +272,6 @@ public class ProfileCompanySelf extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             mAuth.signOut();
                             navController.navigate(R.id.companyLogin);
-
                         }
                     })
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {

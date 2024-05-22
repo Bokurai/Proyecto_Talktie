@@ -168,6 +168,7 @@ public class schoolLogin extends Fragment {
         mainActivity = (MainActivity) requireActivity();
         mainActivity.hideNavBot();
         mainActivity.hideNavBotSchool();
+        mainActivity.hideNavBotComp();
 
     }
 
