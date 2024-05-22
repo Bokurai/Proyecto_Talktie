@@ -63,50 +63,8 @@ public class CompanyViewModel extends AndroidViewModel {
         return offerSingle;
     }
 
-    //Metodo para extraer el id de la subcoleccion applicants
-    private void fetchApplicantsDetails(List<String> ids) {
 
-        List<Student> students = new ArrayList<>();
-        for (String id : ids) {
-            db.collection("Student").document(id).get().addOnCompleteListener(task -> {
-                if (task.isSuccessful() && task.getResult() != null) {
-                    Student student = task.getResult().toObject(Student.class);
-                    if (student != null) {
-                        students.add(student);
-                    }
-                    if (students.size() == ids.size()) {
-                        applicantsDetails.setValue(students);
-                    }
-                } else {
-                    Log.e("Firestore Error", "Error getting student details: ", task.getException());
-                }
-            });
-        }
 
-    }
-
-    public MutableLiveData<List<Student>> getApplicantsDetailsLiveData() {
-        return applicantsDetails;
-    }
-    public void fetchApplicantIds(String offerId) {
-
-        CollectionReference applicantsRef = db.collection("Offer").document(offerId).collection("Applicants");
-
-        applicantsRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                List<String> ids = new ArrayList<>();
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    String documentId = document.getId();
-                    ids.add(documentId);
-                    Log.d("Document ID", documentId);
-                }
-               // applicantsIds.setValue(ids);// borrar
-                fetchApplicantsDetails(ids);
-            } else {
-                Log.e("Firestore Error", "Error getting documents: ", task.getException());
-            }
-        });
-    }
 
 
 }
