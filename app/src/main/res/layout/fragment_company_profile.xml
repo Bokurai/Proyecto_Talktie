@@ -113,7 +113,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                android:text="@string/lbl_about" />
+                android:text="@string/lbl_summary" />
 
             <TextView
                 android:id="@+id/txtCompanyDescription"
