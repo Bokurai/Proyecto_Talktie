@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -21,6 +22,7 @@ public class SchoolProfileFromCompany extends Fragment {
 
     private TextView nameSchool, location, description, type, phone, email, website;
     private AppCompatButton message;
+    ImageView returnButton;
     private SchoolSearchViewModel schoolSearchViewModel;
     private NavController navController;
 
@@ -51,6 +53,7 @@ public class SchoolProfileFromCompany extends Fragment {
         phone = view.findViewById(R.id.schoolphoneTextView);
         email = view.findViewById(R.id.schoolemailTextView);
         website = view.findViewById(R.id.schoolwebsiteTextView);
+        returnButton = view.findViewById(R.id.img_returnfromSchool);
 
         schoolSearchViewModel.selected().observe(getViewLifecycleOwner(), new Observer<School>() {
             @Override
@@ -69,6 +72,13 @@ public class SchoolProfileFromCompany extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_goCompanyMessages);
+            }
+        });
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.popBackStack();
             }
         });
     }
