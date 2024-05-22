@@ -74,7 +74,7 @@ public class CompanyViewSchool extends Fragment {
         @Override
         protected void onBindViewHolder(@NonNull CompanyViewAdapterProfile.CompanyViewHolder holder, int position, @NonNull Business model) {
             holder.company_name.setText(model.getName());
-            holder.location_company.setText(model.getHeadquarters());
+            holder.location_company.setText(model.getAddress());
             holder.sector_company.setText(model.getSector());
 
             String imageProfile = model.getProfileImage();

@@ -111,7 +111,7 @@
                 android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_3pxh"
                 android:singleLine="true"
-                android:text="@string/lbl_about" />
+                android:text="@string/lbl_summary" />
 
             <TextView
                 android:id="@+id/txtCompanyDescriptionPS"
@@ -246,6 +246,47 @@
 
                 </TableRow>
             </TableLayout>
+
+
+            <TextView
+                android:id="@+id/txtHeadquarters"
+                style="@style/txtRobotoromanbold17"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:ellipsize="end"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="@string/lbl_headquarters" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12pxv"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtHeadquartersCompany"
+                    style="@style/txtRobotoromanbold16"
+                    android:layout_marginStart="@dimen/_5pxh"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/_10pxh"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:lineSpacingExtra="@dimen/_5pxh"
+                    android:text="@string/lbl_headquarters" />
+
+                <ImageView
+                    android:id="@+id/prueba"
+                    android:layout_gravity="top"
+                    android:layout_width="@dimen/_40pxh"
+                    android:layout_height="@dimen/_40pxh"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:src="@drawable/build" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

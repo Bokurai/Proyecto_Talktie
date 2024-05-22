@@ -32,6 +32,7 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
     private MutableLiveData<String> password = new MutableLiveData<>();
     private MutableLiveData<String> city = new MutableLiveData<>();
     private MutableLiveData<String> zipcode = new MutableLiveData<>();
+    private MutableLiveData<String> address = new MutableLiveData<>();
     private MutableLiveData<String> headquarters = new MutableLiveData<>();
     private MutableLiveData<String> phoneNumber = new MutableLiveData<>();
     private MutableLiveData<String> website = new MutableLiveData<>();
@@ -42,6 +43,7 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
     private MutableLiveData<String> summary = new MutableLiveData<>();
     private MutableLiveData<Timestamp> foundation_date = new MutableLiveData<>();
     private MutableLiveData<String> specialities = new MutableLiveData<>();
+
 
 
 
@@ -59,6 +61,13 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
 
     public LiveData<String> getName() {
         return name;
+    }
+    public void setHeadquarters(String headquarters) {
+        this.headquarters.setValue(headquarters);
+    }
+
+    public LiveData<String> getHeadquarters() {
+        return headquarters;
     }
 
     public void setEmail(String email) {
@@ -86,12 +95,12 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
         return zipcode;
     }
 
-    public void setHeadquarters(String headquarters) {
-        this.headquarters.setValue(headquarters);
+    public void setAddress(String address) {
+        this.address.setValue(address);
     }
 
-    public LiveData<String> getHeadquarters() {
-        return headquarters;
+    public LiveData<String> getAddress() {
+        return address;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -189,7 +198,7 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
         user.put("email", email.getValue());
         user.put("city", city.getValue());
         user.put("zipcode", zipcode.getValue());
-        user.put("headquarters", headquarters.getValue());
+        user.put("address", address.getValue());
         user.put("phone", phoneNumber.getValue());
         user.put("profileImage", "");
         user.put("website", website.getValue());
@@ -224,6 +233,7 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
         business.put("city", city.getValue());
         business.put("zipcode", zipcode.getValue());
         business.put("headquarters", headquarters.getValue());
+        business.put("address", address.getValue());
         business.put("phone", phoneNumber.getValue());
         business.put("profileImage", "");
         business.put("website", website.getValue());

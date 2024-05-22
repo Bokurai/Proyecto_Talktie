@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 public class CompanyProfileFromSchool extends Fragment {
 
-    private TextView nameCompany, location, description, type, phone, email, website;
+    private TextView nameCompany, location, description, type, phone, email, website, headquaters;
 
     private AppCompatButton message;
     MainActivity mainActivity;
@@ -57,17 +57,19 @@ public class CompanyProfileFromSchool extends Fragment {
         website = view.findViewById(R.id.websiteTextViewPS);
         message = view.findViewById(R.id.btnMessageCompany);
         backButton = view.findViewById(R.id.img_return_to_companyview);
+        headquaters = view.findViewById(R.id.txtHeadquartersCompany);
 
         companySearchViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Business>() {
             @Override
             public void onChanged(Business business) {
                 nameCompany.setText(business.getName());
-                location.setText(business.getHeadquarters());
+                location.setText(business.getAddress());
                 description.setText(business.getSummary());
                 type.setText(business.getTypeCompany());
                 phone.setText(business.getPhone());
                 email.setText(business.getEmail());
                 website.setText(business.getWebsite());
+                headquaters.setText(business.getHeadquarters());
             }
         });
 

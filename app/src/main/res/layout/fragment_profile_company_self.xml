@@ -157,7 +157,7 @@
                         android:ellipsize="end"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
-                        android:text="@string/lbl_about_me" />
+                        android:text="@string/lbl_summary" />
 
                     <ImageView
                         android:id="@+id/aboutEditCompany"

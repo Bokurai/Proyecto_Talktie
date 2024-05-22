@@ -21,7 +21,7 @@ import android.widget.TextView;
 public class signIn4_company extends Fragment {
     BusinessRegisterViewModel registerViewModel;
     NavController navController;
-    TextView etCountry, etAddress, etCity, etZipcode;
+    TextView etCountry, etAddress, etCity, etZipcode, etHeadquarters;
     AppCompatButton button;
 
 
@@ -47,6 +47,7 @@ public class signIn4_company extends Fragment {
         button = view.findViewById(R.id.btnContinue5Company);
         navController = Navigation.findNavController(view);
         etZipcode = view.findViewById(R.id.etzipcode);
+        etHeadquarters = view.findViewById(R.id.etHeadquater);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +55,9 @@ public class signIn4_company extends Fragment {
                 if (validarFormulario()) {
                     registerViewModel.setCountry(etCountry.getText().toString());
                     registerViewModel.setCity(etCity.getText().toString());
-                    registerViewModel.setHeadquarters(etAddress.getText().toString());
+                    registerViewModel.setAddress(etAddress.getText().toString());
                     registerViewModel.setZipcode(etZipcode.getText().toString());
+                    registerViewModel.setHeadquarters(etHeadquarters.getText().toString());
                     navController.navigate(R.id.action_goSignIn5Company);
                 }
             }
@@ -93,6 +95,13 @@ public class signIn4_company extends Fragment {
             valid = false;
         } else {
             etAddress.setError(null);
+        }
+
+        if (TextUtils.isEmpty(etHeadquarters.getText().toString())) {
+            etHeadquarters.setError("Required.");
+            valid = false;
+        } else {
+            etHeadquarters.setError(null);
         }
         return valid;
     }
