@@ -53,7 +53,7 @@ public class CompanyViewSchool extends Fragment {
         recyclerView = view.findViewById(R.id.schoolcompRecyclerView);
 
         mainActivity = (MainActivity) requireActivity();
-        mainActivity.showNavBotComp();
+        mainActivity.showNavBotSchool();
         Query baseQuery = FirebaseFirestore.getInstance().collection("Company");
 
         FirestoreRecyclerOptions<Business> options = new FirestoreRecyclerOptions.Builder<Business>()

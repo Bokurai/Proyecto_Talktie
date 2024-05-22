@@ -71,6 +71,7 @@ public class studentSchoolAdapter extends FirestoreRecyclerAdapter<Student, stud
         TextView nameStudent, degree;
         ImageView photoStudent;
 
+
         public studentViewHolder(@NonNull View itemView) {
             super(itemView);
 

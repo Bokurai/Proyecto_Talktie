@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import com.example.proyecto_talktie.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import android.view.MenuItem;
@@ -139,12 +140,15 @@ public class MainActivity extends AppCompatActivity {
                                 switch (userT) {
                                     case "student":
                                         navController.navigate(R.id.home);
+                                        Snackbar.make(findViewById(android.R.id.content), "Signed up in the app using the email " + currentUser.getEmail(), Snackbar.LENGTH_LONG).show();
                                         break;
                                     case "company":
                                         navController.navigate(R.id.action_goCompanyHome);
+                                        Snackbar.make(findViewById(android.R.id.content), "Signed up in the app using the email " + currentUser.getEmail(), Snackbar.LENGTH_LONG).show();
                                         break;
                                     case "school":
                                         navController.navigate(R.id.action_goSchoolHome);
+                                        Snackbar.make(findViewById(android.R.id.content), "Signed up in the app using the email " + currentUser.getEmail(), Snackbar.LENGTH_LONG).show();
                                         break;
                                 }
                             }
