@@ -20,33 +20,11 @@
         android:name="com.example.proyecto_talktie.Login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_login_to_forgetPassword"
-            app:destination="@id/forgetPassword" />
+
     </fragment>
-    <fragment
-        android:id="@+id/forgetPassword"
-        android:name="com.example.proyecto_talktie.ForgetPassword"
-        android:label="fragment_forget_password"
-        tools:layout="@layout/fragment_forget_password" >
-        <action
-            android:id="@+id/action_forgetPassword_to_codePassword"
-            app:destination="@id/codePassword" />
-    </fragment>
-    <fragment
-        android:id="@+id/codePassword"
-        android:name="com.example.proyecto_talktie.CodePassword"
-        android:label="fragment_code_password"
-        tools:layout="@layout/fragment_code_password" >
-        <action
-            android:id="@+id/action_codePassword_to_createNewPassword"
-            app:destination="@id/createNewPassword" />
-    </fragment>
-    <fragment
-        android:id="@+id/createNewPassword"
-        android:name="com.example.proyecto_talktie.CreateNewPassword"
-        android:label="fragment_create_new_password"
-        tools:layout="@layout/fragment_create_new_password" />
+
+
+
     <fragment
         android:id="@+id/signIn1"
         android:name="com.example.proyecto_talktie.SignIn1"
@@ -80,7 +58,7 @@
         tools:layout="@layout/fragment_sign_in10" />
     <fragment
         android:id="@+id/profileStudent"
-        android:name="com.example.proyecto_talktie.ProfileStudent"
+        android:name="com.example.proyecto_talktie.view.student_fragments.ProfileStudent"
         android:label="fragment_profile_student"
         tools:layout="@layout/fragment_profile_student" />
     <action
@@ -110,17 +88,8 @@
         android:id="@+id/action_goSelectRegister"
         app:destination="@+id/selectRegister" />
 
-    <action
-        android:id="@+id/action_goForgetPassword"
-        app:destination="@id/forgetPassword" />
 
-    <action
-        android:id="@+id/action_goCodePassword"
-        app:destination="@id/codePassword" />
 
-    <action
-        android:id="@+id/action_goCreateNewPassword"
-        app:destination="@id/createNewPassword" />
     <action
         android:id="@+id/action_to_Register"
         app:destination="@id/signIn1" />
@@ -157,28 +126,28 @@
         app:destination="@+id/sendRequest2" />
     <fragment
         android:id="@+id/messagesHome"
-        android:name="com.example.proyecto_talktie.messagesHome"
+        android:name="com.example.proyecto_talktie.view.student_fragments.messagesHome"
         android:label="fragment_messages_home"
         tools:layout="@layout/fragment_messages_home" />
     <fragment
         android:id="@+id/home"
-        android:name="com.example.proyecto_talktie.Home"
+        android:name="com.example.proyecto_talktie.view.student_fragments.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/offer"
-        android:name="com.example.proyecto_talktie.Offer"
+        android:name="com.example.proyecto_talktie.view.student_fragments.Offer"
         android:label="fragment_offer"
         tools:layout="@layout/fragment_offer" />
     <fragment
         android:id="@+id/studentSearchView"
-        android:name="com.example.proyecto_talktie.StudentSearchView"
+        android:name="com.example.proyecto_talktie.view.student_fragments.StudentSearchView"
         android:label="fragment_student_search_view"
         tools:layout="@layout/fragment_student_search_view" />
     <fragment
         android:id="@+id/companyProfile"
-        android:name="com.example.proyecto_talktie.CompanyProfile"
+        android:name="com.example.proyecto_talktie.view.student_fragments.CompanyProfile"
         android:label="fragment_company_profile"
         tools:layout="@layout/fragment_company_profile" />
     <action
@@ -186,12 +155,12 @@
         app:destination="@id/studentSearchView" />
     <fragment
         android:id="@+id/offerDetailsFragment"
-        android:name="com.example.proyecto_talktie.OfferDetailsFragment"
+        android:name="com.example.proyecto_talktie.view.student_fragments.OfferDetailsFragment"
         android:label="fragment_offer_details"
         tools:layout="@layout/fragment_offer_details" />
     <fragment
         android:id="@+id/sendRequest2"
-        android:name="com.example.proyecto_talktie.sendRequest2"
+        android:name="com.example.proyecto_talktie.view.student_fragments.sendRequest2"
         android:label="fragment_send_request2"
         tools:layout="@layout/fragment_send_request2" />
 
@@ -201,7 +170,7 @@
 
     <fragment
         android:id="@+id/offerCategory"
-        android:name="com.example.proyecto_talktie.offerCategory"
+        android:name="com.example.proyecto_talktie.view.student_fragments.offerCategory"
         android:label="fragment_offer_category"
         tools:layout="@layout/fragment_offer_category" />
 
@@ -282,7 +251,7 @@
         tools:layout="@layout/fragment_sign_in5_company" />
     <fragment
         android:id="@+id/companyHomeFragment"
-        android:name="com.example.proyecto_talktie.CompanyHomeFragment"
+        android:name="com.example.proyecto_talktie.view.company_fragments.CompanyHomeFragment"
         android:label="fragment_company_home"
         tools:layout="@layout/fragment_company_home" />
 
@@ -328,7 +297,7 @@
 
     <fragment
         android:id="@+id/profileCompanySelf"
-        android:name="com.example.proyecto_talktie.ProfileCompanySelf"
+        android:name="com.example.proyecto_talktie.view.company_fragments.ProfileCompanySelf"
         android:label="fragment_profile_company_self"
         tools:layout="@layout/fragment_profile_company_self" />
 
@@ -354,33 +323,33 @@
         tools:layout="@layout/fragment_sign_in4_school" />
     <fragment
         android:id="@+id/schoolHome"
-        android:name="com.example.proyecto_talktie.schoolHome"
+        android:name="com.example.proyecto_talktie.view.school_fragments.schoolHome"
         android:label="fragment_school_home"
         tools:layout="@layout/fragment_school_home" />
     <fragment
         android:id="@+id/schoolProfile"
-        android:name="com.example.proyecto_talktie.schoolProfile"
+        android:name="com.example.proyecto_talktie.view.school_fragments.schoolProfile"
         android:label="fragment_school_profile"
         tools:layout="@layout/fragment_school_profile" />
     <fragment
         android:id="@+id/studentSchoolProfile"
-        android:name="com.example.proyecto_talktie.studentSchoolProfile"
+        android:name="com.example.proyecto_talktie.view.school_fragments.studentSchoolProfile"
         android:label="fragment_student_school_profile"
         tools:layout="@layout/fragment_student_school_profile" />
     <fragment
         android:id="@+id/addRecommendation"
-        android:name="com.example.proyecto_talktie.addRecommendation"
+        android:name="com.example.proyecto_talktie.view.school_fragments.addRecommendation"
         android:label="fragment_add_recommendation"
         tools:layout="@layout/fragment_add_recommendation" />
 
     <fragment
         android:id="@+id/teacherProfile"
-        android:name="com.example.proyecto_talktie.teacherProfile"
+        android:name="com.example.proyecto_talktie.view.school_fragments.teacherProfile"
         android:label="fragment_teacher_profile"
         tools:layout="@layout/fragment_teacher_profile" />
     <fragment
         android:id="@+id/createTeacher"
-        android:name="com.example.proyecto_talktie.createTeacher"
+        android:name="com.example.proyecto_talktie.view.school_fragments.createTeacher"
         android:label="fragment_create_teacher"
         tools:layout="@layout/fragment_create_teacher" />
     <fragment
@@ -392,7 +361,7 @@
 
     <fragment
         android:id="@+id/newOfferFragment"
-        android:name="com.example.proyecto_talktie.NewOfferFragment"
+        android:name="com.example.proyecto_talktie.view.company_fragments.NewOfferFragment"
         android:label="fragment_new_offer"
         tools:layout="@layout/fragment_new_offer" />
     <action
@@ -413,25 +382,25 @@
         tools:layout="@layout/fragment_school_login" />
     <fragment
         android:id="@+id/schoolMessages"
-        android:name="com.example.proyecto_talktie.schoolMessages"
+        android:name="com.example.proyecto_talktie.view.school_fragments.schoolMessages"
         android:label="fragment_school_messages"
         tools:layout="@layout/fragment_school_messages" />
 
     <fragment
         android:id="@+id/offersDetailsApplicants"
-        android:name="com.example.proyecto_talktie.OffersDetailsApplicantsFragment"
+        android:name="com.example.proyecto_talktie.view.company_fragments.OffersDetailsApplicantsFragment"
         android:label="fragment_offers_details_applicants"
         tools:layout="@layout/fragment_offers_details_applicants" />
 
     <fragment
         android:id="@+id/editRecommendation"
-        android:name="com.example.proyecto_talktie.EditRecommendation"
+        android:name="com.example.proyecto_talktie.view.school_fragments.EditRecommendation"
         android:label="fragment_edite_recommendation"
         tools:layout="@layout/fragment_edite_recommendation" />
 
     <fragment
         android:id="@+id/schoolViewCompany"
-        android:name="com.example.proyecto_talktie.SchoolViewCompany"
+        android:name="com.example.proyecto_talktie.view.company_fragments.SchoolViewCompany"
         android:label="fragment_school_view_company"
         tools:layout="@layout/fragment_school_view_company" />
     <action
@@ -439,7 +408,7 @@
         app:destination="@+id/schoolViewCompany" />
     <fragment
         android:id="@+id/companyMessages"
-        android:name="com.example.proyecto_talktie.companyMessages"
+        android:name="com.example.proyecto_talktie.view.company_fragments.companyMessages"
         android:label="fragment_company_messages"
         tools:layout="@layout/fragment_company_messages" />
     <action
@@ -447,7 +416,7 @@
         app:destination="@+id/companyMessages" />
     <fragment
         android:id="@+id/schoolProfileFromCompany"
-        android:name="com.example.proyecto_talktie.SchoolProfileFromCompany"
+        android:name="com.example.proyecto_talktie.view.company_fragments.SchoolProfileFromCompany"
         android:label="fragment_school_profile_from_company"
         tools:layout="@layout/fragment_school_profile_from_company" />
 
@@ -457,19 +426,19 @@
 
     <fragment
         android:id="@+id/companyProfileFromSchool"
-        android:name="com.example.proyecto_talktie.CompanyProfileFromSchool"
+        android:name="com.example.proyecto_talktie.view.school_fragments.CompanyProfileFromSchool"
         android:label="fragment_company_profile_from_school"
         tools:layout="@layout/fragment_company_profile_from_school" />
     <fragment
         android:id="@+id/companyViewSchool"
-        android:name="com.example.proyecto_talktie.CompanyViewSchool"
+        android:name="com.example.proyecto_talktie.view.school_fragments.CompanyViewSchool"
         android:label="fragment_company_view_school"
         tools:layout="@layout/fragment_company_view_school" />
 
 
     <fragment
         android:id="@+id/studentProfileCompany"
-        android:name="com.example.proyecto_talktie.StudentProfileCompany"
+        android:name="com.example.proyecto_talktie.view.company_fragments.StudentProfileCompany"
         android:label="fragment_student_profile_company"
         tools:layout="@layout/fragment_student_profile_company" />
 

@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.proyecto_talktie.viewmodel.SchoolRegisterViewModel;
 import com.google.firebase.Timestamp;
 
 import java.text.ParseException;

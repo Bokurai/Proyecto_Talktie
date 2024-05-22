@@ -9,7 +9,7 @@
     android:orientation="vertical"
     style="@style/groupStylewhite_A700"
     android:layout_marginBottom="@dimen/_25pxh"
-    tools:context=".Offer">
+    tools:context=".view.student_fragments.Offer">
 
     <LinearLayout
             android:id="@+id/linearTitlee"

@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.proyecto_talktie.viewmodel.SchoolRegisterViewModel;
+
 public class signIn4_school extends Fragment {
 
     SchoolRegisterViewModel registerViewModel;

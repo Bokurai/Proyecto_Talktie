@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.proyecto_talktie.viewmodel.BusinessRegisterViewModel;
+
 
 public class signIn2_company extends Fragment {
 

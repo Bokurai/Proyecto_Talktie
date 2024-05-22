@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".companyMessages"
+    tools:context=".view.company_fragments.companyMessages"
     style="@style/groupStylewhite_A700">
 
     <LinearLayout android:gravity="start"

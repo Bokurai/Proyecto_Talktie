@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".studentSchoolProfile"
+    tools:context=".view.school_fragments.studentSchoolProfile"
     android:gravity="start"
     android:id="@+id/profileStudent"
     android:layout_height="match_parent"

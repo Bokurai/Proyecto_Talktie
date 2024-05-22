@@ -11,12 +11,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.example.proyecto_talktie.viewmodel.SchoolRegisterViewModel;
 
 
 public class signIn2_school extends Fragment {
