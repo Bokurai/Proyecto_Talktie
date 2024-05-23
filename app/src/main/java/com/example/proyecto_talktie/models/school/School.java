@@ -2,16 +2,44 @@ package com.example.proyecto_talktie.models.school;
 
 import com.example.proyecto_talktie.models.User;
 
+/*
+ * Class that represents the User type named School, it inherits its variables.
+ */
 public class School extends User {
 
+    /*
+     * Id of the school.
+     */
     String schoolId;
+
+    /*
+     * Summary of the school.
+     */
     String summary;
+
+    /*
+     * Code of the school.
+     */
     String school_code;
+
+    /*
+     * Type of the school.
+     */
     String typeSchool;
+
+    /*
+     * Headquarters of the school.
+     */
     String headquarters;
+
+    /*
+     * Profile image of the school.
+     */
     String profileImage;
 
-
+    /*
+     * Constructor with some properties.
+     */
     public School(String name, String email, String password, String city, String zipcode, String home_address, String phone_number, String profileImage, String website, String about, String school_code, String typeSchool) {
         super(name, email, password, city, zipcode, home_address, phone_number, profileImage, website);
         this.summary = about;
@@ -19,7 +47,9 @@ public class School extends User {
         this.typeSchool = typeSchool;
     }
 
-    //constructor vacío requerido por Firebase
+    /*
+     * Empty constructor required by Firebase.
+     */
     public School(){
         super();
     }

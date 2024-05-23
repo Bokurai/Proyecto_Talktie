@@ -25,11 +25,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-
+/**
+ * Fragment that represents the home screen for the company user, displaying their published job offers.
+ */
 public class CompanyHomeFragment extends Fragment {
-
     AppCompatButton publishButton;
-
     MainActivity mainActivity;
     NavController navController;
     private CompanyViewModel companyViewModel;
@@ -39,20 +39,21 @@ public class CompanyHomeFragment extends Fragment {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     String userId= mAuth.getUid();
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_company_home, container, false);
     }
-
+    /**
+     * Sets up the views and data for the Company Home screen.
+     * It initializes the necessary views, observes changes in the company's offers, and updates the UI accordingly.
+     * Additionally, it handles the navigation to the "New Offer" screen when the publishButton is clicked.
+     */
     public void onViewCreated(@NonNull View view, @Nullable Bundle
             savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

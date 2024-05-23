@@ -32,7 +32,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * fragment that displays the details of a job offer.
+ */
 public class OfferDetailsFragment extends Fragment {
 
     NavController navController;

@@ -7,23 +7,65 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+ * Class that represents the User type named Business/Company, it inherits its variables.
+ */
 public class Business extends User {
 
+    /*
+     * Id of the company.
+     */
     String companyId;
+
+    /*
+     * Sector of the company.
+     */
     String sector;
+
+    /*
+     * Type of the company.
+     */
     String typeCompany;
+
+    /*
+     * Summary of the company.
+     */
     String summary;
+
+    /*
+     * Foundation date of the company.
+     */
     Date foundation_date;
+
+    /*
+     * Fields that the company specializes on.
+     */
     String specialties;
+
+    /*
+     * Main headquaerters of the company.
+     */
     String headquarters;
+
+    /*
+     * Job offers that the company has.
+     */
     List<String> offers;
 
+    /*
+     * Profile image of the company
+     */
     String profileImage;
 
+    /*
+     * A list of students that follow the company.
+     */
    public Map<String, Boolean> followers = new HashMap<>();
 
 
-    //constructor vacío requerido por Firebase
+    /*
+     * Empty constructor required by Firebase.
+     */
     public Business(){
         super();
     }

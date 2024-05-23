@@ -19,15 +19,14 @@ import android.widget.ImageView;
 
 import com.example.proyecto_talktie.viewmodel.StudentRegisterViewModel;
 
-
+/**
+ * Fragment that is part of the signIn that handles user input for address details including country, street address, city, and postal code.
+ */
 public class SignIn7 extends Fragment {
     StudentRegisterViewModel registerViewModel;
     NavController navController;
-
     EditText etCountry, etStreetAddress,etCity,etPostalCode;
-
     AppCompatButton nextButton;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +48,6 @@ public class SignIn7 extends Fragment {
         etPostalCode = view.findViewById(R.id.etPostalCode);
         nextButton = view.findViewById(R.id.btnContinuetoEight);
         navController = Navigation.findNavController(view);
-
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,8 +60,6 @@ public class SignIn7 extends Fragment {
                 }
             }
         });
-
-        //felcha atras
         ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
         imageArrowleft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,12 +67,13 @@ public class SignIn7 extends Fragment {
                 navController.navigate(R.id.signIn6);
             }
         });
-
-
     }
+    /**
+     * Validates the user input form.
+     * @return True if the form is valid, false otherwise.
+     */
     private boolean validarFormulario() {
         boolean valid = true;
-
         if (TextUtils.isEmpty(etCountry.getText().toString())) {
             etCountry.setError("Required.");
             valid = false;

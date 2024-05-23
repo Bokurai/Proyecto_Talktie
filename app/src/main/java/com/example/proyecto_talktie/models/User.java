@@ -1,31 +1,71 @@
 package com.example.proyecto_talktie.models;
 
+
+/*
+ * Class that represents the main user.
+ */
 public class User {
 
+    /*
+     * Id of the user.
+     */
     String id;
 
+    /*
+     * Name of the user.
+     */
     String name;
 
+    /*
+     * Email of the user.
+     */
     String email;
 
+    /*
+     * Password of the user.
+     */
     String password;
 
+    /*
+     * City where the user lives.
+     */
     String city;
 
+    /*
+     * Zipcode of the user.
+     */
     String zipcode;
 
+    /*
+     * Street address of the user.
+     */
     String address;
 
+    /*
+     * Phone number of the user.
+     */
     String phone;
 
+    /*
+     * Profile image of the user.
+     */
     String profile_image;
 
+    /*
+     * Personal website of the user.
+     */
     String website;
 
+    /*
+     * Empty constructor required by Firebase.
+     */
     public User(){
         super();
     }
 
+    /*
+     * Constructor with the properties.
+     */
     public User(String name, String email, String password, String city, String zipcode, String home_address, String phone_number, String profile_image, String website) {
         this.name = name;
         this.email = email;
@@ -37,6 +77,7 @@ public class User {
         this.profile_image = profile_image;
         this.website = website;
     }
+
 
     public String getId() {
         return id;
@@ -74,6 +115,9 @@ public class User {
         return city;
     }
 
+    /*
+     * Class that represents the main User.
+     */
     public void setCity(String city) {
         this.city = city;
     }

@@ -22,9 +22,6 @@
         tools:layout="@layout/fragment_login" >
 
     </fragment>
-
-
-
     <fragment
         android:id="@+id/signIn1"
         android:name="com.example.proyecto_talktie.SignIn1"
