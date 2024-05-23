@@ -31,15 +31,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
-
+/**
+ * Adapter class for displaying a list of job offers in a RecyclerView.
+ * It binds offer data to the ViewHolder and handles item click events.
+ */
   public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersViewHolder> {
-
         NavController navController;
         OfferViewModel offerViewModel;
         private FirebaseFirestore db;
         private List<OfferObject> offerObjectList;
         Context context;
-
+        /**
+         * Constructor for the adapter.
+         * @param offerObjectList The list of job offers to display.
+         * @param navController The NavController for navigating to the offer details fragment.
+         * @param offerViewModel The ViewModel for handling offer data.
+         * @param db The FirebaseFirestore instance for database operations.
+         * @param context The Context of the application.
+         */
         public OffersAdapter(List<OfferObject> offerObjectList, NavController navController, OfferViewModel offerViewModel, FirebaseFirestore db, Context context) {
             this.offerViewModel = offerViewModel;
             this.navController = navController;
@@ -47,22 +56,29 @@ import java.util.List;
             this.db = db;
             this.context = context;
         }
-
         public OffersAdapter(List<OfferObject> offerObjectList, FirebaseFirestore db) {
             this.offerObjectList = offerObjectList;
             this.db = db;
         }
-
         public OffersAdapter(List<OfferObject> offerObjectList) {
             this.offerObjectList = offerObjectList;
         }
-
+        /**
+         * Method called to create a new ViewHolder for job offers.
+         * @param parent The ViewGroup into which the new View will be added after it is bound to an adapter position.
+         * @param viewType The view type of the new View.
+         * @return A new ViewHolder that holds a View of the given view type.
+         */
         @NonNull
         @Override
         public OffersAdapter.OffersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new OffersAdapter.OffersViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_offers,parent,false));
         }
-
+        /**
+         * Method called to bind job offer data to the ViewHolder.
+         * @param holder The ViewHolder to bind the data to.
+         * @param position The position of the item in the RecyclerView.
+         */
         @Override
         public void onBindViewHolder(@NonNull OffersAdapter.OffersViewHolder holder, int position) {
             OfferObject offerObject = offerObjectList.get(position);
@@ -72,7 +88,7 @@ import java.util.List;
             holder.name.setText(offerObject.getName());
             holder.companyName.setText(offerObject.getCompanyName());
 
-            //Imagen compañia en la oferta
+            //Image company in the offer
             String imageProfile = offerObject.getCompanyImageUrl();
 
             if (imageProfile != null && !imageProfile.isEmpty()){
@@ -86,7 +102,6 @@ import java.util.List;
                         .load(R.drawable.build_image_default)
                         .into(holder.companyImage);
             }
-
 
             CollectionReference applicantsRef = db.collection("Offer").document(offerObject.getOfferId()).collection("Applicants");
             applicantsRef.document(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -124,7 +139,6 @@ import java.util.List;
                 }
             });
 
-
             if(offerObject.getTags() != null) {
                 if (!offerObject.getTags().get(0).isEmpty()) {
                     holder.tag1.setText(offerObject.getTags().get(0));
@@ -158,33 +172,38 @@ import java.util.List;
                     navController.navigate(R.id.action_goOfferDetailsFragment);
                 }
             });
-
         }
-
+        /**
+         * Method called to get the number of job offers to display.
+         * @return The number of job offers.
+         */
         @Override
         public int getItemCount() {
             return offerObjectList.size();
         }
 
         /**
-         *  Method updating the list of offers
-         * @param offerObjectList list of offers
+         * Method updating the list of job offers.
+         * @param offerObjectList The list of job offers to display.
          */
         public void setOfferObjectList(List<OfferObject> offerObjectList) {
             this.offerObjectList = offerObjectList;
             notifyDataSetChanged();
             Log.d("OffersAdapter", "Cantidad de ofertas recibidas: " + offerObjectList.size());
         }
-
+        /**
+         * ViewHolder class that holds references to UI elements for each job offer item in the RecyclerView.
+         */
         class OffersViewHolder extends RecyclerView.ViewHolder {
 
             TextView name, companyName, tag1, tag2, tag3,numApplicants,stateOffer;
             ImageView companyImage;
-
-
+            /**
+             * Constructor for the ViewHolder.
+             * @param itemView The view associated with the ViewHolder.
+             */
             public OffersViewHolder(@NonNull View itemView) {
                 super(itemView);
-
                 name = itemView.findViewById(R.id.offerName);
                 companyName = itemView.findViewById(R.id.companyName);
                 tag1 = itemView.findViewById(R.id.btnTagOne);
