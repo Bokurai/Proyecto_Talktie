@@ -42,7 +42,11 @@ import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-
+/**
+ * Fragment representing a company profile. Allows the company to view and edit its information,
+ * such as the company name, description, profile picture, etc. In addition, it provides the
+ * functionality for the company to log out and navigate to the company's login screen.
+ */
 public class ProfileCompanySelf extends Fragment {
     MainActivity mainActivity;
     NavController navController;
@@ -58,14 +62,16 @@ public class ProfileCompanySelf extends Fragment {
     String companyId;
     int SELECT_PICTURE = 200;
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
-
+    /**
+     * Manages the company's self-profile, allowing them to view and edit their information,
+     * including the company name, summary, and profile image.
+     * @return the inflated view for the fragment's UI.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,7 +91,9 @@ public class ProfileCompanySelf extends Fragment {
         });
         return view;
     }
-
+    /**
+     * Sets up the view components and handles user interaction for managing the company's self-profile.
+     */
     public void onViewCreated(@NonNull View view, @Nullable Bundle
             savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -179,7 +187,9 @@ public class ProfileCompanySelf extends Fragment {
             }
         });
     }
-
+    /**
+     * Loads the user's information, including company name, summary, and profile image.
+     */
     public void loadUserInfo() {
         if (user != null && getView() != null) {
             DocumentReference documentReference = FirebaseFirestore.getInstance().collection("Company").document(companyId);
@@ -207,7 +217,9 @@ public class ProfileCompanySelf extends Fragment {
             });
         }
     }
-
+    /**
+     * Opens the gallery for selecting a new profile image.
+     */
     private void selectGalleryImageRegister() {
         Intent i = new Intent();
         i.setType("image/*");
@@ -215,7 +227,9 @@ public class ProfileCompanySelf extends Fragment {
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
 
     }
-
+    /**
+     * Handles the result from selecting an image from the gallery.
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -232,7 +246,10 @@ public class ProfileCompanySelf extends Fragment {
             }
         }
     }
-
+    /**
+     * Uploads the selected image to Firebase Storage and updates the profile image URL in Firestore.
+     * @param uri The URI of the selected image.
+     */
     private void uploadImage(Uri uri) {
         if (user != null) {
             if (uri != null) {
@@ -245,7 +262,10 @@ public class ProfileCompanySelf extends Fragment {
             }
         }
     }
-
+    /**
+     * Updates the profile image URL in Firestore.
+     * @param imageUrl The URL of the uploaded profile image.
+     */
     private void linkImagetoUser(String imageUrl) {
         if (user != null) {
             FirebaseFirestore.getInstance().collection("User").document(companyId)
@@ -265,7 +285,10 @@ public class ProfileCompanySelf extends Fragment {
                     });
         }
     }
-
+    /**
+     * Displays a dialog to confirm the logout action. If the user confirms, it signs out the current user
+     * and navigates to the company login screen.
+     */
         private void showLogoutDialog() {
             AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
             builder.setView(R.layout.dialog_logout)
@@ -282,7 +305,6 @@ public class ProfileCompanySelf extends Fragment {
                             dialog.dismiss();
                         }
                     });
-
             AlertDialog dialog = builder.create();
             dialog.show();
         }

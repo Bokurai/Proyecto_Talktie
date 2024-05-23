@@ -33,18 +33,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * fragment that displays the details of a job offer.
+ * Fragment that displays the details of a job offer.
  */
 public class OfferDetailsFragment extends Fragment {
-
     NavController navController;
-
     TextView offer_name, business_name, offer_date, job_category, contract_time, job_description;
-
     AppCompatButton apply_job;
-
     ImageView backArrow, companyImage;
-
     String offerId;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -55,14 +50,16 @@ public class OfferDetailsFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_offer_details, container, false);
     }
-
+    /**
+     * Called immediately after the view creation to initialize UI components and observe changes
+     * in the selected offer data.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -112,7 +109,6 @@ public class OfferDetailsFragment extends Fragment {
                 offerId = offerObject.getOfferId();
                 changeButtonifApplied(offerId);
 
-
                 apply_job.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -131,8 +127,6 @@ public class OfferDetailsFragment extends Fragment {
                 });
             }
         });
-
-
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +134,10 @@ public class OfferDetailsFragment extends Fragment {
             }
         });
     }
-
+    /**
+     * Change the apply button text based on whether the user has already applied to the job.
+     * @param offerId The ID of the job offer.
+     */
     public void changeButtonifApplied(String offerId) {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
@@ -158,10 +155,11 @@ public class OfferDetailsFragment extends Fragment {
                         }
                     });
         }
-
-
     }
-
+    /**
+     * Remove the user's application from the job.
+     * @param offerId The ID of the job offer.
+     */
     public void unApplyFromJob(String offerId){
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {

@@ -39,7 +39,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Fragment responsible for displaying the profile of a student from the company's perspective.
+ * It retrieves student data from Firestore and displays it, including name, contact information,
+ * about section, cover letter, experience, resume, and recommendations.
+ */
 public class StudentProfileCompany extends Fragment {
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     NavController navController;
@@ -51,22 +55,26 @@ public class StudentProfileCompany extends Fragment {
     ApplicantsViewModel applicantsViewModel;
     private RecommendAdapter adapter;
     private StudentViewModel studentViewModel;
-
+    /**
+     * Method called to create the view associated with the fragment.
+     * Initializes the RecyclerView adapter for recommendations.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_student_profile_company, container, false);
-
-        //Create and set the recyclerview
         adapter = new RecommendAdapter(new ArrayList<>());
-
         recyclerRecommendation = view.findViewById(R.id.listSRecyclerView);
         recyclerRecommendation.setAdapter(adapter);
         // Inflate the layout for this fragment
         return view;
     }
-
+    /**
+     * Method called when the view associated with the fragment has been created.
+     * Handles UI elements, retrieves student data from Firestore, and updates the UI accordingly.
+     * @param view The inflated view of the fragment.
+     * @param savedInstanceState The saved instance state of the fragment.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -105,10 +113,7 @@ public class StudentProfileCompany extends Fragment {
             public void onChanged(Student student) {
 
                 String studentId = student.getStudentId();
-
                 nameStudent.setText(student.getName());
-
-
                String offerId = applicantsViewModel.getOfferId();
 
                applicantsViewModel.dataApplicant(offerId, studentId).observe(getViewLifecycleOwner(), new Observer<ApplicantData>() {
@@ -160,8 +165,6 @@ public class StudentProfileCompany extends Fragment {
                        } else {
                            linearResume.setVisibility(View.GONE);
                        }
-
-
                    }
                });
 
@@ -173,8 +176,6 @@ public class StudentProfileCompany extends Fragment {
                     //Update data on exist adapter
                     adapter.setRecommendationList(recommendations);
                 });
-
-
 
                 if (student.getAbout() != null && !student.getAbout().isEmpty()) {
                     cardAbout.setVisibility(View.VISIBLE);
@@ -210,29 +211,36 @@ public class StudentProfileCompany extends Fragment {
                             .load(R.drawable.profile_image_defaut)
                             .into(imageStudent);
                 }
-
             }
         });
 
     }
-
+    /**
+     * Adapter class for the RecyclerView that displays recommendations.
+     * It binds recommendation data to the ViewHolder and handles UI updates.
+     */
     class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.RecommendationViewHolder> {
         private List<Recommendation> recommendationList;
 
         public RecommendAdapter(List<Recommendation> recommendationList) {
             this.recommendationList = recommendationList;
         }
-
+        /**
+         * Method called to create a new ViewHolder for recommendations.
+         */
         @NonNull
         @Override
         public RecommendAdapter.RecommendationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new RecommendAdapter.RecommendationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_recommendations, parent, false));
         }
-
+        /**
+         * Method called to bind recommendation data to the ViewHolder.
+         * @param holder The ViewHolder to bind the data to.
+         * @param position The position of the item in the RecyclerView.
+         */
         @Override
         public void onBindViewHolder(@NonNull RecommendAdapter.RecommendationViewHolder holder, int position) {
             Recommendation recommendation = recommendationList.get(position);
-
             //change image and teacher name by a search through their id.
             holder.nameTeacher.setText(recommendation.getTeacher().getName());
             holder.textRecommendation.setText(recommendation.getRecommendationText());
@@ -274,15 +282,15 @@ public class StudentProfileCompany extends Fragment {
             } else {
                 holder.position.setVisibility(View.GONE);
             }
-
-
         }
-
         private boolean isNullOrEmpty(String string) {
             return string == null || string.isEmpty();
         }
 
-
+        /**
+         * Method called to get the number of recommendations to display.
+         * @return The number of recommendations.
+         */
         @Override
         public int getItemCount() {
             //Number of recommendations to display
@@ -299,7 +307,7 @@ public class StudentProfileCompany extends Fragment {
         }
 
         /**
-         * Class extracting from the view holder for later use in the adapter
+         * ViewHolder class that holds references to UI elements for each recommendation item in the RecyclerView.
          */
         class RecommendationViewHolder extends RecyclerView.ViewHolder {
             ImageView imageTeacher;

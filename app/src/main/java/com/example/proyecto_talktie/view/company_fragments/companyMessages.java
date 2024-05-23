@@ -9,16 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.proyecto_talktie.R;
-
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link companyMessages#newInstance} factory method to
- * create an instance of this fragment.
+ * This fragment represents the company messages screen. This fragment is not developed.
  */
 public class companyMessages extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -29,16 +24,6 @@ public class companyMessages extends Fragment {
     public companyMessages() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment companyMessages.
-     */
-    // TODO: Rename and change types and number of parameters
     public static companyMessages newInstance(String param1, String param2) {
         companyMessages fragment = new companyMessages();
         Bundle args = new Bundle();
@@ -47,7 +32,6 @@ public class companyMessages extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +40,6 @@ public class companyMessages extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

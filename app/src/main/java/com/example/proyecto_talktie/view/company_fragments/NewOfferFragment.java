@@ -35,10 +35,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Fragment for creating and publishing a new job offer by a company.
+ */
 
 public class NewOfferFragment extends Fragment {
-
     MainActivity mainActivity;
     NavController navController;
     Spinner jobcategory;
@@ -50,14 +51,15 @@ public class NewOfferFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_new_offer, container, false);
     }
-
+    /**
+     * Sets up the view components and handles user interaction for creating a new job offer.
+     */
     public void onViewCreated(@NonNull View view, @Nullable Bundle
             savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -73,7 +75,7 @@ public class NewOfferFragment extends Fragment {
         tagThreeET = view.findViewById(R.id.tagNewOfferThree);
         publishOfferBtn = view.findViewById(R.id.btnPublishOffer);
 
-        //Para configurar el spinner
+        // Configure the spinner with predefined options
         String[] spinnerOPs = {"IT"," Dev Fullstack","Marketing", "Health"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, spinnerOPs);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -90,7 +92,10 @@ public class NewOfferFragment extends Fragment {
         });
 
     }
-
+    /**
+     * Publishes the job offer to Firestore.
+     * @param timestamp The timestamp indicating when the offer was published.
+     */
     public void publishOffer(Timestamp timestamp){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();

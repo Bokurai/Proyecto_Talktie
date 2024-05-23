@@ -30,7 +30,12 @@ import com.google.firebase.firestore.Query;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-
+/**
+ * Fragment responsible for displaying a list of schools from the company's perspective.
+ * It retrieves school data from Firestore and displays it in a RecyclerView.
+ * Each item in the list includes the school's name, type, and profile image.
+ * Clicking on a school item navigates to the detailed profile of that school.
+ */
 public class SchoolViewCompany extends Fragment {
 
     NavController navController;
@@ -38,7 +43,10 @@ public class SchoolViewCompany extends Fragment {
     SchoolSearchViewModel schoolSearchViewModel;
 
     MainActivity mainActivity;
-
+    /**
+     * Method called when the fragment is first created.
+     * @param savedInstanceState The saved instance state of the fragment.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +57,13 @@ public class SchoolViewCompany extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_school_view_company, container, false);
     }
-
+    /**
+     * Method called when the view associated with the fragment has been created.
+     * Here, UI elements are configured, FirestoreRecyclerAdapter is initialized with Firestore data,
+     * and click events on school items are handled.
+     * @param view The inflated view of the fragment.
+     * @param savedInstanceState The saved instance state of the fragment.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -69,13 +83,24 @@ public class SchoolViewCompany extends Fragment {
         final SchoolViewAdapter adapter = new SchoolViewAdapter(options);
         recyclerView.setAdapter(adapter);
     }
-
+    /**
+     * Adapter class for the RecyclerView that displays the list of schools.
+     * It binds school data to the ViewHolder and handles click events on school items.
+     */
     class SchoolViewAdapter extends FirestoreRecyclerAdapter<School, SchoolViewAdapter.SchoolViewHolder>{
-
+        /**
+         * Constructor for the SchoolViewAdapter.
+         * @param options The options for the FirestoreRecyclerAdapter.
+         */
        public SchoolViewAdapter(@NonNull FirestoreRecyclerOptions<School> options){
            super(options);
        }
-
+        /**
+         * Method called to bind school data to the ViewHolder.
+         * @param holder The ViewHolder to bind the data to.
+         * @param position The position of the item in the RecyclerView.
+         * @param model The School object containing the data to bind.
+         */
         @Override
         protected void onBindViewHolder(@NonNull SchoolViewAdapter.SchoolViewHolder holder, int position, @NonNull School model) {
             holder.school_name.setText(model.getName());
@@ -102,18 +127,24 @@ public class SchoolViewCompany extends Fragment {
                 }
             });
         }
-
-
-
+        /**
+         * Method called to create a new ViewHolder.
+         */
         @NonNull
         @Override
         public SchoolViewAdapter.SchoolViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new SchoolViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_school_view, parent, false));
         }
-
+        /**
+         * ViewHolder class that holds references to UI elements for each item in the RecyclerView.
+         */
         class SchoolViewHolder extends  RecyclerView.ViewHolder{
             TextView school_name, school_type;
             ImageView school_image;
+            /**
+             * Constructor for the SchoolViewHolder.
+             * @param itemView The view corresponding to the ViewHolder.
+             */
             public SchoolViewHolder(@NonNull View itemView){
                 super(itemView);
 

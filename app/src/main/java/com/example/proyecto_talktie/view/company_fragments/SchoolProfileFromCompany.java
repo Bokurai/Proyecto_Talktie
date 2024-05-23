@@ -20,7 +20,11 @@ import android.widget.TextView;
 import com.example.proyecto_talktie.R;
 import com.example.proyecto_talktie.models.school.School;
 import com.example.proyecto_talktie.viewmodel.SchoolSearchViewModel;
-
+/**
+ * Fragment that displays the profile of a school from the company's perspective.
+ * It allows the company to view detailed information about a school, such as its name, location,
+ * description, type, phone number, email, and website.
+ */
 
 public class SchoolProfileFromCompany extends Fragment {
 
@@ -30,7 +34,10 @@ public class SchoolProfileFromCompany extends Fragment {
     private SchoolSearchViewModel schoolSearchViewModel;
     private NavController navController;
 
-
+    /**
+     * Method called when the fragment is first created.
+     * @param savedInstanceState The saved instance state of the fragment.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +49,12 @@ public class SchoolProfileFromCompany extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_school_profile_from_company, container, false);
     }
-
+    /**
+     * Method called when the view associated with the fragment has been created.
+     * Here, UI elements are configured and click events are handled.
+     * @param view The inflated view of the fragment.
+     * @param savedInstanceState The saved instance state of the fragment.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
