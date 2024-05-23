@@ -75,11 +75,11 @@ public class schoolProfile extends Fragment {
         //LOG OUT
         LinearLayout logoutLinear = view.findViewById(R.id.LogoutLinear);
 
-        // Configura un listener de clic para el LinearLayout
+        //Set up a click listener for the LinearLayout
         logoutLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Muestra el diálogo de confirmación para cerrar sesión
+                //Shows the confirmation dialog to log out
                 showLogoutDialog();
             }
         });
@@ -92,15 +92,15 @@ public class schoolProfile extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //Initialize the ViewModel
         schoolViewModel = new ViewModelProvider(requireActivity()).get(SchoolViewModel.class);
         teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
 
         navController = Navigation.findNavController(view);
+        //Initialize the adapter
         adapter = new TeachersAdapter(new ArrayList<>(), getContext(), navController, teacherViewModel);
 
         mAuth = FirebaseAuth.getInstance();
-
-
         schoolId = user.getUid();
 
         editButton = view.findViewById(R.id.aboutEditS);
@@ -113,16 +113,21 @@ public class schoolProfile extends Fragment {
         editImage = view.findViewById(R.id.edit_profiletxtS);
         recyclerView = view.findViewById(R.id.teachersRecyclerView);
 
+        /**
+         * Observe the information obtained from the school
+         */
         schoolViewModel.getSchoolData(schoolId).observe(getViewLifecycleOwner(), school -> {
 
+            //Update the interface with school data
             name.setText(school.getName());
             summary.setText(school.getSummary());
 
-           String imageprofileURL = school.getProfileImage();
+           String imageProfileURL = school.getProfileImage();
 
+            //If the image is null, the default will be set
             Context context = getView().getContext();
-            if (imageprofileURL != null && !imageprofileURL.isEmpty()) {
-                Uri uriImagep = Uri.parse(imageprofileURL);
+            if (imageProfileURL != null && !imageProfileURL.isEmpty()) {
+                Uri uriImagep = Uri.parse(imageProfileURL);
                 Glide.with(context)
                         .load(uriImagep)
                         .into(imageSchool);
@@ -133,13 +138,17 @@ public class schoolProfile extends Fragment {
             }
         });
 
-
+        /**
+         * Observe the teachers belonging to the school
+         */
         teacherViewModel.getTeachers().observe(getViewLifecycleOwner(), teachers -> {
+            //Update the adapter
             adapter.setTeacherList(teachers);
         });
 
         recyclerView.setAdapter(adapter);
 
+        //Button to create new teachers
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,6 +156,7 @@ public class schoolProfile extends Fragment {
             }
         });
 
+        //Button to edit profile image
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +164,7 @@ public class schoolProfile extends Fragment {
             }
         });
 
+        //Button to edit the summary
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,7 +178,7 @@ public class schoolProfile extends Fragment {
 
                 editTextAbout.setText(summary.getText());
 
-                //remplazar el texview con el editText
+                //Replace the texview with the editText
                 ViewGroup parent = (ViewGroup) summary.getParent();
                 int index = parent.indexOfChild(summary);
                 parent.removeView(summary);
@@ -176,11 +187,12 @@ public class schoolProfile extends Fragment {
                 editTextAbout.requestFocus();
                 editTextAbout.selectAll();
 
-                //actualizar newAbout
+                //Replace the texview with the editText
                 newSummary = summary.getText().toString().trim();
             }
         });
 
+        //Button to save the new summary
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,9 +200,11 @@ public class schoolProfile extends Fragment {
 
                 if (!updateAbout.isEmpty()) {
 
+                    //Check if the summary has changed
                     if (!updateAbout.equals(newSummary)) {
                         newSummary = updateAbout;
 
+                        //Update to the new summary
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                         db.collection("School").document(schoolId)
                                 .update("summary", newSummary)
@@ -207,7 +221,7 @@ public class schoolProfile extends Fragment {
                                 });
                     }
 
-                    //volver a un textView
+                    //Return to a textView
                     ViewGroup parent = (ViewGroup) editTextAbout.getParent();
                     int index = parent.indexOfChild(editTextAbout);
                     parent.removeView(editTextAbout);
@@ -221,8 +235,6 @@ public class schoolProfile extends Fragment {
                 }
             }
         });
-
-
 
     }
 

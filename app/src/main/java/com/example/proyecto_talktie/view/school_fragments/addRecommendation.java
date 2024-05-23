@@ -67,14 +67,18 @@ public class addRecommendation extends Fragment {
 
         context = getView().getContext();
 
+        //Initialize the ViewModel
         TeacherViewModel teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
 
+        //Gets the student stored in the viewModel
         student = teacherViewModel.getStudent();
         studentId = student.getStudentId();
 
+        //Update the interface with the data
         nameStudent.setText(student.getName());
         String imageStudent = student.getProfileImage();
 
+        //If the image is null, the default will be set
         if (imageStudent != null && !imageStudent.isEmpty()) {
             Uri uriImage = Uri.parse(imageStudent);
             Glide.with(context)
@@ -86,7 +90,7 @@ public class addRecommendation extends Fragment {
                     .into(studentImage);
         }
 
-
+        //Navigate to the student profile
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,13 +98,18 @@ public class addRecommendation extends Fragment {
             }
         });
 
+        /**
+         * Observe the selected teacher
+         */
         teacherViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Teacher>() {
             @Override
             public void onChanged(Teacher teacher) {
 
+                //Update teacher information
                 nameTacher.setText(teacher.getName());
                 String imageProfile = teacher.getProfileImage();
 
+                //If the image is null, the default will be set
                 if (imageProfile != null && !imageProfile.isEmpty()) {
                     Uri uriImage = Uri.parse(imageProfile);
                     Glide.with(context)
@@ -119,15 +128,18 @@ public class addRecommendation extends Fragment {
                     }
                 });
 
+                //Button to save the recommendation made
                 save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+                        //Gets the text of the recommendation
                         String recommendation = recommendationText.getText().toString().trim();
                         String teacherId = teacher.getTeacherId();
 
+                        //Create the recommendation in the database
                         db.collection("Student")
                                 .document(studentId)
                                 .update("recommendations."+teacherId, recommendation)
@@ -144,6 +156,7 @@ public class addRecommendation extends Fragment {
                                                                             @Override
                                                                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                                                                 Student updatedStudent = documentSnapshot.toObject(Student.class);
+                                                                                //Save the student updated
                                                                                 teacherViewModel.setStudent(updatedStudent);
                                                                                 Toast.makeText(getContext(), "Recommendation added to student profile", Toast.LENGTH_SHORT).show();
                                                                                 navController.popBackStack();
@@ -159,7 +172,5 @@ public class addRecommendation extends Fragment {
                 });
             }
         });
-
-
     }
 }
