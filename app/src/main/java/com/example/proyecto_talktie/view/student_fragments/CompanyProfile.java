@@ -42,7 +42,6 @@ import java.util.List;
 
 
 public class CompanyProfile extends Fragment {
-
     private TextView nameCompany, location, description, type, phone, email, website, headquarters, txtVacancies;
     private ImageView imageReturn;
     private AppCompatButton follow;
@@ -61,8 +60,8 @@ public class CompanyProfile extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_company_profile, container, false);
 
+        //Initialize the adapter and define the recyclerView
         adapter = new OffersAdapter(new ArrayList<>());
-
         recyclerView = view.findViewById(R.id.vacanciesRecyclerView);
         recyclerView.setAdapter(adapter);
 
@@ -73,6 +72,7 @@ public class CompanyProfile extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //Initialize the viewModel
         searchViewModel = new ViewModelProvider(requireActivity()).get(StudentSearchViewModel.class);
         offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
@@ -99,21 +99,24 @@ public class CompanyProfile extends Fragment {
             }
         });
 
+        /**
+         * Observe the selected company.
+         */
         searchViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Business>() {
             @Override
             public void onChanged(Business business) {
 
-                //Obtener id del usuario
+                //Get user id
                 String userId = currentUser.getUid();
 
-                //Verificar si el usuario sigue a la empresa
+                //Check if the user follows the company
                 if (business.followers != null && business.followers.containsKey(userId)) {
                     updateFollowButton(true);
                 } else {
                     updateFollowButton(false);
                 }
 
-                //Actualizar la interfaz con la info de cada empresa
+                //Update the interface with the information of each company.
                 nameCompany.setText(business.getName());
                 location.setText(business.getAddress());
                 description.setText(business.getSummary());
@@ -127,16 +130,16 @@ public class CompanyProfile extends Fragment {
                     txtVacancies.setVisibility(View.GONE);
                 }
 
-                //Log.d("TAG", "Id de la compañía: " + business.getId());
+                //It obtains the company's offers and passes them into the adapter.
                 offerViewModel.getOffersCompany(business.getCompanyId()).observe(getViewLifecycleOwner(), offerObjects -> {
                     adapter.setOfferObjectList(offerObjects);
                 });
 
 
-
                 follow.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //Check if the user follows the company
                       boolean isFollowing = business.followers != null && business.followers.containsKey(userId);
 
                       if (isFollowing) {
@@ -147,10 +150,10 @@ public class CompanyProfile extends Fragment {
                           addFollowed(userId, business.getCompanyId());
                       }
 
-                        //Actualización del botón
+                        //Updating the button
                         updateFollowButton(!isFollowing);
 
-                        //guardar cambios
+                        //Save changes
                         FirebaseFirestore.getInstance().collection("Company")
                                 .document(business.getCompanyId())
                                 .update("followers", business.followers)
@@ -172,6 +175,12 @@ public class CompanyProfile extends Fragment {
         });
     }
 
+    /**
+     * Method that removes the company from the student's list of followers in case the student
+     * no longer follows the company.
+     * @param userId ID of the student whose company will be removed from your list.
+     * @param companyId Company ID to be removed from the student's list.
+     */
     public void removeFollowed(String userId, String companyId) {
 
         FirebaseFirestore.getInstance().collection("Student")
@@ -181,12 +190,12 @@ public class CompanyProfile extends Fragment {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
-                            //Lista follower
+                            //Follower list
                             List<String> followed = (List<String>) documentSnapshot.get("followed");
 
                             followed.remove(companyId);
 
-                            //Actualizar
+                            //Update
                             FirebaseFirestore.getInstance().collection("Student")
                                     .document(userId)
                                     .update("followed", followed)
@@ -206,6 +215,11 @@ public class CompanyProfile extends Fragment {
                 });
     }
 
+    /**
+     * Method that adds the company ID to the student's list in case the student follows the company.
+     * @param userId Student ID with the list.
+     * @param companyId Company ID to be added to the list.
+     */
     public void addFollowed(String userId, String companyId) {
 
         FirebaseFirestore.getInstance().collection("Student")
@@ -215,17 +229,17 @@ public class CompanyProfile extends Fragment {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
-
+                            //Obtain the list of followed
                             List<String> followed = (List<String>) documentSnapshot.get("followed");
 
                             if (followed == null) {
-                                followed = new ArrayList<>(); // Crear una nueva lista
+                                followed = new ArrayList<>(); //Create a new list
                             }
 
                             if (!followed.contains(companyId)) {
                                 followed.add(companyId);
 
-                                //Actualizar
+                                //Update
                                 FirebaseFirestore.getInstance().collection("Student")
                                         .document(userId)
                                         .update("followed", followed)
@@ -248,6 +262,10 @@ public class CompanyProfile extends Fragment {
 
     }
 
+    /**
+     * Method that takes care of updating the tracking button.
+     * @param isFollowing Boolean that indicates whether it is followed or not.
+     */
     public void updateFollowButton(boolean isFollowing) {
         if (isFollowing) {
             follow.setText("Following");
@@ -260,6 +278,9 @@ public class CompanyProfile extends Fragment {
         }
     }
 
+    /**
+     * Class representing the adapter of the company's offers.
+     */
     class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.OffersViewHolder> {
         private List<OfferObject> offerObjectList;
         private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -279,13 +300,14 @@ public class CompanyProfile extends Fragment {
 
             OfferObject offerObject = offerObjectList.get(position);
 
+            //Application label colors
             int colorLightGreen900 = ContextCompat.getColor(holder.itemView.getContext(), R.color.light_green_900);
             int coloramarillo = ContextCompat.getColor(holder.itemView.getContext(), R.color.amber_700);
 
 
             holder.name.setText(offerObject.getName());
 
-
+            //Look to see if the Student ID is in the offer application list and change the color and text of the label accordingly
             CollectionReference applicantsRef = db.collection("Offer").document(offerObject.getOfferId()).collection("Applicants");
             applicantsRef.document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                     .get()
@@ -309,6 +331,7 @@ public class CompanyProfile extends Fragment {
                         }
                     });
 
+            //Update the number of applicants for the offer
             applicantsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -322,25 +345,24 @@ public class CompanyProfile extends Fragment {
                 }
             });
 
-
-
+            //Displays only tags that have content
             if(offerObject.getTags() != null) {
                 if (!offerObject.getTags().get(0).isEmpty()) {
                     holder.tag1.setText(offerObject.getTags().get(0));
                 } else {
-                    holder.tag1.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                    holder.tag1.setVisibility(View.GONE); //If there is no label, hide the view
                 }
 
                 if (!offerObject.getTags().get(1).isEmpty()) {
                     holder.tag2.setText(offerObject.getTags().get(1));
                 } else {
-                    holder.tag2.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                    holder.tag2.setVisibility(View.GONE); //If there is no label, hide the view
                 }
 
                 if (!offerObject.getTags().get(2).isEmpty()) {
                     holder.tag3.setText(offerObject.getTags().get(2));
                 } else {
-                    holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                    holder.tag3.setVisibility(View.GONE); //If there is no label, hide the view
                 }
             } else {
                 holder.tag1.setVisibility(View.GONE);
@@ -348,7 +370,7 @@ public class CompanyProfile extends Fragment {
                 holder.tag3.setVisibility(View.GONE);
             }
 
-
+            //Navigate to offer details
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -375,6 +397,9 @@ public class CompanyProfile extends Fragment {
             Log.d("OffertsAdapter", "Cantidad de ofertas recibidas: " + offerObjectList.size());
         }
 
+        /**
+         * Class that represents the elements of the ViewHolder.
+         */
         class OffersViewHolder extends RecyclerView.ViewHolder {
 
             TextView name, tag1, tag2, tag3, numApplicants, stateOffer;

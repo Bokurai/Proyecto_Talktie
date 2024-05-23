@@ -74,7 +74,7 @@ public class studentSchoolProfile extends Fragment {
         separator = view.findViewById(R.id.separator);
         cardAbout = view.findViewById(R.id.cardAbout);
 
-        homeViewModel.selectd().observe(getViewLifecycleOwner(), new Observer<Student>() {
+        homeViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Student>() {
             @Override
             public void onChanged(Student student) {
 

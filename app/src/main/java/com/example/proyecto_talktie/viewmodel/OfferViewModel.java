@@ -25,7 +25,6 @@ public class OfferViewModel extends AndroidViewModel {
     private MutableLiveData<List<OfferObject>> offersLiveData = new MutableLiveData<>();
     private MutableLiveData<List<OfferObject>> offersCompany = new MutableLiveData<>();
     private MutableLiveData<OfferObject> offerSingle = new MutableLiveData<>();
-    //private MutableLiveData<List<OfferObject>> offerCategory = new MutableLiveData<>();
     private String category = "";
 
     public OfferViewModel(@NonNull Application application) {
@@ -78,6 +77,11 @@ public class OfferViewModel extends AndroidViewModel {
         return offersLiveData;
     }
 
+    /**
+     * Method that searches for the name and photograph of the company to which the offer belongs.
+     * @param companyId ID of the company to search.
+     * @param callback A BiConsumer with two String parameters.
+     */
     public void  getCompanyInfo(String companyId, BiConsumer<String, String> callback) {
         db.collection("Company").document(companyId).get()
                 .addOnSuccessListener(documentSnapshot -> {
@@ -93,7 +97,11 @@ public class OfferViewModel extends AndroidViewModel {
                 });
     }
 
-    //Método que obtiene las ofertas para cada compañía
+    /**
+     * Method that obtains a list of offers by company.
+     * @param companyId Company ID to obtain offers.
+     * @return MutableLiveData with the company's Offerings list.
+     */
     public MutableLiveData<List<OfferObject>> getOffersCompany(String companyId) {
         db.collection("Offer")
                 .whereEqualTo("companyId", companyId)
@@ -124,6 +132,11 @@ public class OfferViewModel extends AndroidViewModel {
         return offersCompany;
     }
 
+    /**
+     * Method that obtains the offers separated by category
+     * @param category A String with the name of the category.
+     * @return A MutableLiveData with the list of offers in the category.
+     */
     public MutableLiveData<List<OfferObject>> getOfferCategory(String category) {
         MutableLiveData<List<OfferObject>> offerCategory = new MutableLiveData<>();
 
@@ -161,11 +174,18 @@ public class OfferViewModel extends AndroidViewModel {
         return offerCategory;
     }
 
-
+    /**
+     * Method that stores a specific offer inside a MutableLiveData.
+     * @param offerObject offer ID to store.
+     */
     public void seleccionar(OfferObject offerObject){
         offerSingle.postValue(offerObject);
     }
 
+    /**
+     * Method that returns a offer stored in a MutableLiveData.
+     * @return A MutableLiveData with a offer.
+     */
    public MutableLiveData<OfferObject> seleccionado(){
         return offerSingle;
     }
