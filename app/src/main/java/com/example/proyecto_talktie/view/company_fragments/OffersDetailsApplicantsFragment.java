@@ -32,19 +32,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Fragment displaying details of job applicants for a specific job offer.
+ */
 public class OffersDetailsApplicantsFragment extends Fragment {
     NavController navController;
     TextView offer_name, offer_date,job_category,contract_time,job_description;
     CompanyViewModel companyViewModel;
     ImageView backArrow;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     ApplicantsViewModel applicantsViewModel;
     private companyApplicantsAdapter adapter;
     private RecyclerView recyclerViewApplicants;
     LinearLayout applicants;
-
-
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,14 +52,17 @@ public class OffersDetailsApplicantsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_offers_details_applicants, container, false);
     }
 
+    /**
+     * Sets up the views and data for the Applicants Details screen.
+     * It initializes the necessary views and adapters, observes changes in the selected offer data,
+     * and updates the UI accordingly with the offer details and its applicants.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         navController = Navigation.findNavController(view);
         recyclerViewApplicants = view.findViewById(R.id.applicantsRecyclerView);
@@ -77,10 +79,11 @@ public class OffersDetailsApplicantsFragment extends Fragment {
         applicantsViewModel = new ViewModelProvider(requireActivity()).get(ApplicantsViewModel.class);
         adapter = new companyApplicantsAdapter(new ArrayList<>(),applicantsViewModel, navController );
 
+        // Observing selected offer data
         companyViewModel.seleccionado().observe(getViewLifecycleOwner(), new Observer<OfferObject>() {
             @Override
             public void onChanged(OfferObject offerObject) {
-                // Obtener los solicitantes para la oferta actual
+                // Obtaining applicants for the current offer
                 String offerId = offerObject.getOfferId();
                 applicantsViewModel.getApplicantsIds(offerId);
 
@@ -93,9 +96,7 @@ public class OffersDetailsApplicantsFragment extends Fragment {
                 Date date = offerObject.getDate();
                 String formattedDate = format.format(date);
                 offer_date.setText(formattedDate);
-
                 applicantsViewModel.setOfferId(offerId);
-
                 applicantsViewModel.getApplicantsData().observe(getViewLifecycleOwner(), new Observer<List<Student>>() {
                     @Override
                     public void onChanged(List<Student> students) {
@@ -106,27 +107,10 @@ public class OffersDetailsApplicantsFragment extends Fragment {
                         } else {
                             applicants.setVisibility(View.GONE);
                         }
-
                     }
                 });
             }
         });
-
-
-
-      /*  companyViewModel.getApplicantsDetailsLiveData().observe(getViewLifecycleOwner(), new Observer<List<Student>>() {
-            @Override
-            public void onChanged(List<Student> students) {
-                // Actualiza la UI con los detalles de los estudiantes si es necesario
-                for (Student student : students) {
-                    Log.d("Student", "Name: " + student.getName() + ", Degree: " + student.getDegree());
-                }
-                adapter.setStudentList(students);
-               // adapter.startListening();
-            }
-
-        });*/
-        //recyclerViewApplicants.setAdapter(adapter);
 
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override

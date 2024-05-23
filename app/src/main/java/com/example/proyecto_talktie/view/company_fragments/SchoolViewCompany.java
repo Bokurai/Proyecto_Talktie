@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -112,7 +113,7 @@ public class SchoolViewCompany extends Fragment {
 
         class SchoolViewHolder extends  RecyclerView.ViewHolder{
             TextView school_name, school_type;
-            CircleImageView school_image;
+            ImageView school_image;
             public SchoolViewHolder(@NonNull View itemView){
                 super(itemView);
 

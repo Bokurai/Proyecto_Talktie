@@ -17,13 +17,13 @@ import android.widget.ImageView;
 
 import com.example.proyecto_talktie.viewmodel.StudentRegisterViewModel;
 
-
+/**
+ *Fragment that is part of the signIn that handles user input for job preferences and saves the user data to Firestore.
+ */
 public class SignIn10 extends Fragment {
-
     StudentRegisterViewModel registerViewModel;
     AppCompatButton nextButton;
     NavController navController;
-
     EditText jobPreferences;
 
     @Override
@@ -45,8 +45,6 @@ public class SignIn10 extends Fragment {
         jobPreferences = view.findViewById(R.id.etJobPreferences);
         nextButton = view.findViewById(R.id.btnDone);
         navController = Navigation.findNavController(view);
-
-
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +54,6 @@ public class SignIn10 extends Fragment {
                 navController.navigate(R.id.home);
             }
         });
-
-        //felcha atras
         ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
         imageArrowleft.setOnClickListener(new View.OnClickListener() {
             @Override
