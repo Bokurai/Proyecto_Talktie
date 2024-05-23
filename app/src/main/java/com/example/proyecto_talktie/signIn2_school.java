@@ -19,7 +19,9 @@ import android.widget.ImageView;
 
 import com.example.proyecto_talktie.viewmodel.SchoolRegisterViewModel;
 
-
+/**
+ * Fragment that is part of the signIn that handles the input of the company's data, including name, code and type.
+ */
 public class signIn2_school extends Fragment {
 
     SchoolRegisterViewModel registerViewModel;
@@ -40,7 +42,9 @@ public class signIn2_school extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_in2_school, container, false);
     }
-
+    /**
+     * This method initializes various UI components and sets up click listeners for the continue buttons.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -77,7 +81,10 @@ public class signIn2_school extends Fragment {
 
 
     }
-
+    /**
+     * Validates the user input form.
+     * @return True if the form is valid, false otherwise.
+     */
     private boolean validarFormulario() {
         boolean valid = true;
 

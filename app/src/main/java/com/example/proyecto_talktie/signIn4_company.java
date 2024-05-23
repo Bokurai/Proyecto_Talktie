@@ -41,7 +41,9 @@ public class signIn4_company extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_in4_company, container, false);
     }
-
+    /**
+     * This method initializes various UI components and sets up click listeners for the continue buttons.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
