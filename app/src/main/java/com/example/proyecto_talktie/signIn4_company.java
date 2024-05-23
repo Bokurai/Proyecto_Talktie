@@ -19,7 +19,9 @@ import android.widget.TextView;
 
 import com.example.proyecto_talktie.viewmodel.BusinessRegisterViewModel;
 
-
+/**
+ * Fragment that is part of the signIn that handles user input for address details including country, street address, city, and postal code.
+ */
 public class signIn4_company extends Fragment {
     BusinessRegisterViewModel registerViewModel;
     NavController navController;
@@ -74,7 +76,10 @@ public class signIn4_company extends Fragment {
             }
         });
     }
-
+    /**
+     * Validates the user input form.
+     * @return True if the form is valid, false otherwise.
+     */
     private boolean validarFormulario() {
         boolean valid = true;
 

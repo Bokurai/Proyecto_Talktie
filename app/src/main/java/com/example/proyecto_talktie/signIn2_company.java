@@ -19,7 +19,9 @@ import android.widget.ImageView;
 
 import com.example.proyecto_talktie.viewmodel.BusinessRegisterViewModel;
 
-
+/**
+ * Fragment that is part of the signIn that handles the input of the company's data, including name, code, sector and type.
+ */
 public class signIn2_company extends Fragment {
 
     BusinessRegisterViewModel registerViewModel;
@@ -35,7 +37,10 @@ public class signIn2_company extends Fragment {
         super.onCreate(savedInstanceState);
         registerViewModel = new ViewModelProvider(requireActivity()).get(BusinessRegisterViewModel.class);
     }
-
+    /**
+     * Called to have the fragment instantiate its user interface view. This method inflates the layout for the fragment.
+     * @return Return the View for the fragment's UI, or null.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,6 +80,10 @@ public class signIn2_company extends Fragment {
         });
     }
 
+    /**
+     * Validates the user input form.
+     * @return True if the form is valid, false otherwise.
+     */
     private boolean validarFormulario() {
         boolean valid = true;
 
