@@ -110,7 +110,6 @@ public class schoolHome extends Fragment {
                         adapter.updateOptions(newOptions);
                         adapter.notifyDataSetChanged();
 
-
                         return true;
                     }
                 });
