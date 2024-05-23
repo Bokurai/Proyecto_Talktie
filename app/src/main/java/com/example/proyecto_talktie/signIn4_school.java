@@ -19,6 +19,9 @@ import android.widget.TextView;
 
 import com.example.proyecto_talktie.viewmodel.SchoolRegisterViewModel;
 
+/**
+ * Fragment that is part of the signIn that handles user input for address details including country, street address, city, and postal code.
+ */
 public class signIn4_school extends Fragment {
 
     SchoolRegisterViewModel registerViewModel;
@@ -39,7 +42,9 @@ public class signIn4_school extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_in4_school, container, false);
     }
-
+    /**
+     * This method initializes various UI components and sets up click listeners for the continue buttons.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -74,7 +79,10 @@ public class signIn4_school extends Fragment {
         });
 
     }
-
+    /**
+     * Validates the user input form.
+     * @return True if the form is valid, false otherwise.
+     */
     private boolean validarFormulario() {
         boolean valid = true;
 

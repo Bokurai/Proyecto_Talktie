@@ -52,8 +52,8 @@ public class offerCategory extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_offer_category, container, false);
 
+        //Initialize the adapter and define the recyclerView
         adapter = new OffersCategory(new ArrayList<>());
-
         recyclerView = view.findViewById(R.id.categoryRecyclerView);
         recyclerView.setAdapter(adapter);
 
@@ -65,22 +65,27 @@ public class offerCategory extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(view);
-
         nameCategory = view.findViewById(R.id.nameCategories);
 
+        //Initializes the ViewModel
         offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
+        //Gets the name of the category and updates the text
         category = offerViewModel.getCategory();
-
         nameCategory.setText(category);
 
-
+        /**
+         * Gets the offers of the selected category
+         */
         offerViewModel.getOfferCategory(category).observe(getViewLifecycleOwner(), offerObjects -> {
             adapter.setOfferObjectList(offerObjects);
         });
 
     }
 
+    /**
+     * Class representing the adaptor of the offers by category
+     */
     class OffersCategory extends RecyclerView.Adapter<OffersCategory.OfferViewHolder> {
         private List<OfferObject> offerObjectList;
         private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -99,9 +104,11 @@ public class offerCategory extends Fragment {
         public void onBindViewHolder(@NonNull OfferViewHolder holder, int position) {
             OfferObject offerObject = offerObjectList.get(position);
 
+            //Application label colors
             int colorLightGreen900 = ContextCompat.getColor(holder.itemView.getContext(), R.color.light_green_900);
             int coloramarillo = ContextCompat.getColor(holder.itemView.getContext(), R.color.amber_700);
 
+            //Update the data of the corresponding offer
             holder.name.setText(offerObject.getName());
             holder.companyName.setText(offerObject.getCompanyName());
 
@@ -119,6 +126,7 @@ public class offerCategory extends Fragment {
                         .into(holder.companyImage);
             }
 
+            //Look to see if the Student ID is in the offer application list and change the color and text of the label accordingly
             CollectionReference applicantsRef = db.collection("Offer").document(offerObject.getOfferId()).collection("Applicants");
             applicantsRef.document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                     .get()
@@ -142,6 +150,7 @@ public class offerCategory extends Fragment {
                         }
                     });
 
+            //Update the number of applicants for the offer
             applicantsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -155,24 +164,24 @@ public class offerCategory extends Fragment {
                 }
             });
 
-
+            //Displays only tags that have content
             if(offerObject.getTags() != null) {
                 if (!offerObject.getTags().get(0).isEmpty()) {
                     holder.tag1.setText(offerObject.getTags().get(0));
                 } else {
-                    holder.tag1.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                    holder.tag1.setVisibility(View.GONE); //If there is no label, hide the view
                 }
 
                 if (!offerObject.getTags().get(1).isEmpty()) {
                     holder.tag2.setText(offerObject.getTags().get(1));
                 } else {
-                    holder.tag2.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                    holder.tag2.setVisibility(View.GONE);
                 }
 
                 if (!offerObject.getTags().get(2).isEmpty()) {
                     holder.tag3.setText(offerObject.getTags().get(2));
                 } else {
-                    holder.tag3.setVisibility(View.GONE); // Si no hay etiqueta, oculta la vista
+                    holder.tag3.setVisibility(View.GONE);
                 }
             } else {
                 holder.tag1.setVisibility(View.GONE);
@@ -180,6 +189,7 @@ public class offerCategory extends Fragment {
                 holder.tag3.setVisibility(View.GONE);
             }
 
+            //Navigate to offer details
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -188,8 +198,6 @@ public class offerCategory extends Fragment {
                     navController.navigate(R.id.action_goOfferDetailsFragment);
                 }
             });
-
-
         }
 
         @Override
@@ -197,14 +205,19 @@ public class offerCategory extends Fragment {
             return offerObjectList.size();
         }
 
+        /**
+         *  Method updating the list of offers
+         * @param offerObjectList list of offers
+         */
         public void setOfferObjectList(List<OfferObject> offerObjectList) {
             this.offerObjectList.clear();
             this.offerObjectList.addAll(offerObjectList);
             notifyDataSetChanged();
         }
 
-
-
+        /**
+         * Class that represents the elements of the ViewHolder.
+         */
         class OfferViewHolder extends RecyclerView.ViewHolder {
             TextView name, companyName, tag1, tag2, tag3, numApplicants,stateOffer;
             ImageView companyImage;

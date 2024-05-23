@@ -39,7 +39,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-
+/**
+ * A Fragment that handles the user registration process, including both email/password and Google sign-in methods.
+ */
 public class SignIn1_School extends Fragment {
 
     public static final String EXTRA_FORCE_ACCOUNT_CHOOSER = "force_account_chooser";
@@ -68,7 +70,9 @@ public class SignIn1_School extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_in1__school, container, false);
     }
-
+    /**
+     * This method initializes various UI components and sets up click listeners for the sign-up buttons.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -125,7 +129,9 @@ public class SignIn1_School extends Fragment {
         });
 
     }
-
+    /**
+     * Initiates the Google sign-in process.
+     */
     private void accederConGoogle() {
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -138,7 +144,10 @@ public class SignIn1_School extends Fragment {
         activityResultLauncher.launch(signInIntent);
 
     }
-
+    /**
+     * Method that creates a new account using Google credentials.
+     * @param acct The GoogleSignInAccount object containing the user's Google Account information.
+     */
     private void  crearCuentaGoogle(GoogleSignInAccount account) {
         if (account == null) return;
 
@@ -160,7 +169,9 @@ public class SignIn1_School extends Fragment {
                     }
                 });
     }
-
+    /**
+     * Method that creates a new account using email and password.
+     */
     private void crearCuentaMailPassword() {
         if (!validarFormulario()) {
             return;
@@ -186,13 +197,19 @@ public class SignIn1_School extends Fragment {
                     }
                 });
     }
-
+    /**
+     * Updates the UI after a successful sign-in.
+     * @param currentUser The currently signed-in FirebaseUser.
+     */
     private void actualizarUI(FirebaseUser currentUser) {
         if (currentUser != null) {
             navController.navigate(R.id.signIn2_school);
         }
     }
-
+    /**
+     * Validates the user input form.
+     * @return True if the form is valid, false otherwise.
+     */
     private boolean validarFormulario() {
         boolean valid = true;
 

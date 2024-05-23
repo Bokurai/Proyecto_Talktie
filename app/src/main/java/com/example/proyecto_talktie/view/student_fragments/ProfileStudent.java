@@ -71,23 +71,22 @@ public class ProfileStudent extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_student, container, false);
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        //Create and set the recyclerview
+        //Initialize the adapter and define the recyclerView
         adapter = new RecommendAdapter(new ArrayList<>());
-
         recyclerView = view.findViewById(R.id.applicantsRecyclerView);
         recyclerView.setAdapter(adapter);
+
+
         storageReference = FirebaseStorage.getInstance().getReference();
-
-
 
         //LOG OUT
         LinearLayout logoutLinear = view.findViewById(R.id.LogoutLinear);
 
-// Configura un listener de clic para el LinearLayout
+        //Configures a click listener for the LinearLayout
         logoutLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Muestra el diálogo de confirmación para cerrar sesión
+                //Displays the logout confirmation dialog
                 showLogoutDialog();
             }
         });
@@ -113,19 +112,21 @@ public class ProfileStudent extends Fragment {
         editButton = view.findViewById(R.id.aboutEdit);
         saveButton = view.findViewById(R.id.btnSave);
 
+        //Initialize the viewModel
         studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
 
-
+        /**
+         * Obtains student data and updates the interface
+         */
         studentViewModel.getStudentData(studentId).observe(getViewLifecycleOwner(), student -> {
-
-
             studentName.setText(student.getName());
             textAbout.setText(student.getAbout());
 
-            String imageprofileURL = student.getProfileImage();
+            //If the student's profile picture is null, the default one is set
+            String imageProfileURL = student.getProfileImage();
             Context context = getView().getContext();
-            if (imageprofileURL != null && !imageprofileURL.isEmpty()) {
-                Uri uriImagep = Uri.parse(imageprofileURL);
+            if (imageProfileURL != null && !imageProfileURL.isEmpty()) {
+                Uri uriImagep = Uri.parse(imageProfileURL);
 
                 Glide.with(context)
                         .load(uriImagep)
@@ -135,11 +136,11 @@ public class ProfileStudent extends Fragment {
                         .load(R.drawable.profile_image_defaut)
                         .into(profileImg);
             }
-
-
         });
 
-
+        /**
+         * Gets the list of student recommendations with information from teachers
+         */
         studentViewModel.getRecommendationLiveData(studentId).observe(getViewLifecycleOwner(), recommendations -> {
             Log.d("Recomendaciones", "Acceder livedata recomendaciones " + studentId);
             if (recommendations != null) {
@@ -156,6 +157,7 @@ public class ProfileStudent extends Fragment {
             }
         });
 
+        //Button to edit the user's about
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,7 +171,7 @@ public class ProfileStudent extends Fragment {
 
                 editTextAbout.setText(textAbout.getText());
 
-                //remplazar el texview con el editText
+                //Replace texview with editText
                 ViewGroup parent = (ViewGroup) textAbout.getParent();
                 int index = parent.indexOfChild(textAbout);
                 parent.removeView(textAbout);
@@ -178,21 +180,23 @@ public class ProfileStudent extends Fragment {
                 editTextAbout.requestFocus();
                 editTextAbout.selectAll();
 
-                //actualizar newAbout
+                //Update newAbout
                 newAbout = textAbout.getText().toString().trim();
             }
         });
 
+        //Button to save the new user's about
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String updateAbout = editTextAbout.getText().toString().trim();
 
                 if (!updateAbout.isEmpty()) {
-
+                    //Check if the about has changed
                     if (!updateAbout.equals(newAbout)) {
                         newAbout = updateAbout;
 
+                        //Update about changes
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                         db.collection("Student").document(studentId)
                                 .update("about", newAbout)
@@ -209,7 +213,7 @@ public class ProfileStudent extends Fragment {
                                 });
                     }
 
-                    //volver a un textView
+                    //Back to a textView
                     ViewGroup parent = (ViewGroup) editTextAbout.getParent();
                     int index = parent.indexOfChild(editTextAbout);
                     parent.removeView(editTextAbout);
@@ -287,6 +291,9 @@ public class ProfileStudent extends Fragment {
 
     }
 
+    /**
+     * Class representing the adaptor of the recommendations made to a student
+     */
     class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.RecommendationViewHolder> {
         private List<Recommendation> recommendationList;
 
@@ -309,7 +316,8 @@ public class ProfileStudent extends Fragment {
             holder.textRecommendation.setText(recommendation.getRecommendationText());
 
             String profileImage = recommendation.getTeacher().getProfileImage();
-          //  String imageProfileUrl = recommendation.getProfileImage();
+
+            //Load the teacher image, in case of being null the default one is set.
             Context context = getView().getContext();
             if (profileImage != null && !profileImage.isEmpty()) {
                 Uri uriImagep = Uri.parse(profileImage);
@@ -323,6 +331,7 @@ public class ProfileStudent extends Fragment {
                         .into(holder.imageTeacher);
             }
 
+            //Hide teacher information in case it is empty
             boolean emailIsEmpty = isNullOrEmpty(recommendation.getTeacher().getEmail());
             boolean positionIsEmpty = isNullOrEmpty(recommendation.getTeacher().getPosition());
 
@@ -345,7 +354,6 @@ public class ProfileStudent extends Fragment {
             } else {
                 holder.position.setVisibility(View.GONE);
             }
-
 
         }
 
@@ -387,6 +395,7 @@ public class ProfileStudent extends Fragment {
             }
         }
     }
+
     //LOG OUT
     private void showLogoutDialog() {
         // Crea un AlertDialog con el diseño personalizado
@@ -408,7 +417,7 @@ public class ProfileStudent extends Fragment {
                     }
                 });
 
-        // Muestra el diálogo
+        //Displays the dialog
         AlertDialog dialog = builder.create();
         dialog.show();
     }

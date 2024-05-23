@@ -65,7 +65,12 @@ public class StudentViewModel extends AndroidViewModel {
         return recommendationsLiveData;
     }
 
-
+    /**
+     * A method for obtaining information from a teacher who is associated with a recommendation.
+     * @param teacherId ID of the teacher to search.
+     * @param recommendationText Text with the teacher's recommendation.
+     * @param recommendationList List of recommendations.
+     */
     public void getTeacherData(String teacherId, String recommendationText, List<Recommendation> recommendationList) {
         db.collection("Teacher").document(teacherId)
                 .get()
@@ -83,6 +88,11 @@ public class StudentViewModel extends AndroidViewModel {
                 });
     }
 
+    /**
+     * Method that is responsible for obtaining information from a student to display it in the profile.
+     * @param studentId ID of the student to search.
+     * @return A MutableLiveData with the object Student.
+     */
     public MutableLiveData<Student> getStudentData(String studentId) {
 
         db.collection("Student").document(studentId)

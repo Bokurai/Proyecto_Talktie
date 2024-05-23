@@ -16,10 +16,18 @@ public class StudentSearchViewModel extends AndroidViewModel {
         super(application);
     }
 
+    /**
+     * Method that stores a specific company inside a MutableLiveData.
+     * @param business company ID to store.
+     */
     public void select(Business business) {
         companySelected.setValue(business);
     }
 
+    /**
+     * Method that returns a company stored in a MutableLiveData.
+     * @return A MutableLiveData with a company.
+     */
    public MutableLiveData<Business> selected() {
         return companySelected;
     }

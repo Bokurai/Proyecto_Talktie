@@ -35,8 +35,6 @@ public class StudentSearchView extends Fragment {
     private androidx.appcompat.widget.SearchView searchViewBar;
     private StudentSearchViewModel searchViewModel;
 
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +51,10 @@ public class StudentSearchView extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //Initialize the viewModel
         searchViewModel = new ViewModelProvider(requireActivity()).get(StudentSearchViewModel.class);
 
         navController = Navigation.findNavController(view);
-
         searchViewBar = view.findViewById(R.id.searchViewSearch);
         recyclerView = view.findViewById(R.id.searchRecyclerView);
         txtCancel = view.findViewById(R.id.txtCancel);
@@ -70,18 +68,18 @@ public class StudentSearchView extends Fragment {
 
         Query baseQuery = FirebaseFirestore.getInstance().collection("Company");
 
-        //Adapatador inicial
+        //Initial adapter
       FirestoreRecyclerOptions<Business> options = new FirestoreRecyclerOptions.Builder<Business>()
                 .setQuery(baseQuery, Business.class)
                         .setLifecycleOwner(this)
                                 .build();
 
 
-        //Adapatador opciones iniciales
+        //Adapter initial options
         final CompanyViewAdapter adapter = new CompanyViewAdapter(options);
         recyclerView.setAdapter(adapter);
 
-        //Listener de la barra de búsqueda
+        //Search bar listener
         searchViewBar.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -93,6 +91,7 @@ public class StudentSearchView extends Fragment {
                 Query searchQuery = baseQuery;
 
                 if (!s.isEmpty()) {
+                    //Perform a search by the entered term compared to the Company Name field
                     searchQuery = baseQuery.orderBy("name").startAt(s).endAt(s+"\uf8ff");
                 }
 
@@ -101,31 +100,34 @@ public class StudentSearchView extends Fragment {
                         .setLifecycleOwner(StudentSearchView.this)
                         .build();
 
+                //Adapter updated with search results
                 adapter.updateOptions(newOptions);
                 adapter.notifyDataSetChanged();
 
                 return true;
             }
         });
-
-
     }
 
+    /**
+     * Class representing the adapter of the companies
+     */
     class CompanyViewAdapter extends FirestoreRecyclerAdapter<Business, CompanyViewAdapter.CompanyViewHolder> {
 
         public CompanyViewAdapter(@NonNull FirestoreRecyclerOptions<Business> options) {
             super(options);
-
         }
 
         @Override
         protected void onBindViewHolder(@NonNull CompanyViewHolder holder, int position, @NonNull Business model) {
 
+            //Updates items with company data
             holder.company_name.setText(model.getName());
             holder.sector_company.setText(model.getSector());
             holder.location_company.setText(model.getAddress());
 
 
+            //If the company image is null, the default image is used
             String imageProfile = model.getProfileImage();
             Context context = getView().getContext();
             if (imageProfile != null && !imageProfile.isEmpty()) {
@@ -139,7 +141,7 @@ public class StudentSearchView extends Fragment {
                         .into(holder.companyImage);
             }
 
-
+            //Navigate to the company profile and store the company object
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -150,13 +152,15 @@ public class StudentSearchView extends Fragment {
 
         }
 
-
         @NonNull
         @Override
         public CompanyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new CompanyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_company_view,parent,false));
         }
 
+        /**
+         * Class that represents the elements of the ViewHolder.
+         */
         class CompanyViewHolder extends RecyclerView.ViewHolder {
             TextView company_name, sector_company,location_company;
             ImageView companyImage;

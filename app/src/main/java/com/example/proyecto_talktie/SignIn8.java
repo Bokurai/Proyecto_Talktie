@@ -28,10 +28,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+
 /**
  * Fragment that is part of the signIn that handles user input for educational details including school, location, degree, and dates of formation.
  */
-
 public class SignIn8 extends Fragment {
     StudentRegisterViewModel registerViewModel;
     NavController navController;

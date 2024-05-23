@@ -20,7 +20,6 @@ public class schoolHomeViewModel extends AndroidViewModel {
     private MutableLiveData<List<Student>> students = new MutableLiveData<>();
     private MutableLiveData<Student> studentSelected = new MutableLiveData<>();
     private MutableLiveData<String> schoolName = new MutableLiveData<>();
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -29,6 +28,10 @@ public class schoolHomeViewModel extends AndroidViewModel {
         super(application);
     }
 
+    /**
+     * Method that obtains the name of the school that is currently logged in.
+     * @return A MutableLiveData with the name of the school.
+     */
     public MutableLiveData<String> getNameSchool(){
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -45,20 +48,22 @@ public class schoolHomeViewModel extends AndroidViewModel {
         } else {
             schoolName.setValue(null);
         }
-
         return schoolName;
     }
 
-    public void getTeacherList() {
-
-    }
-
-
+    /**
+     * Method that stores a specific student inside a MutableLiveData.
+     * @param student Student ID to store
+     */
     public void select(Student student) {
         studentSelected.setValue(student);
     }
 
-  public   MutableLiveData<Student> selectd() {return studentSelected;}
+    /**
+     * Method that returns a student stored in a MutableLiveData.
+     * @return A MutableLiveData with a student.
+     */
+    public   MutableLiveData<Student> selected() {return studentSelected;}
 
 
 }

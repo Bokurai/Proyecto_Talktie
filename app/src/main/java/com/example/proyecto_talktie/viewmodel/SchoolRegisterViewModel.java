@@ -157,7 +157,9 @@ public class SchoolRegisterViewModel extends AndroidViewModel {
         this.foundation_date.setValue(foundation_date);
     }
 
-
+    /**
+     * Method that creates a new user with the school registration data in the User collection.
+     */
     public void saveUserFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -193,6 +195,9 @@ public class SchoolRegisterViewModel extends AndroidViewModel {
 
     }
 
+    /**
+     * Method that is responsible for creating a new school with the registration data in the School collection.
+     */
     public void saveSchoolFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();

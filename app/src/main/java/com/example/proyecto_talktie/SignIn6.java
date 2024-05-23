@@ -49,6 +49,9 @@ public class SignIn6 extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sign_in6, container, false);
     }
+    /**
+     * This method initializes various UI components and sets up click listeners for the continue buttons.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

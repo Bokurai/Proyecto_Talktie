@@ -29,8 +29,6 @@ public class Offer extends Fragment {
     private OffersAdapter adapter;
     FirebaseFirestore db;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,11 +39,15 @@ public class Offer extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         db = FirebaseFirestore.getInstance();
         navController = Navigation.findNavController(requireView());
+
         ti = view.findViewById(R.id.linearBotonTI);
         marketing = view.findViewById(R.id.linearBotonMarketing);
         health = view.findViewById(R.id.linearButtonHealth);
+
+        //Initializes the ViewModel and the adapter
         offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
         adapter = new OffersAdapter(new ArrayList<>(), navController, offerViewModel, db, getContext());
 
@@ -59,6 +61,7 @@ public class Offer extends Fragment {
         recyclerView = view.findViewById(R.id.offerRecyclerView);
         recyclerView.setAdapter(adapter);
 
+        // Navigate to each corresponding category
         ti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

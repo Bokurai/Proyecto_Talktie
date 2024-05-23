@@ -30,7 +30,7 @@ public class HomeViewModel extends AndroidViewModel {
     /**
      * Method that obtains the list of all the offers of the companies that the user follows.
      * @param idUser Current user ID
-     * @return MutableLiveData with the list of offerts from the companies the user follows
+     * @return MutableLiveData with the list of offers from the companies the user follows
      */
     public MutableLiveData<List<OfferObject>> getOffersComapanies(String idUser) {
         db.collection("Student").document(idUser).get()
@@ -74,16 +74,18 @@ public class HomeViewModel extends AndroidViewModel {
 
                                             }
                                         });
-
                             });
-
-
                         });
                     }
                 }).addOnFailureListener(e -> Log.d("OFFER", "Error al cargar la lista de empresas seguidas", e));
         return offersCompany;
     }
 
+    /**
+     * Method that searches for the name and photograph of the company to which the offer belongs.
+     * @param companyId ID of the company to search.
+     * @param callback A BiConsumer with two String parameters.
+     */
     public void getCompanyInfo(String companyId, BiConsumer<String, String> callback) {
         db.collection("Company").document(companyId).get()
                 .addOnSuccessListener(documentSnapshot -> {
