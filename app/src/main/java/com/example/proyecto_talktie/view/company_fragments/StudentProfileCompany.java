@@ -100,7 +100,7 @@ public class StudentProfileCompany extends Fragment {
             }
         });
 
-        applicantsViewModel.selectd().observe(getViewLifecycleOwner(), new Observer<Student>() {
+        applicantsViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Student>() {
             @Override
             public void onChanged(Student student) {
 

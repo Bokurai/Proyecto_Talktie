@@ -42,7 +42,10 @@ public class TeacherViewModel extends AndroidViewModel {
         this.student = student;
     }
 
-
+    /**
+     * Method that searches for teachers who belong to a specific school.
+     * @return A MutableLiveData with the list of teachers in the school.
+     */
     public MutableLiveData<List<Teacher>> getTeachers() {
         db.collection("Teacher")
                 .whereEqualTo("schoolId", userId)
@@ -68,6 +71,11 @@ public class TeacherViewModel extends AndroidViewModel {
         return teachersLiveData;
     }
 
+    /**
+     * Method that obtains a list of students who have recommendations from a specific teacher.
+     * @param teacherId Teacher ID to search for recommendations.
+     * @return A MutableLiveData with the list of Students to whom the teacher has made a recommendation.
+     */
     public MutableLiveData<List<Student>> getRecommendationTeachers(String teacherId) {
         MutableLiveData<List<Student>> listStudents = new MutableLiveData<>();
 
@@ -106,10 +114,18 @@ public class TeacherViewModel extends AndroidViewModel {
         return listStudents;
     }
 
+    /**
+     * Method that stores a specific teacher inside a MutableLiveData.
+     * @param teacher teacher ID to store.
+     */
     public void select(Teacher teacher){
         teacherSingle.postValue(teacher);
     }
 
+    /**
+     * Method that returns a teacher stored in a MutableLiveData.
+     * @return A MutableLiveData with a teacher.
+     */
    public MutableLiveData<Teacher> selected() {
         return teacherSingle;
     }

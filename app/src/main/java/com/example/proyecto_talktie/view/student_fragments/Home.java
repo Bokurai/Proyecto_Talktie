@@ -39,7 +39,6 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home extends Fragment {
-
     MainActivity mainActivity;
     NavController navController;
     LinearLayout search_bar;
@@ -50,10 +49,6 @@ public class Home extends Fragment {
     private FirebaseAuth mAuth;
     private  String studentId;
     private CircleImageView profileImg;
-
-
-    private int total;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,6 +61,7 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        //Initialize the adapter and define the recyclerView
         adapter = new companyOfferAdapter(new ArrayList<>());
         recyclerView = view.findViewById(R.id.recyclerview_company_offers);
         recyclerView.setAdapter(adapter);
@@ -89,11 +85,12 @@ public class Home extends Fragment {
 
         search_bar = view.findViewById(R.id.search_bar);
 
-
+        //Initialize the viewModel
         homeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
         offerViewModel = new ViewModelProvider(requireActivity()).get(OfferViewModel.class);
 
 
+        //Obtain the offers from the companies that the user follows and pass them through the adapter.
         homeViewModel.getOffersComapanies(studentId).observe(getViewLifecycleOwner(), offer -> {
             adapter.setOfferObjectList(offer);
         });
@@ -108,7 +105,9 @@ public class Home extends Fragment {
         });
     }
 
-
+    /**
+     * Method that searches for the student's image in the database, if available, the default image is set.
+     */
     public void loadImageUser() {
         if (getView() != null) {
         FirebaseFirestore.getInstance().collection("Student").document(studentId).get()
@@ -130,6 +129,9 @@ public class Home extends Fragment {
         }
     }
 
+    /**
+     * Class representing the adapter of the offers followed by the student.
+     */
     class companyOfferAdapter extends RecyclerView.Adapter<companyOfferAdapter.companyOfferViewHolder> {
         private List<OfferObject> offerObjectList;
 
@@ -147,31 +149,32 @@ public class Home extends Fragment {
         public void onBindViewHolder(@NonNull companyOfferViewHolder holder, int position) {
             OfferObject offer = offerObjectList.get(position);
 
-            //poner el nombre de la empresa y la oferta
+            //Put the company name and offer
             holder.nameOffer.setText(offer.getName());
             holder.nameCompany.setText(offer.getCompanyName());
 
             Date date = offer.getDate();
+            //Formatting the date
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             String formattedDate = formatter.format(date);
             holder.dateOffer.setText(formattedDate);
 
-            String imageProfile = offer.getCompanyImageUrl() != null && !offer.getCompanyImageUrl().isEmpty() ? offer.getCompanyImageUrl() : "null";
+            //Load the user's image, in case of being null the default one is set.
+            String imageProfile = offer.getCompanyImageUrl();
             Context context = getView().getContext();
-            if (!imageProfile.equals("null")){
+            if (imageProfile != null && !imageProfile.isEmpty()){
                 Uri uriImage = Uri.parse(imageProfile);
                 Glide.with(context)
                         .load(uriImage)
-                        .into(holder.imgeCompany);
-
+                        .into(holder.imageCompany);
             } else {
                 Glide.with(context)
                         .load(R.drawable.build_image_default)
-                        .into(holder.imgeCompany);
+                        .into(holder.imageCompany);
             }
 
-
-            holder.bntDatails.setOnClickListener(new View.OnClickListener() {
+            //Button that navigates to the details of the offer
+            holder.bntDetails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     offerViewModel.seleccionar(offer);
@@ -187,15 +190,22 @@ public class Home extends Fragment {
             return offerObjectList.size();
         }
 
+        /**
+         * Method that changes the list of offers and notifies the adapter.
+         * @param offerObjectList New list of offers.
+         */
         public void setOfferObjectList(List<OfferObject> offerObjectList) {
             this.offerObjectList = offerObjectList;
             notifyDataSetChanged();
         }
 
+        /**
+         * Class that represents the elements of the ViewHolder.
+         */
         class companyOfferViewHolder extends RecyclerView.ViewHolder {
             TextView nameCompany, nameOffer, dateOffer;
-            ImageView imgeCompany;
-            AppCompatButton bntDatails;
+            ImageView imageCompany;
+            AppCompatButton bntDetails;
 
             public companyOfferViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -203,8 +213,8 @@ public class Home extends Fragment {
                 nameCompany = itemView.findViewById(R.id.companyNameOffer);
                 nameOffer = itemView.findViewById(R.id.offerNameCompany);
                 dateOffer = itemView.findViewById(R.id.dateOffer);
-                imgeCompany = itemView.findViewById(R.id.shapeableImageView);
-                bntDatails = itemView.findViewById(R.id.btnDatailsOffer);
+                imageCompany = itemView.findViewById(R.id.shapeableImageView);
+                bntDetails = itemView.findViewById(R.id.btnDatailsOffer);
             }
         }
 

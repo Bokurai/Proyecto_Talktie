@@ -20,6 +20,11 @@ public class SchoolViewModel extends AndroidViewModel {
         super(application);
     }
 
+    /**
+     * Method that obtains data from a school and stores it in a MutableLiveData.
+     * @param schoolId School ID to obtain data.
+     * @return A MutableLiveData with the object School.
+     */
    public MutableLiveData<School> getSchoolData(String schoolId) {
 
         db.collection("School").document(schoolId)
@@ -36,9 +41,4 @@ public class SchoolViewModel extends AndroidViewModel {
 
         return schoolData;
     }
-
-
-
-
-
 }
