@@ -43,7 +43,10 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.UUID;
 
-
+/**
+ * Fragment representing the profile page of a school, containing information about the school,
+ * teachers and the button that navigates to the creation of new teachers.
+ */
 public class schoolProfile extends Fragment {
     private FloatingActionButton fab;
     private SchoolViewModel schoolViewModel;
@@ -238,6 +241,9 @@ public class schoolProfile extends Fragment {
 
     }
 
+    /**
+     * Opens the gallery for selecting a new profile image.
+     */
     private void selectGalleryImageRegister() {
         Intent i = new Intent();
         i.setType("image/*");
@@ -245,6 +251,9 @@ public class schoolProfile extends Fragment {
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
     }
 
+    /**
+     * Handles the result from selecting an image from the gallery.
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -262,6 +271,10 @@ public class schoolProfile extends Fragment {
         }
     }
 
+    /**
+     * Uploads the selected image to Firebase Storage and updates the profile image URL in Firestore.
+     * @param uri The URI of the selected image.
+     */
     private void uploadImage(Uri uri) {
         if (user != null) {
             if (uri != null) {
@@ -275,6 +288,10 @@ public class schoolProfile extends Fragment {
         }
     }
 
+    /**
+     * Updates the profile image URL in Firestore.
+     * @param imageUrl The URL of the uploaded profile image.
+     */
     private void linkImagetoUser(String imageUrl){
         if (user!= null){
             FirebaseFirestore.getInstance().collection("User").document(schoolId)
@@ -296,9 +313,11 @@ public class schoolProfile extends Fragment {
 
     }
 
-    //LOG OUT
+    /**
+     * Displays a dialog to confirm the logout action. If the user confirms, it signs out the current user
+     * and navigates to the company login screen.
+     */
     private void showLogoutDialog() {
-        // Crea un AlertDialog con el diseño personalizado
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setView(R.layout.dialog_logout)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -312,12 +331,11 @@ public class schoolProfile extends Fragment {
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // No hacer nada, simplemente cierra el diálogo
                         dialog.dismiss();
                     }
                 });
 
-        // Muestra el diálogo
+        //Show the dialog
         AlertDialog dialog = builder.create();
         dialog.show();
     }

@@ -33,6 +33,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
+/**
+ * Fragment representing the student profile as seen by the school. Displays student data and teacher profiles for recommendations.
+ */
 public class studentSchoolProfile extends Fragment {
     private RecyclerView recyclerView;
     private TeacherViewModel teacherViewModel;
@@ -74,12 +77,16 @@ public class studentSchoolProfile extends Fragment {
         separator = view.findViewById(R.id.separator);
         cardAbout = view.findViewById(R.id.cardAbout);
 
+        /**
+         * Observe the selected student
+         */
         homeViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Student>() {
             @Override
             public void onChanged(Student student) {
 
                 teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
 
+                //Updates in the viewModel the student object with the updated data
                 db.collection("Student").document(student.getStudentId()).get()
                         .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
@@ -90,13 +97,16 @@ public class studentSchoolProfile extends Fragment {
 
                 adapter = new AddRecommendationAdapter(new ArrayList<>(), getContext(), navController, teacherViewModel, student.getStudentId());
 
+                /**
+                 * Observes the list of teachers and sends them to an adaptor.
+                 */
                 teacherViewModel.getTeachers().observe(getViewLifecycleOwner(), teachers -> {
                     adapter.setTeacherList(teachers);
                 });
 
                 recyclerView.setAdapter(adapter);
 
-
+                //Updates the interface with student data
                 name.setText(student.getName());
 
                 if (student.getAbout() != null && !student.getAbout().isEmpty()) {
