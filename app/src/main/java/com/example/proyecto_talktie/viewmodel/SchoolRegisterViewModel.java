@@ -20,7 +20,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
+ *Class that saves the user info for register in Firebase.
+ */
 public class SchoolRegisterViewModel extends AndroidViewModel {
 
     public SchoolRegisterViewModel(@NonNull Application application) {
@@ -235,6 +237,10 @@ public class SchoolRegisterViewModel extends AndroidViewModel {
                });
 
     }
+
+    /*
+     * This method saves the name of the school in a verified list so the students can use it.
+     */
     public void saveSchoolinList() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();

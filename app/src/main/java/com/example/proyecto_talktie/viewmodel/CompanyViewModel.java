@@ -30,7 +30,11 @@ public class CompanyViewModel extends AndroidViewModel {
         super(application);
     }
 
-    //Método que obtiene las ofertas para cada compañía
+    /**
+     * Method that performs a search in the Offer collection to obtain the IDs of the selected company
+     *  of the candidates for a specific offer.
+     * @param companyId Id of the company to search.
+     */
     public MutableLiveData<List<OfferObject>> getOffersCompany(String companyId) {
         db.collection("Offer")
                 .whereEqualTo("companyId", companyId)
@@ -54,10 +58,19 @@ public class CompanyViewModel extends AndroidViewModel {
                 });
         return offersCompany;
     }
+
+    /**
+     * Method that stores a specific Offer inside a MutableLiveData.
+     * @param offerObject to store
+     */
     public void seleccionar(OfferObject offerObject){
         offerSingle.postValue(offerObject);
     }
 
+    /**
+     * Method that returns a Offer stored in a MutableLiveData.
+     * @return A MutableLiveData with a Offer.
+     */
     public MutableLiveData<OfferObject> seleccionado(){
         return offerSingle;
     }

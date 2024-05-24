@@ -19,7 +19,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
+ *Class that saves the user info for register in Firebase.
+ */
 public class BusinessRegisterViewModel extends AndroidViewModel {
     public BusinessRegisterViewModel(@NonNull Application application) {
         super(application);
@@ -184,7 +186,9 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
     }
 
 
-
+    /*
+     * This method gets the values of the LiveData and creates an "User" entry in the Firestore collection.
+     */
     public void saveUserFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -219,7 +223,9 @@ public class BusinessRegisterViewModel extends AndroidViewModel {
                 });
     }
 
-
+    /*
+     * This method gets the values of the LiveData and creates an "Company" entry in the Firestore collection.
+     */
     public void saveBusinessFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();

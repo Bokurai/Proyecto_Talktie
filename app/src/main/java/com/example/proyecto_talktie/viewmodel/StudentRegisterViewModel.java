@@ -20,6 +20,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ *Class that saves the user info for register in Firebase.
+ */
 public class StudentRegisterViewModel extends AndroidViewModel {
     public StudentRegisterViewModel(@NonNull Application application) {
         super(application);
@@ -261,7 +264,9 @@ public class StudentRegisterViewModel extends AndroidViewModel {
         this.jobTitle.setValue(jobTitle);
     }
 
-    //save user in Firestore
+    /**
+     * Method that creates a new user with the student registration data in the User collection.
+     */
     public void saveUserFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -297,7 +302,9 @@ public class StudentRegisterViewModel extends AndroidViewModel {
     }
 
 
-    //save student in Firestore
+    /**
+     * Method that is responsible for creating a new student with the registration data in the Student collection.
+     */
     public void saveStudentFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
