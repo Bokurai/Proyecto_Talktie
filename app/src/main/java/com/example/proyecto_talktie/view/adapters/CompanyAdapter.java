@@ -24,34 +24,50 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
+/**
+ * Adapter class for displaying a list of company offers in a RecyclerView.
+ * It binds offer data to the ViewHolder and handles item click events.
+ */
 
  public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.CompanyViewHolder>{
     private List<OfferObject> offerObjectList;
     private FirebaseFirestore db;
      CompanyViewModel viewModel;
      NavController navController;
-
+    /**
+     * Constructor for the adapter.
+     * @param offerObjectList The list of company offers to display.
+     * @param viewModel The ViewModel for handling offer data.
+     * @param navController The NavController for navigating to the offer details fragment.
+     */
     public CompanyAdapter(List<OfferObject> offerObjectList,CompanyViewModel viewModel, NavController navController) {
         this.offerObjectList = offerObjectList;
         db = FirebaseFirestore.getInstance();
         this.viewModel=viewModel;
         this.navController=navController;
     }
-
+    /**
+     * Method called to create a new ViewHolder for company offers.
+     */
     @NonNull
     @Override
     public CompanyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new CompanyAdapter.CompanyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_offer_company, parent, false));
     }
-
+    /**
+     * Method is called for each element in the RecyclerView and is responsible for binding the OfferObject data to the provided ViewHolder views.
+     * Queries the Firestore database to check if the current user has requested this offer.
+     * and updates the user interface accordingly. The number of requesters is also updated in real time by
+     * by obtaining the size of the "Applicants" sub-collection.
+     */
     @Override
     public void onBindViewHolder(@NonNull CompanyViewHolder holder, int position) {
         OfferObject offerObject = offerObjectList.get(position);
         holder.name.setText(offerObject.getName());
         holder.numApplicants.setText(String.valueOf(offerObject.getNumApplicants()));
 
-
         CollectionReference applicantsRef = db.collection("Offer").document(offerObject.getOfferId()).collection("Applicants");
+        // Check if the current user has applied to this offer
         applicantsRef.document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -64,6 +80,8 @@ import java.util.List;
                         }
                     }
                 });
+
+        // Get the total number of applicants for the current offer
         applicantsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -80,28 +98,32 @@ import java.util.List;
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 viewModel.seleccionar(offerObject);
                 navController.navigate(R.id.action_goOffersDetailsApplicants);
             }
         });
-
     }
-
+    /**
+     * Method called to get the number of company offers to display.
+     * @return The number of company offers.
+     */
     @Override
     public int getItemCount() {
         return offerObjectList.size();
     }
-
+    /**
+     * Method updating the list of company offers.
+     * @param offerObjectList The list of company offers to display.
+     */
     public void setOfferObjectList(List<OfferObject> offerObjectList) {
         this.offerObjectList = offerObjectList;
         notifyDataSetChanged();
     }
-
+    /**
+     * ViewHolder class that holds references to UI elements for each company offer item in the RecyclerView.
+     */
     class CompanyViewHolder extends RecyclerView.ViewHolder{
-
          TextView name, numApplicants;
-
          public CompanyViewHolder(@NonNull View itemView) {
              super(itemView);
              name = itemView.findViewById(R.id.offerName);

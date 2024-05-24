@@ -18,19 +18,32 @@ import com.example.proyecto_talktie.models.student.Student;
 import com.example.proyecto_talktie.viewmodel.schoolHomeViewModel;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+/**
+ * Adapter to display a list of students in a RecyclerView, using FirestoreRecyclerAdapter.
+ */
 
 public class studentSchoolAdapter extends FirestoreRecyclerAdapter<Student, studentSchoolAdapter.studentViewHolder> {
     NavController navController;
     schoolHomeViewModel homeViewModel;
 
-
+    /**
+     * Constructor for the adapter.
+     * @param options       Options for the FirestoreRecyclerAdapter.
+     * @param navController Navigation controller to handle navigation.
+     * @param homeViewModel ViewModel to share data between fragments.
+     */
     public studentSchoolAdapter(@NonNull FirestoreRecyclerOptions<Student> options, NavController navController, schoolHomeViewModel homeViewModel) {
         super(options);
         this.navController = navController;
         this.homeViewModel = homeViewModel;
 
     }
-
+    /**
+     * Method called to bind the student data to the views in the ViewHolder.
+     * @param holder   ViewHolder to bind with data.
+     * @param position Position of the item in the RecyclerView.
+     * @param model    Student object containing the student data.
+     */
     @Override
     protected void onBindViewHolder(@NonNull studentViewHolder holder, int position, @NonNull Student model) {
 
@@ -50,7 +63,6 @@ public class studentSchoolAdapter extends FirestoreRecyclerAdapter<Student, stud
                     .load(R.drawable.profile_image_defaut)
                     .into(holder.photoStudent);
         }
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,25 +70,32 @@ public class studentSchoolAdapter extends FirestoreRecyclerAdapter<Student, stud
                 navController.navigate(R.id.action_goStudentSchoolProfile);
             }
         });
-
-
     }
 
+    /**
+     * Method called to create a new ViewHolder.
+     * @param parent   The ViewGroup into which the new view will be added.
+     * @param viewType The type of the new view.
+     * @return A new ViewHolder for the RecyclerView.
+     */
     @NonNull
     @Override
     public studentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new studentViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_student_school, parent, false));
     }
-
+    /**
+     * ViewHolder for the items in the RecyclerView.
+     */
     class studentViewHolder extends RecyclerView.ViewHolder {
-
         TextView nameStudent, degree;
         ImageView photoStudent;
 
-
+        /**
+         * Constructor for the ViewHolder.
+         * @param itemView The view of the item.
+         */
         public studentViewHolder(@NonNull View itemView) {
             super(itemView);
-
             nameStudent = itemView.findViewById(R.id.student_name);
             degree = itemView.findViewById(R.id.degree);
             photoStudent = itemView.findViewById(R.id.student_image);

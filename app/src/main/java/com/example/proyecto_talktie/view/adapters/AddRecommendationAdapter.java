@@ -21,6 +21,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.util.List;
+/**
+ * Adapter to display a list of teachers in a RecyclerView, allowing a student to add or edit
+ * a recommendation for a teacher. This adapter handles the binding of teacher data to the
+ * corresponding views in each item of the RecyclerView, manages interactions with the Firestore
+ * database, and provides navigation to appropriate screens for adding or editing recommendations.
+ */
 
 public class AddRecommendationAdapter extends RecyclerView.Adapter<AddRecommendationAdapter.AddRecommendationViewHolder> {
     private List<Teacher> teacherList;
@@ -30,6 +36,14 @@ public class AddRecommendationAdapter extends RecyclerView.Adapter<AddRecommenda
     TeacherViewModel teacherViewModel;
     String studentId;
 
+    /**
+     * Constructor for AddRecommendationAdapter.
+     * @param teacherList      List of Teacher objects to be displayed.
+     * @param context          Context in which the adapter is operating.
+     * @param navController    NavController for handling navigation actions.
+     * @param teacherViewModel ViewModel for sharing data between different parts of the app.
+     * @param studentId        ID of the student for whom the recommendation is being added or edited.
+     */
     public AddRecommendationAdapter(List<Teacher> teacherList, Context context, NavController navController, TeacherViewModel teacherViewModel, String studentId) {
         this.teacherList = teacherList;
         this.context = context;
@@ -103,15 +117,25 @@ public class AddRecommendationAdapter extends RecyclerView.Adapter<AddRecommenda
         return teacherList.size();
     }
 
+    /**
+     * Sets a new list of teachers and notifies the adapter to refresh the RecyclerView.
+     * @param teacherList List of Teacher objects to be set.
+     */
     public void setTeacherList(List<Teacher> teacherList) {
         this.teacherList = teacherList;
         notifyDataSetChanged();
     }
 
+    /**
+     * ViewHolder class for the AddRecommendationAdapter.
+     */
     class AddRecommendationViewHolder extends RecyclerView.ViewHolder {
         ImageView imageTeacher;
         TextView nameTeacher;
-
+        /**
+         * Constructor for AddRecommendationViewHolder.
+         * @param itemView The view of the item in the RecyclerView.
+         */
         public AddRecommendationViewHolder(@NonNull View itemView) {
             super(itemView);
 
