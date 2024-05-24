@@ -78,14 +78,18 @@ public class EditRecommendation extends Fragment {
 
         context = getView().getContext();
 
+        //Initialize the ViewModel
         teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
 
+        //Gets the student stored in the viewModel
         student = teacherViewModel.getStudent();
         studentId = student.getStudentId();
 
+        //Update the interface with the data
         studentName.setText(student.getName());
         String imageStudent = student.getProfileImage();
 
+        //If the image is null, the default will be set
         if (imageStudent != null && !imageStudent.isEmpty()) {
             Uri uriImage = Uri.parse(imageStudent);
             Glide.with(context)
@@ -104,10 +108,14 @@ public class EditRecommendation extends Fragment {
             }
         });
 
+        /**
+         * Observe the selected teacher
+         */
         teacherViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Teacher>() {
             @Override
             public void onChanged(Teacher teacher) {
 
+                //Get information from the teacher
                 teacherId = teacher.getTeacherId();
 
                 String recommendation = student.getRecommendations().get(teacherId);
@@ -116,6 +124,7 @@ public class EditRecommendation extends Fragment {
                 teacherName.setText(teacher.getName());
                 String imageProfile = teacher.getProfileImage();
 
+                //If the image is null, the default will be set
                 if (imageProfile != null && !imageProfile.isEmpty()) {
                     Uri uriImage = Uri.parse(imageProfile);
                     Glide.with(context)
@@ -127,11 +136,11 @@ public class EditRecommendation extends Fragment {
                             .into(teacherImage);
                 }
 
-
-
+                //Allows you to delete a recommendation made
                 btnDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //Dialog to validate if you really want to delete the recommendation
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setMessage("Are you sure you want to remove the recommendation?")
                                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -150,6 +159,7 @@ public class EditRecommendation extends Fragment {
                     }
                 });
 
+                //Button that allows you to edit a recommendation
                 btnEdit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -165,7 +175,7 @@ public class EditRecommendation extends Fragment {
 
                         editTextRecommendation.setText(txtRecommendation.getText());
 
-                        //remplazar el texview con el editText
+                        //Replace the texview with the editText
                         ViewGroup parent = (ViewGroup) txtRecommendation.getParent();
                         int index = parent.indexOfChild(txtRecommendation);
                         parent.removeView(txtRecommendation);
@@ -174,17 +184,18 @@ public class EditRecommendation extends Fragment {
                         editTextRecommendation.requestFocus();
                         editTextRecommendation.selectAll();
 
-                        //actualizar newAbout
+                        //Update newAbout
                         newRecommendation = txtRecommendation.getText().toString().trim();
 
                     }
                 });
 
+                //Button that cancels the edition of the recommendation
                 btnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        //volver a un textView
+                        //Return to a textView
                         ViewGroup parent = (ViewGroup) editTextRecommendation.getParent();
                         int index = parent.indexOfChild(editTextRecommendation);
                         parent.removeView(editTextRecommendation);
@@ -199,6 +210,7 @@ public class EditRecommendation extends Fragment {
                     }
                 });
 
+                //Button that saves the new recommendation
                 btnSave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -210,6 +222,7 @@ public class EditRecommendation extends Fragment {
 
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+                                //Update the recommendation in the Student
                                 db.collection("Student").document(studentId)
                                         .update("recommendations."+teacherId, newRecommendation)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -218,7 +231,7 @@ public class EditRecommendation extends Fragment {
                                                 Log.d("UPDATE", "recomendación actualizada");
                                             }
                                         });
-                                //volver a un textView
+                                //Return to a textView
                                 ViewGroup parent = (ViewGroup) editTextRecommendation.getParent();
                                 int index = parent.indexOfChild(editTextRecommendation);
                                 parent.removeView(editTextRecommendation);

@@ -62,10 +62,13 @@ public class schoolHome extends Fragment {
 
         navController = Navigation.findNavController(view);
 
+        //Initialize the ViewModel
         searchViewBar = view.findViewById(R.id.searchViewSearchSchool);
         recyclerView = view.findViewById(R.id.searchRecyclerViewSchool);
 
-
+        /**
+         * Observe the name of the school
+         */
         homeViewModel.getNameSchool().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -76,18 +79,18 @@ public class schoolHome extends Fragment {
                 Query baseQuery = FirebaseFirestore.getInstance().collection("Student")
                         .whereEqualTo("center", name);
 
-                //Adapatador inicial
+                //Initial adapter
                 FirestoreRecyclerOptions<Student> options = new FirestoreRecyclerOptions.Builder<Student>()
                         .setQuery(baseQuery, Student.class)
                         .setLifecycleOwner(getViewLifecycleOwner())
                         .build();
 
-                //Adaptador opciones iniciales
+                //Adapter initial options
                 studentSchoolAdapter adapter = new studentSchoolAdapter(options, navController, homeViewModel);
                 adapter.notifyDataSetChanged();
                 recyclerView.setAdapter(adapter);
 
-                //Listener de la barra de la búsqueda
+                //Search bar listener
                 searchViewBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                     @Override
                     public boolean onQueryTextSubmit(String query) {
@@ -114,13 +117,8 @@ public class schoolHome extends Fragment {
                         return true;
                     }
                 });
-
-
             }
         });
-
-
-
-
     }
+
 }

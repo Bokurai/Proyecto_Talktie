@@ -61,6 +61,7 @@ public class createTeacher extends Fragment {
             }
         });
 
+        //Button to create a new teacher
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,10 +75,12 @@ public class createTeacher extends Fragment {
                 }
             }
         });
-
-
     }
 
+    /**
+     * Method that is responsible for validating if the mandatory fields have been filled out
+     * @return A boolean that indicates whether the required fields have been filled out
+     */
     private boolean validarFormulario() {
         boolean valid = true;
 
@@ -91,8 +94,16 @@ public class createTeacher extends Fragment {
         return valid;
     }
 
+    /**
+     * Method that creates a new teacher in the Teacher collection with the data indicated in the form
+     * @param name Name of the teacher to create
+     * @param email Teacher email to create
+     * @param position Teacher position to create
+     * @param userId School ID that the teacher creates
+     */
     private void createTeacher(String name, String email, String position, String userId) {
 
+        //Create the object
         Teacher teacher = new Teacher(name, userId);
 
         if (!email.isEmpty()) {
@@ -103,6 +114,7 @@ public class createTeacher extends Fragment {
             teacher.setPosition(position);
         }
 
+        //Create the teacher in the database
         FirebaseFirestore.getInstance().collection("Teacher")
                 .add(teacher)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
