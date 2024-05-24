@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 
- /*
+ /**
  * Class of the main activity of the app, which handles the navigation bars and automatic login.
  */
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     NavController navController;
     BottomNavigationView bottomNavigationView, bottomNavigationViewCompany, bottomNavSchool;
 
-    /*
+    /**
      * Method that handles operations in the creation of the activity.
      */
     @Override
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*
+        /**
          * Method that prevents from certain users from signing up in the wrong login.
          */
         if (currentUser == null) {
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*
+    /**
      * Methods that handle the visibility of the navigation bars.
      */
     public void hideNavBot() {

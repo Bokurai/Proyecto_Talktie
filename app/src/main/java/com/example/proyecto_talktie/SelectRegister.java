@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.proyecto_talktie.databinding.FragmentSelectRegisterBinding;
 
-/*
+/**
  * This fragment guides the users to the most suitable login.
  */
 public class SelectRegister extends Fragment {

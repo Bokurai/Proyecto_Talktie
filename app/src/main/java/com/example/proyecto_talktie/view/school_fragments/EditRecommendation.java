@@ -36,9 +36,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- */
 public class EditRecommendation extends Fragment {
     private ImageView backArrow, studentImage, teacherImage;
     private TextView studentName, teacherName, txtRecommendation;
