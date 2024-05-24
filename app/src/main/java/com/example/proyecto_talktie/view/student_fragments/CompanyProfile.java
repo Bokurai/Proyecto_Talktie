@@ -40,7 +40,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Fragment representing the view of a company's profile from the student profile
+ */
 public class CompanyProfile extends Fragment {
     private TextView nameCompany, location, description, type, phone, email, website, headquarters, txtVacancies;
     private ImageView imageReturn;

@@ -43,6 +43,9 @@ import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * Fragment representing the student's profile screen, where the student's information can be edited and the recommendations made to the student can be visualized.
+ */
 public class ProfileStudent extends Fragment {
     //Initialization of the student's view-model
     private StudentViewModel studentViewModel;

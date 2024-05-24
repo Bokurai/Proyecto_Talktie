@@ -38,6 +38,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Fragment showing the available offers separated by categories
+ */
 public class offerCategory extends Fragment {
     private TextView nameCategory;
     private OfferViewModel offerViewModel;

@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * Fragment representing the screen for editing a recommendation made by a teacher to a student.
  */
 public class EditRecommendation extends Fragment {
     private ImageView backArrow, studentImage, teacherImage;

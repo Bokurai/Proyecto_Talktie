@@ -38,6 +38,9 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * Fragment representing the Home screen of a student, where he/she will see the offers published by the following companies
+ */
 public class Home extends Fragment {
     MainActivity mainActivity;
     NavController navController;

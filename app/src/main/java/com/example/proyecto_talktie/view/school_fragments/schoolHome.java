@@ -27,6 +27,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+/**
+ * Fragment representing the Home screen (to recommend students) of school
+ */
 public class schoolHome extends Fragment {
 
    MainActivity mainActivity;

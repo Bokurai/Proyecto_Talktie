@@ -21,6 +21,9 @@ import com.example.proyecto_talktie.viewmodel.OfferViewModel;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
+/**
+ * Fragment showing the screen with the list of all available offers
+ */
 public class Offer extends Fragment {
     private OfferViewModel offerViewModel;
     private RecyclerView recyclerView;
