@@ -57,7 +57,10 @@ public class AddRecommendationAdapter extends RecyclerView.Adapter<AddRecommenda
     public AddRecommendationAdapter.AddRecommendationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new AddRecommendationAdapter.AddRecommendationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_teacher_add_recommend, parent, false));
     }
-
+    /**
+     * Binds data to the ViewHolder for displaying a teacher's information and handling click events.
+     * @param position The position of the item within the adapter's data set.
+     */
     @Override
     public void onBindViewHolder(@NonNull AddRecommendationAdapter.AddRecommendationViewHolder holder, int position) {
         Teacher teacher = teacherList.get(position);
