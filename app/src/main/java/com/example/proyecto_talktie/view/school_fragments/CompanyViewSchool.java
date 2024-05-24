@@ -124,7 +124,6 @@ public class CompanyViewSchool extends Fragment {
         class CompanyViewHolder extends RecyclerView.ViewHolder{
             TextView company_name, location_company, sector_company;
             CircleImageView company_image;
-
             public  CompanyViewHolder(@NonNull View itemView){
                 super(itemView);
                 company_name = itemView.findViewById(R.id.company_name);
