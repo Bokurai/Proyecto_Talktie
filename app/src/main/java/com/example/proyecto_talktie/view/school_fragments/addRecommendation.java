@@ -32,7 +32,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-
+/**
+ * Fragment representing the screen that allows the creation of a recommendation to the student.
+ */
 public class addRecommendation extends Fragment {
     private ImageView backArrow, teacherImage, studentImage;
     private TextView nameTacher, nameStudent;

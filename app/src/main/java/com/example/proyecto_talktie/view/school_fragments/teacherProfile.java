@@ -41,10 +41,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Fragment representing the profile screen of a school's teachers
+ */
 
 public class teacherProfile extends Fragment {
     NavController navController;
-    private ImageView backArrow, imageTeacher, editPostion, editEmail;
+    private ImageView backArrow, imageTeacher, editPosition, editEmail;
     private TeacherViewModel teacherViewModel;
     private LinearLayout listRecommended;
     private TextView txtName, txtPosition, txtEmail, editImage;
@@ -74,11 +77,12 @@ public class teacherProfile extends Fragment {
 
         navController = Navigation.findNavController(view);
 
+        //Initializes the adaptor and the ViewModel
         adapter = new RecommendedAdapter(new ArrayList<>());
         teacherViewModel = new ViewModelProvider(requireActivity()).get(TeacherViewModel.class);
 
 
-        editPostion = view.findViewById(R.id.positionEditS);
+        editPosition = view.findViewById(R.id.positionEditS);
         editEmail = view.findViewById(R.id.emailEditT);
 
         savePosition = view.findViewById(R.id.btnSavePosition);
@@ -94,26 +98,33 @@ public class teacherProfile extends Fragment {
         recyclerView = view.findViewById(R.id.recommendedRecyclerView);
         listRecommended = view.findViewById(R.id.listStudentRecommended);
 
+        /**
+         * Observe the selected teacher
+         */
         teacherViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Teacher>() {
             @Override
             public void onChanged(Teacher teacher) {
 
                 teacherSelect = teacher;
 
+                //Get the teacher's ID
                 teacherId = teacher.getTeacherId();
 
+                /**
+                 * Observe the recommendations made by a specific teacher
+                 */
                 teacherViewModel.getRecommendationTeachers(teacherId).observe(getViewLifecycleOwner(), students -> {
+                    //Hides the view if the result is null
                     if (students != null && !students.isEmpty()) {
                         listRecommended.setVisibility(View.VISIBLE);
                         adapter.setStudentList(students);
-                        //recyclerView.setAdapter(new RecommendedAdapter(students));
                         recyclerView.setAdapter(adapter);
                     } else {
                         listRecommended.setVisibility(View.GONE);
                     }
                 });
 
-
+                //Updates the interface with the data
                 txtName.setText(teacher.getName());
                 txtPosition.setText(teacher.getPosition());
                 txtEmail.setText(teacher.getEmail());
@@ -121,6 +132,7 @@ public class teacherProfile extends Fragment {
                 String imageProfile = teacher.getProfileImage();
                 Log.d("TACG", "la imagen del profe es: " + imageProfile);
 
+                //If the image is null, the default image will be set
                 Context context = getView().getContext();
                 if (imageProfile != null && !imageProfile.isEmpty()) {
                     Uri uriImage = Uri.parse(imageProfile);
@@ -133,11 +145,11 @@ public class teacherProfile extends Fragment {
                             .into(imageTeacher);
                 }
 
-
-                editPostion.setOnClickListener(new View.OnClickListener() {
+                //Button to edit a teacher's position field
+                editPosition.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        editPostion.setVisibility(View.GONE);
+                        editPosition.setVisibility(View.GONE);
                         savePosition.setVisibility(View.VISIBLE);
 
                         if (editTextPosition == null) {
@@ -146,7 +158,7 @@ public class teacherProfile extends Fragment {
 
                         editTextPosition.setText(teacher.getPosition());
 
-                        //remplazar el texview con el editText
+                        //Replace texView with editText
                         ViewGroup parent = (ViewGroup) txtPosition.getParent();
                         int index = parent.indexOfChild(txtPosition);
                         parent.removeView(txtPosition);
@@ -155,21 +167,24 @@ public class teacherProfile extends Fragment {
                         editTextPosition.requestFocus();
                         editTextPosition.selectAll();
 
-                        //actualizar newAbout
+                        //Update newAbout
                         newPosition = txtPosition.getText().toString().trim();
 
                     }
                 });
 
+                //Button to save changes made in the position field
                 savePosition.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String updatePosition = editTextPosition.getText().toString().trim();
 
                         if (!updatePosition.isEmpty()) {
+                            //Check for changes
                             if (!updatePosition.equals(newPosition)) {
                                 newPosition = updatePosition;
 
+                                //Upload data update
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                                 db.collection("Teacher").document(teacherId)
                                         .update("position", newPosition)
@@ -181,13 +196,13 @@ public class teacherProfile extends Fragment {
                                         });
                             }
 
-                            //volver a un textView
+                            //Back to a textView
                             ViewGroup parent = (ViewGroup) editTextPosition.getParent();
                             int index = parent.indexOfChild(editTextPosition);
                             parent.removeView(editTextPosition);
                             parent.addView(txtPosition, index);
 
-                            editPostion.setVisibility(View.VISIBLE);
+                            editPosition.setVisibility(View.VISIBLE);
                             savePosition.setVisibility(View.GONE);
 
                             txtPosition.setText(newPosition);
@@ -195,6 +210,7 @@ public class teacherProfile extends Fragment {
                     }
                 });
 
+                //Button to edit a teacher's email field
                 editEmail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -208,7 +224,7 @@ public class teacherProfile extends Fragment {
 
                         editTextEmail.setText(teacher.getEmail());
 
-                        //remplazar el texview con el editText
+                        //Replace texView with editText
                         ViewGroup parent = (ViewGroup) txtEmail.getParent();
                         int index = parent.indexOfChild(txtEmail);
                         parent.removeView(txtEmail);
@@ -217,21 +233,24 @@ public class teacherProfile extends Fragment {
                         editTextEmail.requestFocus();
                         editTextEmail.selectAll();
 
-                        //actualizar newAbout
+                        //Update newAbout
                         newEmail = txtEmail.getText().toString().trim();
 
                     }
                 });
 
+                //Button to save changes made in the mail field
                 saveEmail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String updateEmail = editTextEmail.getText().toString().trim();
 
                         if (!updateEmail.isEmpty()) {
+                            //Check for changes
                             if (!updateEmail.equals(newEmail)) {
                                 newEmail = updateEmail;
 
+                                //Replace texView with editText
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                                 db.collection("Teacher").document(teacherId)
                                         .update("email", newEmail)
@@ -243,7 +262,7 @@ public class teacherProfile extends Fragment {
                                         });
                             }
 
-                            //volver a un textView
+                            //Back to a textView
                             ViewGroup parent = (ViewGroup) editTextEmail.getParent();
                             int index = parent.indexOfChild(editTextEmail);
                             parent.removeView(editTextEmail);
@@ -256,9 +275,9 @@ public class teacherProfile extends Fragment {
                         }
                     }
                 });
-
             }
         });
+
 
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -276,6 +295,9 @@ public class teacherProfile extends Fragment {
 
     }
 
+    /**
+     * Opens the gallery for selecting a new profile image.
+     */
     private void selectGalleryImageRegister() {
         Intent i = new Intent();
         i.setType("image/*");
@@ -283,6 +305,9 @@ public class teacherProfile extends Fragment {
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
     }
 
+    /**
+     * Handles the result from selecting an image from the gallery.
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -300,6 +325,10 @@ public class teacherProfile extends Fragment {
         }
     }
 
+    /**
+     * Uploads the selected image to Firebase Storage and updates the profile image URL in Firestore.
+     * @param uri The URI of the selected image.
+     */
     private void uploadImage(Uri uri) {
         if (teacherId != null) {
             if (uri != null) {
@@ -313,6 +342,10 @@ public class teacherProfile extends Fragment {
         }
     }
 
+    /**
+     * Updates the profile image URL in Firestore.
+     * @param imageUrl The URL of the uploaded profile image.
+     */
     private void linkImagetoUser(String imageUrl){
         if (teacherId!= null){
             FirebaseFirestore.getInstance().collection("User").document(teacherId)

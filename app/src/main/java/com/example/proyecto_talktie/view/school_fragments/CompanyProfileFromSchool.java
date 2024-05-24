@@ -22,9 +22,12 @@ import com.example.proyecto_talktie.R;
 import com.example.proyecto_talktie.models.company.Business;
 import com.example.proyecto_talktie.viewmodel.CompanySearchViewModel;
 
+/**
+ * Fragment representing the screen displaying the list of companies from the school profile
+ */
 public class CompanyProfileFromSchool extends Fragment {
 
-    private TextView nameCompany, location, description, type, phone, email, website, headquaters;
+    private TextView nameCompany, location, description, type, phone, email, website, headquarters;
 
     private AppCompatButton message;
     MainActivity mainActivity;
@@ -47,6 +50,8 @@ public class CompanyProfileFromSchool extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //Initializes the viewModel and makes a call to the MainActivity
         companySearchViewModel = new ViewModelProvider(requireActivity()).get(CompanySearchViewModel.class);
         navController = Navigation.findNavController(view);
         mainActivity = (MainActivity) requireActivity();
@@ -62,8 +67,11 @@ public class CompanyProfileFromSchool extends Fragment {
         website = view.findViewById(R.id.websiteTextViewPS);
         message = view.findViewById(R.id.btnMessageCompany);
         backButton = view.findViewById(R.id.img_return_to_companyview);
-        headquaters = view.findViewById(R.id.txtHeadquartersCompany);
+        headquarters = view.findViewById(R.id.txtHeadquartersCompany);
 
+        /**
+         * Observe the selected company
+         */
         companySearchViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Business>() {
             @Override
             public void onChanged(Business business) {
@@ -74,7 +82,7 @@ public class CompanyProfileFromSchool extends Fragment {
                 phone.setText(business.getPhone());
                 email.setText(business.getEmail());
                 website.setText(business.getWebsite());
-                headquaters.setText(business.getHeadquarters());
+                headquarters.setText(business.getHeadquarters());
             }
         });
 
