@@ -146,7 +146,6 @@ public class SignIn1_School extends Fragment {
     }
     /**
      * Method that creates a new account using Google credentials.
-     * @param acct The GoogleSignInAccount object containing the user's Google Account information.
      */
     private void  crearCuentaGoogle(GoogleSignInAccount account) {
         if (account == null) return;

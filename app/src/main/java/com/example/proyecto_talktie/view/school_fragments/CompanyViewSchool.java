@@ -29,7 +29,9 @@ import com.google.firebase.firestore.Query;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-
+    /**
+     * Fragment to display a list of companies from the school's perspective.
+     */
 public class CompanyViewSchool extends Fragment {
 
     NavController navController;
@@ -41,11 +43,12 @@ public class CompanyViewSchool extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
-    @Override
+    /**
+     * Inflates the layout for this fragment.
+     */
+        @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_company_view_school, container, false);
     }
 
@@ -68,13 +71,20 @@ public class CompanyViewSchool extends Fragment {
         final CompanyViewAdapterProfile adapterProfile = new CompanyViewAdapterProfile(options);
         recyclerView.setAdapter(adapterProfile);
     }
-
+    /**
+    * Adapter for the RecyclerView to display company profiles.
+    */
     class CompanyViewAdapterProfile extends FirestoreRecyclerAdapter<Business, CompanyViewAdapterProfile.CompanyViewHolder> {
 
         public CompanyViewAdapterProfile(@NonNull FirestoreRecyclerOptions<Business> options) {
             super(options);
         }
-
+        /**
+         * Binds data to the ViewHolder.
+         * @param holder  The ViewHolder to bind data to.
+         * @param position The position of the item within the adapter's data set.
+         * @param model    The Business object containing data to bind.
+         */
         @Override
         protected void onBindViewHolder(@NonNull CompanyViewAdapterProfile.CompanyViewHolder holder, int position, @NonNull Business model) {
             holder.company_name.setText(model.getName());
@@ -108,13 +118,12 @@ public class CompanyViewSchool extends Fragment {
         public CompanyViewAdapterProfile.CompanyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new CompanyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_company_view, parent,false));
         }
-
+        /**
+         * ViewHolder class for the RecyclerView.
+         */
         class CompanyViewHolder extends RecyclerView.ViewHolder{
-
             TextView company_name, location_company, sector_company;
-
             CircleImageView company_image;
-
             public  CompanyViewHolder(@NonNull View itemView){
                 super(itemView);
                 company_name = itemView.findViewById(R.id.company_name);
