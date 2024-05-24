@@ -31,8 +31,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-
+/**
+ * Fragment for adding a recommendation for a student by a teacher.
+ */
 public class addRecommendation extends Fragment {
     private ImageView backArrow, teacherImage, studentImage;
     private TextView nameTacher, nameStudent;
@@ -42,7 +43,6 @@ public class addRecommendation extends Fragment {
     private String studentId;
     Context context;
     NavController navController;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -99,7 +99,10 @@ public class addRecommendation extends Fragment {
         });
 
         /**
-         * Observe the selected teacher
+         * Observe the selected teacher from the ViewModel.
+         * Update UI with selected teacher data.
+         * Handle cancel button click to navigate back.
+         * Handle save button click to save recommendation to Firestore and update student profile.
          */
         teacherViewModel.selected().observe(getViewLifecycleOwner(), new Observer<Teacher>() {
             @Override

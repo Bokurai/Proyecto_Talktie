@@ -22,6 +22,7 @@ import com.example.proyecto_talktie.R;
 import com.example.proyecto_talktie.models.company.Business;
 import com.example.proyecto_talktie.viewmodel.CompanySearchViewModel;
 
+
 public class CompanyProfileFromSchool extends Fragment {
 
     private TextView nameCompany, location, description, type, phone, email, website, headquaters;
