@@ -4,7 +4,7 @@ TalkTie is a Java-based application available for Android devices, with Firebase
 The app is destined at grad and college students who want to establish intership contracts with businesses, 
 and it acts as a link between said students, the businesses and educational centres, similar to job hunt apps like Linkedin.
 
-#@ -Profile Features-
+## -Profile Features-
 
 ### **Student**
 - "Job hunt".
