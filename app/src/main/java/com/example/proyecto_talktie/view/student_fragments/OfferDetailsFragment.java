@@ -86,7 +86,7 @@ public class OfferDetailsFragment extends Fragment {
                 contract_time.setText(offerObject.getContract_time());
                 job_description.setText(offerObject.getJob_description());
 
-                SimpleDateFormat format = new SimpleDateFormat("HH:MM  dd/mm/yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("HH:mm  dd/MM/yyyy");
                 Date date = offerObject.getDate();
                 String formattedDate = format.format(date);
                 offer_date.setText(formattedDate);
