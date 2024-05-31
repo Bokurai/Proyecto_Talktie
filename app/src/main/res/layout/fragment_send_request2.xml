@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.student_fragments.sendRequest2">
+    <data/>
+    <LinearLayout android:gravity="center_horizontal"
+        android:id="@+id/sendRequest2"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <FrameLayout android:gravity="start"
+            android:id="@+id/frame29ApplyJob"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent" style="@style/groupStylewhite_A700">
+
+            <LinearLayout
+                android:id="@+id/linearLists"
+                android:layout_width="match_parent"
+                android:layout_height="728dp"
+                android:layout_gravity="top|start"
+                android:layout_marginBottom="@dimen/_26pxv"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtAddCoverLette"
+                    style="@style/txtRobotoromanbold17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_11pxv"
+                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@string/msg_add_cover_lette"
+                    tools:text="@string/msg_add_cover_lette" />
+
+                <LinearLayout
+                    android:id="@+id/letter"
+                    style="@style/groupStylebluegray_50cornerRadius"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_12pxv"
+                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/txtWriteyourlett"
+                        style="@style/txtRobotoromanregular17_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_17pxh"
+                        android:layout_marginTop="@dimen/_13pxv"
+                        android:layout_marginEnd="@dimen/_17pxh"
+                        android:layout_marginBottom="@dimen/_67pxv"
+                        android:ellipsize="end"
+                        android:gravity="start"
+                        android:lineSpacingExtra="@dimen/_3pxh"
+                        android:singleLine="true"
+                        android:hint="@string/msg_write_your_lett"
+                         />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtUploadResume"
+                    style="@style/txtRobotoromanbold17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_29pxv"
+                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/_3pxh"
+                    android:singleLine="true"
+                    android:text="@string/lbl_upload_resume"
+                    tools:text="@string/lbl_upload_resume" />
+
+                <LinearLayout
+                    android:id="@+id/linearuploadCV"
+                    style="@style/groupStylebluegray_50cornerRadius"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_10pxv"
+                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/txtUpload"
+                            style="@style/txtRobotoromanmedium15"
+                            android:textColor="@color/bluegray_400"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_10pxh"
+                            android:ellipsize="end"
+                            android:lineSpacingExtra="@dimen/_3pxh"
+                            android:maxLines="2"
+                            android:drawablePadding="@dimen/_20pxh"
+                            android:text= "@string/upload_n_only_pdf_format_are_accepted"
+                            app:drawableStartCompat="@drawable/img_twitter" />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtUploadyourCV"
+                    style="@style/txtRobotoromanregular13_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_17pxh"
+                    android:layout_marginTop="@dimen/_7pxv"
+                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:lineSpacingExtra="@dimen/_5pxh"
+                    android:text="@string/msg_upload_your_cv"
+                    tools:text="@string/msg_upload_your_cv" />
+
+                <LinearLayout
+                    android:id="@+id/linearColumnyourexperience"
+                    android:layout_width="384dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30pxv"
+                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:gravity="start"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtYourExperience"
+                        style="@style/txtRobotoromanbold17"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/_17pxh"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10pxh"
+                        android:ellipsize="end"
+                        android:lineSpacingExtra="@dimen/_3pxh"
+                        android:singleLine="true"
+                        android:text="@string/lbl_add_expirience"
+                        tools:text="@string/lbl_add_expirience" />
+
+                    <LinearLayout
+                        android:id="@+id/linearfielf2"
+                        style="@style/groupStylebluegray_50cornerRadius"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_17pxh"
+                        android:layout_marginTop="@dimen/_12pxv"
+                        android:layout_marginEnd="@dimen/_17pxh"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/txtexperience"
+                            style="@style/txtRobotoromanregular17_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_17pxh"
+                            android:layout_marginTop="@dimen/_13pxv"
+                            android:layout_marginEnd="@dimen/_17pxh"
+                            android:layout_marginBottom="@dimen/_67pxv"
+                            android:ellipsize="end"
+                            android:gravity="start"
+                            android:lineSpacingExtra="@dimen/_3pxh"
+                            android:singleLine="true"
+                            android:hint="@string/lbl_expirience"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnSendNow"
+                    style="@style/btnSolidRounded_8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginStart="@dimen/_79pxh"
+                    android:layout_marginTop="@dimen/_20pxv"
+                    android:layout_marginEnd="@dimen/_79pxh"
+                    android:layout_marginBottom="@dimen/_6pxv"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:letterSpacing="0.05"
+                    android:paddingStart="@dimen/_30pxh"
+                    android:paddingTop="@dimen/_14pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingBottom="@dimen/_14pxv"
+                    android:singleLine="true"
+                    android:text="@string/lbl_send_now"
+                    android:textAllCaps="false"
+                    tools:text="@string/lbl_send_now" />
+            </LinearLayout>
+
+        </FrameLayout>
+    </LinearLayout>
+</layout>
