@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ProfileCompanySelf"
+    tools:context=".view.company_fragments.ProfileCompanySelf"
     android:gravity="start"
     android:id="@+id/profileCompanySelf"
     android:layout_height="match_parent"

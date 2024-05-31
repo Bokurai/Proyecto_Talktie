@@ -18,13 +18,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.proyecto_talktie.viewmodel.SchoolRegisterViewModel;
 import com.google.firebase.Timestamp;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * Fragment that is part of the signIn that handles user input for details like summary and foundation date.
+ */
 public class signIn5_school extends Fragment {
 
     SchoolRegisterViewModel registerViewModel;
@@ -44,7 +47,9 @@ public class signIn5_school extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sig_in5_school, container, false);
     }
-
+    /**
+     * This method initializes various UI components and sets up click listeners for the continue buttons.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -119,7 +124,11 @@ public class signIn5_school extends Fragment {
         });
 
     }
-
+    /**
+     * Converts the date entered in the EditText to a Timestamp.
+     * @param dateEditText The EditText containing the date.
+     * @return The Timestamp corresponding to the entered date.
+     */
     private Timestamp editTextToTimestamp(EditText dateEditText) {
         String dateString = dateEditText.getText().toString();
 

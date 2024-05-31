@@ -42,7 +42,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-
+/**
+ * Fragment class for handling user login functionality.
+ * It supports email/password login and Google Sign-In.
+ */
 public class schoolLogin extends Fragment {
 
     private FirebaseAuth mAuth;
@@ -113,7 +116,7 @@ public class schoolLogin extends Fragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-// There are no request codes
+
                             Intent data = result.getData();
                             try {
                                 firebaseAuthWithGoogle(GoogleSignIn.getSignedInAccountFromIntent(data
@@ -146,7 +149,7 @@ public class schoolLogin extends Fragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-// There are no request codes
+
                             Intent data = result.getData();
                             try {
                                 firebaseAuthWithGoogle(GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException.class));
@@ -171,7 +174,9 @@ public class schoolLogin extends Fragment {
         mainActivity.hideNavBotComp();
 
     }
-
+    /**
+     * Method to manage the email and login password.
+     */
     private void accederConEmail() {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
@@ -200,7 +205,10 @@ public class schoolLogin extends Fragment {
                     }
                 });
     }
-
+    /**
+     * Method that verifies the type of the logged-in user.
+     * @param user The currently logged-in user.
+     */
     private void verificarTipoUsuario(FirebaseUser user) {
         DocumentReference userRef = FirebaseFirestore.getInstance().collection("User").document(user.getUid());
 
@@ -220,7 +228,10 @@ public class schoolLogin extends Fragment {
             }
         });
     }
-
+    /**
+     * Updates the UI after a successful login.
+     * @param currentUser The currently logged-in user.
+     */
     private void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
             navController = NavHostFragment.findNavController(this);
@@ -228,7 +239,9 @@ public class schoolLogin extends Fragment {
 
         }
     }
-
+    /**
+     *Method that initiates the process of logging in to Google.
+     */
     private void accederConGoogle() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -244,7 +257,10 @@ public class schoolLogin extends Fragment {
             });
         });
     }
-
+    /**
+     * Method that handles Firebase authentication with a Google account.
+     * @param acct The Google account used for authentication.
+     */
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         if (acct == null) {
             Log.e("firebaseAuthWithGoogle", "GoogleSignInAccount is null");

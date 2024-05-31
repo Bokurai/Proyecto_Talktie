@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CompanyProfile">
+    tools:context=".view.student_fragments.CompanyProfile">
 
     <LinearLayout
         android:layout_width="match_parent"

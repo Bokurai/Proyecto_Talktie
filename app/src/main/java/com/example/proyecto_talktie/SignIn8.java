@@ -13,19 +13,15 @@ import androidx.navigation.Navigation;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.proyecto_talktie.viewmodel.StudentRegisterViewModel;
 import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -33,12 +29,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * Fragment that is part of the signIn that handles user input for educational details including school, location, degree, and dates of formation.
+ */
 public class SignIn8 extends Fragment {
     StudentRegisterViewModel registerViewModel;
     NavController navController;
-
     EditText etSchool, etLocation,etDegree, etStartDateForm, etEndDateForm;
-
     AppCompatButton nextButton;
 
     @Override
@@ -46,8 +43,6 @@ public class SignIn8 extends Fragment {
         super.onCreate(savedInstanceState);
         registerViewModel = new ViewModelProvider(requireActivity()).get(StudentRegisterViewModel.class);
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,8 +77,7 @@ public class SignIn8 extends Fragment {
                 }
             }
         });
-
-        // Agregar un TextWatcher al EditText de fecha (para que se vea en formato fecha)
+        // Adding a TextWatcher to the date EditText (to display in date format)
         etStartDateForm.addTextChangedListener(new TextWatcher() {
             private String current = "";
             private String ddmmyyyy = "DDMMYYYY";
@@ -156,14 +150,11 @@ public class SignIn8 extends Fragment {
                     for (int i = 2; i <= cl && i < 6; i += 2) {
                         sel++;
                     }
-                    // Fix for pressing delete next to a forward slash
                     if (clean.equals(cleanC)) sel--;
 
                     if (clean.length() < 8){
                         clean = clean + ddmmyyyy.substring(clean.length());
                     } else {
-                        //This part makes sure that when we finish entering numbers
-                        //the date is correct, fixing it otherwise
                         int day  = Integer.parseInt(clean.substring(0,2));
                         int mon  = Integer.parseInt(clean.substring(2,4));
                         int year = Integer.parseInt(clean.substring(4,8));
@@ -185,8 +176,6 @@ public class SignIn8 extends Fragment {
                 }
             }
         });
-
-        //felcha atras
         ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
         imageArrowleft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,6 +184,11 @@ public class SignIn8 extends Fragment {
             }
         });
     }
+    /**
+     * Converts the date string from an EditText to a Timestamp.
+     * @param dateEditText The EditText containing the date string.
+     * @return The corresponding Timestamp, or null if the date string is invalid.
+     */
 
     private Timestamp editTextToTimestamp(EditText dateEditText) {
         String dateString = dateEditText.getText().toString();
@@ -214,6 +208,10 @@ public class SignIn8 extends Fragment {
         }
         return null;
     }
+    /**
+     * Validates the user input form.
+     * @return True if the form is valid, false otherwise.
+     */
     private boolean validarFormulario() {
         boolean valid = true;
 
@@ -231,7 +229,9 @@ public class SignIn8 extends Fragment {
         }
         return valid;
     }
-
+    /**
+     * Validates the school name against a list stored in Firestore.
+     */
     private void validateSchool() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String mapUid = "rIh64FpBBfR1Wmu1zyEy";
@@ -250,6 +250,4 @@ public class SignIn8 extends Fragment {
         }).addOnFailureListener(e -> {
         });
     }
-
-
 }

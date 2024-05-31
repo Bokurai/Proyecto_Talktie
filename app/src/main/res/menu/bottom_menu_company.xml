@@ -3,11 +3,11 @@
     <item
         android:id="@+id/companyHomeFragment"
         android:icon="@drawable/img_briefcase"
-        android:title="Job List" />
+        android:title="Job Posts" />
     <item
         android:id="@+id/SchoolViewCompany"
         android:icon="@drawable/school_icon"
-        android:title="School List" />
+        android:title="Schools" />
     <item
         android:id="@+id/companyMessages"
         android:icon="@drawable/img_user_black_900_23x24"

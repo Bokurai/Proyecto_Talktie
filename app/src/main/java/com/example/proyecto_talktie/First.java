@@ -18,7 +18,9 @@ public class First extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-
+    /**
+     * Inflate the layout for this fragment and return the View.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return (binding = FragmentFirstBinding.inflate(inflater, container, false)).getRoot();

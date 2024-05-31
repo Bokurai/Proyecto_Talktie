@@ -4,14 +4,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    tools:context=".NewOfferFragment"
+    tools:context=".view.company_fragments.NewOfferFragment"
     android:layout_height="wrap_content" >
     <LinearLayout
     android:gravity="start"
         android:id="@+id/linearOferrsposted"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        tools:context=".NewOfferFragment"
+        tools:context=".view.company_fragments.NewOfferFragment"
         android:orientation="vertical"
         style="@style/groupStylewhite_A700">
         <FrameLayout android:id="@+id/frameStackrectanglefifty"

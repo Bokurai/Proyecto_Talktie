@@ -8,7 +8,7 @@
     android:layout_marginTop="@dimen/_10pxh"
     android:layout_marginBottom="@dimen/_25pxh"
     android:orientation="vertical"
-    tools:context=".offerCategory">
+    tools:context=".view.student_fragments.offerCategory">
 
     <TextView
         android:id="@+id/nameCategories"

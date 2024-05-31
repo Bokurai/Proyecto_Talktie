@@ -20,21 +20,21 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
+import com.example.proyecto_talktie.viewmodel.StudentRegisterViewModel;
 import com.google.firebase.Timestamp;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * Fragment that is part of the signIn that handles user input for job details including company name, location, job title, and dates of employment.
+ */
 public class SignIn9 extends Fragment {
     StudentRegisterViewModel registerViewModel;
     NavController navController;
-
     EditText etCompanyName, etLocation,etJobTitle, etStartDateJob, etEndDateJob;
-
     RadioButton radioButton;
-
     AppCompatButton nextButton;
 
     @Override
@@ -46,10 +46,8 @@ public class SignIn9 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_in9, container, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -65,7 +63,6 @@ public class SignIn9 extends Fragment {
             etEndDateJob.setEnabled(false);
         }
 
-
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +76,6 @@ public class SignIn9 extends Fragment {
                 navController.navigate(R.id.signIn10);
             }
         });
-        // Agregar un TextWatcher al EditText de fecha (para que se vea en formato fecha)
         etStartDateJob.addTextChangedListener(new TextWatcher() {
             private String current = "";
             private String ddmmyyyy = "DDMMYYYY";
@@ -107,8 +103,6 @@ public class SignIn9 extends Fragment {
                     if (clean.length() < 8){
                         clean = clean + ddmmyyyy.substring(clean.length());
                     } else {
-                        //This part makes sure that when we finish entering numbers
-                        //the date is correct, fixing it otherwise
                         int day  = Integer.parseInt(clean.substring(0,2));
                         int mon  = Integer.parseInt(clean.substring(2,4));
                         int year = Integer.parseInt(clean.substring(4,8));
@@ -118,11 +112,9 @@ public class SignIn9 extends Fragment {
 
                         clean = String.format("%02d%02d%02d", day, mon, year);
                     }
-
                     clean = String.format("%s/%s/%s", clean.substring(0, 2),
                             clean.substring(2, 4),
                             clean.substring(4, 8));
-
                     sel = sel < 0 ? 0 : sel;
                     current = clean;
                     etStartDateJob.setText(current);
@@ -152,14 +144,10 @@ public class SignIn9 extends Fragment {
                     for (int i = 2; i <= cl && i < 6; i += 2) {
                         sel++;
                     }
-                    // Fix for pressing delete next to a forward slash
                     if (clean.equals(cleanC)) sel--;
-
                     if (clean.length() < 8){
                         clean = clean + ddmmyyyy.substring(clean.length());
                     } else {
-                        //This part makes sure that when we finish entering numbers
-                        //the date is correct, fixing it otherwise
                         int day  = Integer.parseInt(clean.substring(0,2));
                         int mon  = Integer.parseInt(clean.substring(2,4));
                         int year = Integer.parseInt(clean.substring(4,8));
@@ -181,8 +169,6 @@ public class SignIn9 extends Fragment {
                 }
             }
         });
-
-        //felcha atras
         ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
         imageArrowleft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +178,11 @@ public class SignIn9 extends Fragment {
         });
     }
 
+    /**
+     * Converts the date string from an EditText to a Timestamp.
+     * @param dateEditText The EditText containing the date string.
+     * @return The corresponding Timestamp, or null if the date string is invalid.
+     */
     private Timestamp editTextToTimestamp(EditText dateEditText) {
         String dateString = dateEditText.getText().toString();
 

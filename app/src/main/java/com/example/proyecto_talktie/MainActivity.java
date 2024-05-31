@@ -6,10 +6,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import android.view.View;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import com.example.proyecto_talktie.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -19,27 +15,29 @@ import android.view.MenuItem;
 import com.example.proyecto_talktie.databinding.FragmentLoginBinding;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+ /**
+ * Class of the main activity of the app, which handles the navigation bars and automatic login.
+ */
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
-    ActivityMainBinding binding; //para navigation button
+    ActivityMainBinding binding;
     NavController navController;
-    BottomNavigationView bottomNavigationView, bottomNavigationViewCompany, bottomNavSchool ;
+    BottomNavigationView bottomNavigationView, bottomNavigationViewCompany, bottomNavSchool;
 
+    /**
+     * Method that handles operations in the creation of the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((binding = ActivityMainBinding.inflate(getLayoutInflater())).getRoot());
 
         mAuth = FirebaseAuth.getInstance();
-
-        // Obtener el usuario actualmente autenticado
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        // Inicializar el NavController
         navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).getNavController();
 
-        // Configurar el BottomNavigationView con el NavController
         NavigationUI.setupWithNavController(binding.bottomNavView, navController);
         NavigationUI.setupWithNavController(binding.bottomNavViewCompany, navController);
         NavigationUI.setupWithNavController(binding.bottomNavViewSchool, navController);
@@ -48,25 +46,25 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationViewCompany = findViewById(R.id.bottom_nav_view_company);
         bottomNavSchool = findViewById(R.id.bottom_nav_view_school);
 
-        //Botones Student
+        // Student navbar
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
                 if (itemId == R.id.home) {
-                    // Navegar al fragmento de inicio
+                    // Navigate to user home
                     navController.navigate(R.id.action_goHome);
                     return true;
                 } else if (itemId == R.id.offer) {
-                    // Navegar al fragmento de ofertas
+                    // Navigate to Offers
                     navController.navigate(R.id.action_goOffer);
                     return true;
                 } else if (itemId == R.id.messagesHome) {
-                    // Navegar al fragmento de mensajes
+                    // Navigate to messages
                     navController.navigate(R.id.action_to_MessagesHome);
                     return true;
                 } else if (itemId == R.id.profileStudent) {
-                    // Navegar al fragmento de perfil
+                    // Navigate to the student's profile
                     navController.navigate(R.id.action_goProfileStudent);
                     return true;
                 }
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Botones Company
+        //Company navbar
         bottomNavigationViewCompany.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Botones School
+       //School navbar
         bottomNavSchool.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -126,9 +124,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Verificar si hay un usuario autenticado
+        /**
+         * Method that prevents from certain users from signing up in the wrong login.
+         */
         if (currentUser == null) {
-            // Si no hay un usuario autenticado, navegar al fragmento de inicio de sesión
+
             navController.navigate(R.id.selectRegister);
         } else {
             String userId = currentUser.getUid();
@@ -158,7 +158,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * Methods that handle the visibility of the navigation bars.
+     */
     public void hideNavBot() {
         bottomNavigationView.setVisibility(View.GONE);
     }

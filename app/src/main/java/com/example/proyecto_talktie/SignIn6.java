@@ -18,34 +18,40 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.example.proyecto_talktie.viewmodel.StudentRegisterViewModel;
 import com.google.firebase.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * Fragment that is part of the signIn that handles the input of the user's personal data, including name, phone number, email and date of birth.
+ */
 
 public class SignIn6 extends Fragment {
 
     StudentRegisterViewModel registerViewModel;
     NavController navController;
-
     EditText nameET, phoneET, emailET, dateET;
-
     AppCompatButton nextButton;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         registerViewModel = new ViewModelProvider(requireActivity()).get(StudentRegisterViewModel.class);
     }
-
+    /**
+     * Called to have the fragment instantiate its user interface view. This method inflates the layout for the fragment.
+     * @return Return the View for the fragment's UI, or null.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sign_in6, container, false);
     }
-
+    /**
+     * This method initializes various UI components and sets up click listeners for the continue buttons.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -62,11 +68,10 @@ public class SignIn6 extends Fragment {
         emailET.setText(registerViewModel.getEmail().getValue());
         phoneET.setText(registerViewModel.getPhoneNumber().getValue());
 
-        // Agregar un TextWatcher al EditText de fecha (para que se vea en formato fecha)
+        // Add a TextWatcher to the date EditText (to display in date format)
         dateET.addTextChangedListener(new TextWatcher() {
             private String current = "";
             private String ddmmyyyy = "DDMMYYYY";
-
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -101,7 +106,6 @@ public class SignIn6 extends Fragment {
 
                         clean = String.format("%02d%02d%02d", day, mon, year);
                     }
-
                     clean = String.format("%s/%s/%s", clean.substring(0, 2),
                             clean.substring(2, 4),
                             clean.substring(4, 8));
@@ -113,7 +117,6 @@ public class SignIn6 extends Fragment {
                 }
             }
         });
-
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,8 +129,6 @@ public class SignIn6 extends Fragment {
                 }
             }
         });
-
-        //flecha atras
         ImageView imageArrowleft = view.findViewById(R.id.imageArrowleft);
         imageArrowleft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +137,11 @@ public class SignIn6 extends Fragment {
             }
         });
     }
-
+    /**
+     * Converts the date entered in the EditText to a Timestamp.
+     * @param dateEditText The EditText containing the date.
+     * @return The Timestamp corresponding to the entered date.
+     */
     private Timestamp editTextToTimestamp(EditText dateEditText) {
         String dateString = dateEditText.getText().toString();
 
@@ -155,6 +160,10 @@ public class SignIn6 extends Fragment {
         }
         return null;
     }
+    /**
+     * Validates the user input form.
+     * @return True if the form is valid, false otherwise.
+     */
     private boolean validarFormulario() {
         boolean valid = true;
 
@@ -166,5 +175,4 @@ public class SignIn6 extends Fragment {
         }
         return valid;
     }
-
 }

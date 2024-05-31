@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".createTeacher"
+    tools:context=".view.school_fragments.createTeacher"
     android:gravity="center_horizontal"
     android:id="@+id/linearSinginOne"
     android:layout_height="match_parent"
@@ -78,7 +78,7 @@
                 android:paddingTop="@dimen/_12pxv"
                 android:singleLine="true"
                 android:textColorHint="@color/bluegray_400"
-                style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
+                style="@style/etSolidRounded_3" tools:ignore="Autofill"/>
             <EditText
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
@@ -97,7 +97,7 @@
                 android:paddingTop="@dimen/_11pxv"
                 android:singleLine="true"
                 android:textColorHint="@color/bluegray_400"
-                style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
+                style="@style/etSolidRounded_3" tools:ignore="Autofill"/>
             <EditText
                 android:background="@drawable/rectangle_bg_bluegray_50_radius_8"
                 android:ellipsize="end"
@@ -116,7 +116,7 @@
                 android:paddingTop="@dimen/_11pxv"
                 android:singleLine="true"
                 android:textColorHint="@color/bluegray_400"
-                style="@style/etSolidRounded_2" tools:ignore="Autofill"/>
+                style="@style/etSolidRounded_3" tools:ignore="Autofill"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:ellipsize="end" android:gravity="center"

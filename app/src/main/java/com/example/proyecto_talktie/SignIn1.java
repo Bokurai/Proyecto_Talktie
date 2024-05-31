@@ -1,10 +1,7 @@
 package com.example.proyecto_talktie;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
@@ -27,6 +24,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.proyecto_talktie.databinding.FragmentSignIn1Binding;
+import com.example.proyecto_talktie.viewmodel.StudentRegisterViewModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -40,15 +38,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
+/**
+ * A Fragment that handles the user registration process, including both email/password and Google sign-in methods.
+ */
 
 public class SignIn1 extends Fragment {
-
     FragmentSignIn1Binding binding;
     private Button registerButton;
     public static final String EXTRA_FORCE_ACCOUNT_CHOOSER = "force_account_chooser";
@@ -67,12 +62,13 @@ public class SignIn1 extends Fragment {
         registerViewModel = new ViewModelProvider(requireActivity()).get(StudentRegisterViewModel.class);
 
     }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return (binding = FragmentSignIn1Binding.inflate(inflater, container, false)).getRoot();
     }
-
+    /**
+     * This method initializes various UI components and sets up click listeners for the sign-up buttons.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -100,7 +96,6 @@ public class SignIn1 extends Fragment {
                         }
                     }
                 });
-
         navController = Navigation.findNavController(view);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +103,6 @@ public class SignIn1 extends Fragment {
                 crearCuentaMailPassword();
             }
         });
-
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,7 +116,9 @@ public class SignIn1 extends Fragment {
             }
         });
     }
-
+    /**
+     * Initiates the Google sign-in process.
+     */
     private void accederConGoogle() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -135,7 +131,10 @@ public class SignIn1 extends Fragment {
         activityResultLauncher.launch(signInIntent);
     }
 
-
+    /**
+     * Method that creates a new account using Google credentials.
+     * @param acct The GoogleSignInAccount object containing the user's Google Account information.
+     */
     private void crearCuentaGoogle(GoogleSignInAccount acct){
         if(acct == null) return;
 
@@ -158,16 +157,14 @@ public class SignIn1 extends Fragment {
                             }
                         });
     }
-
-
+    /**
+     * Method that creates a new account using email and password.
+     */
     private void crearCuentaMailPassword() {
         if (!validarFormulario()) {
             return;
         }
-
         registerButton.setEnabled(false);
-
-
         mAuth.createUserWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
                 .addOnCompleteListener(requireActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -184,14 +181,20 @@ public class SignIn1 extends Fragment {
                         registerButton.setEnabled(true);
                     }
                 });
-
     }
-
+    /**
+     * Updates the UI after a successful sign-in.
+     * @param currentUser The currently signed-in FirebaseUser.
+     */
     private void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
             navController.navigate(R.id.signIn6);
         }
     }
+    /**
+     * Validates the user input form.
+     * @return True if the form is valid, false otherwise.
+     */
 
     private boolean validarFormulario() {
         boolean valid = true;
@@ -224,5 +227,4 @@ public class SignIn1 extends Fragment {
         }
         return valid;
     }
-
 }
